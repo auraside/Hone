@@ -21,7 +21,7 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+[![GNU AGPLv3 License][license-shield]][license-url]
 
 
 
@@ -185,7 +185,7 @@ Project Link: [https://github.com/auraside/HoneCtrl](https://github.com/auraside
 [issues-shield]: https://img.shields.io/github/issues/auraside/HoneCtrl.svg?style=for-the-badge
 [issues-url]: https://github.com/auraside/HoneCtrl/issues
 [license-shield]: https://img.shields.io/github/license/auraside/HoneCtrl.svg?style=for-the-badge
-[license-url]: https://github.com/auraside/HoneCtrl/blob/master/LICENSE.txt
+[license-url]: https://github.com/auraside/HoneCtrl/blob/master/LICENSE
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/linkedin_username
 [product-screenshot]: https://user-images.githubusercontent.com/107450640/173981200-3be429ba-54b5-4be2-9a86-e190fb39c854.png
