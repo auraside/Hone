@@ -35,7 +35,7 @@
 <h3 align="center">HoneCtrl</h3>
 
   <p align="center">
-    HoneCtrl is a free and open source desktop utility that aims to improve fps, reduce input lag, and optimize network performance for video game titles and day-to-day tasks across the board.
+    HoneCtrl is a free and open source desktop utility that aims to improve FPS, reduce input lag, and optimize network performance for video game titles and day-to-day productivity.
   <p align="center">
     If you would like to support the hone project, please leave a review on our Trustpilot: https://www.trustpilot.com/review/hone.gg
     <br />
