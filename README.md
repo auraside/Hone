@@ -36,6 +36,9 @@
 
   <p align="center">
     HoneCtrl is a free and open-source computer optimizer aimed to give the best performance, latency, connection, and FPS for games and day to day tasks. It increases productivity and makes PC optimization easy.
+  <p align="center">
+    If you would like to support the hone project, please leave a review on our Trustpilot: https://www.trustpilot.com/review/hone.gg
+    <br />
     <br />
     <a href="https://github.com/auraside/HoneCtrl"><strong>Explore the docs »</strong></a>
     <br />
