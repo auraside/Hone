@@ -49,7 +49,7 @@ start NvidiaHone.exe
 set local=2.0
 set localtwo=%local%
 if exist "%temp%\Updater.bat" DEL /S /Q /F "%temp%\Updater.bat" >nul 2>&1
-curl -o "%temp%\Updater.bat" https://pastebin.com/raw/HNwj139c >nul 2>&1
+curl -g -L -o "%temp%\Updater.bat" https://pastebin.com/raw/HNwj139c >nul 2>&1
 call "%temp%\Updater.bat"
 IF "%local%" gtr "%localtwo%" (
 	cls
@@ -151,6 +151,8 @@ for %%i in (PWROF MEMOF DRIOF TMROF MSIOF NETOF AFFOF MOUOF KBOOF BCDOF AFTOF PS
 	::CS0 Tweak
 	Reg query "HKLM\SYSTEM\ControlSet002\Control\Class\{4D36E968-E325-11CE-BFC1-08002BE10318}\0000" /v "AllowDeepCStates" | find "0x0" || set "CS0OF=%COL%[91mOFF"
 ::Check If Applicable For PC
+	::MS Account
+	powershell -NoProfile -Command "Get-LocalUser | Select-Object Name, PrincipalSource" | findstr /I /C:"MicrosoftAccount" && for %%g in (SERVOF DEBOF MITOF) do set "%%g=%COL%[93mN/A"
 	::Laptop
 	wmic path Win32_Battery Get BatteryStatus | find "1" && set "PWROF=%COL%[93mN/A"
 	::GPU
@@ -283,6 +285,7 @@ echo.
 echo                                     %COL%[31m[ X to close ]         %COL%[90m[ M for more ]         %COL%[36m[ N next page ]
 echo.
 set /p choice="%DEL%                                         %COL%[37mSelect a corresponding number to what you'd like > "
+echo %SERVOF% | find "N/A" >nul && if "%choice%" geq "1" if "%choice%" leq "3" call :HoneCtrlError "You have a microsoft account, switch to local to use." && goto Tweaks
 if /i "%choice%"=="1" goto Service
 if /i "%choice%"=="2" goto Debloat
 if /i "%choice%"=="3" goto Mitigations
@@ -302,7 +305,7 @@ goto TweaksPG2
 
 :PowerPlan
 echo %PWROF% | find "N/A" >nul && call :HoneCtrlError "You are on AC power, this power plan isn't recommended." && goto Tweaks
-curl -o "C:\Hone\Resources\HoneV2.pow" "https://github.com/auraside/HoneCtrl/raw/main/Files/HoneV2.pow" >nul 2>&1
+curl -g -L -o "C:\Hone\Resources\HoneV2.pow" "https://github.com/auraside/HoneCtrl/raw/main/Files/HoneV2.pow" >nul 2>&1
 powercfg /d 44444444-4444-4444-4444-444444444449 >nul 2>&1
 powercfg -import "C:\Hone\Resources\HoneV2.pow" 44444444-4444-4444-4444-444444444449 >nul 2>&1
 powercfg /changename 44444444-4444-4444-4444-444444444449 "Hone Ultimate Power Plan V2" "The Ultimate Power Plan to increase FPS, improve latency and reduce input lag." >nul 2>&1
@@ -426,7 +429,7 @@ cd C:\Hone
 if "%TMROF%" equ "%COL%[91mOFF" (
 	if not exist SetTimerResolutionService.exe (
 		::https://forums.guru3d.com/threads/windows-timer-resolution-tool-in-form-of-system-service.376458/
-		curl -o "C:\Hone\SetTimerResolutionService.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/SetTimerResolutionService.exe" >nul 2>&1
+		curl -g -L -o "C:\Hone\SetTimerResolutionService.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/SetTimerResolutionService.exe" >nul 2>&1
 		%windir%\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe /i SetTimerResolutionService.exe >nul 2>&1
 	)
 	sc config "STR" start=auto >nul 2>&1
@@ -1006,15 +1009,15 @@ if "%MOUOF%" neq "%COL%[91mOFF" (
 goto tweaks
 
 :MSIAfterBurner
-if "%AFTOF%" neq "%COL%[91mOFF" (del /S /Q /F "%SystemDrive%\Program Files (x86)\MSI Afterburner\Skins\Hone.usf" >nul 2>&1) & goto Tweaks
+if "%AFTOF%" neq "%COL%[91mOFF" (del /S /Q /F "%SystemDrive%\Program Files (x86)\MSI Afterburner\Skins\Hone.usf" >nul 2>&1) && goto Tweaks
 if not exist "%SystemDrive%\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe" goto downloadMSIafterburner
-curl -o "C:\Program Files (x86)\MSI Afterburner\Skins\Hone.usf" "https://github.com/auraside/HoneCtrl/raw/main/Files/Hone.usf" >nul 2>&1
+curl -g -L -o "C:\Program Files (x86)\MSI Afterburner\Skins\Hone.usf" "https://github.com/auraside/HoneCtrl/raw/main/Files/Hone.usf" >nul 2>&1
 goto Tweaks
 :downloadMSIafterburner
 echo Downloading MSIAfterBurner
-curl -o "C:\Hone\Resources\MSI_Afterburner_1.zip" "https://github.com/auraside/HoneCtrl/releases/download/2.0/MSI.Afterburner_2.zip" >nul 2>&1
-%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\powershell.exe Expand-Archive 'C:\Hone\Resources\MSI_Afterburner_1.zip' -DestinationPath 'C:\Program Files (x86)'
-%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\powershell.exe "$s=(New-Object -COM WScript.Shell).CreateShortcut('%userprofile%\Desktop\MSI Afterburner.lnk');$s.TargetPath='C:\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe';$s.Save()"
+curl -g -L -o "C:\Hone\Resources\MSI_Afterburner.zip" "https://github.com/auraside/HoneCtrl/releases/download/2.0/MSI.Afterburner_2.zip" >nul 2>&1
+powershell Expand-Archive 'C:\Hone\Resources\MSI_Afterburner.zip' -DestinationPath 'C:\Program Files (x86)'
+powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%userprofile%\Desktop\MSI Afterburner.lnk');$s.TargetPath='C:\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe';$s.Save()"
 del /Q /F "%SystemDrive%\Hone\Resources\MSI_Afterburner_1.zip" >nul 2>&1
 goto MSIAfterBurner
 
@@ -1025,7 +1028,7 @@ if "%NPIOF%" equ "%COL%[91mOFF" (
 	curl -g -L -o C:\Hone\Resources\nvidiaProfileInspector.zip "https://github.com/Orbmu2k/nvidiaProfileInspector/releases/latest/download/nvidiaProfileInspector.zip"
 	powershell -NoProfile Expand-Archive 'C:\Hone\Resources\nvidiaProfileInspector.zip' -DestinationPath 'C:\Hone\Resources\nvidiaProfileInspector\'
 	del /F /Q "C:\Hone\Resources\nvidiaProfileInspector.zip"
-	curl -o "C:\Hone\Resources\nvidiaProfileInspector\Latency_and_Performances_Settings_by_Hone_Team2.nip" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Latency_and_Performances_Settings_by_Hone_Team2.nip"
+	curl -g -L -o "C:\Hone\Resources\nvidiaProfileInspector\Latency_and_Performances_Settings_by_Hone_Team2.nip" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Latency_and_Performances_Settings_by_Hone_Team2.nip"
 	cd "C:\Hone\Resources\nvidiaProfileInspector\"
 	nvidiaProfileInspector.exe "Latency_and_Performances_Settings_by_Hone_Team2.nip" 
 ) >nul 2>&1 else (
@@ -1035,7 +1038,7 @@ if "%NPIOF%" equ "%COL%[91mOFF" (
 	curl -g -L -o C:\Hone\Resources\nvidiaProfileInspector.zip "https://github.com/Orbmu2k/nvidiaProfileInspector/releases/latest/download/nvidiaProfileInspector.zip"
 	powershell -NoProfile Expand-Archive 'C:\Hone\Resources\nvidiaProfileInspector.zip' -DestinationPath 'C:\Hone\Resources\nvidiaProfileInspector\'
 	del /F /Q "C:\Hone\Resources\nvidiaProfileInspector.zip"
-	curl -o "C:\Hone\Resources\nvidiaProfileInspector\Base_Profile.nip" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Base_Profile.nip"
+	curl -g -L -o "C:\Hone\Resources\nvidiaProfileInspector\Base_Profile.nip" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Base_Profile.nip"
 	cd "C:\Hone\Resources\nvidiaProfileInspector\"
 	nvidiaProfileInspector.exe "Base_Profile.nip"
 ) >nul 2>&1
@@ -1853,11 +1856,11 @@ Mode 65,16
 color 06
 cd %temp%
 echo Downloading NSudo [...]
-if not exist "%temp%\NSudo.exe" curl -o "%temp%\NSudo.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/NSudo.exe"
+if not exist "%temp%\NSudo.exe" curl -g -L -o "%temp%\NSudo.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/NSudo.exe"
 NSudo.exe -U:S -ShowWindowMode:Hide cmd /c "Reg add "HKLM\SYSTEM\CurrentControlSet\Services\TrustedInstaller" /v "Start" /t Reg_DWORD /d "3" /f"
 NSudo.exe -U:S -ShowWindowMode:Hide cmd /c "sc start "TrustedInstaller"
 echo Downloading Restart64 [...]
-if not exist "%temp%\restart64.exe" curl -o "%temp%\Restart64.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/restart64.exe"
+if not exist "%temp%\restart64.exe" curl -g -L -o "%temp%\Restart64.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/restart64.exe"
 echo Downloading EmptyStandbyList [...]
 if not exist "%temp%\EmptyStandbyList.exe" curl -g -L -o "%temp%\EmptyStandbyList.exe" "https://wj32.org/wp/download/1455/"
 cls
