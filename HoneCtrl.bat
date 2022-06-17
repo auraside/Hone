@@ -682,7 +682,7 @@ if "%CS0OF%" equ "%COL%[91mOFF" (
 goto Tweaks
 
 :AMD
-echo %AMDOF% | find "N/A" >nul && call :HoneCtrlError "You don't have an AMD GPU" & goto Tweaks
+::echo %AMDOF% | find "N/A" >nul && call :HoneCtrlError "You don't have an AMD GPU" & goto Tweaks
 ::Disable Gamemode
 Reg add "HKCU\Software\Microsoft\GameBar" /v "AllowAutoGameMode" /t Reg_DWORD /d "0" /f
 Reg add "HKCU\Software\Microsoft\GameBar" /v "AutoGameModeEnabled" /t Reg_DWORD /d "0" /f
@@ -728,7 +728,7 @@ Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08
 goto Tweaks
 
 :Intel
-echo %DSSOF% | find "N/A" >nul && call :HoneCtrlError "You don't have an intel GPU" & goto Tweaks
+::echo %DSSOF% | find "N/A" >nul && call :HoneCtrlError "You don't have an intel GPU" & goto Tweaks
 ::DedicatedSegmentSize in Intel iGPU
 if "%DSSOF%" equ "%COL%[91mOFF" (
 	reg add "HKLM\SOFTWARE\Intel\GMM" /v "DedicatedSegmentSize" /t REG_DWORD /d "1024" /f >nul 2>&1
@@ -991,11 +991,11 @@ goto Tweaks
 
 :Drivers
 cls
-for /F "tokens=* skip=1" %%n in ('WMIC path Win32_VideoController get Name ^| findstr "."') do set GPU_NAME=%%n
-echo %GPU_NAME% | find "NVIDIA" >nul 2>&1 || (
-echo You do not have a nvidia gpu! Please skip this!
-pause & goto Tweaks
-)
+::for /F "tokens=* skip=1" %%n in ('wmic path Win32_VideoController get VideoProcessor ^| findstr "."') do set GPU_NAME=%%n
+::echo %GPU_NAME% | find "NVIDIA" >nul 2>&1 || (
+::echo You do not have a nvidia gpu! Please skip this!
+::pause & goto Tweaks
+::)
 
 echo The drivers are 732Mb and 1Gb so this will take a moment to download. (768,102,400 or 1,073,691,829 bytes)
 echo.
