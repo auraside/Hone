@@ -71,7 +71,7 @@ IF "%local%" gtr "%localtwo%" (
 	choice /c:YN /n /m "%DEL%                                >:"
 	set choice=!errorlevel!
 	if !choice! equ 1 (
-		curl -L -o "C:\Users\%username%\Documents\HoneCtrl.bat" https://github.com/auraside/HoneCtrl/releases/latest/download/HoneCtrl.Bat
+		curl -L -o "C:\Users\%username%\Documents\HoneCtrl.bat" https://github.com/auraside/HoneCtrl/releases/latest/download/HoneCtrl.bat
 		start "C:\Users\%username%\Documents\HoneCtrl.bat"
 		del %0
 		exit /b
@@ -293,7 +293,7 @@ if /i "%choice%"=="N" (set "PG=TweaksPG1") & goto TweaksPG1
 goto TweaksPG2
 
 :PowerPlan
-if not exist "C:\Hone\Resources\HoneV2.pow" curl -o C:\Hone\Resources\HoneV2.pow https://cdn.discordapp.com/attachments/798314687321735199/914875838728646706/HoneV2.pow >nul 2>&1
+if not exist "C:\Hone\Resources\HoneV2.pow" curl -L -o C:\Hone\Resources\HoneV2.pow https://github.com/auraside/HoneCtrl/raw/main/Files/HoneV2.pow >nul 2>&1
 powercfg /d 44444444-4444-4444-4444-444444444449 >nul 2>&1
 powercfg -import "C:\Hone\Resources\HoneV2.pow" 44444444-4444-4444-4444-444444444449 >nul 2>&1
 powercfg /changename 44444444-4444-4444-4444-444444444449 "Hone Ultimate Power Plan V2" "The Ultimate Power Plan to increase FPS, improve latency and reduce input lag." >nul 2>&1
@@ -380,7 +380,7 @@ goto Tweaks
 cd C:\Hone
 if "%TMROF%" equ "%COL%[91mOFF" (
 	if not exist SetTimerResolutionService.exe (
-		curl -o C:\Hone\SetTimerResolutionService.exe https://cdn.discordapp.com/attachments/798314687321735199/923239064738627594/SetTimerResolutionService.exe >nul 2>&1
+		curl -L -o C:\Hone\SetTimerResolutionService.exe https://github.com/auraside/HoneCtrl/raw/main/Files/SetTimerResolutionService.exe >nul 2>&1
 		%windir%\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe /i SetTimerResolutionService.exe >nul 2>&1
 	)
 	sc config "STR" start=auto >nul 2>&1
@@ -963,27 +963,27 @@ goto tweaks
 :MSIAfterBurner
 if "%AFTOF%" neq "%COL%[91mOFF" (del /S /Q /F "%SystemDrive%\Program Files (x86)\MSI Afterburner\Skins\Hone.usf" >nul 2>&1) & goto Tweaks
 if not exist "%SystemDrive%\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe" goto downloadMSIafterburner
-curl -o "C:\Program Files (x86)\MSI Afterburner\Skins\Hone.usf" "https://cdn.discordapp.com/attachments/798652558351794196/867499045480300554/Hone.usf" >nul 2>&1
+curl -L -o "C:\Program Files (x86)\MSI Afterburner\Skins\Hone.usf" "https://github.com/auraside/HoneCtrl/raw/main/Files/Hone.usf" >nul 2>&1
 goto Tweaks
 :downloadMSIafterburner
 echo Downloading MSIAfterBurner
-curl -o "C:\Hone\Resources\MSI_Afterburner_1.zip" "https://cdn.discordapp.com/attachments/798652558351794196/867516168675000390/MSI_Afterburner_1.zip" >nul 2>&1
-%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\powershell.exe Expand-Archive 'C:\Hone\Resources\MSI_Afterburner_1.zip' -DestinationPath 'C:\Program Files (x86)'
+curl -L -o "C:\Hone\Resources\MSI Afterburner_2.zip" "https://github.com/auraside/HoneCtrl/releases/download/2.0/MSI.Afterburner_2.zip" >nul 2>&1
+%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\powershell.exe Expand-Archive 'C:\Hone\Resources\MSI Afterburner_2.zip' -DestinationPath 'C:\Program Files (x86)'
 %SYSTEMROOT%\System32\WindowsPowerShell\v1.0\powershell.exe "$s=(New-Object -COM WScript.Shell).CreateShortcut('%userprofile%\Desktop\MSI Afterburner.lnk');$s.TargetPath='C:\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe';$s.Save()"
-del /S /Q /F "%SystemDrive%\Hone\Resources\MSI_Afterburner_1.zip" >nul 2>&1
+del /S /Q /F "%SystemDrive%\Hone\Resources\MMSI Afterburner_2.zip" >nul 2>&1
 goto MSIAfterBurner
 
 :ProfileInspector
 if "%NPIOF%" equ "%COL%[91mOFF" (
 	Reg add "HKCU\Software\Hone" /v NpiTweaks /f
 	cd c:\Hone\Resources >nul 2>&1
-	if not exist "C:\Hone\Resources\nvidiaProfileInspector.exe" curl -o C:\Hone\Resources\nvidiaProfileInspector.exe https://cdn.discordapp.com/attachments/798652558351794196/847124457637806080/nvidiaProfileInspector.exe  >nul 2>&1
-	if not exist "C:\Hone\Resources\Latency_and_Performances_Settings_by_Hone_Team2.nip" curl -o C:\Hone\Resources\Latency_and_Performances_Settings_by_Hone_Team2.nip https://cdn.discordapp.com/attachments/798314687321735199/984258372905865306/Latency_and_Performances_Settings_by_Hone_Team2.nip  >nul 2>&1
+	if not exist "C:\Hone\Resources\nvidiaProfileInspector.exe" curl -L -o C:\Hone\Resources\nvidiaProfileInspector.exe https://github.com/auraside/HoneCtrl/raw/main/Files/nvidiaProfileInspector.exe  >nul 2>&1
+	if not exist "C:\Hone\Resources\Latency_and_Performances_Settings_by_Hone_Team2.nip" curl -L -o C:\Hone\Resources\Latency_and_Performances_Settings_by_Hone_Team2.nip https://cdn.discordapp.com/attachments/798314687321735199/984258372905865306/Latency_and_Performances_Settings_by_Hone_Team2.nip  >nul 2>&1
 nvidiaProfileInspector.exe "Latency_and_Performances_Settings_by_Hone_Team2.nip" 
 )>nul 2>&1 else (
 	cd C:\Hone\Resources\ >nul 2>&1
 	Reg delete "HKCU\Software\Hone" /v NpiTweaks /f
-	if not exist "C:\Hone\Resources\nvidiaProfileInspector.exe" curl -o C:\Hone\Resources\nvidiaProfileInspector.exe https://cdn.discordapp.com/attachments/798652558351794196/847124457637806080/nvidiaProfileInspector.exe  >nul 2>&1
+	if not exist "C:\Hone\Resources\nvidiaProfileInspector.exe" curl -L -o C:\Hone\Resources\nvidiaProfileInspector.exe https://github.com/auraside/HoneCtrl/raw/main/Files/nvidiaProfileInspector.exe  >nul 2>&1
 	if not exist "C:\Hone\Resources\Base_Profile.nip" curl -o C:\Hone\Resources\Base_Profile.nip https://cdn.discordapp.com/attachments/798314687321735199/984259220868313159/Base_Profile.nip  >nul 2>&1
 nvidiaProfileInspector.exe "Base_Profile.nip" 
 )>nul 2>&1
@@ -1008,17 +1008,16 @@ TITLE Downloading Nvidia driver...
 echo Do you need shadowplay and other components of the driver? Y or N?
 choice /c:YN /n /m "[Y] Yes  [N] No"
 if %errorlevel% equ 1 (
-curl -L -o C:\Hone\Drivers\NvidiaHone.exe https://github.com/auraside/HoneCtrl/releases/latest/download/497.09.Hone.Default.exe
+curl -L -o "C:\Hone\Drivers\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/1.3/497.09.Hone.Default.exe"
 ) || (
-curl -L -o "C:\Hone\Drivers\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/latest/download/497.09.Hone.Tweaked.exe"
+curl -L -o "C:\Hone\Drivers\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/1.3/497.09.Hone.Tweaked.exe"
 )
 
 TITLE Executing DDU...
-if not exist C:\Hone\Resources\DDU\DDU.exe curl -o C:\Hone\Resources\DDU.zip https://cdn.discordapp.com/attachments/798652558351794196/934970228792778752/DDU.zip
+if not exist C:\Hone\Resources\DDU\DDU.exe curl -L -o C:\Hone\Resources\DDU.zip "https://github.com/auraside/HoneCtrl/raw/main/Files/DDU.zip"
 %SYSTEMROOT%\System32\WindowsPowerShell\v1.0\powershell.exe Expand-Archive 'C:\Hone\Resources\DDU.zip' -DestinationPath 'C:\Hone\Resources' >nul 2>&1
 del "C:\Hone\Resources\DDU.zip"
 cd C:\Hone\Resources\DDU
-ren "Display Driver Uninstaller.exe" "DDU.exe"
 start "" /wait "DDU.exe" -silent -cleannvidia
 
 title Restart Confirmation
@@ -1741,8 +1740,8 @@ set choice=%errorlevel%
 if "%choice%"=="1" goto More
 
 :Cleaner
-curl -o C:\Hone\Resources\Device_cleanup.exe https://cdn.discordapp.com/attachments/872722402948284468/901667414977150976/DeviceCleanupCmd.exe
-curl -o C:\Hone\Resources\AdwCleaner.exe https://cdn.discordapp.com/attachments/878581424062603294/964694797124251698/adwcleaner.exe
+curl -L -o C:\Hone\Resources\Device_cleanup.exe https://github.com/auraside/HoneCtrl/raw/main/Files/DeviceCleanupCmd.exe
+curl -o C:\Hone\Resources\AdwCleaner.exe https://adwcleaner.malwarebytes.com/adwcleaner?channel=release
 timeout 2 >nul 2>&1
 del /Q C:\Users\%username%\AppData\Local\Microsoft\Windows\INetCache\IE\*.*
 del /Q C:\Windows\Downloaded Program Files\*.*
@@ -1796,13 +1795,13 @@ Mode 65,16
 color 06
 cd %temp%
 echo Downloading NSudo [...]
-if not exist "%temp%\NSudo.exe" curl -o "%temp%\NSudo.exe" https://github.com/Xt5gamerxX/Echo/raw/main/Files/NSudo.exe
+if not exist "%temp%\NSudo.exe" curl -L -o "%temp%\NSudo.exe" https://github.com/auraside/HoneCtrl/raw/main/Files/NSudo.exe
 NSudo.exe -U:S -ShowWindowMode:Hide cmd /c "Reg add "HKLM\SYSTEM\CurrentControlSet\Services\TrustedInstaller" /v "Start" /t Reg_DWORD /d "3" /f"
 NSudo.exe -U:S -ShowWindowMode:Hide cmd /c "sc start "TrustedInstaller"
 echo Downloading Restart64 [...]
-if not exist "%temp%\restart64.exe" curl -o "%temp%\Restart64.exe" https://github.com/Xt5gamerxX/Echo/raw/main/Files/restart64.exe
+if not exist "%temp%\restart64.exe" curl -L -o "%temp%\Restart64.exe" https://github.com/auraside/HoneCtrl/raw/main/Files/restart64.exe
 echo Downloading EmptyStandbyList [...]
-if not exist "%temp%\EmptyStandbyList.exe" curl -o "%temp%\EmptyStandbyList.exe" https://wj32.org/wp/download/1455/
+if not exist "%temp%\EmptyStandbyList.exe" curl -L -o "%temp%\EmptyStandbyList.exe" https://wj32.org/wp/download/1455/
 cls
 
 ::Restart Explorer/DWM
