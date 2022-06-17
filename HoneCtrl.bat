@@ -46,7 +46,7 @@ start NvidiaHone.exe
 )
 
 ::Check for updates
-set local=2.0
+set local=2.1
 set localtwo=%local%
 if exist "%temp%\Updater.bat" DEL /S /Q /F "%temp%\Updater.bat" >nul 2>&1
 curl -g -L -o "%temp%\Updater.bat" https://pastebin.com/raw/HNwj139c >nul 2>&1
@@ -151,8 +151,6 @@ for %%i in (PWROF MEMOF DRIOF TMROF MSIOF NETOF AFFOF MOUOF KBOOF BCDOF AFTOF PS
 	::CS0 Tweak
 	Reg query "HKLM\SYSTEM\ControlSet002\Control\Class\{4D36E968-E325-11CE-BFC1-08002BE10318}\0000" /v "AllowDeepCStates" | find "0x0" || set "CS0OF=%COL%[91mOFF"
 ::Check If Applicable For PC
-	::MS Account
-	powershell -NoProfile -Command "Get-LocalUser | Select-Object Name, PrincipalSource" | findstr /I /C:"MicrosoftAccount" && for %%g in (SERVOF DEBOF MITOF) do set "%%g=%COL%[93mN/A"
 	::Laptop
 	wmic path Win32_Battery Get BatteryStatus | find "1" && set "PWROF=%COL%[93mN/A"
 	::GPU
@@ -285,7 +283,6 @@ echo.
 echo                                     %COL%[31m[ X to close ]         %COL%[90m[ M for more ]         %COL%[36m[ N next page ]
 echo.
 set /p choice="%DEL%                                         %COL%[37mSelect a corresponding number to what you'd like > "
-echo %SERVOF% | find "N/A" >nul && if "%choice%" geq "1" if "%choice%" leq "3" call :HoneCtrlError "You have a microsoft account, switch to local to use." && goto Tweaks
 if /i "%choice%"=="1" goto Service
 if /i "%choice%"=="2" goto Debloat
 if /i "%choice%"=="3" goto Mitigations
