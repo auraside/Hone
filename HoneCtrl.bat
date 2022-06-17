@@ -141,8 +141,8 @@ for %%i in (PWROF MEMOF DRIOF TMROF MSIOF NETOF AFFOF MOUOF KBOOF BCDOF AFTOF PS
 	::KBoost
 	for /f %%a in ('reg query "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Class" /v "VgaCompatible" /s ^| findstr "HKEY"') do (Reg query "%%a" /v "PowerMizerLevel" | find "0x1" || set "KBOOF=%COL%[91mOFF")
 	::BCDEDIT
-	if not exist "%SystemDrive%\Hone\HoneRevert\ogbcdedit.bcd" set "BCDOF=%COL%[91mOFF"
-	::BCDEDIT
+	Reg query "HKCU\Software\Hone" /v "BcdEditTweaks" || set "BCDOF=%COL%[91mOFF"
+	::NIC
 	if not exist "%SystemDrive%\Hone\HoneRevert\ognic.reg" set "NICOF=%COL%[91mOFF"
 	::Intel iGPU
 	Reg query "HKLM\SOFTWARE\Intel\GMM" /v "DedicatedSegmentSize" | find "0x400" || set "DSSOF=%COL%[91mOFF"
@@ -154,14 +154,21 @@ for %%i in (PWROF MEMOF DRIOF TMROF MSIOF NETOF AFFOF MOUOF KBOOF BCDOF AFTOF PS
 	::Laptop
 	wmic path Win32_Battery Get BatteryStatus | find "1" && set "PWROF=%COL%[93mN/A"
 	::GPU
-	Intel UHD
 	for /f "tokens=2 delims==" %%n in ('wmic path Win32_VideoController get VideoProcessor /value') do set GPU_NAME=%%n
 	for %%n in (GeForce NVIDIA RTX GTX) do echo !GPU_NAME! | find "%%n" >nul && (
 		for %%g in (DSSOF AMDOF) do set "%%g=%COL%[93mN/A"
-	) || (
-		for %%g in (KBOOF AFTOF NPIOF DRIOF NVIOF PS0OF) do set "%%g=%COL%[93mN/A"
+		goto GPUFound
+	)
+	for %%n in (AMD Ryzen) do echo !GPU_NAME! | find "%%n" >nul && (
+		for %%g in (KBOOF AFTOF NPIOF DRIOF NVIOF PS0OF DSSOF) do set "%%g=%COL%[93mN/A"
+		goto GPUFound
+	)
+	for %%n in (Intel UHD) do echo !GPU_NAME! | find "%%n" >nul && (
+		for %%g in (KBOOF AFTOF NPIOF DRIOF NVIOF PS0OF AMDOF) do set "%%g=%COL%[93mN/A"
+		goto GPUFound
 	)
 ) >nul 2>&1
+:GPUFound
 
 goto %PG%
 :TweaksPG1
@@ -323,59 +330,95 @@ if "%MEMOF%" equ "%COL%[92mON " (Reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentContr
 goto tweaks
 
 :BCDEdit
-cd %SystemDrive%\Hone\HoneRevert
-if "%BCDOF%" neq "%COL%[91mOFF" (
-	bcdedit /import "ogbcdedit.bcd" >nul 2>&1
-	del ogbcdedit.bcd
-	goto Tweaks
-)
-bcdedit /export ogbcdedit.bcd >nul 2>&1
-::Better Input
-bcdedit /set tscsyncpolicy legacy >nul 2>&1
-::Quick Boot
-if "%duelboot%" equ "no" (bcdedit /timeout 0) >nul 2>&1
-bcdedit /set bootux disabled >nul 2>&1
-bcdedit /set bootmenupolicy standard >nul 2>&1
-bcdedit /set hypervisorlaunchtype off >nul 2>&1
-bcdedit /set tpmbootentropy ForceDisable >nul 2>&1
-bcdedit /set quietboot yes >nul 2>&1
-::Windows 8 Boot Stuff (windows 8.1)
-for /f "tokens=4-9 delims=. " %%i in ('ver') do set winversion=%%i.%%j
-if "!winversion!" == "6.3.9600" (
-bcdedit /set {globalsettings} custom:16000067 true >nul 2>&1
-bcdedit /set {globalsettings} custom:16000069 true >nul 2>&1
-bcdedit /set {globalsettings} custom:16000068 true >nul 2>&1
-)
-::nx
-set CPU_NAME=%PROCESSOR_IDENTIFIER%
-if not "%CPU_NAME:AMD=%" == "%CPU_NAME%" (
-bcdedit /set nx optout >nul 2>&1
-) else (
-bcdedit /set nx alwaysoff >nul 2>&1
-)
-::Linear Address 57
-bcdedit /set linearaddress57 OptOut >nul 2>&1
-bcdedit /set increaseuserva 268435328 >nul 2>&1
-::Disable some of the kernel memory mitigations
-bcdedit /set allowedinmemorysettings 0x0 >nul 2>&1
-bcdedit /set isolatedcontext No >nul 2>&1
-::Disable DMA memory protection and cores isolation
-bcdedit /set vsmlaunchtype Off >nul 2>&1
-bcdedit /set vm No >nul 2>&1
-Reg add "HKLM\Software\Policies\Microsoft\FVE" /v "DisableExternalDMAUnderLock" /t Reg_DWORD /d "0" /f >nul 2>&1
-Reg add "HKLM\Software\Policies\Microsoft\Windows\DeviceGuard" /v "EnableVirtualizationBasedSecurity" /t Reg_DWORD /d "0" /f >nul 2>&1
-Reg add "HKLM\Software\Policies\Microsoft\Windows\DeviceGuard" /v "HVCIMATRequired" /t Reg_DWORD /d "0" /f >nul 2>&1
-::Avoid using uncontiguous low-memory. Boosts memory performance & microstuttering.
-bcdedit /set firstmegabytepolicy UseAll >nul 2>&1
-bcdedit /set avoidlowmemory 0x8000000 >nul 2>&1
-bcdedit /set nolowmem Yes >nul 2>&1
-::Enable X2Apic and enable Memory Mapping for PCI-E devices
-bcdedit /set x2apicpolicy Enable >nul 2>&1
-bcdedit /set configaccesspolicy Default >nul 2>&1
-bcdedit /set MSI Default >nul 2>&1
-bcdedit /set usephysicaldestination No >nul 2>&1
-bcdedit /set usefirmwarepcisettings No >nul 2>&1
-bcdedit /set uselegacyapicmode yes >nul 2>&1
+if "%BCDOF%" equ "%COL%[91mOFF" (
+	Reg add "HKCU\Software\Hone" /v BcdEditTweaks /f
+	::Better Input
+	bcdedit /set tscsyncpolicy legacy
+	::Quick Boot
+	if "%duelboot%" equ "no" (bcdedit /timeout 3)
+	bcdedit /set bootux disabled
+	bcdedit /set bootmenupolicy standard
+	bcdedit /set hypervisorlaunchtype off
+	bcdedit /set tpmbootentropy ForceDisable
+	bcdedit /set quietboot yes
+	::Windows 8 Boot Stuff (windows 8.1)
+	for /f "tokens=4-9 delims=. " %%i in ('ver') do set winversion=%%i.%%j
+	if "!winversion!" == "6.3.9600" (
+	bcdedit /set {globalsettings} custom:16000067 true
+	bcdedit /set {globalsettings} custom:16000069 true
+	bcdedit /set {globalsettings} custom:16000068 true
+	)
+	::nx
+	set CPU_NAME=%PROCESSOR_IDENTIFIER%
+	if not "!CPU_NAME:AMD=!" == "!CPU_NAME!" (
+	bcdedit /set nx optout
+	) else (
+	bcdedit /set nx alwaysoff
+	)
+	::Linear Address 57
+	bcdedit /set linearaddress57 OptOut
+	bcdedit /set increaseuserva 268435328
+	::Disable some of the kernel memory mitigations
+	bcdedit /set allowedinmemorysettings 0x0
+	bcdedit /set isolatedcontext No
+	::Disable DMA memory protection and cores isolation
+	bcdedit /set vsmlaunchtype Off
+	bcdedit /set vm No
+	Reg add "HKLM\Software\Policies\Microsoft\FVE" /v "DisableExternalDMAUnderLock" /t Reg_DWORD /d "0" /f
+	Reg add "HKLM\Software\Policies\Microsoft\Windows\DeviceGuard" /v "EnableVirtualizationBasedSecurity" /t Reg_DWORD /d "0" /f
+	Reg add "HKLM\Software\Policies\Microsoft\Windows\DeviceGuard" /v "HVCIMATRequired" /t Reg_DWORD /d "0" /f
+	::Avoid using uncontiguous low-memory. Boosts memory performance & microstuttering.
+	bcdedit /set firstmegabytepolicy UseAll
+	bcdedit /set avoidlowmemory 0x8000000
+	bcdedit /set nolowmem Yes
+	::Enable X2Apic and enable Memory Mapping for PCI-E devices
+	bcdedit /set x2apicpolicy Enable
+	bcdedit /set configaccesspolicy Default
+	bcdedit /set MSI Default
+	bcdedit /set usephysicaldestination No
+	bcdedit /set usefirmwarepcisettings No
+	bcdedit /set uselegacyapicmode yes
+) >nul 2>&1 else (
+	Reg delete "HKCU\Software\Hone" /v "BcdEditTweaks" /f
+	::Better Input
+	bcdedit /deletevalue tscsyncpolicy
+	::Quick Boot
+	if "%duelboot%" equ "no" (bcdedit /timeout 0)
+	bcdedit /deletevalue bootux
+	bcdedit /set bootmenupolicy standard
+	bcdedit /set hypervisorlaunchtype Auto
+	bcdedit /deletevalue tpmbootentropy
+	bcdedit /deletevalue quietboot
+	::Windows 8 Boot Stuff (windows 8.1)
+	for /f "tokens=4-9 delims=. " %%i in ('ver') do set winversion=%%i.%%j
+	if "!winversion!" == "6.3.9600" (
+	bcdedit /set {globalsettings} custom:16000067 false
+	bcdedit /set {globalsettings} custom:16000069 false
+	bcdedit /set {globalsettings} custom:16000068 false
+	)
+	::nx
+	bcdedit /set nx optin
+	bcdedit /deletevalue linearaddress57
+	bcdedit /deletevalue increaseuserva
+	::Disable some of the kernel memory mitigations
+	bcdedit /set allowedinmemorysettings 0x17000077
+	bcdedit /set isolatedcontext Yes
+	::Disable DMA memory protection and cores isolation
+	bcdedit /deletevalue vsmlaunchtype
+	bcdedit /deletevalue vm
+	Reg add "HKLM\Software\Policies\Microsoft\FVE" /v "DisableExternalDMAUnderLock" /t Reg_DWORD /d "0" /f
+	Reg add "HKLM\Software\Policies\Microsoft\Windows\DeviceGuard" /v "EnableVirtualizationBasedSecurity" /t Reg_DWORD /d "0" /f
+	Reg add "HKLM\Software\Policies\Microsoft\Windows\DeviceGuard" /v "HVCIMATRequired" /t Reg_DWORD /d "0" /f
+	bcdedit /deletevalue firstmegabytepolicy
+	bcdedit /deletevalue avoidlowmemory
+	bcdedit /deletevalue nolowmem
+	bcdedit /deletevalue configaccesspolicy
+	bcdedit /deletevalue MSI
+	bcdedit /deletevalue x2apicpolicy
+	bcdedit /deletevalue usephysicaldestination
+	bcdedit /deletevalue usefirmwarepcisettings
+	bcdedit /deletevalue uselegacyapicmode
+) >nul 2>&1
 goto Tweaks
 
 :TimerRes
