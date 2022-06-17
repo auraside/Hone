@@ -154,12 +154,12 @@ for %%i in (PWROF MEMOF DRIOF TMROF MSIOF NETOF AFFOF MOUOF KBOOF BCDOF AFTOF PS
 	::Laptop
 	wmic path Win32_Battery Get BatteryStatus | find "1" && set "PWROF=%COL%[93mN/A"
 	::GPU
-	for /f "tokens=2 delims==" %%n in ('wmic path Win32_VideoController get Name /format:value') do set GPU_NAME=%%n
-	for %%n in (GeForce NVIDIA RTX GTX) do echo !GPU_NAME! | find "%%n" || (
-		for %%g in (DSSOF AMDOF) do set "%%g=%COL%[93mN/A"
-	) || (
-		for %%g in (KBOOF AFTOF NPIOF DRIOF NVIOF PS0OF) do set "%%g=%COL%[93mN/A"
-	)
+	::for /f "tokens=2 delims==" %%n in ('wmic path Win32_VideoController get Name /format:value') do set GPU_NAME=%%n
+	::for %%n in (GeForce NVIDIA RTX GTX) do echo !GPU_NAME! | find "%%n" || (
+	::for %%g in (DSSOF AMDOF) do set "%%g=%COL%[93mN/A"
+	::) || (
+	::	for %%g in (KBOOF AFTOF NPIOF DRIOF NVIOF PS0OF) do set "%%g=%COL%[93mN/A"
+	::)
 ) >nul 2>&1
 
 goto %PG%
@@ -217,7 +217,7 @@ if /i "%choice%"=="6" goto Affinity
 if /i "%choice%"=="7" goto W32PrioSep
 if /i "%choice%"=="8" goto MemOptimization
 if /i "%choice%"=="9" goto Mouse
-echo %NPIOF% | find "N/A" >nul && if "%choice%" geq "10" if "%choice%" leq "15" call :HoneCtrlError "You don't have an NVIDIA GPU" & goto Tweaks
+::echo %NPIOF% | find "N/A" >nul && if "%choice%" geq "10" if "%choice%" leq "15" call :HoneCtrlError "You don't have an NVIDIA GPU" & goto Tweaks
 if /i "%choice%"=="10" goto KBoost
 if /i "%choice%"=="11" goto MSIAfterBurner
 if /i "%choice%"=="12" goto ProfileInspector
