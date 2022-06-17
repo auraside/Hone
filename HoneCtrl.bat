@@ -71,7 +71,7 @@ IF "%local%" gtr "%localtwo%" (
 	choice /c:YN /n /m "%DEL%                                >:"
 	set choice=!errorlevel!
 	if !choice! equ 1 (
-		curl -L -o "C:\Users\%username%\Documents\HoneCtrl.bat" https://github.com/auraside/HoneCtrl/releases/latest/download/HoneCtrl.bat
+		curl -L -o "C:\Users\%username%\Documents\HoneCtrl.bat" "https://github.com/auraside/HoneCtrl/releases/latest/download/HoneCtrl.Bat"
 		start "C:\Users\%username%\Documents\HoneCtrl.bat"
 		del %0
 		exit /b
@@ -83,8 +83,8 @@ IF "%local%" gtr "%localtwo%" (
 if %firstlaunch%==0 (goto Tweaks)
 
 ::Restore Point
-rem %SYSTEMROOT%\System32\WindowsPowerShell\v1.0\powershell.exe Enable-ComputerRestore -Drive 'C:\', 'D:\', 'E:\', 'F:\', 'G:\' >nul 2>&1
-rem %SYSTEMROOT%\System32\WindowsPowerShell\v1.0\powershell.exe Checkpoint-Computer -Description 'Hone Restore Point' >nul 2>&1
+powershell -ExecutionPolicy Unrestricted -NoProfile Enable-ComputerRestore -Drive 'C:\', 'D:\', 'E:\', 'F:\', 'G:\' >nul 2>&1
+powershell -ExecutionPolicy Unrestricted -NoProfile Checkpoint-Computer -Description 'Hone Restore Point' >nul 2>&1
 
 ::HKCU & HKLM backup
 for /F "tokens=2" %%i in ('date /t') do set date=%%i
@@ -111,7 +111,7 @@ for %%i in (PWROF MEMOF DRIOF TMROF MSIOF NETOF AFFOF MOUOF KBOOF BCDOF AFTOF PS
 	::PStates0
 	For /F "tokens=*" %%i in ('reg query "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HK"') do (Reg query "%%i" /v "DisableDynamicPstate" | find "0x1" || set "PS0OF=%COL%[91mOFF")
 	::Services Optimization
-	for /f "tokens=2 delims==" %%i in ('wmic os get TotalVisibleMemorySize /format:value') do (set /a mem=%%i + 1024000)
+	for /f "tokens=2 delims==" %%i in ('wmic os get TotalVisibleMemorySize /value') do (set /a mem=%%i + 1024000)
 	for /f "tokens=3" %%a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control" /v "SvcHostSplitThresholdInKB"') do (set /a currentmem=%%a)
 	if "!currentmem!" neq "!mem!" set "MEMOF=%COL%[91mOFF"
 	::Power Plan
@@ -154,12 +154,13 @@ for %%i in (PWROF MEMOF DRIOF TMROF MSIOF NETOF AFFOF MOUOF KBOOF BCDOF AFTOF PS
 	::Laptop
 	wmic path Win32_Battery Get BatteryStatus | find "1" && set "PWROF=%COL%[93mN/A"
 	::GPU
-	::for /f "tokens=2 delims==" %%n in ('wmic path Win32_VideoController get Name /format:value') do set GPU_NAME=%%n
-	::for %%n in (GeForce NVIDIA RTX GTX) do echo !GPU_NAME! | find "%%n" || (
-	::for %%g in (DSSOF AMDOF) do set "%%g=%COL%[93mN/A"
-	::) || (
-	::	for %%g in (KBOOF AFTOF NPIOF DRIOF NVIOF PS0OF) do set "%%g=%COL%[93mN/A"
-	::)
+	Intel UHD
+	for /f "tokens=2 delims==" %%n in ('wmic path Win32_VideoController get VideoProcessor /value') do set GPU_NAME=%%n
+	for %%n in (GeForce NVIDIA RTX GTX) do echo !GPU_NAME! | find "%%n" >nul && (
+		for %%g in (DSSOF AMDOF) do set "%%g=%COL%[93mN/A"
+	) || (
+		for %%g in (KBOOF AFTOF NPIOF DRIOF NVIOF PS0OF) do set "%%g=%COL%[93mN/A"
+	)
 ) >nul 2>&1
 
 goto %PG%
@@ -217,7 +218,7 @@ if /i "%choice%"=="6" goto Affinity
 if /i "%choice%"=="7" goto W32PrioSep
 if /i "%choice%"=="8" goto MemOptimization
 if /i "%choice%"=="9" goto Mouse
-::echo %NPIOF% | find "N/A" >nul && if "%choice%" geq "10" if "%choice%" leq "15" call :HoneCtrlError "You don't have an NVIDIA GPU" & goto Tweaks
+echo %NPIOF% | find "N/A" >nul && if "%choice%" geq "10" if "%choice%" leq "15" call :HoneCtrlError "You don't have an NVIDIA GPU" && goto Tweaks
 if /i "%choice%"=="10" goto KBoost
 if /i "%choice%"=="11" goto MSIAfterBurner
 if /i "%choice%"=="12" goto ProfileInspector
@@ -275,7 +276,7 @@ echo.
 echo                                     %COL%[31m[ X to close ]         %COL%[90m[ M for more ]         %COL%[36m[ N next page ]
 echo.
 set /p choice="%DEL%                                         %COL%[37mSelect a corresponding number to what you'd like > "
-if /i "%choice%"=="1" goto ServiceDisable
+if /i "%choice%"=="1" goto Service
 if /i "%choice%"=="2" goto Debloat
 if /i "%choice%"=="3" goto Mitigations
 if /i "%choice%"=="4" goto TCPIP
@@ -293,14 +294,15 @@ if /i "%choice%"=="N" (set "PG=TweaksPG1") & goto TweaksPG1
 goto TweaksPG2
 
 :PowerPlan
-if not exist "C:\Hone\Resources\HoneV2.pow" curl -L -o C:\Hone\Resources\HoneV2.pow https://github.com/auraside/HoneCtrl/raw/main/Files/HoneV2.pow >nul 2>&1
+echo %PWROF% | find "N/A" >nul && call :HoneCtrlError "You are on AC power, this power plan isn't recommended." && goto Tweaks
+curl -o "C:\Hone\Resources\HoneV2.pow" "https://github.com/auraside/HoneCtrl/raw/main/Files/HoneV2.pow" >nul 2>&1
 powercfg /d 44444444-4444-4444-4444-444444444449 >nul 2>&1
 powercfg -import "C:\Hone\Resources\HoneV2.pow" 44444444-4444-4444-4444-444444444449 >nul 2>&1
 powercfg /changename 44444444-4444-4444-4444-444444444449 "Hone Ultimate Power Plan V2" "The Ultimate Power Plan to increase FPS, improve latency and reduce input lag." >nul 2>&1
 
 ::Enable Idle on Hyper-Threading
 set THREADS=%NUMBER_OF_PROCESSORS%
-for /f "tokens=2 delims==" %%n in ('wmic cpu get numberOfCores /format:value') do set CORES=%%n
+for /f "tokens=2 delims==" %%n in ('wmic cpu get numberOfCores /value') do set CORES=%%n
 IF "%CORES%" EQU "%NUMBER_OF_PROCESSORS%" (
 	powercfg -setacvalueindex 44444444-4444-4444-4444-444444444449 sub_processor 5d76a2ca-e8c0-402f-a133-2158492d58ad 1
 )
@@ -315,7 +317,7 @@ if "%PWROF%" equ "%COL%[92mON " (powercfg -restoredefaultschemes) >nul 2>&1
 goto tweaks
 
 :ServicesOptimization
-for /f "tokens=2 delims==" %%i in ('wmic os get TotalVisibleMemorySize /format:value') do set /a mem=%%i + 1024000
+for /f "tokens=2 delims==" %%i in ('wmic os get TotalVisibleMemorySize /value') do set /a mem=%%i + 1024000
 Reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control" /v "SvcHostSplitThresholdInKB" /t REG_DWORD /d %mem% /f >nul 2>&1
 if "%MEMOF%" equ "%COL%[92mON " (Reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control" /v "SvcHostSplitThresholdInKB" /t REG_DWORD /d 3670016 /f) >nul 2>&1
 goto tweaks
@@ -380,7 +382,8 @@ goto Tweaks
 cd C:\Hone
 if "%TMROF%" equ "%COL%[91mOFF" (
 	if not exist SetTimerResolutionService.exe (
-		curl -L -o C:\Hone\SetTimerResolutionService.exe https://github.com/auraside/HoneCtrl/raw/main/Files/SetTimerResolutionService.exe >nul 2>&1
+		::https://forums.guru3d.com/threads/windows-timer-resolution-tool-in-form-of-system-service.376458/
+		curl -o "C:\Hone\SetTimerResolutionService.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/SetTimerResolutionService.exe" >nul 2>&1
 		%windir%\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe /i SetTimerResolutionService.exe >nul 2>&1
 	)
 	sc config "STR" start=auto >nul 2>&1
@@ -398,20 +401,18 @@ goto tweaks
 
 :KBoost
 if "%KBOOF%" equ "%COL%[91mOFF" (
-	for /f %%a in ('reg query "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Class" /v "VgaCompatible" /s ^| findstr  "HKEY"') do ( 
+	for /f %%a in ('reg query "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class" /v "VgaCompatible" /s ^| findstr "HKEY"') do (
+		Reg add "%%a" /v "PowerMizerEnable" /t REG_DWORD /d "1" /f >nul 2>&1
 		Reg add "%%a" /v "PowerMizerLevel" /t REG_DWORD /d "1" /f >nul 2>&1
 		Reg add "%%a" /v "PowerMizerLevelAC" /t REG_DWORD /d "1" /f >nul 2>&1
 		Reg add "%%a" /v "PerfLevelSrc" /t REG_DWORD /d "8738" /f >nul 2>&1
-		Reg add "%%a" /v "PowerMizerEnable" /t REG_DWORD /d "1" /f >nul 2>&1
-		Reg add "%%a" /v "DisableDynamicPstate" /t REG_DWORD /d "1" /f >nul 2>&1
 	)
 ) else (
-	for /f %%a in ('reg query "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Class" /v "VgaCompatible" /s ^| findstr  "HKEY"') do ( 
+	for /f %%a in ('reg query "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class" /v "VgaCompatible" /s ^| findstr "HKEY"') do (
+		Reg delete "%%a" /v "PowerMizerEnable" /f >nul 2>&1
 		Reg delete "%%a" /v "PowerMizerLevel" /f >nul 2>&1
 		Reg delete "%%a" /v "PowerMizerLevelAC" /f >nul 2>&1
 		Reg delete "%%a" /v "PerfLevelSrc" /f >nul 2>&1
-		Reg delete "%%a" /v "PowerMizerEnable" /f >nul 2>&1
-		Reg delete "%%a" /v "DisableDynamicPstate" /f >nul 2>&1
 	)
 )
 cls
@@ -682,7 +683,8 @@ if "%CS0OF%" equ "%COL%[91mOFF" (
 goto Tweaks
 
 :AMD
-::echo %AMDOF% | find "N/A" >nul && call :HoneCtrlError "You don't have an AMD GPU" & goto Tweaks
+echo %AMDOF% | find "N/A" >nul && call :HoneCtrlError "You don't have an AMD GPU" && goto Tweaks
+cls
 ::Disable Gamemode
 Reg add "HKCU\Software\Microsoft\GameBar" /v "AllowAutoGameMode" /t Reg_DWORD /d "0" /f
 Reg add "HKCU\Software\Microsoft\GameBar" /v "AutoGameModeEnabled" /t Reg_DWORD /d "0" /f
@@ -728,7 +730,7 @@ Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08
 goto Tweaks
 
 :Intel
-::echo %DSSOF% | find "N/A" >nul && call :HoneCtrlError "You don't have an intel GPU" & goto Tweaks
+echo %DSSOF% | find "N/A" >nul && call :HoneCtrlError "You don't have an intel GPU" && goto Tweaks
 ::DedicatedSegmentSize in Intel iGPU
 if "%DSSOF%" equ "%COL%[91mOFF" (
 	reg add "HKLM\SOFTWARE\Intel\GMM" /v "DedicatedSegmentSize" /t REG_DWORD /d "1024" /f >nul 2>&1
@@ -963,39 +965,41 @@ goto tweaks
 :MSIAfterBurner
 if "%AFTOF%" neq "%COL%[91mOFF" (del /S /Q /F "%SystemDrive%\Program Files (x86)\MSI Afterburner\Skins\Hone.usf" >nul 2>&1) & goto Tweaks
 if not exist "%SystemDrive%\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe" goto downloadMSIafterburner
-curl -L -o "C:\Program Files (x86)\MSI Afterburner\Skins\Hone.usf" "https://github.com/auraside/HoneCtrl/raw/main/Files/Hone.usf" >nul 2>&1
+curl -o "C:\Program Files (x86)\MSI Afterburner\Skins\Hone.usf" "https://github.com/auraside/HoneCtrl/raw/main/Files/Hone.usf" >nul 2>&1
 goto Tweaks
 :downloadMSIafterburner
 echo Downloading MSIAfterBurner
-curl -L -o "C:\Hone\Resources\MSI Afterburner_2.zip" "https://github.com/auraside/HoneCtrl/releases/download/2.0/MSI.Afterburner_2.zip" >nul 2>&1
-%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\powershell.exe Expand-Archive 'C:\Hone\Resources\MSI Afterburner_2.zip' -DestinationPath 'C:\Program Files (x86)'
+curl -o "C:\Hone\Resources\MSI_Afterburner_1.zip" "https://github.com/auraside/HoneCtrl/releases/download/2.0/MSI.Afterburner_2.zip" >nul 2>&1
+%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\powershell.exe Expand-Archive 'C:\Hone\Resources\MSI_Afterburner_1.zip' -DestinationPath 'C:\Program Files (x86)'
 %SYSTEMROOT%\System32\WindowsPowerShell\v1.0\powershell.exe "$s=(New-Object -COM WScript.Shell).CreateShortcut('%userprofile%\Desktop\MSI Afterburner.lnk');$s.TargetPath='C:\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe';$s.Save()"
-del /S /Q /F "%SystemDrive%\Hone\Resources\MMSI Afterburner_2.zip" >nul 2>&1
+del /Q /F "%SystemDrive%\Hone\Resources\MSI_Afterburner_1.zip" >nul 2>&1
 goto MSIAfterBurner
 
 :ProfileInspector
 if "%NPIOF%" equ "%COL%[91mOFF" (
 	Reg add "HKCU\Software\Hone" /v NpiTweaks /f
-	cd c:\Hone\Resources >nul 2>&1
-	if not exist "C:\Hone\Resources\nvidiaProfileInspector.exe" curl -L -o C:\Hone\Resources\nvidiaProfileInspector.exe https://github.com/auraside/HoneCtrl/raw/main/Files/nvidiaProfileInspector.exe  >nul 2>&1
-	if not exist "C:\Hone\Resources\Latency_and_Performances_Settings_by_Hone_Team2.nip" curl -L -o C:\Hone\Resources\Latency_and_Performances_Settings_by_Hone_Team2.nip https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Latency_and_Performances_Settings_by_Hone_Team2.nip  >nul 2>&1
-nvidiaProfileInspector.exe "Latency_and_Performances_Settings_by_Hone_Team2.nip" 
-)>nul 2>&1 else (
-	cd C:\Hone\Resources\ >nul 2>&1
+	rmdir /S /Q "C:\Hone\Resources\nvidiaProfileInspector\"
+	curl -g -L -o C:\Hone\Resources\nvidiaProfileInspector.zip "https://github.com/Orbmu2k/nvidiaProfileInspector/releases/latest/download/nvidiaProfileInspector.zip"
+	powershell -NoProfile Expand-Archive 'C:\Hone\Resources\nvidiaProfileInspector.zip' -DestinationPath 'C:\Hone\Resources\nvidiaProfileInspector\'
+	del /F /Q "C:\Hone\Resources\nvidiaProfileInspector.zip"
+	curl -o "C:\Hone\Resources\nvidiaProfileInspector\Latency_and_Performances_Settings_by_Hone_Team2.nip" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Latency_and_Performances_Settings_by_Hone_Team2.nip"
+	cd "C:\Hone\Resources\nvidiaProfileInspector\"
+	nvidiaProfileInspector.exe "Latency_and_Performances_Settings_by_Hone_Team2.nip" 
+) >nul 2>&1 else (
+::https://github.com/Orbmu2k/nvidiaProfileInspector/releases/latest/download/nvidiaProfileInspector.zip
 	Reg delete "HKCU\Software\Hone" /v NpiTweaks /f
-	if not exist "C:\Hone\Resources\nvidiaProfileInspector.exe" curl -L -o C:\Hone\Resources\nvidiaProfileInspector.exe https://github.com/auraside/HoneCtrl/raw/main/Files/nvidiaProfileInspector.exe  >nul 2>&1
-	if not exist "C:\Hone\Resources\Base_Profile.nip" curl -L -o C:\Hone\Resources\Base_Profile.nip  https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Base_Profile.nip >nul 2>&1
-nvidiaProfileInspector.exe "Base_Profile.nip" 
-)>nul 2>&1
+	rmdir /S /Q "C:\Hone\Resources\nvidiaProfileInspector\"
+	curl -g -L -o C:\Hone\Resources\nvidiaProfileInspector.zip "https://github.com/Orbmu2k/nvidiaProfileInspector/releases/latest/download/nvidiaProfileInspector.zip"
+	powershell -NoProfile Expand-Archive 'C:\Hone\Resources\nvidiaProfileInspector.zip' -DestinationPath 'C:\Hone\Resources\nvidiaProfileInspector\'
+	del /F /Q "C:\Hone\Resources\nvidiaProfileInspector.zip"
+	curl -o "C:\Hone\Resources\nvidiaProfileInspector\Base_Profile.nip" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Base_Profile.nip"
+	cd "C:\Hone\Resources\nvidiaProfileInspector\"
+	nvidiaProfileInspector.exe "Base_Profile.nip"
+) >nul 2>&1
 goto Tweaks
 
 :Drivers
 cls
-::for /F "tokens=* skip=1" %%n in ('wmic path Win32_VideoController get VideoProcessor ^| findstr "."') do set GPU_NAME=%%n
-::echo %GPU_NAME% | find "NVIDIA" >nul 2>&1 || (
-::echo You do not have a nvidia gpu! Please skip this!
-::pause & goto Tweaks
-::)
 
 echo The drivers are 732Mb and 1Gb so this will take a moment to download. (768,102,400 or 1,073,691,829 bytes)
 echo.
@@ -1014,11 +1018,11 @@ curl -L -o "C:\Hone\Drivers\NvidiaHone.exe" "https://github.com/auraside/HoneCtr
 )
 
 TITLE Executing DDU...
-if not exist C:\Hone\Resources\DDU\DDU.exe curl -L -o C:\Hone\Resources\DDU.zip "https://github.com/auraside/HoneCtrl/raw/main/Files/DDU.zip"
-%SYSTEMROOT%\System32\WindowsPowerShell\v1.0\powershell.exe Expand-Archive 'C:\Hone\Resources\DDU.zip' -DestinationPath 'C:\Hone\Resources' >nul 2>&1
+curl -g -L -o "C:\Hone\Resources\DDU.zip" "https://github.com/auraside/HoneCtrl/raw/main/Files/DDU.zip"
+powershell -NoProfile Expand-Archive 'C:\Hone\Resources\DDU.zip' -DestinationPath 'C:\Hone\Resources\DDU\' >nul 2>&1
 del "C:\Hone\Resources\DDU.zip"
 cd C:\Hone\Resources\DDU
-start "" /wait "DDU.exe" -silent -cleannvidia
+DDU.exe -silent -cleannvidia
 
 title Restart Confirmation
 cls
@@ -1061,9 +1065,11 @@ Reg add "HKCU\Software\Microsoft\GameBar" /v "AutoGameModeEnabled" /t Reg_DWORD 
 ::FSO
 reg add "HKCU\System\GameConfigStore" /v "GameDVR_Enabled" /t REG_DWORD /d "0" /f
 reg add "HKCU\System\GameConfigStore" /v "GameDVR_FSEBehaviorMode" /t REG_DWORD /d "2" /f
-reg add "HKCU\System\GameConfigStore" /v "GameDVR_HonorUserFSEBehaviorMode" /t REG_DWORD /d "0" /f
-reg add "HKCU\System\GameConfigStore" /v "GameDVR_DXGIHonorFSEWindowsCompatible" /t REG_DWORD /d "0" /f
+reg add "HKCU\System\GameConfigStore" /v "GameDVR_FSEBehavior" /t REG_DWORD /d "2" /f
+reg add "HKCU\System\GameConfigStore" /v "GameDVR_HonorUserFSEBehaviorMode" /t REG_DWORD /d "1" /f
+reg add "HKCU\System\GameConfigStore" /v "GameDVR_DXGIHonorFSEWindowsCompatible" /t REG_DWORD /d "1" /f
 reg add "HKCU\System\GameConfigStore" /v "GameDVR_EFSEFeatureFlags" /t REG_DWORD /d "0" /f
+reg add "HKCU\System\GameConfigStore" /v "GameDVR_DSEBehavior" /t REG_DWORD /d "2" /f
 ::Nvidia Reg
 for /f %%a in ('Reg query "HKLM\SYSTEM\CurrentControlSet\Control\Class" /v "VgaCompatible" /s ^| findstr "HKEY"') do ( Reg add "%%a" /v "TCCSupported" /t REG_DWORD /d "0" /f
 )
@@ -1113,11 +1119,13 @@ if "!errorlevel!" equ "0" Reg delete "%%a" /v "KMD_EnableGDIAcceleration" /f
 Reg add "HKCU\Software\Microsoft\GameBar" /v "AllowAutoGameMode" /t Reg_DWORD /d "1" /f
 Reg add "HKCU\Software\Microsoft\GameBar" /v "AutoGameModeEnabled" /t Reg_DWORD /d "1" /f
 ::FSO
-reg add "HKCU\System\GameConfigStore" /v "GameDVR_Enabled" /t REG_DWORD /d "0" /f
-reg add "HKCU\System\GameConfigStore" /v "GameDVR_FSEBehaviorMode" /t REG_DWORD /d "2" /f
-reg add "HKCU\System\GameConfigStore" /v "GameDVR_HonorUserFSEBehaviorMode" /t REG_DWORD /d "2" /f
-reg add "HKCU\System\GameConfigStore" /v "GameDVR_DXGIHonorFSEWindowsCompatible" /t REG_DWORD /d "0" /f
-reg add "HKCU\System\GameConfigStore" /v "GameDVR_EFSEFeatureFlags" /t REG_DWORD /d "0" /f
+reg delete "HKCU\System\GameConfigStore" /v "GameDVR_Enabled" /f
+reg delete "HKCU\System\GameConfigStore" /v "GameDVR_FSEBehaviorMode" /f
+reg delete "HKCU\System\GameConfigStore" /v "GameDVR_FSEBehavior" /f
+reg delete "HKCU\System\GameConfigStore" /v "GameDVR_HonorUserFSEBehaviorMode" /f
+reg delete "HKCU\System\GameConfigStore" /v "GameDVR_DXGIHonorFSEWindowsCompatible" /f
+reg delete "HKCU\System\GameConfigStore" /v "GameDVR_EFSEFeatureFlags" /f
+reg delete "HKCU\System\GameConfigStore" /v "GameDVR_DSEBehavior" /f
 ::Nvidia Reg
 for /f %%a in ('Reg query "HKLM\SYSTEM\CurrentControlSet\Control\Class" /v "VgaCompatible" /s ^| findstr "HKEY"') do ( Reg add "%%a" /v "TCCSupported" /t REG_DWORD /d "0" /f 
 )
@@ -1405,6 +1413,7 @@ if "%ME2OF%" equ "%COL%[91mOFF" (
 	::Disk Optimizations
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\FileSystem" /v "DontVerifyRandomDrivers" /t REG_DWORD /d "1" /f
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\FileSystem" /v "LongPathsEnabled" /t REG_DWORD /d "0" /f
+	::Remove memory compression
 	Reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Superfetch" /v "StartedComponents" /t Reg_DWORD /d "513347" /f
 	Reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Superfetch" /v "AdminDisable" /t Reg_DWORD /d "8704" /f
 	Reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Superfetch" /v "AdminEnable" /t Reg_DWORD /d "0" /f
@@ -1534,7 +1543,7 @@ Reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProf
 ::Disable Power Throttling
 Reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /f >>"%temp%\EchoLog.txt" 2>>"%temp%\EchoError.txt"
 ::Enable Power Throttling If Laptop
-for /f "tokens=2 delims={}" %%n in ('wmic path Win32_SystemEnclosure get ChassisTypes /format:value') do set /a ChassisTypes=%%n
+for /f "tokens=2 delims={}" %%n in ('wmic path Win32_SystemEnclosure get ChassisTypes /value') do set /a ChassisTypes=%%n
 if defined ChassisTypes if %ChassisTypes% GEQ 8 if %ChassisTypes% LSS 12 (
 Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /v "PowerThrottlingOff" /t Reg_DWORD /d "1" /f >>"%temp%\EchoLog.txt" 2>>"%temp%\EchoError.txt"
 Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /f >>"%temp%\EchoLog.txt" 2>>"%temp%\EchoError.txt"
@@ -1674,7 +1683,8 @@ echo     Disable Nagles Algorithm
 echo     Optimize Intel iGPU
 echo     AMD GPU Tweaks
 echo     Disable C-States %COL%[37m
-echo.
+echo - Removed:
+echo %COL%[91m    Revert %COL%[37m
 echo                                                       [ press X to go back ]
 echo.
 choice /c:X /n /m "%DEL%                                                               >:"
@@ -1740,9 +1750,13 @@ set choice=%errorlevel%
 if "%choice%"=="1" goto More
 
 :Cleaner
-curl -L -o C:\Hone\Resources\Device_cleanup.exe https://github.com/auraside/HoneCtrl/raw/main/Files/DeviceCleanupCmd.exe
-curl -o C:\Hone\Resources\AdwCleaner.exe https://adwcleaner.malwarebytes.com/adwcleaner?channel=release
-timeout 2 >nul 2>&1
+cls
+rmdir /S /Q "C:\Hone\Resources\DeviceCleanupCmd\"
+del /F /Q "C:\Hone\Resources\AdwCleaner.exe"
+curl -g -L -o "C:\Hone\Resources\DeviceCleanupCmd.zip" "https://www.uwe-sieber.de/files/DeviceCleanupCmd.zip"
+curl -g -L -o "C:\Hone\Resources\AdwCleaner.exe" "https://adwcleaner.malwarebytes.com/adwcleaner?channel=release"
+powershell -NoProfile Expand-Archive 'C:\Hone\Resources\DeviceCleanupCmd.zip' -DestinationPath 'C:\Hone\Resources\DeviceCleanupCmd\'
+del /F /Q "C:\Hone\Resources\DeviceCleanupCmd.zip"
 del /Q C:\Users\%username%\AppData\Local\Microsoft\Windows\INetCache\IE\*.*
 del /Q C:\Windows\Downloaded Program Files\*.*
 rd /s /q %SYSTEMDRIVE%\$Recycle.bin
@@ -1751,7 +1765,8 @@ del /Q C:\Windows\Temp\*.*
 del /Q C:\Windows\Prefetch\*.*
 cd C:\Hone\Resources
 AdwCleaner.exe /eula /clean /noreboot
-Device_cleanup.exe *
+cd "C:\Hone\Resources\DeviceCleanupCmd\x64"
+DeviceCleanupCmd.exe *
 goto tweaks
 
 :Backup
@@ -1795,13 +1810,13 @@ Mode 65,16
 color 06
 cd %temp%
 echo Downloading NSudo [...]
-if not exist "%temp%\NSudo.exe" curl -L -o "%temp%\NSudo.exe" https://github.com/auraside/HoneCtrl/raw/main/Files/NSudo.exe
+if not exist "%temp%\NSudo.exe" curl -o "%temp%\NSudo.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/NSudo.exe"
 NSudo.exe -U:S -ShowWindowMode:Hide cmd /c "Reg add "HKLM\SYSTEM\CurrentControlSet\Services\TrustedInstaller" /v "Start" /t Reg_DWORD /d "3" /f"
 NSudo.exe -U:S -ShowWindowMode:Hide cmd /c "sc start "TrustedInstaller"
 echo Downloading Restart64 [...]
-if not exist "%temp%\restart64.exe" curl -L -o "%temp%\Restart64.exe" https://github.com/auraside/HoneCtrl/raw/main/Files/restart64.exe
+if not exist "%temp%\restart64.exe" curl -o "%temp%\Restart64.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/restart64.exe"
 echo Downloading EmptyStandbyList [...]
-if not exist "%temp%\EmptyStandbyList.exe" curl -L -o "%temp%\EmptyStandbyList.exe" https://wj32.org/wp/download/1455/
+if not exist "%temp%\EmptyStandbyList.exe" curl -g -L -o "%temp%\EmptyStandbyList.exe" "https://wj32.org/wp/download/1455/"
 cls
 
 ::Restart Explorer/DWM
