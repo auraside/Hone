@@ -978,13 +978,13 @@ if "%NPIOF%" equ "%COL%[91mOFF" (
 	Reg add "HKCU\Software\Hone" /v NpiTweaks /f
 	cd c:\Hone\Resources >nul 2>&1
 	if not exist "C:\Hone\Resources\nvidiaProfileInspector.exe" curl -L -o C:\Hone\Resources\nvidiaProfileInspector.exe https://github.com/auraside/HoneCtrl/raw/main/Files/nvidiaProfileInspector.exe  >nul 2>&1
-	if not exist "C:\Hone\Resources\Latency_and_Performances_Settings_by_Hone_Team2.nip" curl -L -o C:\Hone\Resources\Latency_and_Performances_Settings_by_Hone_Team2.nip https://cdn.discordapp.com/attachments/798314687321735199/984258372905865306/Latency_and_Performances_Settings_by_Hone_Team2.nip  >nul 2>&1
+	if not exist "C:\Hone\Resources\Latency_and_Performances_Settings_by_Hone_Team2.nip" curl -L -o C:\Hone\Resources\Latency_and_Performances_Settings_by_Hone_Team2.nip https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Latency_and_Performances_Settings_by_Hone_Team2.nip  >nul 2>&1
 nvidiaProfileInspector.exe "Latency_and_Performances_Settings_by_Hone_Team2.nip" 
 )>nul 2>&1 else (
 	cd C:\Hone\Resources\ >nul 2>&1
 	Reg delete "HKCU\Software\Hone" /v NpiTweaks /f
 	if not exist "C:\Hone\Resources\nvidiaProfileInspector.exe" curl -L -o C:\Hone\Resources\nvidiaProfileInspector.exe https://github.com/auraside/HoneCtrl/raw/main/Files/nvidiaProfileInspector.exe  >nul 2>&1
-	if not exist "C:\Hone\Resources\Base_Profile.nip" curl -o C:\Hone\Resources\Base_Profile.nip https://cdn.discordapp.com/attachments/798314687321735199/984259220868313159/Base_Profile.nip  >nul 2>&1
+	if not exist "C:\Hone\Resources\Base_Profile.nip" curl -L -o C:\Hone\Resources\Base_Profile.nip  https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Base_Profile.nip >nul 2>&1
 nvidiaProfileInspector.exe "Base_Profile.nip" 
 )>nul 2>&1
 goto Tweaks
