@@ -103,6 +103,15 @@
 
 To run the optimizer is easy, all you need to do is double click HoneCtrl.bat and run it as admin
 
+## Warning
+
+Even though we have an automatic restore point feature some users have issues with it, we **highly recommend** [https://support.microsoft.com/en-us/windows/create-a-system-restore-point-77e02e2a-3298-c869-9974-ef5658ea3be9](making a manual restore point) before launch.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+
+
 ### Installation
 
 1. Download the latest HoneCtrl Version
@@ -112,6 +121,7 @@ To run the optimizer is easy, all you need to do is double click HoneCtrl.bat an
 2. Right click HoneCtrl.bat and run it as admin
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
 
 
 
