@@ -453,7 +453,7 @@ if "%KBOOF%" equ "%COL%[91mOFF" (
 		Reg delete "%%a" /v "PerfLevelSrc" /f >nul 2>&1
 	)
 )
-call :HoneCtrlRestart "Memory Optimization" && goto Tweaks
+call :HoneCtrlRestart "KBoost" "%KBOOF%" && goto Tweaks
 
 :MSI
 if "%MSIOF%" equ "%COL%[91mOFF" (
@@ -767,7 +767,7 @@ if "%CS0OF%" equ "%COL%[91mOFF" (
 ) else (
 	Reg add "HKLM\SYSTEM\ControlSet001\Control\Class\{4D36E968-E325-11CE-BFC1-08002BE10318}\0000" /v "AllowDeepCStates" /t REG_DWORD /d "1" /f >nul 2>&1
 )
-call :HoneCtrlRestart "Memory Optimization" && goto Tweaks
+call :HoneCtrlRestart "CStates" "%CS0OF%" && goto Tweaks
 
 :AMD
 echo %AMDOF% | find "N/A" >nul && call :HoneCtrlError "You don't have an AMD GPU" && goto Tweaks
@@ -1255,7 +1255,7 @@ if "%PS0OF%" equ "%COL%[91mOFF" (
 		Reg delete "%%i" /v "DisableDynamicPstate" /f >nul 2>&1
 	)
 )
-call :HoneCtrlRestart "Memory Optimization" && goto Tweaks
+call :HoneCtrlRestart "PStates 0" "%PS0OF%" && goto Tweaks
 
 :Service
 if "%SERVOF%" equ "%COL%[91mOFF" (
@@ -1601,7 +1601,7 @@ if "%ME2OF%" equ "%COL%[91mOFF" (
 		fsutil behavior set disabledeletenotify 0
 	)
 ) >nul 2>&1
-call :HoneCtrlRestart "Memory Optimization"
+call :HoneCtrlRestart "Memory Optimization" "%ME2OF%"
 goto Tweaks
 
 ::Disable FTH
@@ -1998,7 +1998,7 @@ del "%~2" > nul
 goto :eof
 
 :HoneCtrlError
-start "" echo off ^& ^
+start "Warning" echo off ^& ^
 Mode 65,16 ^& ^
 color 06 ^& ^
 echo. ^& ^
@@ -2021,24 +2021,25 @@ goto:eof
 
 :HoneCtrlRestart
 setlocal DisableDelayedExpansion
-start "" cmd /V:ON /C @echo off ^& ^
+if "%~2" equ "%COL%[91mOFF" (set "ed=enable") else (set "ed=disable")
+start "Restart" cmd /V:ON /C @echo off ^& ^
 Mode 65,16 ^& ^
 color 06 ^& ^
 echo. ^& ^
 echo  -------------------------------------------------------------- ^& ^
-echo               You must restart to apply this tweak ^& ^
+echo                       Restart to fully apply ^& ^
 echo  -------------------------------------------------------------- ^& ^
 echo. ^& ^
-echo      To apply %~1 you must restart, ^& ^
+echo      To %ed% %~1 you must restart, would ^& ^
+echo      you like to restart now? ^& ^
 echo. ^& ^
-echo      Would you like to restart now? ^& ^
 echo. ^& ^
 echo. ^& ^
 echo. ^& ^
 echo      [Y] Yes ^& ^
 echo      [N] No ^& ^
 echo. ^& ^
-choice /c:YN /n /m "%DEL%                                >:" ^& ^
+choice /c:YNX /n /m "%DEL%                                >:" ^& ^
 if !errorlevel! equ 1 ( ^
 	shutdown /s /t 60 /c "A restart is required, we'll do that now" /f /d p:0:0 ^& ^
 	timeout 5 ^& ^
