@@ -1757,6 +1757,9 @@ echo     AMD GPU Tweaks
 echo     Disable C-States %COL%[37m
 echo - Removed:
 echo %COL%[91m    Revert %COL%[37m
+echo.
+echo This Changelog has been deprecated, future changelogs will be sent on the Hone discord. (https://discord.gg/hone)
+echo.
 echo                                                       [ press X to go back ]
 echo.
 choice /c:X /n /m "%DEL%                                                               >:"
