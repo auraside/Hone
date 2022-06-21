@@ -36,17 +36,14 @@ for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1)
 
 ::Restart Checks
 set firstlaunch=1
-set justrestarted=0
-if exist c:\hone\driverinstall.bat call driverinstall.bat
-if %justrestarted% equ 1 (
+if "%~f0" equ "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\HoneCtrl.bat" (
 cd C:\Hone\Drivers
-set justrestarted=0
-if exist C:\Hone\driverinstall.bat (del /Q C:\Hone\driverinstall.bat)
 start NvidiaHone.exe
+del /Q "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\HoneCtrl.bat"
 )
 
 ::Check for updates
-set local=2.2
+set local=2.3
 set localtwo=%local%
 if exist "%temp%\Updater.bat" DEL /S /Q /F "%temp%\Updater.bat" >nul 2>&1
 curl -g -L -o "%temp%\Updater.bat" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/HoneCtrlVer" >nul 2>&1
@@ -72,7 +69,7 @@ IF "%local%" gtr "%localtwo%" (
 	set choice=!errorlevel!
 	if !choice! equ 1 (
 		curl -L -o "C:\Users\%username%\Documents\HoneCtrl.bat" "https://github.com/auraside/HoneCtrl/releases/latest/download/HoneCtrl.Bat"
-		start "C:\Users\%username%\Documents\HoneCtrl.bat"
+		start "HoneCtrl" "C:\Users\%username%\Documents\HoneCtrl.bat"
 		del %0
 		exit /b
 	)
@@ -110,7 +107,7 @@ for %%i in (PWROF MEMOF DRIOF TMROF MSIOF NETOF AFFOF MOUOF KBOOF BCDOF AFTOF PS
 	::MSI AfterBurner
 	if not exist "C:\Program Files (x86)\MSI Afterburner\Skins\Hone.usf" set "AFTOF=%COL%[91mOFF"
 	::PStates0
-	For /F "tokens=*" %%i in ('reg query "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HK"') do (Reg query "%%i" /v "DisableDynamicPstate" | find "0x1" || set "PS0OF=%COL%[91mOFF")
+	For /F "tokens=*" %%i in ('reg query "HKLM\SYSTEM\ControlSet001\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HK"') do (Reg query "%%i" /v "DisableDynamicPstate" | find "0x1" || set "PS0OF=%COL%[91mOFF")
 	::Services Optimization
 	for /f "tokens=2 delims==" %%i in ('wmic os get TotalVisibleMemorySize /value') do (set /a mem=%%i + 1024000)
 	for /f "tokens=3" %%a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control" /v "SvcHostSplitThresholdInKB"') do (set /a currentmem=%%a)
@@ -307,7 +304,7 @@ set THREADS=%NUMBER_OF_PROCESSORS%
 for /f "tokens=2 delims==" %%n in ('wmic cpu get numberOfCores /value') do set CORES=%%n
 IF "%CORES%" EQU "%NUMBER_OF_PROCESSORS%" (
 	powercfg -setacvalueindex 44444444-4444-4444-4444-444444444449 sub_processor 5d76a2ca-e8c0-402f-a133-2158492d58ad 1
-)
+) else (
 	powercfg -setacvalueindex 44444444-4444-4444-4444-444444444449 sub_processor 5d76a2ca-e8c0-402f-a133-2158492d58ad 0
 )
 
@@ -327,8 +324,8 @@ goto tweaks
 :BCDEdit
 if "%BCDOF%" equ "%COL%[91mOFF" (
 	Reg add "HKCU\Software\Hone" /v BcdEditTweaks /f
-	::Better Input
-	bcdedit /set tscsyncpolicy legacy
+	::tscsyncpolicy
+	bcdedit /set tscsyncpolicy enhanced
 	::Quick Boot
 	if "%duelboot%" equ "no" (bcdedit /timeout 3)
 	bcdedit /set bootux disabled
@@ -336,7 +333,7 @@ if "%BCDOF%" equ "%COL%[91mOFF" (
 	bcdedit /set hypervisorlaunchtype off
 	bcdedit /set tpmbootentropy ForceDisable
 	bcdedit /set quietboot yes
-	::Windows 8 Boot Stuff (windows 8.1)
+	::Windows 8 Boot (windows 8.1)
 	for /f "tokens=4-9 delims=. " %%i in ('ver') do set winversion=%%i.%%j
 	if "!winversion!" == "6.3.9600" (
 	bcdedit /set {globalsettings} custom:16000067 true
@@ -344,18 +341,14 @@ if "%BCDOF%" equ "%COL%[91mOFF" (
 	bcdedit /set {globalsettings} custom:16000068 true
 	)
 	::nx
-	set CPU_NAME=%PROCESSOR_IDENTIFIER%
-	if not "!CPU_NAME:AMD=!" == "!CPU_NAME!" (
-	bcdedit /set nx optout
-	) else (
-	bcdedit /set nx alwaysoff
-	)
+	echo %PROCESSOR_IDENTIFIER% ^| find "Intel" >nul && bcdedit /set nx optout || bcdedit /set nx alwaysoff
 	::Linear Address 57
 	bcdedit /set linearaddress57 OptOut
 	bcdedit /set increaseuserva 268435328
 	::Disable some of the kernel memory mitigations
+	rem Forcing Intel SGX and setting isolatedcontext to No will cause a black screen
+	rem bcdedit /set isolatedcontext No
 	bcdedit /set allowedinmemorysettings 0x0
-	bcdedit /set isolatedcontext No
 	::Disable DMA memory protection and cores isolation
 	bcdedit /set vsmlaunchtype Off
 	bcdedit /set vm No
@@ -368,11 +361,11 @@ if "%BCDOF%" equ "%COL%[91mOFF" (
 	bcdedit /set nolowmem Yes
 	::Enable X2Apic and enable Memory Mapping for PCI-E devices
 	bcdedit /set x2apicpolicy Enable
+	bcdedit /set uselegacyapicmode No
 	bcdedit /set configaccesspolicy Default
 	bcdedit /set MSI Default
 	bcdedit /set usephysicaldestination No
 	bcdedit /set usefirmwarepcisettings No
-	bcdedit /set uselegacyapicmode yes
 ) >nul 2>&1 else (
 	Reg delete "HKCU\Software\Hone" /v "BcdEditTweaks" /f
 	::Better Input
@@ -401,9 +394,9 @@ if "%BCDOF%" equ "%COL%[91mOFF" (
 	::Disable DMA memory protection and cores isolation
 	bcdedit /deletevalue vsmlaunchtype
 	bcdedit /deletevalue vm
-	Reg add "HKLM\Software\Policies\Microsoft\FVE" /v "DisableExternalDMAUnderLock" /t Reg_DWORD /d "0" /f
-	Reg add "HKLM\Software\Policies\Microsoft\Windows\DeviceGuard" /v "EnableVirtualizationBasedSecurity" /t Reg_DWORD /d "0" /f
-	Reg add "HKLM\Software\Policies\Microsoft\Windows\DeviceGuard" /v "HVCIMATRequired" /t Reg_DWORD /d "0" /f
+	Reg delete "HKLM\Software\Policies\Microsoft\FVE" /v "DisableExternalDMAUnderLock" /f
+	Reg delete "HKLM\Software\Policies\Microsoft\Windows\DeviceGuard" /v "EnableVirtualizationBasedSecurity" /f
+	Reg delete "HKLM\Software\Policies\Microsoft\Windows\DeviceGuard" /v "HVCIMATRequired" /f
 	bcdedit /deletevalue firstmegabytepolicy
 	bcdedit /deletevalue avoidlowmemory
 	bcdedit /deletevalue nolowmem
@@ -417,11 +410,11 @@ if "%BCDOF%" equ "%COL%[91mOFF" (
 goto Tweaks
 
 :TimerRes
-cd C:\Hone
+cd C:\Hone\Resources
 if "%TMROF%" equ "%COL%[91mOFF" (
 	if not exist SetTimerResolutionService.exe (
 		::https://forums.guru3d.com/threads/windows-timer-resolution-tool-in-form-of-system-service.376458/
-		curl -g -L -o "C:\Hone\SetTimerResolutionService.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/SetTimerResolutionService.exe" >nul 2>&1
+		curl -g -L -o "C:\Hone\Resources\SetTimerResolutionService.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/SetTimerResolutionService.exe" >nul 2>&1
 		%windir%\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe /i SetTimerResolutionService.exe >nul 2>&1
 	)
 	sc config "STR" start=auto >nul 2>&1
@@ -1089,7 +1082,7 @@ goto Tweaks
 :Drivers
 cls
 
-echo The drivers are 732Mb and 1Gb so this will take a moment to download. (768,102,400 or 1,073,691,829 bytes)
+echo The drivers are 732Mb to 1Gb, so this will take a moment to download. (768,102,400 or 1,073,691,829 bytes)
 echo.
 echo Would you like to install?
 choice /c:YN /n /m "[Y] Yes  [N] No"
@@ -1101,7 +1094,7 @@ echo Do you need shadowplay and other components of the driver? Y or N?
 choice /c:YN /n /m "[Y] Yes  [N] No"
 if %errorlevel% equ 1 (
 curl -L -o "C:\Hone\Drivers\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/1.3/497.09.Hone.Default.exe"
-) || (
+) else (
 curl -L -o "C:\Hone\Drivers\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/1.3/497.09.Hone.Tweaked.exe"
 )
 
@@ -1115,19 +1108,21 @@ DDU.exe -silent -cleannvidia
 title Restart Confirmation
 cls
 echo Your PC NEEDS to restart before installing the driver!
+echo.
+echo Other Nvidia tweaks will not be available until you restart.
+echo.
 echo AFTER RESTARTING, PLEASE REOPEN THE HONE CONTROL PANEL
 echo.
 echo Would you like to restart now?
 choice /c:YN /n /m "[Y] Yes  [N] No"
 if %errorlevel% equ 1 (
 	copy "%~f0" "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\HoneCtrl.bat"
-	cd C:\Hone
-	echo set justrestarted=1 >> driverinstall.bat
-	pause && exit /b
+	shutdown /s /t 60 /c "A restart is required, we'll do that now" /f /d p:0:0
+	timeout 5
+	shutdown -a
+	shutdown /r /t 7 /c "Restarting automatically..." /f /d p:0:0
 ) else (
 	copy "%~f0" "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\HoneCtrl.bat"
-	cd C:\Hone
-	echo set justrestarted=1 >> driverinstall.bat
 	goto tweaks
 )
 
@@ -1247,11 +1242,11 @@ goto Tweaks
 
 :PStates0
 if "%PS0OF%" equ "%COL%[91mOFF" (
-	For /F "tokens=*" %%i in ('reg query "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HK"') do (
+	For /F "tokens=*" %%i in ('reg query "HKLM\SYSTEM\ControlSet001\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HK"') do (
 		Reg add "%%i" /v "DisableDynamicPstate" /t REG_DWORD /d "1" /f >nul 2>&1
 	)
 ) else (
-	For /F "tokens=*" %%i in ('reg query "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HK"') do (
+	For /F "tokens=*" %%i in ('reg query "HKLM\SYSTEM\ControlSet001\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HK"') do (
 		Reg delete "%%i" /v "DisableDynamicPstate" /f >nul 2>&1
 	)
 )
@@ -1491,21 +1486,18 @@ if "%ME2OF%" equ "%COL%[91mOFF" (
 	Reg add "HKLM\System\CurrentControlSet\Control\Session Manager" /v "HeapDeCommitFreeBlockThreshold" /t REG_DWORD /d "262144" /f
 	::Auto restart Powershell on error
 	Reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Winlogon" /v "AutoRestartShell" /t REG_DWORD /d "1" /f
-	::Remove memory compression
-	Reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Superfetch" /v "StartedComponents" /t Reg_DWORD /d "513347" /f
-	Reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Superfetch" /v "AdminDisable" /t Reg_DWORD /d "8704" /f
-	Reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Superfetch" /v "AdminEnable" /t Reg_DWORD /d "0" /f
+	::Disk Optimizations
+	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\FileSystem" /v "DontVerifyRandomDrivers" /t REG_DWORD /d "1" /f
+	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\FileSystem" /v "LongPathsEnabled" /t REG_DWORD /d "0" /f
+	::Disable Memory Compression
+	powershell -NoProfile -Command "Disable-MMAgent -mc"
 	::Disable Prefetch
-	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "EnableSuperfetch" /t REG_DWORD /d "0" /f
-	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "EnablePrefetcher" /t REG_DWORD /d "0" /f
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters" /v "EnablePrefetcher" /t Reg_DWORD /d "0" /f
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters" /v "EnableSuperfetch" /t Reg_DWORD /d "0" /f
-	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters" /v "EnableBoottrace" /t Reg_DWORD /d "0" /f
 	::Speedup Startup
-	Reg add "HKEY_CURRENT_USER\AppEvents\Schemes" /f
-	Reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v "DelayedDesktopSwitchTimeout" /t Reg_DWORD /d "0" /f
+	Reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v "DelayedDesktopSwitchTimeout" /t Reg_DWORD /d "5" /f
 	Reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Explorer\Serialize" /v "StartupDelayInMSec" /t Reg_DWORD /d "0" /f
-	::Background Apps
+	::Disable Background Apps
 	Reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v "GlobalUserDisabled" /t Reg_DWORD /d "1" /f
 	Reg add "HKLM\Software\Policies\Microsoft\Windows\AppPrivacy" /v "LetAppsRunInBackground" /t Reg_DWORD /d "2" /f
 	Reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" /v "BackgroundAppGlobalToggle" /t Reg_DWORD /d "0" /f
@@ -1558,16 +1550,17 @@ if "%ME2OF%" equ "%COL%[91mOFF" (
 	::Disk Optimizations
 	Reg delete "HKLM\SYSTEM\CurrentControlSet\Control\FileSystem" /v "DontVerifyRandomDrivers" /f
 	Reg delete "HKLM\SYSTEM\CurrentControlSet\Control\FileSystem" /v "LongPathsEnabled" /f
+	::Enable memory compression
 	Reg delete "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Superfetch" /v "StartedComponents" /f
-	::Disable Prefetch
-	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "EnableSuperfetch" /t REG_DWORD /d "3" /f
-	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "EnablePrefetcher" /t REG_DWORD /d "3" /f
+	Reg delete "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Superfetch" /v "AdminDisable" /f
+	Reg delete "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Superfetch" /v "AdminEnable" /f
+	powershell -NoProfile -Command "Enable-MMAgent -mc"
+	::Enable Prefetch
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters" /v "EnablePrefetcher" /t Reg_DWORD /d "3" /f
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters" /v "EnableSuperfetch" /t Reg_DWORD /d "3" /f
-	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters" /v "EnableBoottrace" /t Reg_DWORD /d "1" /f
 	::Speedup Startup
-	Reg delete "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v "DelayedDesktopSwitchTimeout" /t Reg_DWORDdel "0" /f
-	Reg delete "HKLM\Software\Microsoft\Windows\CurrentVersion\Explorer\Serialize" /v "StartupDelayInMSec" /t Reg_DWORD /d "0" /f
+	Reg delete "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v "DelayedDesktopSwitchTimeout" /f
+	Reg delete "HKLM\Software\Microsoft\Windows\CurrentVersion\Explorer\Serialize" /v "StartupDelayInMSec" /f
 	::Background Apps
 	Reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v "GlobalUserDisabled" /t Reg_DWORD /d "0" /f
 	Reg delete "HKLM\Software\Policies\Microsoft\Windows\AppPrivacy" /v "LetAppsRunInBackground" /f
