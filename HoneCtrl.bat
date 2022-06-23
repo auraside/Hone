@@ -39,8 +39,8 @@ set firstlaunch=1
 if "%~f0" equ "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\HoneCtrl.bat" (
 del /Q "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\HoneCtrl.bat"
 )
-if exist "%userprofile%\Desktop\NvidiaHone.exe" %userprofile%\Desktop\NvidiaHone.exe
-if exist "%userprofile%\Desktop\NvidiaHone.exe" del /Q "%userprofile%\Desktop\NvidiaHone.exe"
+if exist "%userprofile%\Desktop\NvidiaHone.exe" %userprofile%\Desktop\NvidiaHone.exe >nul 2>&1
+if exist "%userprofile%\Desktop\NvidiaHone.exe" del /Q "%userprofile%\Desktop\NvidiaHone.exe" >nul 2>&1
 
 ::Check for updates
 set local=2.3
