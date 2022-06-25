@@ -34,19 +34,11 @@ if %errorlevel% neq 0 start "" /wait /I /min powershell -NoProfile -Command star
 ::Blank/Color Character
 for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do rem"') do (set "DEL=%%a" & set "COL=%%b")
 
-::Restart Checks
-set firstlaunch=1
-if "%~f0" equ "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\HoneCtrl.bat" (
-del /Q "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\HoneCtrl.bat"
-)
-if exist "%userprofile%\Desktop\NvidiaHone.exe" %userprofile%\Desktop\NvidiaHone.exe >nul 2>&1
-if exist "%userprofile%\Desktop\NvidiaHone.exe" del /Q "%userprofile%\Desktop\NvidiaHone.exe" >nul 2>&1
-
 ::Check for updates
-set local=2.3
+set local=2.4
 set localtwo=%local%
 if exist "%temp%\Updater.bat" DEL /S /Q /F "%temp%\Updater.bat" >nul 2>&1
-curl -g -L -o "%temp%\Updater.bat" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/HoneCtrlVer" >nul 2>&1
+curl -g -L -# -o "%temp%\Updater.bat" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/HoneCtrlVer" >nul 2>&1
 call "%temp%\Updater.bat"
 IF "%local%" gtr "%localtwo%" (
 	cls
@@ -76,8 +68,10 @@ IF "%local%" gtr "%localtwo%" (
 	Mode 130,45
 )
 
+::Check If First Launch
+set firstlaunch=1
 >nul 2>&1 call "C:\Hone\HoneRevert\firstlaunch.bat"
-if %firstlaunch%==0 (goto Tweaks)
+if "%firstlaunch%" equ "0" (goto Tweaks)
 
 ::Restore Point
 powershell -ExecutionPolicy Unrestricted -NoProfile Enable-ComputerRestore -Drive 'C:\', 'D:\', 'E:\', 'F:\', 'G:\' >nul 2>&1
@@ -187,7 +181,7 @@ echo              %COL%[90mto use with a laptop battery.        %COL%[90mservice
 echo.
 echo              %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m Timer Resolution %TMROF%           %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m MSI Mode %MSIOF%                   %COL%[33m[%COL%[37m 6 %COL%[33m]%COL%[37m Affinity %AFFOF%
 echo              %COL%[90mThis tweak changes how fast          %COL%[90mEnable MSI Mode for gpu and          %COL%[90mThis tweak will spread devices
-echo              %COL%[90myour cpu refreshes                   %COL%[90mmnetwork adapters                    %COL%[90mon multiple cpu cores
+echo              %COL%[90myour cpu refreshes                   %COL%[90mnetwork adapters                     %COL%[90mon multiple cpu cores
 echo.
 echo              %COL%[33m[%COL%[37m 7 %COL%[33m]%COL%[37m W32 Priority Seperation %BLANK%    %COL%[33m[%COL%[37m 8 %COL%[33m]%COL%[37m Memory Optimization %ME2OF%        %COL%[33m[%COL%[37m 9 %COL%[33m]%COL%[37m Mouse Fix %MOUOF%
 echo              %COL%[90mOptimizes the usage priority of      %COL%[90mOptimizes your fsutil, win           %COL%[90mThis removes acceleration which
@@ -224,7 +218,6 @@ if /i "%choice%"=="12" goto ProfileInspector
 if /i "%choice%"=="13" goto Drivers
 if /i "%choice%"=="14" goto NvidiaTweaks
 if /i "%choice%"=="15" goto PStates0
-if /i "%choice%"=="R" call:Revert
 if /i "%choice%"=="X" exit /b
 if /i "%choice%"=="M" call:More
 if /i "%choice%"=="N" (set "PG=TweaksPG2") & goto TweaksPG2
@@ -286,7 +279,6 @@ if /i "%choice%"=="8" goto DSCValue
 if /i "%choice%"=="9" goto cstates
 if /i "%choice%"=="10" goto Intel
 if /i "%choice%"=="11" goto AMD
-if /i "%choice%"=="R" call:Revert
 if /i "%choice%"=="X" exit /b
 if /i "%choice%"=="M" call:More
 if /i "%choice%"=="N" (set "PG=TweaksPG1") & goto TweaksPG1
@@ -294,7 +286,7 @@ goto TweaksPG2
 
 :PowerPlan
 echo %PWROF% | find "N/A" >nul && call :HoneCtrlError "You are on AC power, this power plan isn't recommended." && goto Tweaks
-curl -g -L -o "C:\Hone\Resources\HoneV2.pow" "https://github.com/auraside/HoneCtrl/raw/main/Files/HoneV2.pow" >nul 2>&1
+curl -g -L -# -o "C:\Hone\Resources\HoneV2.pow" "https://github.com/auraside/HoneCtrl/raw/main/Files/HoneV2.pow" >nul 2>&1
 powercfg /d 44444444-4444-4444-4444-444444444449 >nul 2>&1
 powercfg -import "C:\Hone\Resources\HoneV2.pow" 44444444-4444-4444-4444-444444444449 >nul 2>&1
 powercfg /changename 44444444-4444-4444-4444-444444444449 "Hone Ultimate Power Plan V2" "The Ultimate Power Plan to increase FPS, improve latency and reduce input lag." >nul 2>&1
@@ -356,9 +348,10 @@ if "%BCDOF%" equ "%COL%[91mOFF" (
 	Reg add "HKLM\Software\Policies\Microsoft\Windows\DeviceGuard" /v "EnableVirtualizationBasedSecurity" /t Reg_DWORD /d "0" /f
 	Reg add "HKLM\Software\Policies\Microsoft\Windows\DeviceGuard" /v "HVCIMATRequired" /t Reg_DWORD /d "0" /f
 	::Avoid using uncontiguous low-memory. Boosts memory performance & microstuttering.
-	bcdedit /set firstmegabytepolicy UseAll
-	bcdedit /set avoidlowmemory 0x8000000
-	bcdedit /set nolowmem Yes
+	rem Can freeze the system on unstable memory OC
+	rem bcdedit /set firstmegabytepolicy UseAll
+	rem bcdedit /set avoidlowmemory 0x8000000
+	rem bcdedit /set nolowmem Yes
 	::Enable X2Apic and enable Memory Mapping for PCI-E devices
 	bcdedit /set x2apicpolicy Enable
 	bcdedit /set uselegacyapicmode No
@@ -414,7 +407,7 @@ cd C:\Hone\Resources
 if "%TMROF%" equ "%COL%[91mOFF" (
 	if not exist SetTimerResolutionService.exe (
 		::https://forums.guru3d.com/threads/windows-timer-resolution-tool-in-form-of-system-service.376458/
-		curl -g -L -o "C:\Hone\Resources\SetTimerResolutionService.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/SetTimerResolutionService.exe" >nul 2>&1
+		curl -g -L -# -o "C:\Hone\Resources\SetTimerResolutionService.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/SetTimerResolutionService.exe" >nul 2>&1
 		%windir%\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe /i SetTimerResolutionService.exe >nul 2>&1
 	)
 	sc config "STR" start=auto >nul 2>&1
@@ -1044,36 +1037,36 @@ if /i "%choice%"=="150" Reg add "HKCU\Control Panel\Mouse" /v "SmoothMouseXCurve
 goto tweaks
 
 :MSIAfterBurner
-if "%AFTOF%" neq "%COL%[91mOFF" (del /S /Q /F "%SystemDrive%\Program Files (x86)\MSI Afterburner\Skins\Hone.usf" >nul 2>&1) && goto Tweaks
-if not exist "%SystemDrive%\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe" goto downloadMSIafterburner
-curl -g -L -o "C:\Program Files (x86)\MSI Afterburner\Skins\Hone.usf" "https://github.com/auraside/HoneCtrl/raw/main/Files/Hone.usf" >nul 2>&1
+if "%AFTOF%" neq "%COL%[91mOFF" (
+	rmdir /S /Q "%SystemDrive%\Program Files (x86)\MSI Afterburner\" >nul 2>&1
+	del /F /Q "%userprofile%\Desktop\MSI Afterburner.lnk" >nul 2>&1
+) else (
+	curl -g -L -# -o "C:\Hone\Resources\MSI_Afterburner.zip" "https://github.com/auraside/HoneCtrl/releases/download/2.0/MSI.Afterburner_2.zip" >nul 2>&1
+	powershell -NoProfile -Command "Expand-Archive 'C:\Hone\Resources\MSI_Afterburner.zip' -DestinationPath 'C:\Program Files (x86)\'"
+	powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%userprofile%\Desktop\MSI Afterburner.lnk');$s.TargetPath='C:\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe';$s.Save()" >nul 2>&1
+	del /Q /F "%SystemDrive%\Hone\Resources\MSI_Afterburner.zip" >nul 2>&1
+	curl -g -L -# -o "C:\Program Files (x86)\MSI Afterburner\Skins\Hone.usf" "https://github.com/auraside/HoneCtrl/raw/main/Files/Hone.usf" >nul 2>&1
+)
 goto Tweaks
-:downloadMSIafterburner
-echo Downloading MSIAfterBurner
-curl -g -L -o "C:\Hone\Resources\MSI_Afterburner.zip" "https://github.com/auraside/HoneCtrl/releases/download/2.0/MSI.Afterburner_2.zip" >nul 2>&1
-powershell Expand-Archive 'C:\Hone\Resources\MSI_Afterburner.zip' -DestinationPath 'C:\Program Files (x86)'
-powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%userprofile%\Desktop\MSI Afterburner.lnk');$s.TargetPath='C:\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe';$s.Save()"
-del /Q /F "%SystemDrive%\Hone\Resources\MSI_Afterburner_1.zip" >nul 2>&1
-goto MSIAfterBurner
 
 :ProfileInspector
 if "%NPIOF%" equ "%COL%[91mOFF" (
 	Reg add "HKCU\Software\Hone" /v NpiTweaks /f
 	rmdir /S /Q "C:\Hone\Resources\nvidiaProfileInspector\"
-	curl -g -L -o C:\Hone\Resources\nvidiaProfileInspector.zip "https://github.com/Orbmu2k/nvidiaProfileInspector/releases/latest/download/nvidiaProfileInspector.zip"
+	curl -g -L -# -o C:\Hone\Resources\nvidiaProfileInspector.zip "https://github.com/Orbmu2k/nvidiaProfileInspector/releases/latest/download/nvidiaProfileInspector.zip"
 	powershell -NoProfile Expand-Archive 'C:\Hone\Resources\nvidiaProfileInspector.zip' -DestinationPath 'C:\Hone\Resources\nvidiaProfileInspector\'
 	del /F /Q "C:\Hone\Resources\nvidiaProfileInspector.zip"
-	curl -g -L -o "C:\Hone\Resources\nvidiaProfileInspector\Latency_and_Performances_Settings_by_Hone_Team2.nip" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Latency_and_Performances_Settings_by_Hone_Team2.nip"
+	curl -g -L -# -o "C:\Hone\Resources\nvidiaProfileInspector\Latency_and_Performances_Settings_by_Hone_Team2.nip" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Latency_and_Performances_Settings_by_Hone_Team2.nip"
 	cd "C:\Hone\Resources\nvidiaProfileInspector\"
 	nvidiaProfileInspector.exe "Latency_and_Performances_Settings_by_Hone_Team2.nip" 
 ) >nul 2>&1 else (
 ::https://github.com/Orbmu2k/nvidiaProfileInspector/releases/latest/download/nvidiaProfileInspector.zip
 	Reg delete "HKCU\Software\Hone" /v NpiTweaks /f
 	rmdir /S /Q "C:\Hone\Resources\nvidiaProfileInspector\"
-	curl -g -L -o C:\Hone\Resources\nvidiaProfileInspector.zip "https://github.com/Orbmu2k/nvidiaProfileInspector/releases/latest/download/nvidiaProfileInspector.zip"
+	curl -g -L -# -o C:\Hone\Resources\nvidiaProfileInspector.zip "https://github.com/Orbmu2k/nvidiaProfileInspector/releases/latest/download/nvidiaProfileInspector.zip"
 	powershell -NoProfile Expand-Archive 'C:\Hone\Resources\nvidiaProfileInspector.zip' -DestinationPath 'C:\Hone\Resources\nvidiaProfileInspector\'
 	del /F /Q "C:\Hone\Resources\nvidiaProfileInspector.zip"
-	curl -g -L -o "C:\Hone\Resources\nvidiaProfileInspector\Base_Profile.nip" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Base_Profile.nip"
+	curl -g -L -# -o "C:\Hone\Resources\nvidiaProfileInspector\Base_Profile.nip" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Base_Profile.nip"
 	cd "C:\Hone\Resources\nvidiaProfileInspector\"
 	nvidiaProfileInspector.exe "Base_Profile.nip"
 ) >nul 2>&1
@@ -1093,38 +1086,23 @@ TITLE Downloading Nvidia driver...
 echo Do you need shadowplay and other components of the driver? Y or N?
 choice /c:YN /n /m "[Y] Yes  [N] No"
 if %errorlevel% equ 1 (
-curl -L -o "%userprofile%\Desktop\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/1.3/497.09.Hone.Default.exe"
+curl -g -L -# -o "C:\Hone\Drivers\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/1.3/497.09.Hone.Default.exe"
 ) else (
-curl -L -o "%userprofile%\Desktop\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/1.3/497.09.Hone.Tweaked.exe"
+curl -g -L -# -o "C:\Hone\Drivers\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/1.3/497.09.Hone.Tweaked.exe"
 )
 
 TITLE Executing DDU...
-curl -g -L -o "C:\Hone\Resources\DDU.zip" "https://github.com/auraside/HoneCtrl/raw/main/Files/DDU.zip"
+curl -g -L -# -o "C:\Hone\Resources\DDU.zip" "https://github.com/auraside/HoneCtrl/raw/main/Files/DDU.zip"
 powershell -NoProfile Expand-Archive 'C:\Hone\Resources\DDU.zip' -DestinationPath 'C:\Hone\Resources\DDU\' >nul 2>&1
 del "C:\Hone\Resources\DDU.zip"
 cd C:\Hone\Resources\DDU
 DDU.exe -silent -cleannvidia
 
-title Restart Confirmation
-cls
-echo Your PC NEEDS to restart before installing the driver!
-echo.
-echo Other Nvidia tweaks will not be available until you restart.
-echo.
-echo AFTER RESTARTING, PLEASE REOPEN THE HONE CONTROL PANEL
-echo.
-echo Would you like to restart now?
-choice /c:YN /n /m "[Y] Yes  [N] No"
-if %errorlevel% equ 1 (
-	copy "%~f0" "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\HoneCtrl.bat"
-	shutdown /s /t 60 /c "A restart is required, we'll do that now" /f /d p:0:0
-	timeout 5
-	shutdown -a
-	shutdown /r /t 7 /c "Restarting automatically..." /f /d p:0:0
-) else (
-	copy "%~f0" "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\HoneCtrl.bat"
-	goto tweaks
-)
+TITLE Installing Drivers...
+cd C:\Hone\Drivers
+start NvidiaHone.exe
+del /Q NvidiaHone.exe
+exit /B
 
 :NvidiaTweaks
 if "%NVIOF%" equ "%COL%[91mOFF" (
@@ -1351,16 +1329,16 @@ goto tweaks
 if "%AFFOF%" neq "%COL%[91mOFF" (
 	Reg delete "HKCU\Software\Hone" /v AffinityTweaks /f >nul 2>&1
 	for /f %%i in ('wmic path Win32_USBController get PNPDeviceID^| findstr /l "PCI\VEN_"') do (
-		Reg.exe delete "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /f >nul 2>&1
-		Reg.exe delete "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /f >nul 2>&1
+		Reg delete "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /f >nul 2>&1
+		Reg delete "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /f >nul 2>&1
 	)
 	for /f %%i in ('wmic path Win32_VideoController get PNPDeviceID^| findstr /l "PCI\VEN_"') do (
-		Reg.exe delete "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /f >nul 2>&1
-		Reg.exe delete "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /f >nul 2>&1
+		Reg delete "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /f >nul 2>&1
+		Reg delete "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /f >nul 2>&1
 	)
 	for /f %%i in ('wmic path Win32_NetworkAdapter get PNPDeviceID^| findstr /l "PCI\VEN_"') do (
-		Reg.exe delete "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /f >nul 2>&1
-		Reg.exe delete "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /f >nul 2>&1
+		Reg delete "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /f >nul 2>&1
+		Reg delete "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /f >nul 2>&1
 	)
 goto Tweaks
 )
@@ -1368,21 +1346,20 @@ goto Tweaks
 Reg add "HKCU\Software\Hone" /v AffinityTweaks /f >nul 2>&1
 for /f "tokens=*" %%f in ('wmic cpu get NumberOfCores /value ^| find "="') do set %%f
 for /f "tokens=*" %%f in ('wmic cpu get NumberOfLogicalProcessors /value ^| find "="') do set %%f
-if "%NumberOfCores%"=="2" (
-cls
-echo you have 2 cores, affinity won't work!!!!!
-pause
-goto Tweaks
+
+if "%NumberOfCores%"=="2" (cls
+	echo you have 2 cores, affinity won't work!
+	pause && goto Tweaks
 )
 
 if %NumberOfCores% gtr 4 (
 	for /f %%i in ('wmic path Win32_VideoController get PNPDeviceID^| findstr /l "PCI\VEN_"') do (
-		Reg.exe add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /t REG_DWORD /d "3" /f >nul 2>&1
-		Reg.exe delete "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /f >nul 2>&1
+		Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /t REG_DWORD /d "3" /f >nul 2>&1
+		Reg delete "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /f >nul 2>&1
 	)
 	for /f %%i in ('wmic path Win32_NetworkAdapter get PNPDeviceID^| findstr /l "PCI\VEN_"') do (
-		Reg.exe add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /t REG_DWORD /d "5" /f >nul 2>&1
-		Reg.exe delete "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /f >nul 2>&1
+		Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /t REG_DWORD /d "5" /f >nul 2>&1
+		Reg delete "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /f >nul 2>&1
 	)
 	goto Tweaks
 )
@@ -1390,30 +1367,30 @@ if %NumberOfCores% gtr 4 (
 if %NumberOfLogicalProcessors% gtr %NumberOfCores% (
 ::You have HyperThreading Enabled!
 	for /f %%i in ('wmic path Win32_USBController get PNPDeviceID^| findstr /l "PCI\VEN_"') do (
-		Reg.exe add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /t REG_DWORD /d "4" /f >nul 2>&1
-		Reg.exe add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /t REG_BINARY /d "C0" >nul 2>&1
+		Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /t REG_DWORD /d "4" /f >nul 2>&1
+		Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /t REG_BINARY /d "C0" >nul 2>&1
 	)
 	for /f %%i in ('wmic path Win32_VideoController get PNPDeviceID^| findstr /l "PCI\VEN_"') do (
-		Reg.exe add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /t REG_DWORD /d "4" /f >nul 2>&1
-		Reg.exe add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /t REG_BINARY /d "C0" /f >nul 2>&1
+		Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /t REG_DWORD /d "4" /f >nul 2>&1
+		Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /t REG_BINARY /d "C0" /f >nul 2>&1
 	)
 	for /f %%i in ('wmic path Win32_NetworkAdapter get PNPDeviceID^| findstr /l "PCI\VEN_"') do (
-		Reg.exe add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /t REG_DWORD /d "4" /f >nul 2>&1
-		Reg.exe add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /t REG_BINARY /d "30" /f >nul 2>&1
+		Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /t REG_DWORD /d "4" /f >nul 2>&1
+		Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /t REG_BINARY /d "30" /f >nul 2>&1
 	)
 ) ELSE (
-::echo You have HyperThreading Disabled!
+::You have HyperThreading Disabled!
 	for /f %%i in ('wmic path Win32_USBController get PNPDeviceID^| findstr /l "PCI\VEN_"') do (
-		Reg.exe add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /t REG_DWORD /d "4" /f >nul 2>&1
-		Reg.exe add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /t REG_BINARY /d "08" /f >nul 2>&1
+		Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /t REG_DWORD /d "4" /f >nul 2>&1
+		Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /t REG_BINARY /d "08" /f >nul 2>&1
 	)
 	for /f %%i in ('wmic path Win32_VideoController get PNPDeviceID^| findstr /l "PCI\VEN_"') do (
-		Reg.exe add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /t REG_DWORD /d "4" /f >nul 2>&1
-		Reg.exe add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /t REG_BINARY /d "02" /f >nul 2>&1
+		Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /t REG_DWORD /d "4" /f >nul 2>&1
+		Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /t REG_BINARY /d "02" /f >nul 2>&1
 	)
 	for /f %%i in ('wmic path Win32_NetworkAdapter get PNPDeviceID^| findstr /l "PCI\VEN_"') do (
-		Reg.exe add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /t REG_DWORD /d "4" /f >nul 2>&1
-		Reg.exe add "HKEY_LOCAL_MACHINE\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /t REG_BINARY /d "04" /f >nul 2>&1
+		Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /t REG_DWORD /d "4" /f >nul 2>&1
+		Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /t REG_BINARY /d "04" /f >nul 2>&1
 	)
 )
 goto Tweaks
@@ -1497,12 +1474,7 @@ if "%ME2OF%" equ "%COL%[91mOFF" (
 	::Speedup Startup
 	Reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v "DelayedDesktopSwitchTimeout" /t Reg_DWORD /d "5" /f
 	Reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Explorer\Serialize" /v "StartupDelayInMSec" /t Reg_DWORD /d "0" /f
-	::Disable Background Apps
-	Reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v "GlobalUserDisabled" /t Reg_DWORD /d "1" /f
-	Reg add "HKLM\Software\Policies\Microsoft\Windows\AppPrivacy" /v "LetAppsRunInBackground" /t Reg_DWORD /d "2" /f
-	Reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" /v "BackgroundAppGlobalToggle" /t Reg_DWORD /d "0" /f
-	::Disable Hibernation + Fast Boot
-	powercfg /h off
+	::Disable Hibernation + Fast Startup
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" /v "HiberbootEnabled" /t REG_DWORD /d "0" /f
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power" /v "HibernateEnabledDefault" /t REG_DWORD /d "0" /f
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power" /v "HibernateEnabled" /t REG_DWORD /d "0" /f
@@ -1565,8 +1537,7 @@ if "%ME2OF%" equ "%COL%[91mOFF" (
 	Reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v "GlobalUserDisabled" /t Reg_DWORD /d "0" /f
 	Reg delete "HKLM\Software\Policies\Microsoft\Windows\AppPrivacy" /v "LetAppsRunInBackground" /f
 	Reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" /v "BackgroundAppGlobalToggle" /t Reg_DWORD /d "1" /f
-	::Disable Hibernation + Fast Boot
-	powercfg /h on
+	::Hibernation + Fast Startup
 	Reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" /v "HiberbootEnabled" /f
 	Reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Power" /v "HibernateEnabledDefault" /f
 	Reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Power" /v "HibernateEnabled" /f
@@ -1822,9 +1793,9 @@ cls
 rmdir /S /Q "C:\Hone\Resources\DeviceCleanupCmd\"
 del /F /Q "C:\Hone\Resources\AdwCleaner.exe"
 del /F /Q "C:\Hone\Resources\EmptyStandbyList.exe"
-curl -g -L -o "C:\Hone\Resources\EmptyStandbyList.exe" "https://wj32.org/wp/download/1455/"
-curl -g -L -o "C:\Hone\Resources\DeviceCleanupCmd.zip" "https://www.uwe-sieber.de/files/DeviceCleanupCmd.zip"
-curl -g -L -o "C:\Hone\Resources\AdwCleaner.exe" "https://adwcleaner.malwarebytes.com/adwcleaner?channel=release"
+curl -g -L -# -o "C:\Hone\Resources\EmptyStandbyList.exe" "https://wj32.org/wp/download/1455/"
+curl -g -L -# -o "C:\Hone\Resources\DeviceCleanupCmd.zip" "https://www.uwe-sieber.de/files/DeviceCleanupCmd.zip"
+curl -g -L -# -o "C:\Hone\Resources\AdwCleaner.exe" "https://adwcleaner.malwarebytes.com/adwcleaner?channel=release"
 powershell -NoProfile Expand-Archive 'C:\Hone\Resources\DeviceCleanupCmd.zip' -DestinationPath 'C:\Hone\Resources\DeviceCleanupCmd\'
 del /F /Q "C:\Hone\Resources\DeviceCleanupCmd.zip"
 del /Q C:\Users\%username%\AppData\Local\Microsoft\Windows\INetCache\IE\*.*
@@ -1857,23 +1828,31 @@ set dialog=%dialog%('Scripting.FileSystemObject').GetStandardStream(1).WriteLine
 set dialog=%dialog%close();resizeTo(0,0);</script>"
 for /f "tokens=* delims=" %%p in ('mshta.exe %dialog%') do set "file=%%p"
 if "%file%"=="" goto:eof
+cls
 
-for %%F in ("%file%") do (cls
-::GPU High Performance
-Reg add "HKCU\Software\Microsoft\DirectX\UserGpuPreferences" /v "%%F" /t Reg_SZ /d "GpuPreference=2;" /f >>"%temp%\EchoLog.txt" 2>>"%temp%\EchoError.txt"
-echo GPU High Performance
-
-::Disable Fullscreen Optimizations
-Reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%%F" /t Reg_SZ /d "~ DISABLEDXMAXIMIZEDWINDOWEDMODE" /f >>"%temp%\EchoLog.txt" 2>>"%temp%\EchoError.txt"
-echo Disable Fullscreen Optimizations
-
-::High CPU Class
-Reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\%%~nxF\PerfOptions" /v "CpuPriorityClass" /t Reg_DWORD /d "3" /f >>"%temp%\EchoLog.txt" 2>>"%temp%\EchoError.txt"
-echo CPU High Class 
+Reg query "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%file%" >nul 2>&1 && (
+	for %%F in ("%file%") do (
+		Reg delete "HKCU\Software\Microsoft\DirectX\UserGpuPreferences" /v "%file%" /f
+		Reg delete "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%file%" /f
+		Reg delete "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\%%~nxF\PerfOptions" /v "CpuPriorityClass" /f
+	) >nul 2>&1
+	echo Undo Game Optimizations
+	echo.
+	choice /c:"CQ" /n /m "%BS%               [C] Continue  [Q] Quit" & if !errorlevel! equ 2 exit /b
+	goto:eof
 )
-echo.
-choice /c:"CQ" /n /m "%BS%               [C] Continue  [Q] Quit" & if !errorlevel! equ 2 exit /b
-goto:eof
+
+for %%F in ("%file%") do (
+	Reg add "HKCU\Software\Microsoft\DirectX\UserGpuPreferences" /v "%file%" /t Reg_SZ /d "GpuPreference=2;" /f
+	Reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%file%" /t Reg_SZ /d "~ DISABLEDXMAXIMIZEDWINDOWEDMODE" /f
+	Reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\%%~nxF\PerfOptions" /v "CpuPriorityClass" /t Reg_DWORD /d "3" /f
+) >nul 2>&1
+	echo GPU High Performance
+	echo Disable Fullscreen Optimizations
+	echo CPU High Class
+	echo.
+	choice /c:"CQ" /n /m "%BS%               [C] Continue  [Q] Quit" & if !errorlevel! equ 2 exit /b
+	goto:eof
 
 :softRestart
 cls
@@ -1881,13 +1860,13 @@ Mode 65,16
 color 06
 cd %temp%
 echo Downloading NSudo [...]
-if not exist "%temp%\NSudo.exe" curl -g -L -o "%temp%\NSudo.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/NSudo.exe"
+if not exist "%temp%\NSudo.exe" curl -g -L -# -o "%temp%\NSudo.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/NSudo.exe"
 NSudo.exe -U:S -ShowWindowMode:Hide cmd /c "Reg add "HKLM\SYSTEM\CurrentControlSet\Services\TrustedInstaller" /v "Start" /t Reg_DWORD /d "3" /f"
 NSudo.exe -U:S -ShowWindowMode:Hide cmd /c "sc start "TrustedInstaller"
 echo Downloading Restart64 [...]
-if not exist "%temp%\restart64.exe" curl -g -L -o "%temp%\Restart64.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/restart64.exe"
+if not exist "%temp%\restart64.exe" curl -g -L -# -o "%temp%\Restart64.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/restart64.exe"
 echo Downloading EmptyStandbyList [...]
-if not exist "%temp%\EmptyStandbyList.exe" curl -g -L -o "%temp%\EmptyStandbyList.exe" "https://wj32.org/wp/download/1455/"
+if not exist "%temp%\EmptyStandbyList.exe" curl -g -L -# -o "%temp%\EmptyStandbyList.exe" "https://wj32.org/wp/download/1455/"
 cls
 
 ::Restart Explorer/DWM
