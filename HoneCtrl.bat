@@ -34,6 +34,13 @@ if %errorlevel% neq 0 start "" /wait /I /min powershell -NoProfile -Command star
 ::Blank/Color Character
 for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do rem"') do (set "DEL=%%a" & set "COL=%%b")
 
+::Restart Checks
+if "%~f0" equ "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\HoneCtrl.bat" (
+del /Q "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\HoneCtrl.bat"
+)
+if exist "%userprofile%\Desktop\NvidiaHone.exe" %userprofile%\Desktop\NvidiaHone.exe >nul 2>&1
+if exist "%userprofile%\Desktop\NvidiaHone.exe" del /Q "%userprofile%\Desktop\NvidiaHone.exe" >nul 2>&1
+
 ::Check for updates
 set local=2.4
 set localtwo=%local%
@@ -83,7 +90,7 @@ set date1=%date:/=.%
 >nul 2>&1 md C:\Hone\HoneRevert\%date1%
 reg export HKCU C:\Hone\HoneRevert\%date1%\HKLM.reg /y >nul 2>&1
 reg export HKCU C:\Hone\HoneRevert\%date1%\HKCU.reg /y >nul 2>&1
-echo set firstlaunch=0 > C:\Hone\HoneRevert\firstlaunch.bat
+echo set "firstlaunch=0" > C:\Hone\HoneRevert\firstlaunch.bat
 
 :Tweaks
 Mode 130,45
@@ -286,7 +293,7 @@ goto TweaksPG2
 
 :PowerPlan
 echo %PWROF% | find "N/A" >nul && call :HoneCtrlError "You are on AC power, this power plan isn't recommended." && goto Tweaks
-curl -g -L -# -o "C:\Hone\Resources\HoneV2.pow" "https://github.com/auraside/HoneCtrl/raw/main/Files/HoneV2.pow" >nul 2>&1
+curl -g -k -L -# -o "C:\Hone\Resources\HoneV2.pow" "https://github.com/auraside/HoneCtrl/raw/main/Files/HoneV2.pow" >nul 2>&1
 powercfg /d 44444444-4444-4444-4444-444444444449 >nul 2>&1
 powercfg -import "C:\Hone\Resources\HoneV2.pow" 44444444-4444-4444-4444-444444444449 >nul 2>&1
 powercfg /changename 44444444-4444-4444-4444-444444444449 "Hone Ultimate Power Plan V2" "The Ultimate Power Plan to increase FPS, improve latency and reduce input lag." >nul 2>&1
@@ -425,14 +432,14 @@ goto tweaks
 
 :KBoost
 if "%KBOOF%" equ "%COL%[91mOFF" (
-	for /f %%a in ('reg query "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Class" /v "VgaCompatible" /s ^| findstr "HKEY"') do (
+	for /f %%i in ('Reg query "HKLM\System\ControlSet001\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HKEY"') do (
 		Reg add "%%a" /v "PowerMizerEnable" /t REG_DWORD /d "1" /f >nul 2>&1
 		Reg add "%%a" /v "PowerMizerLevel" /t REG_DWORD /d "1" /f >nul 2>&1
 		Reg add "%%a" /v "PowerMizerLevelAC" /t REG_DWORD /d "1" /f >nul 2>&1
 		Reg add "%%a" /v "PerfLevelSrc" /t REG_DWORD /d "8738" /f >nul 2>&1
 	)
 ) else (
-	for /f %%a in ('reg query "HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\Class" /v "VgaCompatible" /s ^| findstr "HKEY"') do (
+	for /f %%i in ('Reg query "HKLM\System\ControlSet001\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HKEY"') do (
 		Reg delete "%%a" /v "PowerMizerEnable" /f >nul 2>&1
 		Reg delete "%%a" /v "PowerMizerLevel" /f >nul 2>&1
 		Reg delete "%%a" /v "PowerMizerLevelAC" /f >nul 2>&1
@@ -457,91 +464,37 @@ goto Tweaks
 
 :TCPIP
 cls
-Reg add "HKLM\Software\Policies\Microsoft\Windows\OneDrive" /v "DisableFileSyncNGSC" /t Reg_DWORD /d "1" /f
-Reg add "HKLM\System\CurrentControlSet\Control\Nsi\{eb004a03-9b1a-11d4-9123-0050047759bc}\0" /v "0200" /t Reg_BINARY /d "0000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000ff000000000000000000000000000000000000000000ff000000000000000000000000000000" /f 
-Reg add "HKLM\System\CurrentControlSet\Control\Nsi\{eb004a03-9b1a-11d4-9123-0050047759bc}\0" /v "1700" /t Reg_BINARY /d "0000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000ff000000000000000000000000000000000000000000ff000000000000000000000000000000" /f 
-Reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v "MaxConnectionsPerServer" /t Reg_DWORD /d "16" /f 
-Reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v "MaxConnectionsPer1_0Server" /t Reg_DWORD /d "16" /f 
-Reg add "HKLM\Software\Policies\Microsoft\Windows\Psched" /v "NonBestEffortLimit" /t Reg_DWORD /d "0" /f
-Reg add "HKLM\Software\Policies\Microsoft\Windows\Psched" /v MaxOutstandingSends /t Reg_DWORD /d 0 /f
-Reg add "HKLM\Software\Policies\Microsoft\Windows\Psched" /v "TimerResolution" /t Reg_DWORD /d "1" /f
-Reg add "HKLM\System\CurrentControlSet\Services\Tcpip\QoS" /v "Do not use NLA" /t Reg_DWORD /d "1" /f
-Reg add "HKLM\System\CurrentControlSet\Services\AFD\Parameters" /v "DoNotHoldNicBuffers" /t Reg_DWORD /d "1" /f
-Reg add "HKLM\Software\Policies\Microsoft\Windows NT\DNSClient" /v "EnableMulticast" /t Reg_DWORD /d "0" /f
-Reg add "HKLM\System\CurrentControlSet\Services\Tcpip\ServiceProvider" /v "LocalPriority" /t Reg_DWORD /d "4" /f
-Reg add "HKLM\System\CurrentControlSet\Services\Tcpip\ServiceProvider" /v "HostsPriority" /t Reg_DWORD /d "5" /f
-Reg add "HKLM\System\CurrentControlSet\Services\Tcpip\ServiceProvider" /v "DnsPriority" /t Reg_DWORD /d "6" /f
-Reg add "HKLM\System\CurrentControlSet\Services\Tcpip\ServiceProvider" /v "NetbtPriority" /t Reg_DWORD /d "7" /f
-Reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Settings" /v "DownloadMode" /t Reg_DWORD /d "0" /f
-Reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "NetworkThrottlingIndex" /t Reg_DWORD /d "10" /f
-Reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "SystemResponsiveness" /t Reg_DWORD /d "0" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "MaxUserPort" /t Reg_DWORD /d "65534" /f 
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "TcpTimedWaitDelay" /t Reg_DWORD /d "30" /f 
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "EnableWsd" /t Reg_DWORD /d "0" /f 
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "DisableDynamicDiscovery" /t Reg_DWORD /d 0 /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "Tcp1323Opts" /t Reg_DWORD /d "1" /f  
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "TCPCongestionControl" /t Reg_DWORD /d "1" /f 
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v TcpMaxDupAcks /t Reg_DWORD /d 2 /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v DefaultTTL /t Reg_DWORD /d 64 /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v EnablePMTUDiscovery /t Reg_DWORD /d 1 /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v EnablePMTUBDetect /t Reg_DWORD /d 0 /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v SackOpts /t Reg_DWORD /d 1 /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "MaxFreeTcbs" /t Reg_DWORD /d "65535" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "EnableConnectionRateLimiting" /t Reg_DWORD /d "0" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "EnableDCA" /t Reg_DWORD /d "1" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "EnableICMPRedirect" /t Reg_DWORD /d "0" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "EnableIPAutoConfigurationLimits" /t Reg_DWORD /d "1" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "EnablePMTUBHDetect" /t Reg_DWORD /d "0" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "EnableRSS" /t Reg_DWORD /d "1" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "EnableTCPA" /t Reg_DWORD /d "1" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "EnableTCPChimney" /t Reg_DWORD /d "1" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "TcpMaxConnectResponseRetransmissions" /t Reg_DWORD /d "2" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "SynAttackProtect" /t Reg_DWORD /d "1" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "MaxHashTableSize" /t Reg_DWORD /d "65536" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "NoNameReleaseOnDemand" /t Reg_DWORD /d "1" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "NumTcbTablePartitions" /t Reg_DWORD /d "0" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "TcpMaxDataRetransmissions" /t Reg_DWORD /d "5" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "QualifyingDestinationThreshold" /t Reg_DWORD /d "3" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "StrictTimeWaitSeqCheck" /t Reg_DWORD /d "1" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "TcpCreateAndConnectTcbRateLimitDepth" /t Reg_DWORD /d "0" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "TcpMaxConnectRetransmissions" /t Reg_DWORD /d "2" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "TcpMaxDataRetransmissions" /t Reg_DWORD /d "3" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "TcpNumConnections" /t Reg_DWORD /d "65534" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "TcpMaxSendFree" /t Reg_DWORD /d "65535" /f
-Reg add HKLM\System\CurrentControlSet\Services\Tcpip\Parameters /v "UseDomainNameDevolution" /t Reg_DWORD /d "1" /f
-for /f "tokens=3*" %%i in ('Reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkCards" /f "ServiceName" /s ^|findstr /i /l "ServiceName"') do (
-Reg add "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%s" /v "UseZeroBroadcast" /t Reg_DWORD /d "1" /f
-Reg add "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%s" /v "TcpInitialRTT" /t Reg_DWORD /d "3000" /f
-Reg add "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%s" /v "PerformRouterDiscovery" /t Reg_DWORD /d "1" /f
-)
-Reg add "HKLM\Software\Software\Policies\Microsoft\Windows\BITS" /v "EnableBITSMaxBandwidth" /t Reg_DWORD /d "1" /f
-Reg add "HKLM\Software\Software\Policies\Microsoft\Windows\BITS" /v "MaxBandwidthValidFrom" /t Reg_DWORD /d "8" /f
-Reg add "HKLM\Software\Software\Policies\Microsoft\Windows\BITS" /v "MaxBandwidthValidTo" /t Reg_DWORD /d "14" /f
-Reg add "HKLM\Software\Software\Policies\Microsoft\Windows\BITS" /v "MaxTransferRateOffSchedule" /t Reg_DWORD /d "11" /f
-Reg add "HKLM\Software\Software\Policies\Microsoft\Windows\BITS" /v "MaxTransferRateOnSchedule" /t Reg_DWORD /d "10" /f
-Reg add "HKLM\Software\Software\Policies\Microsoft\Windows\BITS" /v "UseSystemMaximum" /t Reg_DWORD /d "1" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "SizReqBuf" /t Reg_DWORD /d "17424" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "IRPStackSize" /t Reg_DWORD /d "32" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "autodisconnect" /t Reg_DWORD /d "4294967295" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "AutoShareWks" /t Reg_DWORD /d "0" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "DisableBandwidthThrottling" /t Reg_DWORD /d "1" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "DisableDos" /t Reg_DWORD /d "0" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "DisableLargeMtu" /t Reg_DWORD /d "0" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "DisableStrictNameChecking" /t Reg_DWORD /d "1" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "EnableOplocks" /t Reg_DWORD /d "0" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "KeepConn" /t Reg_DWORD /d "15180" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "MaxCmds" /t Reg_DWORD /d "40" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "MaxCollectionCount" /t Reg_DWORD /d "20" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "MaxFreeConnections" /t Reg_DWORD /d "64" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "MinFreeConnections" /t Reg_DWORD /d "20" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "MaxMpxCt" /t Reg_DWORD /d "800" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "MaxRawWorkItems" /t Reg_DWORD /d "200" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "MaxThreads" /t Reg_DWORD /d "40" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "MaxWorkItems" /t Reg_DWORD /d "2000" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "SBM2" /t Reg_DWORD /d "0" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "SharingViolationDelay" /t Reg_DWORD /d "0" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "SharingViolationRetries" /t Reg_DWORD /d "0" /f
-Reg add "HKLM\System\CurrentControlSet\Services\LanmanWorkstation\Parameters" /v "Size" /t Reg_DWORD /d "3" /f
+PowerShell -NoProfile -NonInteractive -Command Disable-NetAdapterQos -Name "*";^
+Disable-NetAdapterPowerManagement -Name "*";^
+Disable-NetAdapterIPsecOffload -Name "*" >nul 2>&1
+Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Psched" /v "NonBestEffortLimit" /t REG_DWORD /d "0" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v "EnablePMTUDiscovery" /t REG_DWORD /d "1" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v "EnableICMPRedirect" /t REG_DWORD /d "1" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v "EnablePMTUBHDetect" /t REG_DWORD /d "1" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v "TcpMaxConnectRetransmissions" /t REG_DWORD /d "1" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v "Tcp1323Opts" /t REG_DWORD /d "1" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v "TcpTimedWaitDelay" /t REG_DWORD /d "32" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" /v "IRPStackSize" /t REG_DWORD /d "50" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" /v "SizReqBuf" /t REG_DWORD /d "17424" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" /v "Size" /t REG_DWORD /d "3" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\ServiceProvider" /v "DnsPriority" /t REG_DWORD /d "6" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\ServiceProvider" /v "HostsPriority" /t REG_DWORD /d "5" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\ServiceProvider" /v "LocalPriority" /t REG_DWORD /d "4" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\ServiceProvider" /v "NetbtPriority" /t REG_DWORD /d "7" /f
+Reg.exe add "HKLM\SOFTWARE\Microsoft\MSMQ\Parameters" /v "TCPNoDelay" /t REG_DWORD /d "1" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "DisablePagingExecutive" /t REG_DWORD /d "1" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "LargeSystemCache" /t REG_DWORD /d "0" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Winsock" /v "UseDelayedAcceptance" /t REG_DWORD /d "0" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Winsock" /v "MaxSockAddrLength" /t REG_DWORD /d "16" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Winsock" /v "MinSockAddrLength" /t REG_DWORD /d "16" /f
+Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "SystemResponsiveness" /t REG_DWORD /d "0" /f
+Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "NetworkThrottlingIndex" /t REG_DWORD /d "4294967295" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\QoS" /v "Do not use NLA" /t REG_SZ /d "1" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters" /v "NegativeCacheTime" /t REG_DWORD /d "0" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters" /v "NegativeSOACacheTime" /t REG_DWORD /d "0" /f
+Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters" /v "NetFailureCacheTime" /t REG_DWORD /d "0" /f
+Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "AllowTelemetry" /t REG_DWORD /d "0" /f
+Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "DoNotShowFeedbackNotifications" /t REG_DWORD /d "1" /f
 start /B cmd /c "ipconfig /release & ipconfig /renew" >nul 2>&1
 goto Tweaks
 
@@ -552,144 +505,42 @@ if "%NICOF%" neq "%COL%[91mOFF" (
 	del ognic.reg
 	goto Tweaks
 )
-cls
-echo.
-echo.
-echo.
-echo.
-echo.                                                                          %COL%[33m.  
-echo.                                                                       +N. 
-echo.                                                              //        oMMs 
-echo.                                                             +Nm`    ``yMMm- 
-echo.                                                          ``dMMsoyhh-hMMd.  
-echo.                                                          `yy/MMMMNh:dMMh`   
-echo.                                                         .hMM.sso++:oMMs`    
-echo.                                                        -mMMy:osyyys.No      
-echo.                                                       :NMMs-oo+/syy:-       
-echo.                                                      /NMN+ ``   :ys.        
-echo.                                                     `NMN:        +.         
-echo.                                                     om-                    
-echo.                                                      `.                                            
-echo. 
-echo. 
-echo. 
-echo.
-echo.
-echo.
-echo.
-echo.
-echo                    %COL%[33m[ %COL%[37m1 %COL%[33m] %COL%[37m Offloads Enabled                                       %COL%[33m[ %COL%[37m2 %COL%[33m] %COL%[37mOffloads Disabled
-echo                    %COL%[90mLower End Specs.                                              %COL%[90mMid/High End Specs.
-echo                    %COL%[90mEnabled by default.                                           %COL%[90mCan decrease network latency.
-echo.
-echo.
-echo.
-echo.
-echo.
-echo.
-echo.
-echo.
-echo.
-echo.
-echo                                                       [ press X to go back ]
-echo.
-echo.
-choice /c:12X /n /m "%DEL%                                                               >:"
-set choice=%errorlevel%
-if %choice% equ 3 goto Tweaks
-for /f %%i in ('wmic path Win32_NetworkAdapter get PNPDeviceID ^| findstr /L "PCI\VEN_"') do for /f "tokens=3" %%a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Enum\%%i" /v "Driver" ^| findstr /L "{"') do (
-reg export "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" "C:\Hone\HoneRevert\ognic.reg" /y
-::Disable Keys w "*"
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "*WakeOnMagicPacket" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "*WakeOnPattern" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "*FlowControl" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "*EEE" /t REG_SZ /d "0" /f
-::Disable Keys wo "*"
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "EnablePME" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "WakeOnLink" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "EEELinkAdvertisement" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "ReduceSpeedOnPowerDown" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "PowerSavingMode" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "EnableGreenEthernet" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "S5WakeOnLan" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "ULPMode" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "GigaLite" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "EnableSavePowerNow" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "EnablePowerManagement" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "EnableDynamicPowerGating" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "EnableConnectedPowerGating" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "AutoPowerSaveModeEnabled" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "AutoDisableGigabit" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "AdvancedEEE" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "PowerDownPll" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "S5NicKeepOverrideMacAddrV2" /t REG_SZ /d "0" /f
-::Disable JumboPacket
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "JumboPacket" /t REG_SZ /d "0" /f
-::Enable RSS
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "RSS" /t REG_SZ /d "1" /f
-::Interrupt Moderation Adaptive (Default)
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "ITR" /t REG_SZ /d "125" /f
-::Receive/Transmit Buffers
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "ReceiveBuffers" /t REG_SZ /d "266" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "TransmitBuffers" /t REG_SZ /d "266" /f
-::Disable Wake Features
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "WolShutdownLinkSpeed" /t REG_SZ /d "2" /f
-if %choice% equ 1 (
-::Enable LargeSendOffloads
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "LsoV2IPv4" /t REG_SZ /d "1" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "LsoV2IPv6" /t REG_SZ /d "1" /f
-::Enable Offloads
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "UDPChecksumOffloadIPv6" /t REG_SZ /d "1" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "IPChecksumOffloadIPv4" /t REG_SZ /d "1" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "UDPChecksumOffloadIPv4" /t REG_SZ /d "1" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "PMARPOffload" /t REG_SZ /d "1" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "PMNSOffload" /t REG_SZ /d "1" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "TCPChecksumOffloadIPv4" /t REG_SZ /d "1" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "TCPChecksumOffloadIPv6" /t REG_SZ /d "1" /f
-) else (
-::Disable LargeSendOffloads
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "LsoV2IPv4" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "LsoV2IPv6" /t REG_SZ /d "0" /f
-::Disable Offloads
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "UDPChecksumOffloadIPv6" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "IPChecksumOffloadIPv4" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "UDPChecksumOffloadIPv4" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "PMARPOffload" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "PMNSOffload" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "TCPChecksumOffloadIPv4" /t REG_SZ /d "0" /f
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\%%a" /v "TCPChecksumOffloadIPv6" /t REG_SZ /d "0" /f
-)
+for /f "tokens=3" %%i in ('Reg query "HKLM\Software\Microsoft\Windows NT\CurrentVersion\NetworkCards" /k /v /f "ServiceName" /s /e ^| findstr /ri "REG_SZ"') do (
+for /f %%a in ('Reg query "HKLM\System\ControlSet001\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}" /k /v /f "NetCfgInstanceId" /s /e ^| findstr /ri "HKEY"') do (
+for /f %%g in ('Reg query "%%a" /d /f "%%i" /e ^| findstr /C:"HKEY"') do (
+Reg export "%%g" "C:\Hone\HoneRevert\ognic.reg" /y
+Reg add "%%g" /v "MIMOPowerSaveMode" /t REG_SZ /d "3" /f
+Reg add "%%g" /v "PowerSavingMode" /t REG_SZ /d "0" /f
+Reg add "%%g" /v "EnableGreenEthernet" /t REG_SZ /d "0" /f
+Reg add "%%g" /v "*EEE" /t REG_SZ /d "0" /f
+Reg add "%%g" /v "PnPCapabilities" /t REG_DWORD /d "24" /f
 ) >nul 2>&1
+)
+)
 start /B cmd /c "ipconfig /release & ipconfig /renew" >nul 2>&1
 goto Tweaks
 
 :Netsh
 if "%NETOF%" equ "%COL%[91mOFF" (
 	Reg add "HKCU\Software\Hone" /v InternetTweaks /f
-	netsh winsock reset catalog  
-	netsh int ip reset c:resetlog.txt  
-	netsh int ip reset C:\tcplog.txt  
+	netsh int tcp set global dca=enabled
+	netsh int tcp set global netdma=enabled
+	netsh int tcp set global congestionprovider=ctcp
+	netsh int tcp set global chimney=disabled
+	netsh interface isatap set state disabled
+	netsh int tcp set global timestamps=disabled
+	netsh int tcp set heuristics disabled
 	netsh int tcp set supplemental Internet congestionprovider=ctcp
-	netsh int tcp set global autotuninglevel=normal
 	netsh int tcp set global rss=enabled
-	netsh int tcp set global ecncapability=disabled
-	netsh int tcp set global rsc=enabled
+	netsh int tcp set global rsc=disabled
+	netsh int ip set global taskoffload=disabled
 	netsh int tcp set global nonsackrttresiliency=disabled
 	netsh int tcp set global initialRto=2000
-	netsh int tcp set global MaxSynRetransmissions=2
-	netsh int tcp set heuristics disabled
-	netsh int tcp set global chimney=enabled
-	netsh int tcp set global dca=enabled
-	netsh int tcp set global netdma=enabled 
 ) >nul 2>&1 else (
 	Reg delete "HKCU\Software\Hone" /v InternetTweaks /f
-	netsh winsock reset catalog
-	netsh int ip reset c:resetlog.txt
-	netsh int ip reset C:\tcplog.txt	
 	netsh int tcp set heuristics default
 	netsh int tcp set supplemental Internet congestionprovider=default
 	netsh int tcp set global initialRto=3000
-	netsh int tcp set global MaxSynRetransmissions=2
 	netsh int tcp set global autotuninglevel=default
 	netsh int tcp set global rss=default
 	netsh int tcp set global rsc=default
@@ -698,7 +549,7 @@ if "%NETOF%" equ "%COL%[91mOFF" (
 	netsh int tcp set global netdma=default
 	netsh int tcp set global ecncapability=default
 	netsh int tcp set global timestamps=default
-	netsh int tcp set global nonsackrttresiliency=default
+	netsh int tcp set global nonsackrttresiliency=default 
 ) >nul 2>&1
 goto Tweaks
 
@@ -706,16 +557,18 @@ goto Tweaks
 if "%NAGOF%" equ "%COL%[91mOFF" (
 	Reg add "HKLM\Software\Microsoft\MSMQ\Parameters" /v "TCPNoDelay" /t REG_DWORD /d "1" /f >nul 2>&1  
 	for /f "tokens=3*" %%i in ('Reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkCards" /f "ServiceName" /s ^|findstr /i /l "ServiceName"') do (
-		Reg add "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%s" /v "TCPNoDelay" /t Reg_DWORD /d "1" /f
-		Reg add "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%s" /v "TcpAckFrequency" /t Reg_DWORD /d "1" /f
-		Reg add "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%s" /v "TcpDelAckTicks" /t Reg_DWORD /d "0" /f
+		Reg add "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "TCPNoDelay" /t Reg_DWORD /d "1" /f
+		Reg add "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "TcpAckFrequency" /t Reg_DWORD /d "1" /f
+		Reg add "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "TcpDelAckTicks" /t Reg_DWORD /d "0" /f
+		Reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "TcpInitialRTT" /d "300" /t REG_DWORD /f
 	) >nul 2>&1 
 ) else (
 	Reg delete "HKLM\Software\Microsoft\MSMQ\Parameters" /v "TCPNoDelay" /f >nul 2>&1  
 	for /f "tokens=3*" %%i in ('Reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkCards" /f "ServiceName" /s ^|findstr /i /l "ServiceName"') do (
-		Reg delete "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%s" /v "TCPNoDelay" /f
-		Reg delete "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%s" /v "TcpAckFrequency" /f
-		Reg delete "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%s" /v "TcpDelAckTicks" /f
+		Reg delete "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "TCPNoDelay" /f
+		Reg delete "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "TcpAckFrequency" /f
+		Reg delete "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "TcpDelAckTicks" /f
+		Reg delete "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "TcpInitialRTT" /f
 	) >nul 2>&1 
 )
 start /B cmd /c "ipconfig /release & ipconfig /renew" >nul 2>&1
@@ -1082,7 +935,7 @@ choice /c:YN /n /m "[Y] Yes  [N] No"
 if %errorlevel% equ 2 goto Tweaks
 
 cls
-TITLE Downloading Nvidia driver...
+title Downloading Nvidia driver...
 echo Do you need shadowplay and other components of the driver? Y or N?
 choice /c:YN /n /m "[Y] Yes  [N] No"
 if %errorlevel% equ 1 (
@@ -1091,18 +944,31 @@ curl -g -L -# -o "C:\Hone\Drivers\NvidiaHone.exe" "https://github.com/auraside/H
 curl -g -L -# -o "C:\Hone\Drivers\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/1.3/497.09.Hone.Tweaked.exe"
 )
 
-TITLE Executing DDU...
+title Executing DDU...
 curl -g -L -# -o "C:\Hone\Resources\DDU.zip" "https://github.com/auraside/HoneCtrl/raw/main/Files/DDU.zip"
 powershell -NoProfile Expand-Archive 'C:\Hone\Resources\DDU.zip' -DestinationPath 'C:\Hone\Resources\DDU\' >nul 2>&1
 del "C:\Hone\Resources\DDU.zip"
 cd C:\Hone\Resources\DDU
 DDU.exe -silent -cleannvidia
 
-TITLE Installing Drivers...
-cd C:\Hone\Drivers
-start NvidiaHone.exe
-del /Q NvidiaHone.exe
-exit /B
+title Restart Confirmation
+cls
+echo Your PC NEEDS to restart before installing the driver!
+echo.
+echo Other Nvidia tweaks will not be available until you restart.
+echo.
+echo AFTER RESTARTING, PLEASE REOPEN THE HONE CONTROL PANEL
+echo.
+echo Would you like to restart now?
+choice /c:YN /n /m "[Y] Yes  [N] No"
+copy "%~f0" "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\HoneCtrl.bat"
+if %errorlevel% equ 1 (
+	shutdown /s /t 60 /c "A restart is required, we'll do that now" /f /d p:0:0
+	timeout 5
+	shutdown -a
+	shutdown /r /t 7 /c "Restarting automatically..." /f /d p:0:0
+)
+goto tweaks
 
 :NvidiaTweaks
 if "%NVIOF%" equ "%COL%[91mOFF" (
@@ -1128,8 +994,7 @@ reg add "HKCU\System\GameConfigStore" /v "GameDVR_DXGIHonorFSEWindowsCompatible"
 reg add "HKCU\System\GameConfigStore" /v "GameDVR_EFSEFeatureFlags" /t REG_DWORD /d "0" /f
 reg add "HKCU\System\GameConfigStore" /v "GameDVR_DSEBehavior" /t REG_DWORD /d "2" /f
 ::Nvidia Reg
-for /f %%a in ('Reg query "HKLM\SYSTEM\CurrentControlSet\Control\Class" /v "VgaCompatible" /s ^| findstr "HKEY"') do ( Reg add "%%a" /v "TCCSupported" /t REG_DWORD /d "0" /f
-)
+for /f %%a in ('Reg query "HKLM\SYSTEM\CurrentControlSet\Control\Class" /v "VgaCompatible" /s ^| findstr "HKEY"') do Reg add "%%a" /v "TCCSupported" /t REG_DWORD /d "0" /f
 Reg add "HKCU\Software\NVIDIA Corporation\Global\NVTweak\Devices\509901423-0\Color" /v "NvCplUseColorCorrection" /t Reg_DWORD /d "0" /f
 Reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "PlatformSupportMiracast" /t Reg_DWORD /d "0" /f
 Reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\Global\NVTweak" /v "DisplayPowerSaving" /t Reg_DWORD /d "0" /f
@@ -1160,8 +1025,9 @@ Reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "EnableCEPreemption
 Reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "DisablePreemptionOnS3S4" /t Reg_DWORD /d "1" /f
 Reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "ComputePreemption" /t Reg_DWORD /d "0" /f
 ::Disable HDCP
-for /f %%a in ('Reg query "HKLM\SYSTEM\CurrentControlSet\Control\Class" /v "VgaCompatible" /s ^| findstr "HKEY"') do ( Reg add "%%a" /v "RMHdcpKeyglobZero" /t REG_DWORD /d "1" /f 
-)
+for /f %%i in ('Reg query "HKLM\System\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HKEY"') do Reg add "%%a" /v "RMHdcpKeyglobZero" /t REG_DWORD /d "1" /f
+::Force contiguous memory allocation
+for /f %%i in ('Reg query "HKLM\System\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HKEY"') do Reg add "%%i" /v "PreferSystemMemoryContiguous" /t REG_DWORD /d "1" /f
 )>nul 2>&1 else (
 Reg delete "HKCU\Software\Hone" /v "NvidiaTweaks" /f
 ::Enable Hardware Accelerated Scheduling
@@ -1184,8 +1050,7 @@ reg delete "HKCU\System\GameConfigStore" /v "GameDVR_DXGIHonorFSEWindowsCompatib
 reg delete "HKCU\System\GameConfigStore" /v "GameDVR_EFSEFeatureFlags" /f
 reg delete "HKCU\System\GameConfigStore" /v "GameDVR_DSEBehavior" /f
 ::Nvidia Reg
-for /f %%a in ('Reg query "HKLM\SYSTEM\CurrentControlSet\Control\Class" /v "VgaCompatible" /s ^| findstr "HKEY"') do ( Reg add "%%a" /v "TCCSupported" /t REG_DWORD /d "0" /f 
-)
+for /f %%a in ('Reg query "HKLM\SYSTEM\CurrentControlSet\Control\Class" /v "VgaCompatible" /s ^| findstr "HKEY"') do Reg add "%%a" /v "TCCSupported" /t REG_DWORD /d "0" /f 
 Reg delete "HKCU\Software\NVIDIA Corporation\Global\NVTweak\Devices\509901423-0\Color" /v "NvCplUseColorCorrection" /f
 Reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "PlatformSupportMiracast" /t Reg_DWORD /d "1" /f
 Reg delete "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\Global\NVTweak" /v "DisplayPowerSaving" /f
@@ -1211,20 +1076,18 @@ Reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "En
 Reg delete "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "EnableCEPreemption" /f
 Reg delete "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "DisablePreemptionOnS3S4" /f
 Reg delete "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "ComputePreemption" /f
-::Disable HDCP
-if exist "%windir%\system32\wbem\WMIC.exe" for /f %%i in ('wmic path Win32_VideoController get PNPDeviceID') do (
-for /f %%a in ('Reg query "HKLM\SYSTEM\CurrentControlSet\Control\Class" /v "VgaCompatible" /s ^| findstr "HKEY"') do Reg add "%%a" /v "RMHdcpKeyglobZero" /t REG_DWORD /d "0" /f
-)
+::Enable HDCP
+for /f %%i in ('Reg query "HKLM\System\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HKEY"') do Reg add "%%a" /v "RMHdcpKeyglobZero" /t REG_DWORD /d "0" /f
 )>nul 2>&1
 goto Tweaks
 
 :PStates0
 if "%PS0OF%" equ "%COL%[91mOFF" (
-	For /F "tokens=*" %%i in ('reg query "HKLM\SYSTEM\ControlSet001\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HK"') do (
+	for /f %%i in ('Reg query "HKLM\System\ControlSet001\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HKEY"') do (
 		Reg add "%%i" /v "DisableDynamicPstate" /t REG_DWORD /d "1" /f >nul 2>&1
 	)
 ) else (
-	For /F "tokens=*" %%i in ('reg query "HKLM\SYSTEM\ControlSet001\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HK"') do (
+	for /f %%i in ('Reg query "HKLM\System\ControlSet001\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HKEY"') do (
 		Reg delete "%%i" /v "DisableDynamicPstate" /f >nul 2>&1
 	)
 )
@@ -1378,7 +1241,7 @@ if %NumberOfLogicalProcessors% gtr %NumberOfCores% (
 		Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /t REG_DWORD /d "4" /f >nul 2>&1
 		Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /t REG_BINARY /d "30" /f >nul 2>&1
 	)
-) ELSE (
+) else (
 ::You have HyperThreading Disabled!
 	for /f %%i in ('wmic path Win32_USBController get PNPDeviceID^| findstr /l "PCI\VEN_"') do (
 		Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /t REG_DWORD /d "4" /f >nul 2>&1
@@ -1471,9 +1334,6 @@ if "%ME2OF%" equ "%COL%[91mOFF" (
 	::Disable Prefetch
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters" /v "EnablePrefetcher" /t Reg_DWORD /d "0" /f
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters" /v "EnableSuperfetch" /t Reg_DWORD /d "0" /f
-	::Speedup Startup
-	Reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v "DelayedDesktopSwitchTimeout" /t Reg_DWORD /d "5" /f
-	Reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Explorer\Serialize" /v "StartupDelayInMSec" /t Reg_DWORD /d "0" /f
 	::Disable Hibernation + Fast Startup
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Power" /v "HiberbootEnabled" /t REG_DWORD /d "0" /f
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power" /v "HibernateEnabledDefault" /t REG_DWORD /d "0" /f
@@ -1530,9 +1390,6 @@ if "%ME2OF%" equ "%COL%[91mOFF" (
 	::Enable Prefetch
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters" /v "EnablePrefetcher" /t Reg_DWORD /d "3" /f
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters" /v "EnableSuperfetch" /t Reg_DWORD /d "3" /f
-	::Speedup Startup
-	Reg delete "HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\System" /v "DelayedDesktopSwitchTimeout" /f
-	Reg delete "HKLM\Software\Microsoft\Windows\CurrentVersion\Explorer\Serialize" /v "StartupDelayInMSec" /f
 	::Background Apps
 	Reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v "GlobalUserDisabled" /t Reg_DWORD /d "0" /f
 	Reg delete "HKLM\Software\Policies\Microsoft\Windows\AppPrivacy" /v "LetAppsRunInBackground" /f
@@ -1830,29 +1687,22 @@ for /f "tokens=* delims=" %%p in ('mshta.exe %dialog%') do set "file=%%p"
 if "%file%"=="" goto:eof
 cls
 
-Reg query "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%file%" >nul 2>&1 && (
-	for %%F in ("%file%") do (
-		Reg delete "HKCU\Software\Microsoft\DirectX\UserGpuPreferences" /v "%file%" /f
-		Reg delete "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%file%" /f
-		Reg delete "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\%%~nxF\PerfOptions" /v "CpuPriorityClass" /f
-	) >nul 2>&1
+for %%F in ("%file%") do Reg query "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%file%" >nul 2>&1 && (
+	Reg delete "HKCU\Software\Microsoft\DirectX\UserGpuPreferences" /v "%file%" /f
+	Reg delete "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%file%" /f
+	Reg delete "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\%%~nxF\PerfOptions" /v "CpuPriorityClass" /f
 	echo Undo Game Optimizations
-	echo.
-	choice /c:"CQ" /n /m "%BS%               [C] Continue  [Q] Quit" & if !errorlevel! equ 2 exit /b
-	goto:eof
-)
-
-for %%F in ("%file%") do (
+) || (
 	Reg add "HKCU\Software\Microsoft\DirectX\UserGpuPreferences" /v "%file%" /t Reg_SZ /d "GpuPreference=2;" /f
 	Reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%file%" /t Reg_SZ /d "~ DISABLEDXMAXIMIZEDWINDOWEDMODE" /f
 	Reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\%%~nxF\PerfOptions" /v "CpuPriorityClass" /t Reg_DWORD /d "3" /f
-) >nul 2>&1
 	echo GPU High Performance
 	echo Disable Fullscreen Optimizations
 	echo CPU High Class
-	echo.
-	choice /c:"CQ" /n /m "%BS%               [C] Continue  [Q] Quit" & if !errorlevel! equ 2 exit /b
-	goto:eof
+) >nul 2>&1
+echo.
+choice /c:"CQ" /n /m "%BS%               [C] Continue  [Q] Quit" & if !errorlevel! equ 2 exit /b
+goto:eof
 
 :softRestart
 cls
