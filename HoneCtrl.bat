@@ -2312,7 +2312,7 @@ goto compress
 
 :heavy
 cls
-set /p "file= Drag the video into this window to upscale >> "
+set /p "file= Drag the video into this window to compress >> "
 IF %encoder% equ NVENC (
 %SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4" -y
 ) else (
@@ -2322,7 +2322,7 @@ goto compress
 
 :Light
 cls
-set /p "file= Drag the video into this window to upscale >> "
+set /p "file= Drag the video into this window to compress >> "
 IF %encoder% equ NVENC (
 %SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4" -y
 ) else (
@@ -3383,14 +3383,14 @@ echo.
 echo.
 echo                                                            %COL%[1;4;34mPower Tweaks%COL%[0m
 echo.
-echo              %COL%[33m[%COL%[37m 6 %COL%[33m]%COL%[37m Disable C-States %CS0OF%           %COL%[33m[%COL%[37m 7 %COL%[33m]%COL%[37m PStates 0 %PS0OF%                  %COL%[33m[%COL%[37m 8 %COL%[33m]%COL%[37m Disable Idle %IDLOF%
+echo              %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Disable C-States %CS0OF%           %COL%[33m[%COL%[37m 6 %COL%[33m]%COL%[37m PStates 0 %PS0OF%                  %COL%[33m[%COL%[37m 7 %COL%[33m]%COL%[37m Disable Idle %IDLOF%
 echo              %COL%[90mKeep CPU at C0 stopping throttling   %COL%[90mRun graphics card at its highest     %COL%[90mForce CPU to always be running
 echo              %COL%[90mwill make PC generate more heat      %COL%[90mdefined frequencies                  %COL%[90mat highest CPU state
 echo.
 echo.
 echo                                                            %COL%[1;4;34mOther Tweaks%COL%[0m
 echo.
-echo                              %COL%[33m[%COL%[37m 9 %COL%[33m]%COL%[37m Nvidia Driver %DRIOF%                      %COL%[33m[%COL%[37m 10 %COL%[33m]%COL%[37m BCDEdit %BCDOF%
+echo                              %COL%[33m[%COL%[37m 8 %COL%[33m]%COL%[37m Nvidia Driver %DRIOF%                      %COL%[33m[%COL%[37m 9 %COL%[33m]%COL%[37m BCDEdit %BCDOF%
 echo                              %COL%[90mInstall the best tweaked nvidia              %COL%[90mTweaks your windows boot config
 echo                              %COL%[90mdriver for latency and fps                   %COL%[90mdata to optimized settings
 echo.
@@ -3434,10 +3434,10 @@ goto Advanced
 :Autotuning
 if "%AUTOF%" equ "%COL%[91mOFF" (
 Reg add "HKCU\Software\Hone" /v TuningTweak /f
-    netsh int tcp set global autotuninglevel=disabled >nul 2>&1
+	netsh int tcp set global autotuninglevel=disabled >nul 2>&1
 ) else (
 Reg delete "HKCU\Software\Hone" /v TuningTweak /f
-    netsh int tcp set global autotuninglevel=normal >nul 2>&1
+	netsh int tcp set global autotuninglevel=normal >nul 2>&1
 )
 goto Advanced
 
