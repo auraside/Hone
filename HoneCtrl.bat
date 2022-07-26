@@ -328,7 +328,7 @@ echo.                  om-                                                      
 echo.                   `.
 echo                                                               %COL%[1;4;34mTweaks%COL%[0m
 echo.
-echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m Power Plan %PWROF%                 %COL%[33m[%COL%[37m 2 %COL%[33m]%COL%[37m SvcHostSplitThreshold %MEMOF%      %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m CSRSS high priority %CRSOF%
+echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m Power Plan %PWROF%                 %COL%[33m[%COL%[37m 2 %COL%[33m]%COL%[37m SvcHostSplitThreshold %MEMOF%      %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m CSRSS High Priority %CRSOF%
 echo              %COL%[90mDesktop Power Plan, not good         %COL%[90mChanges the split threshold for      %COL%[90mCSRSS is responsible for mouse input
 echo              %COL%[90mto use with a laptop battery.        %COL%[90mservice host to your RAM             %COL%[90mset to high to improve input latency
 echo.
@@ -457,7 +457,7 @@ echo.                  om-                                                      
 echo.                   `.
 rem echo                                                           %COL%[1;4;34mLatency Tweaks%COL%[0m
 rem echo.
-rem echo              %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m Disable USB Power Savings %BLANK%  %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m CSRSS high priority %BLANK%        %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Disable HPET %BLANK%
+rem echo              %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m Disable USB Power Savings %BLANK%  %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m CSRSS High Priority %BLANK%        %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Disable HPET %BLANK%
 rem echo              %COL%[90mTweaks your Internet Protocol        %COL%[90mCSRSS is for mouse input, setting    %COL%[90mCSRSS is responsible for mouse input
 rem echo              %COL%[90mDon't use if you are using Wi-Fi     %COL%[90mhigh priority may improve latency    %COL%[90mset to high to improve input latency
 echo                                                        %COL%[1;4;34mMiscellaneous Tweaks%COL%[0m
@@ -3686,6 +3686,33 @@ if %choice% equ 3 goto 1.18.2
 if %choice% equ 4 goto GameSettings
 if %choice% equ 5 exit /b
 
+:MinecraftConfirmation
+cls
+echo.
+echo.
+echo.
+echo.
+echo.                                                                           %COL%[33m.  
+echo.                                                                        +N. 
+echo.                                                               //        oMMs 
+echo.                                                              +Nm`    ``yMMm- 
+echo.                                                           ``dMMsoyhh-hMMd.  
+echo.                                                           `yy/MMMMNh:dMMh`   
+echo.                                                          .hMM.sso++:oMMs`    
+echo.                                                         -mMMy:osyyys.No      
+echo.                                                        :NMMs-oo+/syy:-       
+echo.                                                       /NMN+ ``   :ys.        
+echo.                                                      `NMN:        +.         
+echo.                                                      om-                    
+echo.                                                       `.                                            
+echo. 
+echo. 
+echo. 
+echo.
+echo.
+echo                                                   %COL%[37m Settings have been applied.
+timeout /t 3 /nobreak > NUL
+goto MainMenu
 
 :1.7.10
 cd %appdata%\.minecraft\
@@ -3757,7 +3784,7 @@ cd %appdata%\.minecraft\
 (echo ofFastMath:true) >> optionsof.txt
 (echo ofFastRender:true) >> optionsof.txt
 (echo ofTranslucentBlocks:1) >> optionsof.txt
-goto GameSettings
+goto MinecraftConfirmation
 
 :1.8.9
 cd %appdata%\.minecraft\
@@ -3833,7 +3860,7 @@ cd %appdata%\.minecraft\
 (echo ofFastRender:true) >> optionsof.txt
 (echo ofTranslucentBlocks:1) >> optionsof.txt
 (echo key_of.key.zoom:29) >> optionsof.txt
-goto GameSettings
+goto MinecraftConfirmation
 
 :1.18.2
 cd %appdata%\.minecraft\
@@ -3909,7 +3936,7 @@ cd %appdata%\.minecraft\
 (echo ofChatShadow:false) >> optionsof.txt
 (echo ofTelemetry:2) >> optionsof.txt
 (echo key_of.key.zoom:key.keyboard.left.control) >> optionsof.txt
-goto GameSettings
+goto MinecraftConfirmation
 
 goto MainMenu
 
