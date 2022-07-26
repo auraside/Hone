@@ -803,10 +803,16 @@ Reg add "%%g" /v "*RscIPv6" /t REG_SZ /d "0" /f
 Reg add "%%g" /v "*PMNSOffload" /t REG_SZ /d "0" /f
 Reg add "%%g" /v "*PMARPOffload" /t REG_SZ /d "0" /f
 Reg add "%%g" /v "*JumboPacket" /t REG_SZ /d "0" /f
-Reg add "%%g" /v "EnableConnectedPowerGating" /t REG_SZ /d "0" /f
+Reg add "%%g" /v "EnableConnectedPowerGating" /t REG_DWORD /d "0" /f
 Reg add "%%g" /v "EnableDynamicPowerGating" /t REG_SZ /d "0" /f
 Reg add "%%g" /v "EnableSavePowerNow" /t REG_SZ /d "0" /f
 Reg add "%%g" /v "*FlowControl" /t REG_SZ /d "0" /f
+Rem more powersaving options
+Reg add "%%g" /v "*NicAutoPowerSaver" /t REG_SZ /d "0" /f
+Reg add "%%g" /v "ULPMode" /t REG_SZ /d "0" /f
+Reg add "%%g" /v "EnablePME" /t REG_SZ /d "0" /f
+Reg add "%%g" /v "AlternateSemaphoreDelay" /t REG_SZ /d "0" /f
+Reg add "%%g" /v "AutoPowerSaveModeEnabled" /t REG_SZ /d "0" /f
 rem RSS
 Reg add "%%g" /v "*NumRssQueues" /t REG_SZ /d "2" /f
 if %NumberOfCores% geq 6 (
@@ -837,6 +843,8 @@ if "%NETOF%" equ "%COL%[91mOFF" (
 	netsh int tcp set global initialRto=2000
 	netsh int udp set global uro=enabled
 	netsh int tcp set supplemental template=custom icw=10
+	POWERSHELL "Set-NetTCPSetting -SettingName InternetCustom -InitialCongestionWindow 10
+    POWERSHELL "Set-NetTCPSetting -SettingName Internet -InitialCongestionWindow 10
 	netsh interface teredo set state disable
 	netsh int tcp set global hystart=disabled
 	netsh interface tcp set heuristics wsh=enabled
@@ -872,6 +880,8 @@ if "%NETOF%" equ "%COL%[91mOFF" (
 	netsh interface isatap set state default
 	netsh interface tcp set heuristics wsh=default
 	netsh int tcp set heuristics forcews=default
+	POWERSHELL "Set-NetTCPSetting -SettingName InternetCustom -InitialCongestionWindow 4
+    POWERSHELL "Set-NetTCPSetting -SettingName Internet -InitialCongestionWindow 4
 	netsh interface ip set interface Ethernet weakhostsend=disabled store=persistent
 	netsh interface ip set interface Ethernet weakhostreceive=disabled store=persistent
         netsh int tcp set security mpp=default
@@ -2721,7 +2731,7 @@ echo.                  `NMN:        +.                                          
 echo.                  om-                                                                   #######       #######
 echo.                   `.
 echo.
-echo         %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m 180 - 360 FPS                       %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m 480+ FPS                        %COL%[33m[ %COL%[37m3 %COL%[33m]%COL%[37m Any FPS (30 FPS Renders)
+echo         %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m 240 - 360 FPS                       %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m 480+ FPS                        %COL%[33m[ %COL%[37m3 %COL%[33m]%COL%[37m Any FPS (30 FPS Renders)
 echo         %COL%[90mAutomated Blur settings                   %COL%[90mAutomated Blur settings               %COL%[90mAutomated Blur settings
 echo         %COL%[90mfor clips recorded in 240 - 360 FPS       %COL%[90mfor clips recorded above 480 FPS      %COL%[90mfor clips to be rendered in 30 FPS
 echo.
