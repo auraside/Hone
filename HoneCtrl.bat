@@ -2242,7 +2242,7 @@ goto upscale
 
 :4k
 cls
-set /p "file= Drag the file you want upscaled into this window >> "
+set /p "file= Drag the video into this window to upscale >> "
 IF %encoder% equ NVENC (
 %SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\4k.mp4" -y
 ) else (
@@ -2252,7 +2252,7 @@ goto upscale
 
 :8k
 cls
-set /p "file= Drag the file you want upscaled into this window >> "
+set /p "file= Drag the video into this window to upscale >> "
 %SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=7680:4320:flags=neighbor -r 60 -vcodec libx264 -profile:v high -preset fast -qmin 19 -qmax 19 "%SystemDrive%\users\%username%\desktop\8k.mp4" 
 goto upscale
 
@@ -2312,9 +2312,9 @@ goto compress
 
 :heavy
 cls
-set /p "file= Drag the file you want upscaled into this window >> "
+set /p "file= Drag the video into this window to upscale >> "
 IF %encoder% equ NVENC (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_nvenc -profile:v high-preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4" -y
+%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4" -y
 ) else (
 %SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4" 
 )
@@ -2322,9 +2322,9 @@ goto compress
 
 :Light
 cls
-set /p "file= Drag the file you want upscaled into this window >> "
+set /p "file= Drag the video into this window to upscale >> "
 IF %encoder% equ NVENC (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high-preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4" -y
+%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4" -y
 ) else (
 %SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4" 
 )
@@ -2335,7 +2335,7 @@ if not exist %SystemDrive%\ffmpeg ( call:ffmpeginstall )
 cls
 set /p "file= Drag the file you want to use in vegas (remember you need to replace it with the original file afterwards) >> "
 IF %encoder% equ NVENC (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=1920:1080:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high-preset fast -qmin 24 -qmax 24 "%SystemDrive%\users\%username%\desktop\previewlag.mp4" -y
+%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=1920:1080:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -qmin 24 -qmax 24 "%SystemDrive%\users\%username%\desktop\previewlag.mp4" -y
 ) else (
 %SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=1920:1080:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 24 -qmax 24 "%SystemDrive%\users\%username%\desktop\previewlag.mp4"
 )
@@ -3437,7 +3437,7 @@ Reg add "HKCU\Software\Hone" /v TuningTweak /f
     netsh int tcp set global autotuninglevel=disabled >nul 2>&1
 ) else (
 Reg delete "HKCU\Software\Hone" /v TuningTweak /f
-     netsh int tcp set global autotuninglevel=normal >nul 2>&1
+    netsh int tcp set global autotuninglevel=normal >nul 2>&1
 )
 goto Advanced
 
