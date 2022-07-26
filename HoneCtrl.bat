@@ -87,7 +87,7 @@ del /Q "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Program
 )
 
 :CheckForUpdates
-set local=2.5
+set local=2.51
 set localtwo=%local%
 if exist "%temp%\Updater.bat" DEL /S /Q /F "%temp%\Updater.bat" >nul 2>&1
 curl -g -L -# -o "%temp%\Updater.bat" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/HoneCtrlVer" >nul 2>&1
@@ -112,8 +112,9 @@ IF "%local%" gtr "%localtwo%" (
 	choice /c:YN /n /m "%DEL%                                >:"
 	set choice=!errorlevel!
 	if !choice! equ 1 (
-		curl -L -o "C:\Users\%username%\Documents\HoneCtrl.bat" "https://github.com/auraside/HoneCtrl/releases/latest/download/HoneCtrl.Bat"
-		start "HoneCtrl" "C:\Users\%username%\Documents\HoneCtrl.bat"
+		mkdir C:\Users\%username%\Desktop\HoneCtrl >nul 2>&1
+		curl -L -o "C:\Users\%username%\Desktop\HoneCtrl\HoneCtrl.bat" "https://github.com/auraside/HoneCtrl/releases/latest/download/HoneCtrl.Bat"
+		C:\Users\%username%\Desktop\HoneCtrl\HoneCtrl.bat
 		del %0
 		exit /b
 	)
