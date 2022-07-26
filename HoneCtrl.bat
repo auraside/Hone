@@ -3445,9 +3445,11 @@ goto Advanced
 if "%AUTOF%" equ "%COL%[91mOFF" (
 Reg add "HKCU\Software\Hone" /v TuningTweak /f
 	netsh int tcp set global autotuninglevel=disabled >nul 2>&1
+	netsh winsock set autotuning off >nul 2>&1
 ) else (
 Reg delete "HKCU\Software\Hone" /v TuningTweak /f
 	netsh int tcp set global autotuninglevel=normal >nul 2>&1
+	netsh winsock set autotuning off >nul 2>&1
 )
 goto Advanced
 
