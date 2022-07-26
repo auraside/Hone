@@ -347,8 +347,8 @@ echo              %COL%[90mDisable copy protection technology   %COL%[90mDisable
 echo              %COL%[90mof illegal High Definition content   %COL%[90mthe GPU scheduler                    %COL%[90mand add various tweaks
 echo.
 echo              %COL%[33m[%COL%[37m 13 %COL%[33m]%COL%[37m Disable Nvidia Telemetry %NVTOF%  %COL%[33m[%COL%[37m 14 %COL%[33m]%COL%[37m Nvidia Tweaks %NVIOF%             %COL%[33m[%COL%[37m 15 %COL%[33m]%COL%[37m Disable Write Combining %DWCOF%
-echo              %COL%[90mRemove built in Nvidia telemetry     %COL%[90mVarious essential tweaks for         %COL%[90mRun graphics card at its highest
-echo              %COL%[90mfrom your computer and driver.       %COL%[90mNvidia graphics cards                %COL%[90mdefined frequencies
+echo              %COL%[90mRemove built in Nvidia telemetry     %COL%[90mVarious essential tweaks for         %COL%[90mStops data from being combined
+echo              %COL%[90mfrom your computer and driver.       %COL%[90mNvidia graphics cards                %COL%[90mand temporarily stored
 echo.
 echo.
 echo.
@@ -2244,7 +2244,7 @@ goto upscale
 cls
 set /p "file= Drag the file you want upscaled into this window >> "
 IF %encoder% equ NVENC (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high-preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\4k.mp4" -y
+%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\4k.mp4" -y
 ) else (
 %SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\4k.mp4" 
 )
@@ -3323,14 +3323,16 @@ if /i "!input!" neq "i agree" goto Disclaimer2
 Reg add "HKCU\Software\Hone" /v "Disclaimer2" /f >nul 2>&1
 
 :Advanced
-for %%i in (DSCOF AUTOF DRIOF BCDOF NONOF CS0OF TOFOF PS0OF IDLOF) do (set "%%i=%COL%[92mON ") >nul 2>&1
+for %%i in (DSCOF AUTOF DRIOF BCDOF NONOF CS0OF TOFOF PS0OF IDLOF CONG) do (set "%%i=%COL%[92mON ") >nul 2>&1
 (
 	::Disable Idle
 	powercfg /qh scheme_current sub_processor IDLEDISABLE | find "Current AC Power Setting Index: 0x00000000" && set "IDLOF=%COL%[91mOFF"
 	::DSCP Tweaks
 	Reg query "HKLM\Software\Policies\Microsoft\Windows\QoS\javaw" || set "DSCOF=%COL%[91mOFF"
-	::AutoTuning Tweak
-	Reg query "HKCU\Software\Hone" /v "TuningTweak" || set "AUTOF=%COL%[91mOFF"
+    ::AutoTuning Tweak
+    Reg query "HKCU\Software\Hone" /v "TuningTweak" || set "AUTOF=%COL%[91mOFF"
+    ::Congestion Provider Tweak
+    Reg query "HKCU\Software\Hone" /v "TuningTweak1" || set "CONG=%COL%[91mOFF"
 	::Nvidia Drivers
 	cd "%SystemDrive%\Program Files\NVIDIA Corporation\NVSMI"
 	for /f "tokens=1 skip=1" %%a in ('nvidia-smi --query-gpu^=driver_version --format^=csv') do if "%%a" neq "497.09" set "DRIOF=%COL%[91mOFF
@@ -3374,9 +3376,9 @@ echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m Disable Task Offload
 echo              %COL%[90mTask Offloading assigns the          %COL%[90mAllocate more bandwidth to apps      %COL%[90mCan reduce bufferbloat, 
 echo              %COL%[90mCPU to handle the NIC load           %COL%[90mUse only on fast connections         %COL%[90mbut lower your Network speed
 echo.
-echo                                                   %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m DSCP Value %DSCOF%
-echo                                                   %COL%[90mSet the priority of your network
-echo                                                   %COL%[90mtraffic to expedited forwarding
+echo                           %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m DSCP Value %DSCOF%                     %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Congestion Provider %CONG% 
+echo                           %COL%[90mSet the priority of your network         %COL%[90mTurn ON only, if you have WIFI. 
+echo                           %COL%[90mtraffic to expedited forwarding          %COL%[90mChanges the algorithm on how data is processed.
 echo.
 echo.
 echo                                                            %COL%[1;4;34mPower Tweaks%COL%[0m
@@ -3401,7 +3403,7 @@ if /i "%choice%"=="1" goto TaskOffloading
 if /i "%choice%"=="2" goto NonBestEffortLimit
 if /i "%choice%"=="3" goto Autotuning
 if /i "%choice%"=="4" goto DSCPValue
-if /i "%choice%"=="5" goto 
+if /i "%choice%"=="5" goto Congestion
 if /i "%choice%"=="6" goto cstates
 if /i "%choice%"=="7" goto pstates0
 if /i "%choice%"=="8" goto DisableIdle
@@ -3431,12 +3433,22 @@ goto Advanced
 
 :Autotuning
 if "%AUTOF%" equ "%COL%[91mOFF" (
-	Reg add "HKCU\Software\Hone" /v TuningTweak /f
-	netsh int tcp set global autotuninglevel=disabled
-) nul 2>&1 else (
-	Reg delete "HKCU\Software\Hone" /v TuningTweak /f
-    netsh int tcp set global autotuninglevel=normal
-) nul 2>&1
+Reg add "HKCU\Software\Hone" /v TuningTweak /f
+    netsh int tcp set global autotuninglevel=disabled >nul 2>&1
+) else (
+Reg delete "HKCU\Software\Hone" /v TuningTweak /f
+     netsh int tcp set global autotuninglevel=normal >nul 2>&1
+)
+goto Advanced
+
+:Congestion
+if "%CONG%" equ "%COL%[91mOFF" (
+Reg add "HKCU\Software\Hone" /v TuningTweak1 /f
+    netsh int tcp set supplemental Internet congestionprovider=newreno >nul 2>&1
+) else (
+Reg delete "HKCU\Software\Hone" /v TuningTweak1 /f
+     netsh int tcp set supplemental Internet congestionprovider=ctcp >nul 2>&1
+)
 goto Advanced
 
 :DSCPValue
@@ -3662,17 +3674,6 @@ if %choice% equ 3 goto 1.18.2
 if %choice% equ 4 goto GameSettings
 if %choice% equ 5 exit /b
 
-:SmartPackets
-cd %SystemDrive%\Hone\Resources
-echo :loop >SmartPackets.bat
-echo sc start BITS >>SmartPackets.bat
-echo wmic process where name="svchost.exe" CALL setpriority "idle" >>SmartPackets.bat
-echo wmic process where name="javaw.exe" CALL setpriority "high priority" >>SmartPackets.bat
-echo ipconfig /flushdns >>SmartPackets.bat
-echo timeout /t 10 >>SmartPackets.bat
-echo goto :loop >>SmartPackets.bat
-start "" /D "%SystemDrive%\Hone\Resources" SmartPackets.bat
-goto Minecraft
 
 :1.7.10
 cd %appdata%\.minecraft\
