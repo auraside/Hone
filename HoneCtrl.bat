@@ -843,8 +843,8 @@ if "%NETOF%" equ "%COL%[91mOFF" (
 	netsh int tcp set global initialRto=2000
 	netsh int udp set global uro=enabled
 	netsh int tcp set supplemental template=custom icw=10
-	POWERSHELL "Set-NetTCPSetting -SettingName InternetCustom -InitialCongestionWindow 10
-    POWERSHELL "Set-NetTCPSetting -SettingName Internet -InitialCongestionWindow 10
+	POWERSHELL Set-NetTCPSetting -SettingName InternetCustom -InitialCongestionWindow 10
+      POWERSHELL Set-NetTCPSetting -SettingName Internet -InitialCongestionWindow 10
 	netsh interface teredo set state disable
 	netsh int tcp set global hystart=disabled
 	netsh interface tcp set heuristics wsh=enabled
@@ -880,8 +880,8 @@ if "%NETOF%" equ "%COL%[91mOFF" (
 	netsh interface isatap set state default
 	netsh interface tcp set heuristics wsh=default
 	netsh int tcp set heuristics forcews=default
-	POWERSHELL "Set-NetTCPSetting -SettingName InternetCustom -InitialCongestionWindow 4
-    POWERSHELL "Set-NetTCPSetting -SettingName Internet -InitialCongestionWindow 4
+	POWERSHELL Set-NetTCPSetting -SettingName InternetCustom -InitialCongestionWindow 4
+      POWERSHELL Set-NetTCPSetting -SettingName Internet -InitialCongestionWindow 4
 	netsh interface ip set interface Ethernet weakhostsend=disabled store=persistent
 	netsh interface ip set interface Ethernet weakhostreceive=disabled store=persistent
         netsh int tcp set security mpp=default
