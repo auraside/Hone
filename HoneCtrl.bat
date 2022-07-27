@@ -55,7 +55,7 @@ echo.                  om-                                                      
 echo.                   `.
 echo.
 echo                                        %COL%[90m HoneCtrl is a free and open-source desktop utility
-echo                                        %COL%[90m    made to improve your day-to-day productivity.
+echo                                        %COL%[90m    made to improve your day-to-day productivity
 echo.
 echo.
 echo.
@@ -87,7 +87,7 @@ del /Q "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Program
 )
 
 :CheckForUpdates
-set local=2.51
+set local=2.52
 set localtwo=%local%
 if exist "%temp%\Updater.bat" DEL /S /Q /F "%temp%\Updater.bat" >nul 2>&1
 curl -g -L -# -o "%temp%\Updater.bat" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/HoneCtrlVer" >nul 2>&1
@@ -112,10 +112,8 @@ IF "%local%" gtr "%localtwo%" (
 	choice /c:YN /n /m "%DEL%                                >:"
 	set choice=!errorlevel!
 	if !choice! equ 1 (
-		mkdir C:\Users\%username%\Desktop\HoneCtrl >nul 2>&1
-		curl -L -o "C:\Users\%username%\Desktop\HoneCtrl\HoneCtrl.bat" "https://github.com/auraside/HoneCtrl/releases/latest/download/HoneCtrl.Bat"
-		C:\Users\%username%\Desktop\HoneCtrl\HoneCtrl.bat
-		del %0
+		curl -L -o %0 "https://github.com/auraside/HoneCtrl/releases/latest/download/HoneCtrl.Bat" >nul 2>&1
+		call %0
 		exit /b
 	)
 	Mode 130,45
@@ -159,7 +157,7 @@ echo.                  om-                                                      
 echo.                   `.
 echo.
 echo                                        %COL%[90m HoneCtrl is a free and open-source desktop utility
-echo                                        %COL%[90m    made to improve your day-to-day productivity.
+echo                                        %COL%[90m    made to improve your day-to-day productivity
 echo. 
 echo.
 echo.
@@ -216,7 +214,7 @@ echo.                  om-                                                      
 echo.                   `.
 echo.
 echo                                        %COL%[90m HoneCtrl is a free and open-source desktop utility
-echo                                        %COL%[90m    made to improve your day-to-day productivity.
+echo                                        %COL%[90m    made to improve your day-to-day productivity
 echo.
 echo.
 echo.
@@ -312,7 +310,6 @@ for %%i in (PWROF MEMOF TMROF NETOF AFFOF MOUOF AFTOF NICOF DSSOF SERVOF DEBOF M
 
 goto %PG%
 :TweaksPG1
-set choice=H
 cls
 echo.
 echo                                                                                                                        %COL%[36mPage 1/2
@@ -332,25 +329,25 @@ echo                                                               %COL%[1;4;34m
 echo.
 echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m Power Plan %PWROF%                 %COL%[33m[%COL%[37m 2 %COL%[33m]%COL%[37m SvcHostSplitThreshold %MEMOF%      %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m CSRSS High Priority %CRSOF%
 echo              %COL%[90mDesktop Power Plan, not good         %COL%[90mChanges the split threshold for      %COL%[90mCSRSS is responsible for mouse input
-echo              %COL%[90mto use with a laptop battery.        %COL%[90mservice host to your RAM.            %COL%[90mset to high to improve input latency.
+echo              %COL%[90mto use with a laptop battery.        %COL%[90mservice host to your RAM             %COL%[90mset to high to improve input latency
 echo.
 echo              %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m Timer Resolution %TMROF%           %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m MSI Mode %MSIOF%                   %COL%[33m[%COL%[37m 6 %COL%[33m]%COL%[37m Affinity %AFFOF%
 echo              %COL%[90mThis tweak changes how fast          %COL%[90mEnable MSI Mode for gpu and          %COL%[90mThis tweak will spread devices
-echo              %COL%[90myour cpu refreshes.                  %COL%[90mnetwork adapters.                    %COL%[90mon multiple cpu cores.
+echo              %COL%[90myour cpu refreshes                   %COL%[90mnetwork adapters                     %COL%[90mon multiple cpu cores
 echo.
 echo              %COL%[33m[%COL%[37m 7 %COL%[33m]%COL%[37m W32 Priority Seperation %BLANK%    %COL%[33m[%COL%[37m 8 %COL%[33m]%COL%[37m Memory Optimization %ME2OF%        %COL%[33m[%COL%[37m 9 %COL%[33m]%COL%[37m Mouse Fix %MOUOF%
 echo              %COL%[90mOptimizes the usage priority of      %COL%[90mOptimizes your fsutil, win           %COL%[90mThis removes acceleration which
-echo              %COL%[90myour running services.               %COL%[90mstartup settings and more.           %COL%[90mmakes your aim inconsistent.
+echo              %COL%[90myour running services                %COL%[90mstartup settings and more            %COL%[90mmakes your aim inconsistent
 echo.
 echo                                                            %COL%[1;4;34mNvidia Tweaks%COL%[0m
 echo.
 echo              %COL%[33m[%COL%[37m 10 %COL%[33m]%COL%[37m Disable HDCP %HDCOF%              %COL%[33m[%COL%[37m 11 %COL%[33m]%COL%[37m Disable Preemption %CMAOF%        %COL%[33m[%COL%[37m 12 %COL%[33m]%COL%[37m ProfileInspector %NPIOF%
 echo              %COL%[90mDisable copy protection technology   %COL%[90mDisable preemption requests from     %COL%[90mWill edit your Nvidia control panel
-echo              %COL%[90mof illegal High Definition content.  %COL%[90mthe GPU scheduler.                   %COL%[90mand add various tweaks.
+echo              %COL%[90mof illegal High Definition content   %COL%[90mthe GPU scheduler                    %COL%[90mand add various tweaks
 echo.
 echo              %COL%[33m[%COL%[37m 13 %COL%[33m]%COL%[37m Disable Nvidia Telemetry %NVTOF%  %COL%[33m[%COL%[37m 14 %COL%[33m]%COL%[37m Nvidia Tweaks %NVIOF%             %COL%[33m[%COL%[37m 15 %COL%[33m]%COL%[37m Disable Write Combining %DWCOF%
 echo              %COL%[90mRemove built in Nvidia telemetry     %COL%[90mVarious essential tweaks for         %COL%[90mStops data from being combined
-echo              %COL%[90mfrom your computer and driver.       %COL%[90mNvidia graphics cards.               %COL%[90mand temporarily stored.
+echo              %COL%[90mfrom your computer and driver.       %COL%[90mNvidia graphics cards                %COL%[90mand temporarily stored
 echo.
 echo.
 echo.
@@ -376,10 +373,9 @@ if /i "%choice%"=="15" goto DisableWriteCombining
 if /i "%choice%"=="X" exit /b
 if /i "%choice%"=="B" goto MainMenu
 if /i "%choice%"=="N" (set "PG=TweaksPG2") & goto TweaksPG2
-goto TweaksPG1
+goto Tweaks
 
 :TweaksPG2
-set choice=H
 cls
 echo.
 echo                                                                                                                        %COL%[36mPage 2/2
@@ -399,25 +395,25 @@ echo                                                               %COL%[1;4;34m
 echo.
 echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m Disable Services %COL%[93mN/A           %COL%[33m[%COL%[37m 2 %COL%[33m]%COL%[37m Debloat %COL%[93mN/A                    %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m Disable Mitigations %MITOF%
 echo              %COL%[90mDisables services and lowers memory  %COL%[90mThis tweak will debloat your         %COL%[90mDisable protections against memory
-echo              %COL%[90mDon't use if you are using Wi-Fi.    %COL%[90msystem and disable telemetry.        %COL%[90mbased attacks that consume performance.
+echo              %COL%[90mDon't use if you are using Wi-Fi     %COL%[90msystem and disable telemetry         %COL%[90mbased attacks that consume perf
 echo.
 echo                                                           %COL%[1;4;34mNetwork Tweaks%COL%[0m
 echo.
 echo              %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m Optimize TCP/IP %TCPOF%            %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Optimize NIC %NICOF%               %COL%[33m[%COL%[37m 6 %COL%[33m]%COL%[37m Optimize Netsh %NETOF%
 echo              %COL%[90mTweaks your Internet Protocol        %COL%[90mOptimize your Network Card settings  %COL%[90mThis tweak will optimize your
-echo              %COL%[90mDon't use if you are using Wi-Fi.    %COL%[90mDon't use if you are using Wi-Fi.    %COL%[90mcomputer network configuration.
+echo              %COL%[90mDon't use if you are using Wi-Fi     %COL%[90mDon't use if you are using Wi-Fi     %COL%[90mcomputer network configuration
 echo.
 echo                                                             %COL%[1;4;34mGPU ^& CPU%COL%[0m
 echo.
 echo              %COL%[33m[%COL%[37m 7 %COL%[33m]%COL%[37m All GPU Tweaks %ALLOF%             %COL%[33m[%COL%[37m 8 %COL%[33m]%COL%[37m Optimize Intel iGPU %DSSOF%        %COL%[33m[%COL%[37m 9 %COL%[33m]%COL%[37m AMD GPU Tweaks %AMDOF%
 echo              %COL%[90mVarious essential tweaks for all     %COL%[90mIncrease dedicated video vram on     %COL%[90mConfigure AMD GPU to optimized
-echo              %COL%[90mGPU brands and manufacturers.        %COL%[90ma intel iGPU.                        %COL%[90msettings.
+echo              %COL%[90mGPU brands and manufacturers         %COL%[90ma intel iGPU                         %COL%[90msettings
 echo.
 echo                                                        %COL%[1;4;34mMiscellaneous Tweaks%COL%[0m
 echo.
 echo              %COL%[33m[%COL%[37m 10 %COL%[33m]%COL%[37m Cleaner %BLANK%                   %COL%[33m[%COL%[37m 11 %COL%[33m]%COL%[37m Game-Booster %BLANK%              %COL%[33m[%COL%[37m 12 %COL%[33m]%COL%[37m Soft Restart %BLANK%
 echo              %COL%[90mRemove adware, unused devices, and   %COL%[90mSets GPU ^& CPU to high performance   %COL%[90mIf your PC has been running a while
-echo              %COL%[90mtemp files. Empties recycle bin.     %COL%[90mDisables fullscreen optimizations.   %COL%[90muse this to receive a quick boost.
+echo              %COL%[90mtemp files. Empties recycle bin.     %COL%[90mDisables fullscreen optimizations    %COL%[90muse this to receive a quick boost
 echo.
 echo.
 echo.
@@ -436,6 +432,7 @@ if /i "%choice%"=="9" goto AMD
 if /i "%choice%"=="10" call:Cleaner
 if /i "%choice%"=="11" call:gameBooster
 if /i "%choice%"=="12" call:softRestart
+
 if /i "%choice%"=="X" exit /b
 if /i "%choice%"=="B" goto MainMenu
 if /i "%choice%"=="N" (set "PG=TweaksPG1") & goto TweaksPG1
@@ -459,7 +456,7 @@ echo.                  om-                                                      
 echo.                   `.
 rem echo                                                           %COL%[1;4;34mLatency Tweaks%COL%[0m
 rem echo.
-rem echo              %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m Disable USB Power Savings %BLANK%  %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m CSRSS High Priority %BLANK%        %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Disable HPET %BLANK%
+rem echo              %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m Disable USB Power Savings %BLANK%  %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m CSRSS high priority %BLANK%        %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Disable HPET %BLANK%
 rem echo              %COL%[90mTweaks your Internet Protocol        %COL%[90mCSRSS is for mouse input, setting    %COL%[90mCSRSS is responsible for mouse input
 rem echo              %COL%[90mDon't use if you are using Wi-Fi     %COL%[90mhigh priority may improve latency    %COL%[90mset to high to improve input latency
 echo                                                        %COL%[1;4;34mMiscellaneous Tweaks%COL%[0m
@@ -675,17 +672,12 @@ cls
 if "%TCPOF%" equ "%COL%[91mOFF" (
 	Reg add "HKCU\Software\Hone" /v "TCPIP" /f
 	PowerShell -NoProfile -NonInteractive -Command ^
-	Set-NetIPInterface -RetransmitTimeMs 0 -Forwarding Disabled -EcnMarking Disabled -AdvertiseDefaultRoute Disabled;^
-	Set-NetOffloadGlobalSetting -PacketCoalescingFilter Disabled;^
 	Enable-NetAdapterQos -Name "*";^
-	Set-NetOffloadGlobalSetting -Chimney Disabled;^
 	Disable-NetAdapterPowerManagement -Name "*";^
-	Set-NetTCPSetting -SettingName "InternetCustom" -MemoryPressureProtection Disabled;^
-	Set-NetTCPSetting -SettingName "DatacenterCustom" -MemoryPressureProtection Disabled;^
-	Set-NetTCPSetting -SettingName "Datacenter" -MemoryPressureProtection Disabled;^
-	Set-NetTCPSetting -SettingName "Internet" -MemoryPressureProtection Disabled;^
-	Set-NetTCPSetting -SettingName "Compat" -MemoryPressureProtection Disabled;^
-	Disable-NetAdapterIPsecOffload -Name "*" -ErrorAction SilentlyContinue
+	Disable-NetAdapterIPsecOffload -Name "*";^
+	Set-NetIPInterface -RetransmitTimeMs 0 -Forwarding Disabled -EcnMarking Disabled -AdvertiseDefaultRoute Disabled;^
+	Set-NetOffloadGlobalSetting -PacketCoalescingFilter Disabled -Chimney Disabled;^
+	Set-NetTCPSetting -SettingName "*" -MemoryPressureProtection Disabled -InitialCongestionWindow 10 -ErrorAction SilentlyContinue
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v "EnablePMTUDiscovery" /t REG_DWORD /d "1" /f
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v "EnableICMPRedirect" /t REG_DWORD /d "1" /f
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v "EnablePMTUBHDetect" /t REG_DWORD /d "1" /f
@@ -710,7 +702,9 @@ if "%TCPOF%" equ "%COL%[91mOFF" (
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Winsock" /v "UseDelayedAcceptance" /t REG_DWORD /d "0" /f
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Winsock" /v "MaxSockAddrLength" /t REG_DWORD /d "16" /f
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Winsock" /v "MinSockAddrLength" /t REG_DWORD /d "16" /f
-	Reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\QoS" /v "Do not use NLA" /t REG_SZ /d "1" /f
+	Reg add "HKLM\Software\Policies\Microsoft\Windows\Psched" /v "TimerResolution" /t REG_DWORD /d "1" /f
+	Reg add "HKLM\System\CurrentControlSet\Services\Tcpip\QoS" /v "Do not use NLA" /t REG_DWORD /d "1" /f
+	Reg add "HKLM\Software\Policies\Microsoft\Windows NT\DNSClient" /v "EnableMulticast" /t REG_DWORD /d "0" /f
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters" /v "NegativeCacheTime" /t REG_DWORD /d "0" /f
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters" /v "NegativeSOACacheTime" /t REG_DWORD /d "0" /f
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters" /v "NetFailureCacheTime" /t REG_DWORD /d "0" /f
@@ -733,6 +727,8 @@ if "%TCPOF%" equ "%COL%[91mOFF" (
 	) 
 ) >nul 2>&1 else (
 	Reg delete "HKCU\Software\Hone" /v "TCPIP" /f
+	PowerShell -NoProfile -NonInteractive -Command ^
+	Set-NetTCPSetting -SettingName "*" -InitialCongestionWindow 4 -ErrorAction SilentlyContinue
 	Reg delete "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v "EnablePMTUDiscovery" /f
 	Reg delete "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v "EnableICMPRedirect" /f
 	Reg delete "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v "EnablePMTUBHDetect" /f
@@ -845,8 +841,6 @@ if "%NETOF%" equ "%COL%[91mOFF" (
 	netsh int tcp set global initialRto=2000
 	netsh int udp set global uro=enabled
 	netsh int tcp set supplemental template=custom icw=10
-	POWERSHELL Set-NetTCPSetting -SettingName InternetCustom -InitialCongestionWindow 10
-      POWERSHELL Set-NetTCPSetting -SettingName Internet -InitialCongestionWindow 10
 	netsh interface teredo set state disable
 	netsh int tcp set global hystart=disabled
 	netsh interface tcp set heuristics wsh=enabled
@@ -882,8 +876,6 @@ if "%NETOF%" equ "%COL%[91mOFF" (
 	netsh interface isatap set state default
 	netsh interface tcp set heuristics wsh=default
 	netsh int tcp set heuristics forcews=default
-	POWERSHELL Set-NetTCPSetting -SettingName InternetCustom -InitialCongestionWindow 4
-      POWERSHELL Set-NetTCPSetting -SettingName Internet -InitialCongestionWindow 4
 	netsh interface ip set interface Ethernet weakhostsend=disabled store=persistent
 	netsh interface ip set interface Ethernet weakhostreceive=disabled store=persistent
         netsh int tcp set security mpp=default
@@ -1579,6 +1571,10 @@ goto Tweaks
 :MemOptimization
 if "%ME2OF%" equ "%COL%[91mOFF" (
 	Reg add "HKCU\Software\Hone" /v "MemoryTweaks" /f
+	::Disable FTH
+	Reg add "HKLM\Software\Microsoft\FTH" /v "Enabled" /t Reg_DWORD /d "0" /f
+	::Disable Desktop Composition
+	Reg add "HKCU\Software\Microsoft\Windows\DWM" /v "Composition" /t REG_DWORD /d "0" /f
 	::Disable Background apps
 	Reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v "GlobalUserDisabled" /t Reg_DWORD /d "1" /f
 	Reg add "HKLM\Software\Policies\Microsoft\Windows\AppPrivacy" /v "LetAppsRunInBackground" /t Reg_DWORD /d "2" /f
@@ -1587,6 +1583,7 @@ if "%ME2OF%" equ "%COL%[91mOFF" (
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "DisablePagingExecutive" /t Reg_DWORD /d "1" /f
 	::Disable Page Combining and Memory Compression
 	powershell -NoProfile -Command "Disable-MMAgent -PagingCombining -mc"
+	Reg add "HKLM\System\CurrentControlSet\Control\Session Manager\Memory Management" /v "DisablePageCombining" /t REG_DWORD /d "1" /f
 	::Use Large System Cache to improve microstuttering
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "LargeSystemCache" /t Reg_DWORD /d "1" /f
 	::Free unused ram
@@ -1628,6 +1625,10 @@ if "%ME2OF%" equ "%COL%[91mOFF" (
 	)
 ) >nul 2>&1 else (
 	Reg delete "HKCU\Software\Hone" /v MemoryTweaks /f
+	::Delete FTH
+	Reg delete "HKLM\Software\Microsoft\FTH" /v "Enabled" /f
+	::Delete Desktop Composition
+	Reg delete "HKCU\Software\Microsoft\Windows\DWM" /v "Composition" /f
 	::Enable Background apps
 	Reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v "GlobalUserDisabled" /f
 	Reg delete "HKLM\Software\Policies\Microsoft\Windows\AppPrivacy" /v "LetAppsRunInBackground" /f
@@ -1701,11 +1702,6 @@ if "%CRSOF%" equ "%COL%[91mOFF" (
 ) >nul 2>&1
 goto Tweaks
 
-::Disable FTH
-Reg add "HKLM\Software\Microsoft\FTH\State" /f 
-Reg delete "HKLM\Software\Microsoft\FTH\State" /f 
-Reg add "HKLM\Software\Microsoft\FTH" /v "Enabled" /t Reg_DWORD /d "0" /f 
-
 ::System responsiveness, PanTeR Said to use 14 (20 hexa)
 Reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "SystemResponsiveness" /t Reg_DWORD /d "20" /f 
 
@@ -1740,7 +1736,7 @@ for /F "tokens=* skip=1" %%n in ('WMIC path Win32_VideoController get Name ^| fi
 echo %GPU_NAME% | find "NVIDIA" && set encoder=NVENC >nul 2>&1
 echo %GPU_NAME% | find "AMD" && set encoder=AMF >nul 2>&1
 if not defined GPU_NAME set encoder=CPU
-set choice=H
+
 cls
 color 06
 echo.
@@ -1760,27 +1756,27 @@ echo.                   `.                                      %COL%[34m%COL%[1
 echo.
 echo              %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Install/Update OBS             %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m Recording                      %COL%[33m[ %COL%[37m3 %COL%[33m]%COL%[37m Streaming
 echo              %COL%[90mAutomatically install or update      %COL%[90mAutomated recording settings for     %COL%[90mAutomated streaming settings for
-echo              %COL%[90mOBS using the official link.         %COL%[90mOBS based on your preference.        %COL%[90mOBS based on your preference.
+echo              %COL%[90mOBS using the official link          %COL%[90mOBS based on your preference         %COL%[90mOBS based on your preference
 echo.                   
 echo.                                                                                             
 echo                                                           %COL%[34m%COL%[1mFFmpeg Settings%COL%[0m
 echo.
 echo              %COL%[33m[ %COL%[37m4 %COL%[33m]%COL%[37m Upscale                        %COL%[33m[ %COL%[37m5 %COL%[33m]%COL%[37m Compress                       %COL%[33m[ %COL%[37m6 %COL%[33m]%COL%[37m Preview Lag
 echo              %COL%[90mModify the scale of a video          %COL%[90mMake a clips size smaller for        %COL%[90mAdjust a clips quality
-echo              %COL%[90mfor higher bitrate on YouTube.       %COL%[90msharing by compressing the file.     %COL%[90mto play well with vegas preview.
+echo              %COL%[90mfor higher bitrate on YouTube        %COL%[90msharing by compressing the file      %COL%[90mto play well with vegas preview
 echo.
 echo.
 echo                                                            %COL%[34m%COL%[1mBlur Settings%COL%[0m
 echo.
 echo              %COL%[33m[ %COL%[37m7 %COL%[33m]%COL%[37m Install/Update Blur            %COL%[33m[ %COL%[37m8 %COL%[33m]%COL%[37m FPS Games                      %COL%[33m[ %COL%[37m9 %COL%[33m]%COL%[37m Minecraft
 echo              %COL%[90mAutomatically install or update      %COL%[90mAutomated Blur settings for          %COL%[90mBlur settings for games
-echo              %COL%[90mBlur using the official link.        %COL%[90mfirst person shooter games.          %COL%[90mrecorded in extremely high fps.
+echo              %COL%[90mBlur using the official link         %COL%[90mfirst person shooter games           %COL%[90mrecorded in extremely high fps
 echo.
 echo.
 echo                                                            %COL%[34m%COL%[1mVegas Settings%COL%[0m
 echo.
 echo              %COL%[33m[ %COL%[37m10 %COL%[33m]%COL%[37m Project Settings              %COL%[33m[ %COL%[37m11 %COL%[33m]%COL%[37m Renders                       %COL%[33m[ %COL%[37m12 %COL%[33m]%COL%[37m Install Vegas
-echo              %COL%[90mBest project settings for Vegas.     %COL%[90mAuto render settings for Vegas.      %COL%[90mDownload ^& Install Vegas Pro.
+echo              %COL%[90mBest project settings for Vegas      %COL%[90mAuto render settings for Vegas       %COL%[90mDownload ^& Install Vegas Pro
 echo.
 echo.
 echo                                                 %COL%[90m[ B for back ]         %COL%[31m[ X to close ]
@@ -1816,7 +1812,6 @@ start "" /D "%temp%" OBS -s
 goto:eof
 
 :Recording
-set choice=H
 cls
 color 06
 echo.
@@ -1836,7 +1831,7 @@ echo.                   `.
 echo.
 echo              %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Quality                        %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m Optimal                        %COL%[33m[ %COL%[37m3 %COL%[33m]%COL%[37m Performance
 echo              %COL%[90mSettings for the best                %COL%[90mThe best for performance             %COL%[90mSettings for the best
-echo              %COL%[90mquality in OBS.                      %COL%[90mwithout losing any quality.          %COL%[90mperformance in OBS.
+echo              %COL%[90mquality in OBS                       %COL%[90mwithout losing any quality           %COL%[90mperformance in OBS
 echo.
 echo.
 echo.
@@ -2039,7 +2034,6 @@ IF %encoder% equ NVENC (
 
 
 :Streaming
-set choice=H
 cls
 color 06
 echo.
@@ -2059,7 +2053,7 @@ echo.                   `.
 echo.
 echo                              %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Quality                                        %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m Performance
 echo                              %COL%[90mSettings for the best                                %COL%[90mSettings for the best
-echo                              %COL%[90mquality in OBS.                                      %COL%[90mperformance in OBS.
+echo                              %COL%[90mquality in OBS                                       %COL%[90mperformance in OBS
 echo.
 echo.                                                                                                                  
 echo.                                                                                                                  
@@ -2202,7 +2196,6 @@ IF %encoder% equ NVENC (
 )
 
 :upscale
-set choice=H
 if not exist %SystemDrive%\ffmpeg ( call:ffmpeginstall )
 cls
 color 06
@@ -2223,7 +2216,7 @@ echo.                   `.
 echo.
 echo                            %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m 4k                                             %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m 8k
 echo                            %COL%[90mModify the scale of a video                          %COL%[90mModify the scale of a video
-echo                            %COL%[90mto turn it to 4k.                                    %COL%[90mto turn it to 8k.
+echo                            %COL%[90mto turn it to 4k                                     %COL%[90mto turn it to 8k
 echo. 
 echo.                                                                                                                  
 echo.
@@ -2257,9 +2250,9 @@ goto upscale
 
 :4k
 cls
-set /p "file= Drag the video into this window to upscale >> "
+set /p "file= Drag the file you want upscaled into this window >> "
 IF %encoder% equ NVENC (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\4k.mp4" -y
+%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high-preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\4k.mp4" -y
 ) else (
 %SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\4k.mp4" 
 )
@@ -2267,13 +2260,12 @@ goto upscale
 
 :8k
 cls
-set /p "file= Drag the video into this window to upscale >> "
+set /p "file= Drag the file you want upscaled into this window >> "
 %SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=7680:4320:flags=neighbor -r 60 -vcodec libx264 -profile:v high -preset fast -qmin 19 -qmax 19 "%SystemDrive%\users\%username%\desktop\8k.mp4" 
 goto upscale
 
 
 :compress
-set choice=H
 if not exist %SystemDrive%\ffmpeg ( call:ffmpeginstall )
 cls
 color 06
@@ -2294,7 +2286,7 @@ echo.                   `.
 echo.
 echo                         %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Heavy                                          %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m Light
 echo                         %COL%[90mLower the scale ^& fps of a video                     %COL%[90mLower only the scale of a video
-echo                         %COL%[90mto make it take up much less space.                   %COL%[90mto make it take up less space.
+echo                         %COL%[90mto make it take up much less space                   %COL%[90mto make it take up less space
 echo.
 echo.                                                                                                                  
 echo.
@@ -2328,9 +2320,9 @@ goto compress
 
 :heavy
 cls
-set /p "file= Drag the video into this window to compress >> "
+set /p "file= Drag the file you want upscaled into this window >> "
 IF %encoder% equ NVENC (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4" -y
+%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_nvenc -profile:v high-preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4" -y
 ) else (
 %SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4" 
 )
@@ -2338,9 +2330,9 @@ goto compress
 
 :Light
 cls
-set /p "file= Drag the video into this window to compress >> "
+set /p "file= Drag the file you want upscaled into this window >> "
 IF %encoder% equ NVENC (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4" -y
+%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high-preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4" -y
 ) else (
 %SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4" 
 )
@@ -2351,7 +2343,7 @@ if not exist %SystemDrive%\ffmpeg ( call:ffmpeginstall )
 cls
 set /p "file= Drag the file you want to use in vegas (remember you need to replace it with the original file afterwards) >> "
 IF %encoder% equ NVENC (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=1920:1080:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -qmin 24 -qmax 24 "%SystemDrive%\users\%username%\desktop\previewlag.mp4" -y
+%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=1920:1080:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high-preset fast -qmin 24 -qmax 24 "%SystemDrive%\users\%username%\desktop\previewlag.mp4" -y
 ) else (
 %SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=1920:1080:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 24 -qmax 24 "%SystemDrive%\users\%username%\desktop\previewlag.mp4"
 )
@@ -2373,7 +2365,6 @@ curl -g -L -# -o "%temp%\blur.exe" "https://github.com/f0e/blur/releases/latest/
 goto:eof
 
 :FPSGames
-set choice=H
 cls
 color 06
 echo.
@@ -2393,7 +2384,7 @@ echo.                   `.
 echo.
 echo                       %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m 60 - 120 FPS                                   %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m 240+ FPS
 echo                       %COL%[90mAutomated Blur settings                              %COL%[90mAutomated Blur settings
-echo                       %COL%[90mfor FPS games recorded in 60 to 120 FPS.             %COL%[90mfor FPS games recorded in above 240 FPS.
+echo                       %COL%[90mfor FPS games recorded in 60 to 120 FPS              %COL%[90mfor FPS games recorded in above 240 FPS
 echo.
 echo.                                                                                                                  
 echo.
@@ -2721,7 +2712,6 @@ set /p "file= Drag the file you want blurred into this window >> "
 goto HoneRenders
 
 :MinecraftBlur
-set choice=H
 cls
 color 06
 echo.
@@ -2739,9 +2729,9 @@ echo.                  `NMN:        +.                                          
 echo.                  om-                                                                   #######       #######
 echo.                   `.
 echo.
-echo         %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m 240 - 360 FPS                       %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m 480+ FPS                        %COL%[33m[ %COL%[37m3 %COL%[33m]%COL%[37m Any FPS (30 FPS Renders)
+echo         %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m 180 - 360 FPS                       %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m 480+ FPS                        %COL%[33m[ %COL%[37m3 %COL%[33m]%COL%[37m Any FPS (30 FPS Renders)
 echo         %COL%[90mAutomated Blur settings                   %COL%[90mAutomated Blur settings               %COL%[90mAutomated Blur settings
-echo         %COL%[90mfor clips recorded in 240 - 360 FPS.      %COL%[90mfor clips recorded above 480 FPS.     %COL%[90mfor clips to be rendered in 30 FPS.
+echo         %COL%[90mfor clips recorded in 180 - 360 FPS       %COL%[90mfor clips recorded above 480 FPS      %COL%[90mfor clips to be rendered in 30 FPS
 echo.
 echo.
 echo.                                                                                                                  
@@ -3216,7 +3206,6 @@ set /p "file= Drag the file you want blurred into this window >> "
 goto HoneRenders
 
 :VegasInstall
-set choice=H
 cls
 color 06
 echo.
@@ -3239,7 +3228,7 @@ echo                       %COL%[90mcalled 'DaVinci Resolve' (note: this program
 echo.
 echo.
 echo                           %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Vegas Pro website                        %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m DaVinci Resolve website
-echo                           %COL%[90mPaid with supported renders.                   %COL%[90mFree but unsupported renders.
+echo                           %COL%[90mPaid with supported renders                    %COL%[90mFree but unsupported renders
 echo.                                                                           
 echo.
 echo.                                                                                                                  
@@ -3320,7 +3309,7 @@ echo.                  om-                                                      
 echo.                   `.
 echo.
 echo                                        %COL%[90m HoneCtrl is a free and open-source desktop utility
-echo                                        %COL%[90m    made to improve your day-to-day productivity.
+echo                                        %COL%[90m    made to improve your day-to-day productivity
 echo.
 echo.
 echo.
@@ -3334,7 +3323,7 @@ echo.    %COL%[33m1.%COL%[37m Even though we have an automatic restore point fea
 echo.
 echo     Please enter "I agree" (without quotes) to continue:
 echo.
-echo                                                       %COL%[90m[ B for back ]
+echo                                                        %COL%[90m[ B for back ]
 echo.
 set /p "input=%DEL%                                                            >: %COL%[92m"
 if /i "!input!"=="B" goto TweaksPG3
@@ -3342,7 +3331,8 @@ if /i "!input!" neq "i agree" goto Disclaimer2
 Reg add "HKCU\Software\Hone" /v "Disclaimer2" /f >nul 2>&1
 
 :Advanced
-for %%i in (DSCOF AUTOF DRIOF BCDOF NONOF CS0OF TOFOF PS0OF IDLOF CONG) do (set "%%i=%COL%[92mON ") >nul 2>&1
+set "choice="
+for %%i in (DSCOF AUTOF DRIOF BCDOF NONOF CS0OF TOFOF PS0OF IDLOF CONG DPSOF) do (set "%%i=%COL%[92mON ") >nul 2>&1
 (
 	::Disable Idle
 	powercfg /qh scheme_current sub_processor IDLEDISABLE | find "Current AC Power Setting Index: 0x00000000" && set "IDLOF=%COL%[91mOFF"
@@ -3352,6 +3342,8 @@ for %%i in (DSCOF AUTOF DRIOF BCDOF NONOF CS0OF TOFOF PS0OF IDLOF CONG) do (set 
     Reg query "HKCU\Software\Hone" /v "TuningTweak" || set "AUTOF=%COL%[91mOFF"
     ::Congestion Provider Tweak
     Reg query "HKCU\Software\Hone" /v "TuningTweak1" || set "CONG=%COL%[91mOFF"
+    ::Disable USB Powersavings
+    Reg query "HKCU\Software\Hone" /v "DUSBPowerSavings" || set "DPSOF=%COL%[91mOFF"
 	::Nvidia Drivers
 	cd "%SystemDrive%\Program Files\NVIDIA Corporation\NVSMI"
 	for /f "tokens=1 skip=1" %%a in ('nvidia-smi --query-gpu^=driver_version --format^=csv') do if "%%a" neq "497.09" set "DRIOF=%COL%[91mOFF
@@ -3374,7 +3366,6 @@ for %%i in (DSCOF AUTOF DRIOF BCDOF NONOF CS0OF TOFOF PS0OF IDLOF CONG) do (set 
 	)
 	if "!NVIDIAGPU!" neq "Found" for %%g in (PS0OF DRIOF) do set "%%g=%COL%[93mN/A"
 ) >nul 2>&1
-set choice=H
 cls
 echo.
 echo.
@@ -3394,25 +3385,25 @@ echo                                                           %COL%[1;4;34mNetw
 echo.
 echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m Disable Task Offloading %TOFOF%    %COL%[33m[%COL%[37m 2 %COL%[33m]%COL%[37m NonBestEffortLimit %NONOF%         %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m AutoTuning %AUTOF%
 echo              %COL%[90mTask Offloading assigns the          %COL%[90mAllocate more bandwidth to apps      %COL%[90mCan reduce bufferbloat, 
-echo              %COL%[90mCPU to handle the NIC load.          %COL%[90mUse only on fast connections.        %COL%[90mbut lower your Network speed.
+echo              %COL%[90mCPU to handle the NIC load           %COL%[90mUse only on fast connections         %COL%[90mbut lower your Network speed
 echo.
-echo                           %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m DSCP Value %DSCOF%                     %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Congestion Provider %CONG% 
+echo                           %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m DSCP Value %DSCOF%                     %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Wifi Congestion Provider %CONG% 
 echo                           %COL%[90mSet the priority of your network         %COL%[90mTurn ON only, if you have WIFI. 
-echo                           %COL%[90mtraffic to expedited forwarding.         %COL%[90mChanges the algorithm on how data is processed.
+echo                           %COL%[90mtraffic to expedited forwarding          %COL%[90mChanges the algorithm on how data is processed.
 echo.
 echo.
 echo                                                            %COL%[1;4;34mPower Tweaks%COL%[0m
 echo.
 echo              %COL%[33m[%COL%[37m 6 %COL%[33m]%COL%[37m Disable C-States %CS0OF%           %COL%[33m[%COL%[37m 7 %COL%[33m]%COL%[37m PStates 0 %PS0OF%                  %COL%[33m[%COL%[37m 8 %COL%[33m]%COL%[37m Disable Idle %IDLOF%
 echo              %COL%[90mKeep CPU at C0 stopping throttling   %COL%[90mRun graphics card at its highest     %COL%[90mForce CPU to always be running
-echo              %COL%[90mwill make PC generate more heat.     %COL%[90mdefined frequencies.                 %COL%[90mat highest CPU state.
+echo              %COL%[90mwill make PC generate more heat      %COL%[90mdefined frequencies                  %COL%[90mat highest CPU state
 echo.
 echo.
 echo                                                            %COL%[1;4;34mOther Tweaks%COL%[0m
 echo.
-echo                              %COL%[33m[%COL%[37m 9 %COL%[33m]%COL%[37m Nvidia Driver %DRIOF%                      %COL%[33m[%COL%[37m 10 %COL%[33m]%COL%[37m BCDEdit %BCDOF%
-echo                              %COL%[90mInstall the best tweaked nvidia              %COL%[90mTweaks your windows boot config
-echo                              %COL%[90mdriver for latency and fps.                  %COL%[90mdata to optimized settings.
+echo              %COL%[33m[%COL%[37m 9 %COL%[33m]%COL%[37m Nvidia Driver %DRIOF%              %COL%[33m[%COL%[37m 10 %COL%[33m]%COL%[37m BCDEdit %BCDOF%                   %COL%[33m[%COL%[37m 11 %COL%[33m]%COL%[37m Disable USB Power Savings %DPSOF%
+echo              %COL%[90mInstall the best tweaked nvidia      %COL%[90mTweaks your windows boot config      %COL%[90mDisable USB power savings that
+echo              %COL%[90mdriver for latency and fps           %COL%[90mdata to optimized settings           %COL%[90maffect latency
 echo.
 echo.
 echo.
@@ -3429,49 +3420,10 @@ if /i "%choice%"=="7" goto pstates0
 if /i "%choice%"=="8" goto DisableIdle
 if /i "%choice%"=="9" goto Driver
 if /i "%choice%"=="10" goto BCDEdit
+if /i "%choice%"=="11" goto DUSBPowerSavings
 if /i "%choice%"=="X" exit /b
 if /i "%choice%"=="B" goto MainMenu
-if /i "%choice%"=="H" goto Advanced
 goto Advanced
-
-:Driver
-cls
-
-echo This will uninstall your current graphics driver. The optimized driver will be installed after you reboot.
-echo.
-echo Would you like to install?
-choice /c:YN /n /m "[Y] Yes  [N] No"
-if %errorlevel% equ 2 goto Advanced
-
-cd "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup"
-curl -LJ https://github.com/RadNotRed/HoneCtrl/blob/main/Files/Driverinstall.bat?raw=true -o Driverinstall.bat 
-
-title Executing DDU...
-curl -g -L -# -o "C:\Hone\Resources\DDU.zip" "https://github.com/auraside/HoneCtrl/raw/main/Files/DDU.zip"
-powershell -NoProfile Expand-Archive 'C:\Hone\Resources\DDU.zip' -DestinationPath 'C:\Hone\Resources\DDU\' >nul 2>&1
-del "C:\Hone\Resources\DDU.zip"
-cd C:\Hone\Resources\DDU
-DDU.exe -silent -cleannvidia
-
-title Restart Confirmation
-cls
-echo Your PC NEEDS to restart before installing the driver!
-echo.
-echo Other Nvidia tweaks will not be available until you restart.
-echo.
-echo Drivers will be installed opon PC startup.
-echo.
-echo Would you like to continue and restart your PC?
-choice /c:YN /n /m "[Y] Yes  [N] No"
-
-if %errorlevel% equ 1 (
-	shutdown /s /t 60 /c "A restart is required, we'll do that now" /f /d p:0:0
-	timeout 5
-	shutdown -a
-	shutdown /r /t 7 /c "Restarting automatically..." /f /d p:0:0
-)
-goto Advanced
-
 
 :TaskOffloading
 if "%TOFOF%" equ "%COL%[91mOFF" (
@@ -3491,24 +3443,25 @@ if "%NONOF%" equ "%COL%[91mOFF" (
 ) >nul 2>&1
 goto Advanced
 
+
 :Autotuning
 if "%AUTOF%" equ "%COL%[91mOFF" (
-Reg add "HKCU\Software\Hone" /v TuningTweak /f
-	netsh int tcp set global autotuninglevel=disabled >nul 2>&1
+	Reg add "HKCU\Software\Hone" /v TuningTweak /f >nul 2>&1
+    netsh int tcp set global autotuninglevel=disabled >nul 2>&1
 	netsh winsock set autotuning off >nul 2>&1
 ) else (
-Reg delete "HKCU\Software\Hone" /v TuningTweak /f
-	netsh int tcp set global autotuninglevel=normal >nul 2>&1
+	Reg delete "HKCU\Software\Hone" /v TuningTweak /f >nul 2>&1
+    netsh int tcp set global autotuninglevel=normal >nul 2>&1
 	netsh winsock set autotuning on >nul 2>&1
 )
 goto Advanced
 
 :Congestion
 if "%CONG%" equ "%COL%[91mOFF" (
-Reg add "HKCU\Software\Hone" /v TuningTweak1 /f
+	Reg add "HKCU\Software\Hone" /v TuningTweak1 /f >nul 2>&1
     netsh int tcp set supplemental Internet congestionprovider=newreno >nul 2>&1
 ) else (
-Reg delete "HKCU\Software\Hone" /v TuningTweak1 /f
+	Reg delete "HKCU\Software\Hone" /v TuningTweak1 /f >nul 2>&1
      netsh int tcp set supplemental Internet congestionprovider=ctcp >nul 2>&1
 )
 goto Advanced
@@ -3578,6 +3531,67 @@ if "%IDLOF%" equ "%COL%[91mOFF" (
 	powercfg /setacvalueindex scheme_current sub_processor IDLEDISABLE 1
 ) >nul 2>&1 else (
 	powercfg -setacvalueindex scheme_current sub_processor IDLEDISABLE 0
+) >nul 2>&1
+goto Advanced
+
+:Driver
+cls
+echo This will uninstall your current graphics driver. The optimized driver will be installed after you reboot.
+echo.
+echo Would you like to install?
+choice /c:YN /n /m "[Y] Yes  [N] No"
+if %errorlevel% equ 2 goto Advanced
+cd "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup"
+curl -LJ https://github.com/RadNotRed/HoneCtrl/blob/main/Files/Driverinstall.bat?raw=true -o Driverinstall.bat 
+title Executing DDU...
+curl -g -L -# -o "C:\Hone\Resources\DDU.zip" "https://github.com/auraside/HoneCtrl/raw/main/Files/DDU.zip"
+powershell -NoProfile Expand-Archive 'C:\Hone\Resources\DDU.zip' -DestinationPath 'C:\Hone\Resources\DDU\' >nul 2>&1
+del "C:\Hone\Resources\DDU.zip"
+cd C:\Hone\Resources\DDU
+DDU.exe -silent -cleannvidia
+title Restart Confirmation
+cls
+echo Your PC NEEDS to restart before installing the driver!
+echo.
+echo Other Nvidia tweaks will not be available until you restart.
+echo.
+echo Drivers will be installed opon PC startup.
+echo.
+echo Would you like to continue and restart your PC?
+choice /c:YN /n /m "[Y] Yes  [N] No"
+if %errorlevel% equ 1 (
+	shutdown /s /t 60 /c "A restart is required, we'll do that now" /f /d p:0:0
+	timeout 5
+	shutdown -a
+	shutdown /r /t 7 /c "Restarting automatically..." /f /d p:0:0
+)
+goto Advanced
+
+:DUSBPowerSavings
+if "%DPSOF%" equ "%COL%[91mOFF" (
+	Reg add "HKCU\Software\Hone" /v DUSBPowerSavings /f
+	for /f "tokens=*" %%i in ('reg query "HKLM\SYSTEM\CurrentControlSet\Enum" /s /f "StorPort" ^| findstr "StorPort"') do Reg add "%%i" /v "EnableIdlePowerManagement" /t REG_DWORD /d "0" /f
+	for /f "tokens=*" %%i in ('wmic PATH Win32_PnPEntity GET DeviceID ^| findstr "USB\VID_"') do (
+	Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters" /v "EnhancedPowerManagementEnabled" /t REG_DWORD /d "0" /f
+	Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters" /v "AllowIdleIrpInD3" /t REG_DWORD /d "0" /f
+	Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters" /v "EnableSelectiveSuspend" /t REG_DWORD /d "0" /f
+	Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters" /v "DeviceSelectiveSuspended" /t REG_DWORD /d "0" /f
+	Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters" /v "SelectiveSuspendEnabled" /t REG_DWORD /d "0" /f
+	Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters" /v "SelectiveSuspendOn" /t REG_DWORD /d "0" /f
+	Reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters" /v "D3ColdSupported" /t REG_DWORD /d "0" /f
+	)
+) >nul 2>&1 else (
+	Reg delete "HKCU\Software\Hone" /v DUSBPowerSavings /f
+	for /f "tokens=*" %%i in ('reg query "HKLM\SYSTEM\CurrentControlSet\Enum" /s /f "StorPort" ^| findstr "StorPort"') do Reg delete "%%i" /v "EnableIdlePowerManagement" /f
+	for /f "tokens=*" %%i in ('wmic PATH Win32_PnPEntity GET DeviceID ^| findstr "USB\VID_"') do (
+	Reg delete "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters" /v "EnhancedPowerManagementEnabled" /f
+	Reg delete "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters" /v "AllowIdleIrpInD3" /f
+	Reg delete "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters" /v "EnableSelectiveSuspend" /f
+	Reg delete "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters" /v "DeviceSelectiveSuspended" /f
+	Reg delete "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters" /v "SelectiveSuspendEnabled" /f
+	Reg delete "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters" /v "SelectiveSuspendOn" /f
+	Reg delete "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters" /v "D3ColdSupported" /f
+	)
 ) >nul 2>&1
 goto Advanced
 
@@ -3710,11 +3724,17 @@ echo.                                                       `.
 echo. 
 echo. 
 echo. 
+echo. 
+echo.
+echo                                                   %COL%[37m Settings have been applied
 echo.
 echo.
-echo                                                   %COL%[37m Settings have been applied.
-timeout /t 3 /nobreak > NUL
-goto MainMenu
+echo.
+echo.
+echo                                                          %COL%[90m[ B for back ]%COL%[37m
+echo.
+choice /c:B /n /m "%DEL%                                                               >:"
+goto GameSettings
 
 :1.7.10
 cd %appdata%\.minecraft\
@@ -4029,21 +4049,27 @@ echo.                  om-                                                      
 echo.                   `.
 echo.
 echo                                        %COL%[90m HoneCtrl is a free and open-source desktop utility
-echo                                        %COL%[90m    made to improve your day-to-day productivity.
+echo                                        %COL%[90m    made to improve your day-to-day productivity
 echo.
 echo.
 echo.
 echo %COL%[91m  WARNING:
+echo %COL%[37m  Please note that we cannot guarantee an FPS boost from applying our optimizations, every system + configuration is different.
 echo.
-echo.    %COL%[33m1.%COL%[37m These Tweaks are HIGHLY experimental, we do %COL%[91mnot%COL%[37m recommend proceeding if you do not know what you're doing!
+echo     %COL%[33m1.%COL%[37m Everything is "use at your own risk", we are %COL%[91mNOT LIABLE%COL%[37m if you damage your system in any way 
+echo        (ex. not following the disclaimers carefully).
 echo.
-echo     %COL%[33m2.%COL%[37m Everything is "use at your own risk", we are %COL%[91mNOT LIABLE%COL%[37m if you damage your system in any way.
+echo     %COL%[33m2.%COL%[37m If you don't know what a tweak is, do not use it and contact our support team to receive more assistance.
 echo.
-echo.    %COL%[33m3.%COL%[37m Even though we have an automatic restore point feature, we %COL%[91mHighly%COL%[37m recommend making a manual restore point before running.
+echo     %COL%[33m3.%COL%[37m Even though we have an automatic restore point feature, we highly recommend making a manual restore point before running.
 echo.
-echo     Please enter "I agree" (without quotes) to continue:
+echo   For any questions and/or concerns, please join our discord: discord.gg/hone
 echo.
-echo                                                        %COL%[90m[ B for back ]
+echo   Please enter "I agree" without quotes to continue: 
+echo.
+echo.
+echo.
+echo                                                         [ press X to go back ]
 echo.
 choice /c:X /n /m "%DEL%                                                                 >:"
 set choice=%errorlevel%
@@ -4055,40 +4081,40 @@ echo.
 echo.
 echo.
 echo %COL%[90m                                                         Product Lead
-echo %COL%[97m                                                        Ryan A. - Ryan
+echo %COL%[97m                                                       Ryan A. - Ryan
 echo.
 echo.
 echo.
 echo %COL%[90m                                                   Product Development Lead
-echo %COL%[97m                                                 Christina A. - UnLovedCookie
+echo %COL%[97m                                                  Christina A. - UnLovedCookie
 echo.
 echo.
 echo.
 echo %COL%[90m                                                      Product Development
-echo %COL%[97m                                                    Jonathan H. - Jonathan
-echo %COL%[97m                                                      Dexter K. - Drevoes
-echo %COL%[97m                                                      Arthur C. - Yaamruo
+echo %COL%[97m                                                   Jonathan H. - Jonathan
+echo %COL%[97m                                                     Dexter K. - Drevoes
+echo %COL%[97m                                                     Arthur C. - Yaamruo
 echo %COL%[97m                                                       Vojt R. - Vojtass
 echo.
 echo.
 echo.
 echo %COL%[90m                                                     Network Optimizations
-echo %COL%[97m                                                       Krzysiek - VVASD
-echo %COL%[97m                                                       Filip G. - Curtal
+echo %COL%[97m                                                      Krzysiek - VVASD
+echo %COL%[97m                                                      Filip G. - Curtal
 echo.
 echo.
 echo.
 echo %COL%[90m                                                        Render Settings
-echo %COL%[97m                                                        Eesa H. - mmunk
+echo %COL%[97m                                                       Eesa H. - mmunk
 echo.
 echo.
 echo.
-echo %COL%[90m                                                         Credits to
-echo %COL%[97m                                                 mbk1969 - (Timer Resolution)
-echo %COL%[97m                                                   W1zzard - (Nvcleanstall)
-echo %COL%[97m                                                    wj32 - (Purgestandby)
-echo %COL%[97m                                                    ToastyX - (Restart64)
-echo %COL%[97m                                                      M2-Team - (Nsudo)
+echo %COL%[90m                                                          Credits to
+echo %COL%[97m                                                       mbk1969 - (Timer Resolution)
+echo %COL%[97m                                                       W1zzard - (Nvcleanstall)
+echo %COL%[97m                                                       M2-Team - (Nsudo)
+echo %COL%[97m                                                       ToastyX - (Restart64)
+echo %COL%[97m                                                          wj32 - (Purgestandby)
 echo.
 echo.
 echo.
@@ -4188,8 +4214,6 @@ echo netsh advfirewall reset >RefreshNet.bat
 ::Release the current IP address obtains a new one.
 echo ipconfig /release >>RefreshNet.bat
 echo ipconfig /renew >>RefreshNet.bat
-::Delete and reacquire the hostname.
-echo arp -d * >>RefreshNet.bat
 ::Purge and reload the remote cache name table.
 echo nbtstat -R >>RefreshNet.bat
 ::Sends Name Release packets to WINS and then refreshes.
