@@ -3461,7 +3461,7 @@ echo AFTER RESTARTING, PLEASE REOPEN THE HONE CONTROL PANEL
 echo.
 echo Would you like to restart now?
 choice /c:YN /n /m "[Y] Yes  [N] No"
-copy "%~f0" "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\HoneCtrl.bat"
+cd "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup"
 if %errorlevel% equ 1 (
 	shutdown /s /t 60 /c "A restart is required, we'll do that now" /f /d p:0:0
 	timeout 5
