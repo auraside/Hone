@@ -3334,7 +3334,7 @@ echo.    %COL%[33m1.%COL%[37m Even though we have an automatic restore point fea
 echo.
 echo     Please enter "I agree" (without quotes) to continue:
 echo.
-echo                                     %COL%[90m[ B for back ]
+echo                                                       %COL%[90m[ B for back ]
 echo.
 set /p "input=%DEL%                                                            >: %COL%[92m"
 if /i "!input!"=="B" goto TweaksPG3
@@ -3499,7 +3499,7 @@ Reg add "HKCU\Software\Hone" /v TuningTweak /f
 ) else (
 Reg delete "HKCU\Software\Hone" /v TuningTweak /f
 	netsh int tcp set global autotuninglevel=normal >nul 2>&1
-	netsh winsock set autotuning off >nul 2>&1
+	netsh winsock set autotuning on >nul 2>&1
 )
 goto Advanced
 
