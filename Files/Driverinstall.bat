@@ -1,5 +1,4 @@
-cls
-
+@echo off
 echo The drivers are 732Mb to 1Gb, so this will take a moment to download. (768,102,400 or 1,073,691,829 bytes)
 echo.
 echo Would you like to install?
