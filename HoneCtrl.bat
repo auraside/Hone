@@ -55,7 +55,7 @@ echo.                  om-                                                      
 echo.                   `.
 echo.
 echo                                        %COL%[90m HoneCtrl is a free and open-source desktop utility
-echo                                        %COL%[90m    made to improve your day-to-day productivity
+echo                                        %COL%[90m    made to improve your day-to-day productivity.
 echo.
 echo.
 echo.
@@ -82,8 +82,8 @@ Reg add "HKCU\Software\Hone" /v "Disclaimer" /f >nul 2>&1
 ::Restart Checks
 if exist "%userprofile%\Desktop\NvidiaHone.exe" %userprofile%\Desktop\NvidiaHone.exe >nul 2>&1
 if exist "%userprofile%\Desktop\NvidiaHone.exe" del /Q "%userprofile%\Desktop\NvidiaHone.exe" >nul 2>&1
-if "%~f0" equ "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\HoneCtrl.bat" (
-del /Q "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\HoneCtrl.bat" >nul 2>&1
+if "%~f0" equ "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\Driverinstall.bat" (
+del /Q "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Driverinstall.bat" >nul 2>&1
 )
 
 :CheckForUpdates
@@ -159,7 +159,7 @@ echo.                  om-                                                      
 echo.                   `.
 echo.
 echo                                        %COL%[90m HoneCtrl is a free and open-source desktop utility
-echo                                        %COL%[90m    made to improve your day-to-day productivity
+echo                                        %COL%[90m    made to improve your day-to-day productivity.
 echo. 
 echo.
 echo.
@@ -216,7 +216,7 @@ echo.                  om-                                                      
 echo.                   `.
 echo.
 echo                                        %COL%[90m HoneCtrl is a free and open-source desktop utility
-echo                                        %COL%[90m    made to improve your day-to-day productivity
+echo                                        %COL%[90m    made to improve your day-to-day productivity.
 echo.
 echo.
 echo.
@@ -331,25 +331,25 @@ echo                                                               %COL%[1;4;34m
 echo.
 echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m Power Plan %PWROF%                 %COL%[33m[%COL%[37m 2 %COL%[33m]%COL%[37m SvcHostSplitThreshold %MEMOF%      %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m CSRSS High Priority %CRSOF%
 echo              %COL%[90mDesktop Power Plan, not good         %COL%[90mChanges the split threshold for      %COL%[90mCSRSS is responsible for mouse input
-echo              %COL%[90mto use with a laptop battery.        %COL%[90mservice host to your RAM             %COL%[90mset to high to improve input latency
+echo              %COL%[90mto use with a laptop battery.        %COL%[90mservice host to your RAM.            %COL%[90mset to high to improve input latency.
 echo.
 echo              %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m Timer Resolution %TMROF%           %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m MSI Mode %MSIOF%                   %COL%[33m[%COL%[37m 6 %COL%[33m]%COL%[37m Affinity %AFFOF%
 echo              %COL%[90mThis tweak changes how fast          %COL%[90mEnable MSI Mode for gpu and          %COL%[90mThis tweak will spread devices
-echo              %COL%[90myour cpu refreshes                   %COL%[90mnetwork adapters                     %COL%[90mon multiple cpu cores
+echo              %COL%[90myour cpu refreshes.                  %COL%[90mnetwork adapters.                    %COL%[90mon multiple cpu cores.
 echo.
 echo              %COL%[33m[%COL%[37m 7 %COL%[33m]%COL%[37m W32 Priority Seperation %BLANK%    %COL%[33m[%COL%[37m 8 %COL%[33m]%COL%[37m Memory Optimization %ME2OF%        %COL%[33m[%COL%[37m 9 %COL%[33m]%COL%[37m Mouse Fix %MOUOF%
 echo              %COL%[90mOptimizes the usage priority of      %COL%[90mOptimizes your fsutil, win           %COL%[90mThis removes acceleration which
-echo              %COL%[90myour running services                %COL%[90mstartup settings and more            %COL%[90mmakes your aim unconsistent
+echo              %COL%[90myour running services.               %COL%[90mstartup settings and more.           %COL%[90mmakes your aim inconsistent.
 echo.
 echo                                                            %COL%[1;4;34mNvidia Tweaks%COL%[0m
 echo.
 echo              %COL%[33m[%COL%[37m 10 %COL%[33m]%COL%[37m Disable HDCP %HDCOF%              %COL%[33m[%COL%[37m 11 %COL%[33m]%COL%[37m Disable Preemption %CMAOF%        %COL%[33m[%COL%[37m 12 %COL%[33m]%COL%[37m ProfileInspector %NPIOF%
 echo              %COL%[90mDisable copy protection technology   %COL%[90mDisable preemption requests from     %COL%[90mWill edit your Nvidia control panel
-echo              %COL%[90mof illegal High Definition content   %COL%[90mthe GPU scheduler                    %COL%[90mand add various tweaks
+echo              %COL%[90mof illegal High Definition content.  %COL%[90mthe GPU scheduler.                   %COL%[90mand add various tweaks.
 echo.
 echo              %COL%[33m[%COL%[37m 13 %COL%[33m]%COL%[37m Disable Nvidia Telemetry %NVTOF%  %COL%[33m[%COL%[37m 14 %COL%[33m]%COL%[37m Nvidia Tweaks %NVIOF%             %COL%[33m[%COL%[37m 15 %COL%[33m]%COL%[37m Disable Write Combining %DWCOF%
 echo              %COL%[90mRemove built in Nvidia telemetry     %COL%[90mVarious essential tweaks for         %COL%[90mStops data from being combined
-echo              %COL%[90mfrom your computer and driver.       %COL%[90mNvidia graphics cards                %COL%[90mand temporarily stored
+echo              %COL%[90mfrom your computer and driver.       %COL%[90mNvidia graphics cards.               %COL%[90mand temporarily stored.
 echo.
 echo.
 echo.
@@ -397,25 +397,25 @@ echo                                                               %COL%[1;4;34m
 echo.
 echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m Disable Services %COL%[93mN/A           %COL%[33m[%COL%[37m 2 %COL%[33m]%COL%[37m Debloat %COL%[93mN/A                    %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m Disable Mitigations %MITOF%
 echo              %COL%[90mDisables services and lowers memory  %COL%[90mThis tweak will debloat your         %COL%[90mDisable protections against memory
-echo              %COL%[90mDon't use if you are using Wi-Fi     %COL%[90msystem and disable telemetry         %COL%[90mbased attacks that consume perf
+echo              %COL%[90mDon't use if you are using Wi-Fi.    %COL%[90msystem and disable telemetry.        %COL%[90mbased attacks that consume performance.
 echo.
 echo                                                           %COL%[1;4;34mNetwork Tweaks%COL%[0m
 echo.
 echo              %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m Optimize TCP/IP %TCPOF%            %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Optimize NIC %NICOF%               %COL%[33m[%COL%[37m 6 %COL%[33m]%COL%[37m Optimize Netsh %NETOF%
 echo              %COL%[90mTweaks your Internet Protocol        %COL%[90mOptimize your Network Card settings  %COL%[90mThis tweak will optimize your
-echo              %COL%[90mDon't use if you are using Wi-Fi     %COL%[90mDon't use if you are using Wi-Fi     %COL%[90mcomputer network configuration
+echo              %COL%[90mDon't use if you are using Wi-Fi.    %COL%[90mDon't use if you are using Wi-Fi.    %COL%[90mcomputer network configuration.
 echo.
 echo                                                             %COL%[1;4;34mGPU ^& CPU%COL%[0m
 echo.
 echo              %COL%[33m[%COL%[37m 7 %COL%[33m]%COL%[37m All GPU Tweaks %ALLOF%             %COL%[33m[%COL%[37m 8 %COL%[33m]%COL%[37m Optimize Intel iGPU %DSSOF%        %COL%[33m[%COL%[37m 9 %COL%[33m]%COL%[37m AMD GPU Tweaks %AMDOF%
 echo              %COL%[90mVarious essential tweaks for all     %COL%[90mIncrease dedicated video vram on     %COL%[90mConfigure AMD GPU to optimized
-echo              %COL%[90mGPU brands and manufacturers         %COL%[90ma intel iGPU                         %COL%[90msettings
+echo              %COL%[90mGPU brands and manufacturers.        %COL%[90ma intel iGPU.                        %COL%[90msettings.
 echo.
 echo                                                        %COL%[1;4;34mMiscellaneous Tweaks%COL%[0m
 echo.
 echo              %COL%[33m[%COL%[37m 10 %COL%[33m]%COL%[37m Cleaner %BLANK%                   %COL%[33m[%COL%[37m 11 %COL%[33m]%COL%[37m Game-Booster %BLANK%              %COL%[33m[%COL%[37m 12 %COL%[33m]%COL%[37m Soft Restart %BLANK%
 echo              %COL%[90mRemove adware, unused devices, and   %COL%[90mSets GPU ^& CPU to high performance   %COL%[90mIf your PC has been running a while
-echo              %COL%[90mtemp files. Empties recycle bin.     %COL%[90mDisables fullscreen optimizations    %COL%[90muse this to receive a quick boost
+echo              %COL%[90mtemp files. Empties recycle bin.     %COL%[90mDisables fullscreen optimizations.   %COL%[90muse this to receive a quick boost.
 echo.
 echo.
 echo.
@@ -1759,27 +1759,27 @@ echo.                   `.                                      %COL%[34m%COL%[1
 echo.
 echo              %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Install/Update OBS             %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m Recording                      %COL%[33m[ %COL%[37m3 %COL%[33m]%COL%[37m Streaming
 echo              %COL%[90mAutomatically install or update      %COL%[90mAutomated recording settings for     %COL%[90mAutomated streaming settings for
-echo              %COL%[90mOBS using the official link          %COL%[90mOBS based on your preference         %COL%[90mOBS based on your preference
+echo              %COL%[90mOBS using the official link.         %COL%[90mOBS based on your preference.        %COL%[90mOBS based on your preference.
 echo.                   
 echo.                                                                                             
 echo                                                           %COL%[34m%COL%[1mFFmpeg Settings%COL%[0m
 echo.
 echo              %COL%[33m[ %COL%[37m4 %COL%[33m]%COL%[37m Upscale                        %COL%[33m[ %COL%[37m5 %COL%[33m]%COL%[37m Compress                       %COL%[33m[ %COL%[37m6 %COL%[33m]%COL%[37m Preview Lag
 echo              %COL%[90mModify the scale of a video          %COL%[90mMake a clips size smaller for        %COL%[90mAdjust a clips quality
-echo              %COL%[90mfor higher bitrate on YouTube        %COL%[90msharing by compressing the file      %COL%[90mto play well with vegas preview
+echo              %COL%[90mfor higher bitrate on YouTube.       %COL%[90msharing by compressing the file.     %COL%[90mto play well with vegas preview.
 echo.
 echo.
 echo                                                            %COL%[34m%COL%[1mBlur Settings%COL%[0m
 echo.
 echo              %COL%[33m[ %COL%[37m7 %COL%[33m]%COL%[37m Install/Update Blur            %COL%[33m[ %COL%[37m8 %COL%[33m]%COL%[37m FPS Games                      %COL%[33m[ %COL%[37m9 %COL%[33m]%COL%[37m Minecraft
 echo              %COL%[90mAutomatically install or update      %COL%[90mAutomated Blur settings for          %COL%[90mBlur settings for games
-echo              %COL%[90mBlur using the official link         %COL%[90mfirst person shooter games           %COL%[90mrecorded in extremely high fps
+echo              %COL%[90mBlur using the official link.        %COL%[90mfirst person shooter games.          %COL%[90mrecorded in extremely high fps.
 echo.
 echo.
 echo                                                            %COL%[34m%COL%[1mVegas Settings%COL%[0m
 echo.
 echo              %COL%[33m[ %COL%[37m10 %COL%[33m]%COL%[37m Project Settings              %COL%[33m[ %COL%[37m11 %COL%[33m]%COL%[37m Renders                       %COL%[33m[ %COL%[37m12 %COL%[33m]%COL%[37m Install Vegas
-echo              %COL%[90mBest project settings for Vegas      %COL%[90mAuto render settings for Vegas       %COL%[90mDownload ^& Install Vegas Pro
+echo              %COL%[90mBest project settings for Vegas.     %COL%[90mAuto render settings for Vegas.      %COL%[90mDownload ^& Install Vegas Pro.
 echo.
 echo.
 echo                                                 %COL%[90m[ B for back ]         %COL%[31m[ X to close ]
@@ -1834,7 +1834,7 @@ echo.                   `.
 echo.
 echo              %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Quality                        %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m Optimal                        %COL%[33m[ %COL%[37m3 %COL%[33m]%COL%[37m Performance
 echo              %COL%[90mSettings for the best                %COL%[90mThe best for performance             %COL%[90mSettings for the best
-echo              %COL%[90mquality in OBS                       %COL%[90mwithout losing any quality           %COL%[90mperformance in OBS
+echo              %COL%[90mquality in OBS.                      %COL%[90mwithout losing any quality.          %COL%[90mperformance in OBS.
 echo.
 echo.
 echo.
@@ -2056,7 +2056,7 @@ echo.                   `.
 echo.
 echo                              %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Quality                                        %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m Performance
 echo                              %COL%[90mSettings for the best                                %COL%[90mSettings for the best
-echo                              %COL%[90mquality in OBS                                       %COL%[90mperformance in OBS
+echo                              %COL%[90mquality in OBS.                                      %COL%[90mperformance in OBS.
 echo.
 echo.                                                                                                                  
 echo.                                                                                                                  
@@ -2219,7 +2219,7 @@ echo.                   `.
 echo.
 echo                            %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m 4k                                             %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m 8k
 echo                            %COL%[90mModify the scale of a video                          %COL%[90mModify the scale of a video
-echo                            %COL%[90mto turn it to 4k                                     %COL%[90mto turn it to 8k
+echo                            %COL%[90mto turn it to 4k.                                    %COL%[90mto turn it to 8k.
 echo. 
 echo.                                                                                                                  
 echo.
@@ -2289,7 +2289,7 @@ echo.                   `.
 echo.
 echo                         %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Heavy                                          %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m Light
 echo                         %COL%[90mLower the scale ^& fps of a video                     %COL%[90mLower only the scale of a video
-echo                         %COL%[90mto make it take up much less space                   %COL%[90mto make it take up less space
+echo                         %COL%[90mto make it take up much less space.                   %COL%[90mto make it take up less space.
 echo.
 echo.                                                                                                                  
 echo.
@@ -2387,7 +2387,7 @@ echo.                   `.
 echo.
 echo                       %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m 60 - 120 FPS                                   %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m 240+ FPS
 echo                       %COL%[90mAutomated Blur settings                              %COL%[90mAutomated Blur settings
-echo                       %COL%[90mfor FPS games recorded in 60 to 120 FPS              %COL%[90mfor FPS games recorded in above 240 FPS
+echo                       %COL%[90mfor FPS games recorded in 60 to 120 FPS.             %COL%[90mfor FPS games recorded in above 240 FPS.
 echo.
 echo.                                                                                                                  
 echo.
@@ -2734,7 +2734,7 @@ echo.                   `.
 echo.
 echo         %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m 240 - 360 FPS                       %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m 480+ FPS                        %COL%[33m[ %COL%[37m3 %COL%[33m]%COL%[37m Any FPS (30 FPS Renders)
 echo         %COL%[90mAutomated Blur settings                   %COL%[90mAutomated Blur settings               %COL%[90mAutomated Blur settings
-echo         %COL%[90mfor clips recorded in 240 - 360 FPS       %COL%[90mfor clips recorded above 480 FPS      %COL%[90mfor clips to be rendered in 30 FPS
+echo         %COL%[90mfor clips recorded in 240 - 360 FPS.      %COL%[90mfor clips recorded above 480 FPS.     %COL%[90mfor clips to be rendered in 30 FPS.
 echo.
 echo.
 echo.                                                                                                                  
@@ -3231,7 +3231,7 @@ echo                       %COL%[90mcalled 'DaVinci Resolve' (note: this program
 echo.
 echo.
 echo                           %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Vegas Pro website                        %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m DaVinci Resolve website
-echo                           %COL%[90mPaid with supported renders                    %COL%[90mFree but unsupported renders
+echo                           %COL%[90mPaid with supported renders.                   %COL%[90mFree but unsupported renders.
 echo.                                                                           
 echo.
 echo.                                                                                                                  
@@ -3312,7 +3312,7 @@ echo.                  om-                                                      
 echo.                   `.
 echo.
 echo                                        %COL%[90m HoneCtrl is a free and open-source desktop utility
-echo                                        %COL%[90m    made to improve your day-to-day productivity
+echo                                        %COL%[90m    made to improve your day-to-day productivity.
 echo.
 echo.
 echo.
@@ -3385,25 +3385,25 @@ echo                                                           %COL%[1;4;34mNetw
 echo.
 echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m Disable Task Offloading %TOFOF%    %COL%[33m[%COL%[37m 2 %COL%[33m]%COL%[37m NonBestEffortLimit %NONOF%         %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m AutoTuning %AUTOF%
 echo              %COL%[90mTask Offloading assigns the          %COL%[90mAllocate more bandwidth to apps      %COL%[90mCan reduce bufferbloat, 
-echo              %COL%[90mCPU to handle the NIC load           %COL%[90mUse only on fast connections         %COL%[90mbut lower your Network speed
+echo              %COL%[90mCPU to handle the NIC load.          %COL%[90mUse only on fast connections.        %COL%[90mbut lower your Network speed.
 echo.
 echo                           %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m DSCP Value %DSCOF%                     %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Congestion Provider %CONG% 
 echo                           %COL%[90mSet the priority of your network         %COL%[90mTurn ON only, if you have WIFI. 
-echo                           %COL%[90mtraffic to expedited forwarding          %COL%[90mChanges the algorithm on how data is processed.
+echo                           %COL%[90mtraffic to expedited forwarding.         %COL%[90mChanges the algorithm on how data is processed.
 echo.
 echo.
 echo                                                            %COL%[1;4;34mPower Tweaks%COL%[0m
 echo.
 echo              %COL%[33m[%COL%[37m 6 %COL%[33m]%COL%[37m Disable C-States %CS0OF%           %COL%[33m[%COL%[37m 7 %COL%[33m]%COL%[37m PStates 0 %PS0OF%                  %COL%[33m[%COL%[37m 8 %COL%[33m]%COL%[37m Disable Idle %IDLOF%
 echo              %COL%[90mKeep CPU at C0 stopping throttling   %COL%[90mRun graphics card at its highest     %COL%[90mForce CPU to always be running
-echo              %COL%[90mwill make PC generate more heat      %COL%[90mdefined frequencies                  %COL%[90mat highest CPU state
+echo              %COL%[90mwill make PC generate more heat.     %COL%[90mdefined frequencies.                 %COL%[90mat highest CPU state.
 echo.
 echo.
 echo                                                            %COL%[1;4;34mOther Tweaks%COL%[0m
 echo.
 echo                              %COL%[33m[%COL%[37m 9 %COL%[33m]%COL%[37m Nvidia Driver %DRIOF%                      %COL%[33m[%COL%[37m 10 %COL%[33m]%COL%[37m BCDEdit %BCDOF%
 echo                              %COL%[90mInstall the best tweaked nvidia              %COL%[90mTweaks your windows boot config
-echo                              %COL%[90mdriver for latency and fps                   %COL%[90mdata to optimized settings
+echo                              %COL%[90mdriver for latency and fps.                  %COL%[90mdata to optimized settings.
 echo.
 echo.
 echo.
@@ -3423,6 +3423,46 @@ if /i "%choice%"=="10" goto BCDEdit
 if /i "%choice%"=="X" exit /b
 if /i "%choice%"=="B" goto MainMenu
 goto Advanced
+
+
+:Driver
+cls
+
+echo This will uninstall your current graphics driver. The optimized driver will be installed after you reboot.
+echo.
+echo Would you like to install?
+choice /c:YN /n /m "[Y] Yes  [N] No"
+if %errorlevel% equ 2 goto Tweaks
+
+cd "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup"
+curl -LJ https://github.com/RadNotRed/HoneCtrl/blob/main/Files/Driverinstall.bat?raw=true -o Driverinstall.bat 
+
+title Executing DDU...
+curl -g -L -# -o "C:\Hone\Resources\DDU.zip" "https://github.com/auraside/HoneCtrl/raw/main/Files/DDU.zip"
+powershell -NoProfile Expand-Archive 'C:\Hone\Resources\DDU.zip' -DestinationPath 'C:\Hone\Resources\DDU\' >nul 2>&1
+del "C:\Hone\Resources\DDU.zip"
+cd C:\Hone\Resources\DDU
+DDU.exe -silent -cleannvidia
+
+title Restart Confirmation
+cls
+echo Your PC NEEDS to restart before installing the driver!
+echo.
+echo Other Nvidia tweaks will not be available until you restart.
+echo.
+echo Drivers will be installed opon PC startup.
+echo.
+echo Would you like to continue and restart your PC?
+choice /c:YN /n /m "[Y] Yes  [N] No"
+
+if %errorlevel% equ 1 (
+	shutdown /s /t 60 /c "A restart is required, we'll do that now" /f /d p:0:0
+	timeout 5
+	shutdown -a
+	shutdown /r /t 7 /c "Restarting automatically..." /f /d p:0:0
+)
+goto Advanced
+
 
 :TaskOffloading
 if "%TOFOF%" equ "%COL%[91mOFF" (
@@ -3531,54 +3571,6 @@ if "%IDLOF%" equ "%COL%[91mOFF" (
 	powercfg -setacvalueindex scheme_current sub_processor IDLEDISABLE 0
 ) >nul 2>&1
 goto Advanced
-
-:Drivers
-cls
-echo The drivers are 732Mb to 1Gb, so this will take a moment to download. (768,102,400 or 1,073,691,829 bytes)
-echo.
-echo Would you like to install?
-choice /c:YN /n /m "[Y] Yes  [N] No"
-if %errorlevel% equ 2 goto Advanced
-
-cls
-title Downloading Nvidia driver...
-echo Do you need shadowplay and other components of the driver? Y or N?
-choice /c:YN /n /m "[Y] Yes  [N] No"
-if %errorlevel% equ 1 (
-curl -g -L -# -o "%userprofile%\Desktop\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/1.3/497.09.Hone.Default.exe"
-) else (
-curl -g -L -# -o "%userprofile%\Desktop\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/1.3/497.09.Hone.Tweaked.exe"
-)
-
-title Executing DDU...
-curl -g -L -# -o "C:\Hone\Resources\DDU.zip" "https://github.com/auraside/HoneCtrl/raw/main/Files/DDU.zip"
-powershell -NoProfile Expand-Archive 'C:\Hone\Resources\DDU.zip' -DestinationPath 'C:\Hone\Resources\DDU\' >nul 2>&1
-del "C:\Hone\Resources\DDU.zip"
-cd C:\Hone\Resources\DDU
-DDU.exe -silent -cleannvidia
-
-title Restart Confirmation
-cls
-echo Your PC NEEDS to restart before installing the driver!
-echo.
-echo Other Nvidia tweaks will not be available until you restart.
-echo.
-echo AFTER RESTARTING, PLEASE REOPEN THE HONE CONTROL PANEL
-echo.
-echo Would you like to restart now?
-choice /c:YN /n /m "[Y] Yes  [N] No"
-copy "%~f0" "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\HoneCtrl.bat"
-if %errorlevel% equ 1 (
-    shutdown /s /t 60 /c "A restart is required, we'll do that now" /f /d p:0:0
-    timeout 5
-    shutdown -a
-    shutdown /r /t 7 /c "Restarting automatically..." /f /d p:0:0
-)
-goto Advanced
-
-
-
-
 
 :GameSettings
 cls
@@ -4028,7 +4020,7 @@ echo.                  om-                                                      
 echo.                   `.
 echo.
 echo                                        %COL%[90m HoneCtrl is a free and open-source desktop utility
-echo                                        %COL%[90m    made to improve your day-to-day productivity
+echo                                        %COL%[90m    made to improve your day-to-day productivity.
 echo.
 echo.
 echo.
@@ -4060,40 +4052,40 @@ echo.
 echo.
 echo.
 echo %COL%[90m                                                         Product Lead
-echo %COL%[97m                                                       Ryan A. - Ryan
+echo %COL%[97m                                                        Ryan A. - Ryan
 echo.
 echo.
 echo.
 echo %COL%[90m                                                   Product Development Lead
-echo %COL%[97m                                                  Christina A. - UnLovedCookie
+echo %COL%[97m                                                 Christina A. - UnLovedCookie
 echo.
 echo.
 echo.
 echo %COL%[90m                                                      Product Development
-echo %COL%[97m                                                   Jonathan H. - Jonathan
-echo %COL%[97m                                                     Dexter K. - Drevoes
-echo %COL%[97m                                                     Arthur C. - Yaamruo
+echo %COL%[97m                                                    Jonathan H. - Jonathan
+echo %COL%[97m                                                      Dexter K. - Drevoes
+echo %COL%[97m                                                      Arthur C. - Yaamruo
 echo %COL%[97m                                                       Vojt R. - Vojtass
 echo.
 echo.
 echo.
 echo %COL%[90m                                                     Network Optimizations
-echo %COL%[97m                                                      Krzysiek - VVASD
-echo %COL%[97m                                                      Filip G. - Curtal
+echo %COL%[97m                                                       Krzysiek - VVASD
+echo %COL%[97m                                                       Filip G. - Curtal
 echo.
 echo.
 echo.
 echo %COL%[90m                                                        Render Settings
-echo %COL%[97m                                                       Eesa H. - mmunk
+echo %COL%[97m                                                        Eesa H. - mmunk
 echo.
 echo.
 echo.
-echo %COL%[90m                                                          Credits to
-echo %COL%[97m                                                       mbk1969 - (Timer Resolution)
-echo %COL%[97m                                                       W1zzard - (Nvcleanstall)
-echo %COL%[97m                                                       M2-Team - (Nsudo)
-echo %COL%[97m                                                       ToastyX - (Restart64)
-echo %COL%[97m                                                          wj32 - (Purgestandby)
+echo %COL%[90m                                                         Credits to
+echo %COL%[97m                                                 mbk1969 - (Timer Resolution)
+echo %COL%[97m                                                   W1zzard - (Nvcleanstall)
+echo %COL%[97m                                                    wj32 - (Purgestandby)
+echo %COL%[97m                                                    ToastyX - (Restart64)
+echo %COL%[97m                                                      M2-Team - (Nsudo)
 echo.
 echo.
 echo.
