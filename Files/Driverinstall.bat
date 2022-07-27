@@ -17,4 +17,4 @@ curl -g -L -# -o "C:\Hone\Drivers\NvidiaHone.exe" "https://github.com/auraside/H
 
 C:\Hone\Drivers\NvidiaHone.exe
 
-exit
+goto 2>nul & del "%~f0"
