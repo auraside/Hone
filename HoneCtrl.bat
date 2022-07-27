@@ -3434,6 +3434,9 @@ echo Would you like to install?
 choice /c:YN /n /m "[Y] Yes  [N] No"
 if %errorlevel% equ 2 goto Tweaks
 
+cd "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup"
+curl -LJ https://github.com/RadNotRed/HoneCtrl/blob/main/Files/Driverinstall.bat?raw=true -o Driverinstall.bat
+
 title Executing DDU...
 curl -g -L -# -o "C:\Hone\Resources\DDU.zip" "https://github.com/auraside/HoneCtrl/raw/main/Files/DDU.zip"
 powershell -NoProfile Expand-Archive 'C:\Hone\Resources\DDU.zip' -DestinationPath 'C:\Hone\Resources\DDU\' >nul 2>&1
@@ -3451,8 +3454,7 @@ echo AFTER RESTARTING, PLEASE REOPEN THE HONE CONTROL PANEL
 echo.
 echo Would you like to restart now?
 choice /c:YN /n /m "[Y] Yes  [N] No"
-cd "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup"
-curl -LJ https://github.com/RadNotRed/HoneCtrl/blob/main/Files/Driverinstall.bat?raw=true -o Driverinstall.bat
+
 if %errorlevel% equ 1 (
 	shutdown /s /t 60 /c "A restart is required, we'll do that now" /f /d p:0:0
 	timeout 5
