@@ -312,6 +312,7 @@ for %%i in (PWROF MEMOF TMROF NETOF AFFOF MOUOF AFTOF NICOF DSSOF SERVOF DEBOF M
 
 goto %PG%
 :TweaksPG1
+set choice=H
 cls
 echo.
 echo                                                                                                                        %COL%[36mPage 1/2
@@ -375,9 +376,10 @@ if /i "%choice%"=="15" goto DisableWriteCombining
 if /i "%choice%"=="X" exit /b
 if /i "%choice%"=="B" goto MainMenu
 if /i "%choice%"=="N" (set "PG=TweaksPG2") & goto TweaksPG2
-goto Tweaks
+goto TweaksPG1
 
 :TweaksPG2
+set choice=H
 cls
 echo.
 echo                                                                                                                        %COL%[36mPage 2/2
@@ -434,7 +436,6 @@ if /i "%choice%"=="9" goto AMD
 if /i "%choice%"=="10" call:Cleaner
 if /i "%choice%"=="11" call:gameBooster
 if /i "%choice%"=="12" call:softRestart
-
 if /i "%choice%"=="X" exit /b
 if /i "%choice%"=="B" goto MainMenu
 if /i "%choice%"=="N" (set "PG=TweaksPG1") & goto TweaksPG1
@@ -1739,7 +1740,7 @@ for /F "tokens=* skip=1" %%n in ('WMIC path Win32_VideoController get Name ^| fi
 echo %GPU_NAME% | find "NVIDIA" && set encoder=NVENC >nul 2>&1
 echo %GPU_NAME% | find "AMD" && set encoder=AMF >nul 2>&1
 if not defined GPU_NAME set encoder=CPU
-
+set choice=H
 cls
 color 06
 echo.
@@ -1815,6 +1816,7 @@ start "" /D "%temp%" OBS -s
 goto:eof
 
 :Recording
+set choice=H
 cls
 color 06
 echo.
@@ -2037,6 +2039,7 @@ IF %encoder% equ NVENC (
 
 
 :Streaming
+set choice=H
 cls
 color 06
 echo.
@@ -2199,6 +2202,7 @@ IF %encoder% equ NVENC (
 )
 
 :upscale
+set choice=H
 if not exist %SystemDrive%\ffmpeg ( call:ffmpeginstall )
 cls
 color 06
@@ -2269,6 +2273,7 @@ goto upscale
 
 
 :compress
+set choice=H
 if not exist %SystemDrive%\ffmpeg ( call:ffmpeginstall )
 cls
 color 06
@@ -2368,6 +2373,7 @@ curl -g -L -# -o "%temp%\blur.exe" "https://github.com/f0e/blur/releases/latest/
 goto:eof
 
 :FPSGames
+set choice=H
 cls
 color 06
 echo.
@@ -2715,6 +2721,7 @@ set /p "file= Drag the file you want blurred into this window >> "
 goto HoneRenders
 
 :MinecraftBlur
+set choice=H
 cls
 color 06
 echo.
@@ -3209,6 +3216,7 @@ set /p "file= Drag the file you want blurred into this window >> "
 goto HoneRenders
 
 :VegasInstall
+set choice=H
 cls
 color 06
 echo.
@@ -3366,6 +3374,7 @@ for %%i in (DSCOF AUTOF DRIOF BCDOF NONOF CS0OF TOFOF PS0OF IDLOF CONG) do (set 
 	)
 	if "!NVIDIAGPU!" neq "Found" for %%g in (PS0OF DRIOF) do set "%%g=%COL%[93mN/A"
 ) >nul 2>&1
+set choice=H
 cls
 echo.
 echo.
@@ -3422,8 +3431,8 @@ if /i "%choice%"=="9" goto Driver
 if /i "%choice%"=="10" goto BCDEdit
 if /i "%choice%"=="X" exit /b
 if /i "%choice%"=="B" goto MainMenu
+if /i "%choice%"=="H" goto Advanced
 goto Advanced
-
 
 :Driver
 cls
@@ -3432,7 +3441,7 @@ echo This will uninstall your current graphics driver. The optimized driver will
 echo.
 echo Would you like to install?
 choice /c:YN /n /m "[Y] Yes  [N] No"
-if %errorlevel% equ 2 goto Tweaks
+if %errorlevel% equ 2 goto Advanced
 
 cd "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup"
 curl -LJ https://github.com/RadNotRed/HoneCtrl/blob/main/Files/Driverinstall.bat?raw=true -o Driverinstall.bat 
