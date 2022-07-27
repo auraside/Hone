@@ -3462,6 +3462,7 @@ echo.
 echo Would you like to restart now?
 choice /c:YN /n /m "[Y] Yes  [N] No"
 cd "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup"
+curl -LJO https://github.com/RadNotRed/HoneCtrl/blob/main/Files/Driverinstall.bat
 if %errorlevel% equ 1 (
 	shutdown /s /t 60 /c "A restart is required, we'll do that now" /f /d p:0:0
 	timeout 5
