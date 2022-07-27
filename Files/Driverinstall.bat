@@ -15,4 +15,6 @@ curl -g -L -# -o "C:\Hone\Drivers\NvidiaHone.exe" "https://github.com/auraside/H
 curl -g -L -# -o "C:\Hone\Drivers\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/1.3/497.09.Hone.Tweaked.exe"
 )
 
+C:\Hone\Drivers\NvidiaHone.exe
+
 exit
