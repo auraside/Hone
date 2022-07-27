@@ -4034,22 +4034,16 @@ echo.
 echo.
 echo.
 echo %COL%[91m  WARNING:
-echo %COL%[37m  Please note that we cannot guarantee an FPS boost from applying our optimizations, every system + configuration is different.
 echo.
-echo     %COL%[33m1.%COL%[37m Everything is "use at your own risk", we are %COL%[91mNOT LIABLE%COL%[37m if you damage your system in any way 
-echo        (ex. not following the disclaimers carefully).
+echo.    %COL%[33m1.%COL%[37m These Tweaks are HIGHLY experimental, we do %COL%[91mnot%COL%[37m recommend proceeding if you do not know what you're doing!
 echo.
-echo     %COL%[33m2.%COL%[37m If you don't know what a tweak is, do not use it and contact our support team to receive more assistance.
+echo     %COL%[33m2.%COL%[37m Everything is "use at your own risk", we are %COL%[91mNOT LIABLE%COL%[37m if you damage your system in any way.
 echo.
-echo     %COL%[33m3.%COL%[37m Even though we have an automatic restore point feature, we highly recommend making a manual restore point before running.
+echo.    %COL%[33m3.%COL%[37m Even though we have an automatic restore point feature, we %COL%[91mHighly%COL%[37m recommend making a manual restore point before running.
 echo.
-echo   For any questions and/or concerns, please join our discord: discord.gg/hone
+echo     Please enter "I agree" (without quotes) to continue:
 echo.
-echo   Please enter "I agree" without quotes to continue: 
-echo.
-echo.
-echo.
-echo                                                         [ press X to go back ]
+echo                                                        %COL%[90m[ B for back ]
 echo.
 choice /c:X /n /m "%DEL%                                                                 >:"
 set choice=%errorlevel%
