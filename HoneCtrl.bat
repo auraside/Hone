@@ -3435,7 +3435,7 @@ choice /c:YN /n /m "[Y] Yes  [N] No"
 if %errorlevel% equ 2 goto Tweaks
 
 cd "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup"
-curl -LJ https://github.com/RadNotRed/HoneCtrl/blob/main/Files/Driverinstall.bat?raw=true -o Driverinstall.bat
+curl -LJ https://github.com/RadNotRed/HoneCtrl/blob/main/Files/Driverinstall.bat?raw=true -o Driverinstall.bat 
 
 title Executing DDU...
 curl -g -L -# -o "C:\Hone\Resources\DDU.zip" "https://github.com/auraside/HoneCtrl/raw/main/Files/DDU.zip"
@@ -3450,9 +3450,9 @@ echo Your PC NEEDS to restart before installing the driver!
 echo.
 echo Other Nvidia tweaks will not be available until you restart.
 echo.
-echo AFTER RESTARTING, PLEASE REOPEN THE HONE CONTROL PANEL
+echo Drivers will be installed opon PC startup.
 echo.
-echo Would you like to restart now?
+echo Would you like to continue and restart your PC?
 choice /c:YN /n /m "[Y] Yes  [N] No"
 
 if %errorlevel% equ 1 (
