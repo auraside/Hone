@@ -82,8 +82,8 @@ Reg add "HKCU\Software\Hone" /v "Disclaimer" /f >nul 2>&1
 ::Restart Checks
 if exist "%userprofile%\Desktop\NvidiaHone.exe" %userprofile%\Desktop\NvidiaHone.exe >nul 2>&1
 if exist "%userprofile%\Desktop\NvidiaHone.exe" del /Q "%userprofile%\Desktop\NvidiaHone.exe" >nul 2>&1
-if "%~f0" equ "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\HoneCtrl.bat" (
-del /Q "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\HoneCtrl.bat" >nul 2>&1
+if "%~f0" equ "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\Driverinstall.bat" (
+del /Q "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Driverinstall.bat" >nul 2>&1
 )
 
 :CheckForUpdates
@@ -3579,54 +3579,6 @@ if "%IDLOF%" equ "%COL%[91mOFF" (
 	powercfg -setacvalueindex scheme_current sub_processor IDLEDISABLE 0
 ) >nul 2>&1
 goto Advanced
-
-:Drivers
-cls
-echo The drivers are 732Mb to 1Gb, so this will take a moment to download. (768,102,400 or 1,073,691,829 bytes)
-echo.
-echo Would you like to install?
-choice /c:YN /n /m "[Y] Yes  [N] No"
-if %errorlevel% equ 2 goto Advanced
-
-cls
-title Downloading Nvidia driver...
-echo Do you need shadowplay and other components of the driver? Y or N?
-choice /c:YN /n /m "[Y] Yes  [N] No"
-if %errorlevel% equ 1 (
-curl -g -L -# -o "%userprofile%\Desktop\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/1.3/497.09.Hone.Default.exe"
-) else (
-curl -g -L -# -o "%userprofile%\Desktop\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/1.3/497.09.Hone.Tweaked.exe"
-)
-
-title Executing DDU...
-curl -g -L -# -o "C:\Hone\Resources\DDU.zip" "https://github.com/auraside/HoneCtrl/raw/main/Files/DDU.zip"
-powershell -NoProfile Expand-Archive 'C:\Hone\Resources\DDU.zip' -DestinationPath 'C:\Hone\Resources\DDU\' >nul 2>&1
-del "C:\Hone\Resources\DDU.zip"
-cd C:\Hone\Resources\DDU
-DDU.exe -silent -cleannvidia
-
-title Restart Confirmation
-cls
-echo Your PC NEEDS to restart before installing the driver!
-echo.
-echo Other Nvidia tweaks will not be available until you restart.
-echo.
-echo AFTER RESTARTING, PLEASE REOPEN THE HONE CONTROL PANEL
-echo.
-echo Would you like to restart now?
-choice /c:YN /n /m "[Y] Yes  [N] No"
-copy "%~f0" "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\HoneCtrl.bat"
-if %errorlevel% equ 1 (
-    shutdown /s /t 60 /c "A restart is required, we'll do that now" /f /d p:0:0
-    timeout 5
-    shutdown -a
-    shutdown /r /t 7 /c "Restarting automatically..." /f /d p:0:0
-)
-goto Advanced
-
-
-
-
 
 :GameSettings
 cls
