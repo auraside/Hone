@@ -10,9 +10,9 @@ title Downloading Nvidia driver...
 echo Do you need shadowplay and other components of the driver? Y or N?
 choice /c:YN /n /m "[Y] Yes  [N] No"
 if %errorlevel% equ 1 (
-curl -g -L -# -o "C:\Hone\Drivers\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/1.3/497.09.Hone.Default.exe"
+curl -g -L -# -o "C:\Hone\Drivers\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/2.52/Hone.512.95.Default.exe"
 ) else (
-curl -g -L -# -o "C:\Hone\Drivers\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/1.3/497.09.Hone.Tweaked.exe"
+curl -g -L -# -o "C:\Hone\Drivers\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/2.52/Hone.512.95.Tweaked.exe"
 )
 
 C:\Hone\Drivers\NvidiaHone.exe
