@@ -1,4 +1,4 @@
-::    Copyright (C) 2022 Auraside
+::    Copyright (C) 2022 Auraside, Inc.
 ::
 ::    This program is free software: you can redistribute it and/or modify
 ::    it under the terms of the GNU Affero General Public License as published
@@ -35,6 +35,10 @@ Reg add "HKLM\System\CurrentControlSet\Control\CrashControl" /v "DisplayParamete
 
 ::Blank/Color Character
 for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do rem"') do (set "DEL=%%a" & set "COL=%%b")
+
+::Add ANSI escape sequences
+Reg add HKCU\CONSOLE /v VirtualTerminalLevel /t REG_DWORD /d 1 /f >nul 2>&1
+
 
 :Disclaimer
 Reg query "HKCU\Software\Hone" /v "Disclaimer" >nul 2>&1 && goto CheckForUpdates
@@ -87,7 +91,7 @@ del /Q "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Program
 )
 
 :CheckForUpdates
-set local=2.52
+set local=2.53
 set localtwo=%local%
 if exist "%temp%\Updater.bat" DEL /S /Q /F "%temp%\Updater.bat" >nul 2>&1
 curl -g -L -# -o "%temp%\Updater.bat" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/HoneCtrlVer" >nul 2>&1
@@ -675,8 +679,6 @@ if "%TCPOF%" equ "%COL%[91mOFF" (
 	Enable-NetAdapterQos -Name "*";^
 	Disable-NetAdapterPowerManagement -Name "*";^
 	Disable-NetAdapterIPsecOffload -Name "*";^
-	Set-NetIPInterface -RetransmitTimeMs 0 -Forwarding Disabled -EcnMarking Disabled -AdvertiseDefaultRoute Disabled;^
-	Set-NetOffloadGlobalSetting -PacketCoalescingFilter Disabled -Chimney Disabled;^
 	Set-NetTCPSetting -SettingName "*" -MemoryPressureProtection Disabled -InitialCongestionWindow 10 -ErrorAction SilentlyContinue
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v "EnablePMTUDiscovery" /t REG_DWORD /d "1" /f
 	Reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" /v "EnableICMPRedirect" /t REG_DWORD /d "1" /f
@@ -793,35 +795,17 @@ Reg add "%%g" /v "MIMOPowerSaveMode" /t REG_SZ /d "3" /f
 Reg add "%%g" /v "PowerSavingMode" /t REG_SZ /d "0" /f
 Reg add "%%g" /v "EnableGreenEthernet" /t REG_SZ /d "0" /f
 Reg add "%%g" /v "*EEE" /t REG_SZ /d "0" /f
-Reg add "%%g" /v "*IPSecOffloadV1IPv4" /t REG_SZ /d "0" /f
-Reg add "%%g" /v "*IPSecOffloadV2IPv4" /t REG_SZ /d "0" /f
-Reg add "%%g" /v "*IPSecOffloadV2" /t REG_SZ /d "0" /f
-Reg add "%%g" /v "*RscIPv4" /t REG_SZ /d "0" /f
-Reg add "%%g" /v "*RscIPv6" /t REG_SZ /d "0" /f
-Reg add "%%g" /v "*PMNSOffload" /t REG_SZ /d "0" /f
-Reg add "%%g" /v "*PMARPOffload" /t REG_SZ /d "0" /f
-Reg add "%%g" /v "*JumboPacket" /t REG_SZ /d "0" /f
 Reg add "%%g" /v "EnableConnectedPowerGating" /t REG_DWORD /d "0" /f
 Reg add "%%g" /v "EnableDynamicPowerGating" /t REG_SZ /d "0" /f
 Reg add "%%g" /v "EnableSavePowerNow" /t REG_SZ /d "0" /f
-Reg add "%%g" /v "*FlowControl" /t REG_SZ /d "0" /f
+Reg add "%%g" /v "PnPCapabilities" /t REG_SZ /d "24" /f
 Rem more powersaving options
 Reg add "%%g" /v "*NicAutoPowerSaver" /t REG_SZ /d "0" /f
 Reg add "%%g" /v "ULPMode" /t REG_SZ /d "0" /f
 Reg add "%%g" /v "EnablePME" /t REG_SZ /d "0" /f
 Reg add "%%g" /v "AlternateSemaphoreDelay" /t REG_SZ /d "0" /f
 Reg add "%%g" /v "AutoPowerSaveModeEnabled" /t REG_SZ /d "0" /f
-rem RSS
-Reg add "%%g" /v "*NumRssQueues" /t REG_SZ /d "2" /f
-if %NumberOfCores% geq 6 (
-Reg add "%%g" /v "*RssBaseProcNumber" /t REG_SZ /d "4" /f
-Reg add "%%g" /v "*RssMaxProcNumber" /t REG_SZ /d "5" /f
-) else if %NumberOfCores% geq 4 (
-Reg add "%%g" /v "*RssBaseProcNumber" /t REG_SZ /d "2" /f
-Reg add "%%g" /v "*RssMaxProcNumber" /t REG_SZ /d "3" /f
-) else (
-Reg delete "%%g" /v "*RssBaseProcNumber" /f
-Reg delete "%%g" /v "*RssMaxProcNumber" /f
+
 )
 ) >nul 2>&1
 )
@@ -830,66 +814,38 @@ goto Tweaks
 
 :Netsh
 if "%NETOF%" equ "%COL%[91mOFF" (
-	Reg add "HKCU\Software\Hone" /v InternetTweaks /f
-	netsh int tcp set global dca=enabled
-	netsh int tcp set global netdma=enabled
-	netsh interface isatap set state disabled
-	netsh int tcp set global timestamps=disabled
-	netsh int tcp set supplemental Internet congestionprovider=ctcp
-	netsh int tcp set global rss=enabled
-	netsh int tcp set global nonsackrttresiliency=disabled
-	netsh int tcp set global initialRto=2000
-	netsh int udp set global uro=enabled
-	netsh int tcp set supplemental template=custom icw=10
-	netsh interface teredo set state disable
-	netsh int tcp set global hystart=disabled
-	netsh interface tcp set heuristics wsh=enabled
-	netsh int tcp set heuristics forcews=enabled
-	netsh interface ip set interface Ethernet weakhostsend=enabled store=persistent
-	netsh interface ip set interface Ethernet weakhostreceive=enabled store=persistent
-        netsh int tcp set security mpp=disabled profiles=disabled
-        netsh interface ipv6 set global icmpredirects=dis
-        netsh interface ip set interface Ethernet otherstateful=disabled store=persistent
-        netsh interface ip set interface ethernet currenthoplimit=128
-        netsh int ipv4 set subinterface "Ethernet" mtu=1500 store=persistent
-        netsh int ipv4 set subinterface "Ethernet 2" mtu=1500 store=persistent
-        netsh int ipv4 set dynamicportrange protocol=tcp startport=1025 numberofports=64510 store=persistent
-        netsh interface ip set global mediasenseeventlog=disabled
-        netsh int ip set global sourceroutingbehavior=drop
-        netsh int ip set global neighborcachelimit=4096
-        netsh int ip set global routecachelimit=4096
-        netsh int ipv4 set dynamicport udp start=1025 num=64511
+    Reg add "HKCU\Software\Hone" /v InternetTweaks /f
+    netsh int tcp set global dca=enabled
+    netsh int tcp set global netdma=enabled
+    netsh interface isatap set state disabled
+    netsh int tcp set global timestamps=disabled
+    netsh int tcp set supplemental Internet congestionprovider=ctcp
+    netsh int tcp set global rss=enabled
+    netsh int tcp set global nonsackrttresiliency=disabled
+    netsh int tcp set global initialRto=2000
+    netsh int udp set global uro=enabled
+    netsh int tcp set supplemental template=custom icw=10
+    netsh interface teredo set state disable
+    netsh int tcp set global hystart=disabled
+    netsh interface tcp set heuristics wsh=enabled
+    netsh int tcp set heuristics forcews=enabled
+    
+netsh interface ip set interface ethernet currenthoplimit=64
 ) >nul 2>&1 else (
-	Reg delete "HKCU\Software\Hone" /v InternetTweaks /f
-	netsh int tcp set supplemental Internet congestionprovider=default
-	netsh int tcp set global initialRto=3000
-	netsh int tcp set global rss=default
-	netsh int tcp set global chimney=default
-	netsh int tcp set global dca=default
-	netsh int tcp set global netdma=default
-	netsh int tcp set global ecncapability=default
-	netsh int tcp set global timestamps=default
-	netsh int tcp set global nonsackrttresiliency=default
-	netsh interface teredo set state default
-	netsh int udp set global uro=dis
-	netsh int tcp set global hystart=enabled
-	netsh interface isatap set state default
-	netsh interface tcp set heuristics wsh=default
-	netsh int tcp set heuristics forcews=default
-	netsh interface ip set interface Ethernet weakhostsend=disabled store=persistent
-	netsh interface ip set interface Ethernet weakhostreceive=disabled store=persistent
-        netsh int tcp set security mpp=default
-        netsh interface ipv6 set global icmpredirects=en
-        netsh interface ip set interface Ethernet otherstateful=en store=persistent
-        netsh interface ip set interface ethernet currenthoplimit=64
-        netsh int ipv4 set subinterface "Ethernet" mtu=1500 store=persistent
-        netsh int ipv4 set subinterface "Ethernet 2" mtu=1500 store=persistent
-        netsh int ipv4 set dynamicportrange protocol=tcp startport=49152 numberofports=16384 store=persistent
-        netsh interface ip set global mediasenseeventlog=en
-        netsh int ip set global sourceroutingbehavior=dontforward
-        netsh int ip set global neighborcachelimit=256
-        netsh int ip set global routecachelimit=128
-        netsh int ipv4 set dynamicport udp start=49152 num=16384
+    Reg delete "HKCU\Software\Hone" /v InternetTweaks /f
+    netsh int tcp set supplemental Internet congestionprovider=default
+    netsh int tcp set global initialRto=3000
+    netsh int tcp set global rss=default
+    netsh int tcp set global chimney=default
+    netsh int tcp set global dca=default
+    netsh int tcp set global netdma=default
+    netsh int tcp set global ecncapability=default
+    netsh int tcp set global timestamps=default
+    netsh int tcp set global nonsackrttresiliency=default
+    netsh int tcp set global hystart=enabled
+    netsh interface isatap set state default
+    netsh interface tcp set heuristics wsh=default
+    netsh interface ip set interface ethernet currenthoplimit=128
 ) >nul 2>&1
 goto Tweaks
 
@@ -1733,9 +1689,12 @@ Reg add "HKLM\SYSTEM\CurrentControlSet\Services\MMCSS" /v "Start" /t Reg_DWORD /
 :HoneRenders
 ::Detect encoder for obs, blur, and ffmpeg settings
 for /F "tokens=* skip=1" %%n in ('WMIC path Win32_VideoController get Name ^| findstr "."') do set GPU_NAME=%%n
-echo %GPU_NAME% | find "NVIDIA" && set encoder=NVENC >nul 2>&1
-echo %GPU_NAME% | find "AMD" && set encoder=AMF >nul 2>&1
-if not defined GPU_NAME set encoder=CPU
+echo %GPU_NAME% | find "NVIDIA" && set encoder=NVENC 
+echo %GPU_NAME% | find "AMD" && set encoder=AMF 
+if not defined encoder set encoder=CPU
+echo %encoder%
+
+pause
 
 cls
 color 06
@@ -1773,11 +1732,11 @@ echo              %COL%[90mAutomatically install or update      %COL%[90mAutomat
 echo              %COL%[90mBlur using the official link         %COL%[90mfirst person shooter games           %COL%[90mrecorded in extremely high fps
 echo.
 echo.
-echo                                                            %COL%[34m%COL%[1mVegas Settings%COL%[0m
+echo                                                            %COL%[34m%COL%[1mVideo Editor Settings%COL%[0m
 echo.
-echo              %COL%[33m[ %COL%[37m10 %COL%[33m]%COL%[37m Project Settings              %COL%[33m[ %COL%[37m11 %COL%[33m]%COL%[37m Renders                       %COL%[33m[ %COL%[37m12 %COL%[33m]%COL%[37m Install Vegas
-echo              %COL%[90mBest project settings for Vegas      %COL%[90mAuto render settings for Vegas       %COL%[90mDownload ^& Install Vegas Pro
-echo.
+echo              %COL%[33m[ %COL%[37m10 %COL%[33m]%COL%[37m Install A Video Editor (NLE)  %COL%[33m[ %COL%[37m11 %COL%[33m]%COL%[37m Project Settings              %COL%[33m[ %COL%[37m12 %COL%[33m]%COL%[37m Renders
+echo              %COL%[90mDownload ^& install a		  %COL%[90mAutomated Project settings	       %COL%[90mAutomated render settings 
+echo		     %COL%[90mNon-Linear editing software	  %COL%[90mfor Vegas pro                        %COL%[90mfor Vegas pro
 echo.
 echo                                                 %COL%[90m[ B for back ]         %COL%[31m[ X to close ]
 echo.
@@ -1791,9 +1750,9 @@ if /i "%choice%"=="6" goto PreviewLag
 if /i "%choice%"=="7" call:Blurinstall
 if /i "%choice%"=="8" goto FPSGames
 if /i "%choice%"=="9" goto MinecraftBlur
-if /i "%choice%"=="10" goto ProjectSettings
-if /i "%choice%"=="11" goto RenderSettings
-if /i "%choice%"=="12" goto VegasInstall
+if /i "%choice%"=="10" goto NLEInstall
+if /i "%choice%"=="11" goto ProjectSettings
+if /i "%choice%"=="12" goto RenderSettings
 if /i "%choice%"=="B" goto MainMenu
 if /i "%choice%"=="X" exit /b
 goto HoneRenders
@@ -2252,7 +2211,7 @@ goto upscale
 cls
 set /p "file= Drag the file you want upscaled into this window >> "
 IF %encoder% equ NVENC (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high-preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\4k.mp4" -y
+%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\4k.mp4" -y
 ) else (
 %SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\4k.mp4" 
 )
@@ -2322,7 +2281,7 @@ goto compress
 cls
 set /p "file= Drag the file you want upscaled into this window >> "
 IF %encoder% equ NVENC (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_nvenc -profile:v high-preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4" -y
+%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4" -y
 ) else (
 %SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4" 
 )
@@ -2332,7 +2291,7 @@ goto compress
 cls
 set /p "file= Drag the file you want upscaled into this window >> "
 IF %encoder% equ NVENC (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high-preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4" -y
+%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4" -y
 ) else (
 %SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4" 
 )
@@ -2343,7 +2302,7 @@ if not exist %SystemDrive%\ffmpeg ( call:ffmpeginstall )
 cls
 set /p "file= Drag the file you want to use in vegas (remember you need to replace it with the original file afterwards) >> "
 IF %encoder% equ NVENC (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=1920:1080:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high-preset fast -qmin 24 -qmax 24 "%SystemDrive%\users\%username%\desktop\previewlag.mp4" -y
+%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=1920:1080:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -qmin 24 -qmax 24 "%SystemDrive%\users\%username%\desktop\previewlag.mp4" -y
 ) else (
 %SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=1920:1080:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 24 -qmax 24 "%SystemDrive%\users\%username%\desktop\previewlag.mp4"
 )
@@ -3205,7 +3164,7 @@ set /p "file= Drag the file you want blurred into this window >> "
 "%SystemDrive%\program files (x86)\blur\blur.exe" -i %file% -c "%SystemDrive%\users\%username%\Documents\HoneAnyFPS.cfg" -n -p -v
 goto HoneRenders
 
-:VegasInstall
+:NLEInstall
 cls
 color 06
 echo.
@@ -3255,9 +3214,10 @@ if /i "%choice%"=="1" start https://www.vegascreativesoftware.com/us/vegas-pro/
 if /i "%choice%"=="2" start https://www.blackmagicdesign.com/products/davinciresolve
 if /i "%choice%"=="B" goto HoneRenders
 if /i "%choice%"=="X" exit /b
-goto VegasInstall
+goto NLEInstall
 
 :ProjectSettings
+
 cls
 if exist "%SystemDrive%\Program Files\VEGAS\VEGAS Pro 17.0" (
 curl -g -k -L -# -o "%temp%\project.reg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Settings/ProjectProperties17.reg"
@@ -3271,9 +3231,16 @@ Reg query "HKCU\SOFTWARE\Sony Creative Software\VEGAS Pro\18.0\Metrics\Applicati
 ) else if exist "%SystemDrive%\Program Files\VEGAS\VEGAS Pro 18.0" (
 curl -g -k -L -# -o "%temp%\project.reg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Settings/ProjectProperties18.reg"
 Reg query "HKCU\SOFTWARE\Sony Creative Software\VEGAS Pro\18.0\Metrics\Application" >nul 2>&1 || start Vegas180.exe >nul 2>&1
-) else echo Sony Vegas Pro 17-18 isn't installed... & pause & goto HoneRenders
+) else if exist "%SystemDrive%\Program Files\VEGAS\VEGAS Pro 19.0" (
+curl -g -k -L -# -o "%temp%\project.reg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Settings/ProjectProperties18.reg"
+Reg query "HKCU\SOFTWARE\Sony Creative Software\VEGAS Pro\19.0\Metrics\Application" >nul 2>&1 || start Vegas190.exe >nul 2>&1
+) else if exist "%SystemDrive%\Program Files\VEGAS\VEGAS Pro 19" (
+curl -g -k -L -# -o "%temp%\project.reg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Settings/ProjectProperties18.reg"
+Reg query "HKCU\SOFTWARE\Sony Creative Software\VEGAS Pro\19.0\Metrics\Application" >nul 2>&1 || start Vegas190.exe >nul 2>&1
+) else echo Vegas Pro 17-19 isn't installed... & pause & goto HoneRenders
 taskkill /f /im Vegas170.exe >nul 2>&1
 taskkill /f /im Vegas180.exe >nul 2>&1
+taskkill /f /im Vegas190.exe >nul 2>&1
 curl -g -k -L -# -o "%temp%\Hone.veg" "https://github.com/auraside/HoneCtrl/raw/main/Files/Settings/Hone.veg"
 Reg import "%temp%\project.reg" >nul 2>&1
 start "" /D "%temp%" Hone.veg
@@ -3283,9 +3250,11 @@ goto HoneRenders
 cls
 if not exist "%SystemDrive%\Program Files\VEGAS\VEGAS Pro 17.0" ^
 if not exist "%SystemDrive%\Program Files\VEGAS\VEGAS Pro 18.0" ^
-echo Sony Vegas Pro 17-18 isn't installed... & pause & goto HoneRenders
+if not exist "%SystemDrive%\Program Files\VEGAS\VEGAS Pro 19.0" ^
+echo Vegas Pro 17-19 isn't installed... & pause & goto HoneRenders
 taskkill /f /im Vegas170.exe >nul 2>&1
 taskkill /f /im Vegas180.exe >nul 2>&1
+taskkill /f /im Vegas190.exe >nul 2>&1
 mkdir "%appdata%\VEGAS\Render Templates\avc" >nul 2>&1
 curl -g -k -L -# -o "%appdata%\VEGAS\Render Templates\avc\Hone.sft2" "https://cdn.discordapp.com/attachments/934698794933702666/987166340714471514/Hone.sft2"
 goto HoneRenders
@@ -4020,7 +3989,7 @@ goto More
 :About
 cls
 echo About
-echo Owned by AuraSide Inc. Copyright Claimed.
+echo Owned by AuraSide, Inc. Copyright Claimed.
 echo This is a GUI for the Hone Manual Tweaks.
 echo.
 call :ColorText 8 "                                                      [ press X to go back ]"
@@ -4094,7 +4063,7 @@ echo %COL%[90m                                                      Product Deve
 echo %COL%[97m                                                   Jonathan H. - Jonathan
 echo %COL%[97m                                                     Dexter K. - Drevoes
 echo %COL%[97m                                                     Arthur C. - Yaamruo
-echo %COL%[97m                                                       Vojt R. - Vojtass
+echo %COL%[97m                                                     Valeria D. - Melody
 echo.
 echo.
 echo.
