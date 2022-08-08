@@ -1692,7 +1692,7 @@ for /F "tokens=* skip=1" %%n in ('WMIC path Win32_VideoController get Name ^| fi
 echo %GPU_NAME% | find "NVIDIA" && set encoder=NVENC 
 echo %GPU_NAME% | find "AMD" && set encoder=AMF 
 if not defined encoder set encoder=CPU
-echo %encoder%
+
 
 pause
 
