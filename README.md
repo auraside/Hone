@@ -124,7 +124,7 @@ Even though we have an automatic restore point feature some users have issues wi
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-HoneCtrl can be used on any PC running windows 7-11.
+HoneCtrl can be used on any PC running windows 10 and above.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
