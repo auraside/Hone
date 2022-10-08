@@ -129,7 +129,7 @@ set firstlaunch=1
 if "%firstlaunch%" equ "0" (goto MainMenu)
 
 ::Restore Point
-powershell -ExecutionPolicy Unrestricted -NoProfile Enable-ComputerRestore -Drive 'C:\', 'D:\', 'E:\', 'F:\', 'G:\' >nul 2>&1
+powershell -ExecutionPolicy Unrestricted -NoProfile Enable-ComputerRestore -Drive "$env:SystemDrive\" >nul 2>&1
 powershell -ExecutionPolicy Unrestricted -NoProfile Checkpoint-Computer -Description 'Hone Restore Point' >nul 2>&1
 
 ::HKCU & HKLM backup
