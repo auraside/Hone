@@ -30,7 +30,7 @@ cd C:\Hone
 reg add HKLM /F >nul 2>&1
 if %errorlevel% neq 0 start "" /wait /I /min powershell -NoProfile -Command start -verb runas "'%~s0'" && exit /b
 
-::Show Detailed BSoD 
+::Show Detailed BSoD
 reg add "HKLM\System\CurrentControlSet\Control\CrashControl" /v "DisplayParameters" /t REG_DWORD /d "1" /f >nul 2>&1
 
 ::Blank/Color Character
@@ -55,7 +55,7 @@ echo.
 echo %COL%[91m  WARNING:
 echo %COL%[37m  Please note that we cannot guarantee an FPS boost from applying our optimizations, every system + configuration is different.
 echo.
-echo     %COL%[33m1.%COL%[37m Everything is "use at your own risk", we are %COL%[91mNOT LIABLE%COL%[37m if you damage your system in any way 
+echo     %COL%[33m1.%COL%[37m Everything is "use at your own risk", we are %COL%[91mNOT LIABLE%COL%[37m if you damage your system in any way
 echo        (ex. not following the disclaimers carefully).
 echo.
 echo     %COL%[33m2.%COL%[37m If you don't know what a tweak is, do not use it and contact our support team to receive more assistance.
@@ -64,7 +64,7 @@ echo     %COL%[33m3.%COL%[37m Even though we have an automatic restore point fea
 echo.
 echo   For any questions and/or concerns, please join our discord: discord.gg/hone
 echo.
-echo   Please enter "I agree" without quotes to continue: 
+echo   Please enter "I agree" without quotes to continue:
 echo.
 echo.
 echo.
@@ -76,7 +76,7 @@ reg add "HKCU\Software\Hone" /v "Disclaimer" /f >nul 2>&1
 if exist "%userprofile%\Desktop\NvidiaHone.exe" %userprofile%\Desktop\NvidiaHone.exe >nul 2>&1
 if exist "%userprofile%\Desktop\NvidiaHone.exe" del /Q "%userprofile%\Desktop\NvidiaHone.exe" >nul 2>&1
 if "%~f0" == "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\Driverinstall.bat" (
-del /Q "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Driverinstall.bat" >nul 2>&1
+	del /Q "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\Driverinstall.bat" >nul 2>&1
 )
 
 :CheckForUpdates
@@ -140,7 +140,7 @@ call :HoneTitle
 echo.
 echo                                        %COL%[90m HoneCtrl is a free and open-source desktop utility
 echo                                        %COL%[90m    made to improve your day-to-day productivity
-echo. 
+echo.
 echo.
 echo.
 echo.
@@ -157,13 +157,13 @@ echo.
 echo.
 echo.
 echo                                               %COL%[33m[%COL%[37m 6 %COL%[33m]%COL%[37m Advanced           %COL%[33m[%COL%[37m 7 %COL%[33m]%COL%[37m More
-echo. 
 echo.
 echo.
 echo.
 echo.
 echo.
-echo                                                            %COL%[31m[ X to close ]%COL%[37m  
+echo.
+echo                                                            %COL%[31m[ X to close ]%COL%[37m
 echo.
 %SystemRoot%\System32\choice.exe /c:1234567XD /n /m "%DEL%                                        Select a corresponding number to the options above > "
 set choice=%errorlevel%
@@ -180,9 +180,9 @@ goto MainMenu
 
 :HoneTitle
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -205,7 +205,7 @@ echo.
 echo.
 echo.
 echo.
-echo                                  %COL%[31m This feature has not been finished yet but will be coming soon.  
+echo                                  %COL%[31m This feature has not been finished yet but will be coming soon.
 echo.
 echo.
 echo.
@@ -224,12 +224,12 @@ for %%i in (PWROF MEMOF TMROF NETOF AFFOF MOUOF AFTOF NICOF DSSOF SERVOF DEBOF M
 (
 	::MSI Mode
 	for /f %%g in ('wmic path win32_VideoController get PNPDeviceID ^| findstr /L "VEN_"') do (
-	    reg query "HKLM\SYSTEM\CurrentControlSet\Enum\%%g\Device Parameters\Interrupt Management\MessageSignaledInterruptProperties" /v "MSISupported" | find "0x1" || set "MSIOF=%COL%[91mOFF"
-	    reg query "HKLM\System\CurrentControlSet\Enum\%%g\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePriority" && set "MSIOF=%COL%[91mOFF"
+		reg query "HKLM\SYSTEM\CurrentControlSet\Enum\%%g\Device Parameters\Interrupt Management\MessageSignaledInterruptProperties" /v "MSISupported" | find "0x1" || set "MSIOF=%COL%[91mOFF"
+		reg query "HKLM\System\CurrentControlSet\Enum\%%g\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePriority" && set "MSIOF=%COL%[91mOFF"
 	)
 	for /f %%i in ('wmic path Win32_NetworkAdapter get PNPDeviceID ^| findstr /L "VEN_"') do (
-	    reg query "HKLM\SYSTEM\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\MessageSignaledInterruptProperties" /v "MSISupported" | find "0x1" || set "MSIOF=%COL%[91mOFF"
-	    reg query "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePriority" && set "MSIOF=%COL%[91mOFF"
+		reg query "HKLM\SYSTEM\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\MessageSignaledInterruptProperties" /v "MSISupported" | find "0x1" || set "MSIOF=%COL%[91mOFF"
+		reg query "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePriority" && set "MSIOF=%COL%[91mOFF"
 	)
 	::Services Optimization
 	for /f "tokens=2 delims==" %%i in ('wmic os get TotalVisibleMemorySize /value') do (set /a mem=%%i + 1024000)
@@ -422,7 +422,7 @@ echo.
 echo.                                                     	  %COL%[1;4;31mAdvanced Tweaks%COL%[0m
 echo.
 echo.			 			     %COL%[33m[%COL%[37m Press A to go to page %COL%[33m]
-echo.	
+echo.
 echo.
 echo.
 echo.
@@ -497,9 +497,9 @@ if "%BCDOF%" == "%COL%[91mOFF" (
 	::Windows 8 Boot (windows 8.1)
 	for /f "tokens=4-9 delims=. " %%i in ('ver') do set winversion=%%i.%%j
 	if "!winversion!" == "6.3.9600" (
-    	bcdedit /set {globalsettings} custom:16000067 true
-    	bcdedit /set {globalsettings} custom:16000069 true
-    	bcdedit /set {globalsettings} custom:16000068 true
+		bcdedit /set {globalsettings} custom:16000067 true
+		bcdedit /set {globalsettings} custom:16000069 true
+		bcdedit /set {globalsettings} custom:16000068 true
 	)
 	::nx
 	echo %PROCESSOR_IDENTIFIER% ^| find "Intel" >nul && bcdedit /set nx optout || bcdedit /set nx alwaysoff
@@ -538,9 +538,9 @@ if "%BCDOF%" == "%COL%[91mOFF" (
 	::Windows 8 Boot Stuff (windows 8.1)
 	for /f "tokens=4-9 delims=. " %%i in ('ver') do set winversion=%%i.%%j
 	if "!winversion!" == "6.3.9600" (
-    	bcdedit /set {globalsettings} custom:16000067 false
-    	bcdedit /set {globalsettings} custom:16000069 false
-    	bcdedit /set {globalsettings} custom:16000068 false
+		bcdedit /set {globalsettings} custom:16000067 false
+		bcdedit /set {globalsettings} custom:16000069 false
+		bcdedit /set {globalsettings} custom:16000068 false
 	)
 	::nx
 	bcdedit /set nx optin
@@ -585,7 +585,7 @@ if "%TMROF%" == "%COL%[91mOFF" (
 )
 goto tweaks
 
-rem DEPRICATED
+:: DEPRECATED
 :KBoost
 if "%KBOOF%" == "%COL%[91mOFF" (
 	for /f %%i in ('reg query "HKLM\System\ControlSet001\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HKEY"') do (
@@ -658,9 +658,9 @@ if "%TCPOF%" == "%COL%[91mOFF" (
 		reg add "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "TcpAckFrequency" /t Reg_DWORD /d "1" /f
 		reg add "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "TcpDelAckTicks" /t Reg_DWORD /d "0" /f
 		reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "TcpInitialRTT" /d "300" /t REG_DWORD /f
-        reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "UseZeroBroadcast" /d "0" /t REG_DWORD /f
-        reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "DeadGWDetectDefault" /d "1" /t REG_DWORD /f
-	) 
+		reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "UseZeroBroadcast" /d "0" /t REG_DWORD /f
+		reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "DeadGWDetectDefault" /d "1" /t REG_DWORD /f
+	)
 ) >nul 2>&1 else (
 	reg delete "HKCU\Software\Hone" /v "TCPIP" /f
 	powershell -NoProfile -NonInteractive -Command ^
@@ -693,8 +693,8 @@ if "%TCPOF%" == "%COL%[91mOFF" (
 		reg delete "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "TcpAckFrequency" /f
 		reg delete "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "TcpDelAckTicks" /f
 		reg delete "HKLM\System\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "TcpInitialRTT" /f
-        reg delete "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "UseZeroBroadcast" /f
-        reg delete "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "DeadGWDetectDefault" /f
+		reg delete "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "UseZeroBroadcast" /f
+		reg delete "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "DeadGWDetectDefault" /f
 	)
 ) >nul 2>&1
 start /B cmd /c "ipconfig /release & ipconfig /renew" >nul 2>&1
@@ -709,108 +709,108 @@ if "%NICOF%" neq "%COL%[91mOFF" (
 )
 for /f "tokens=*" %%f in ('wmic cpu get NumberOfCores /value ^| find "="') do set %%f
 for /f "tokens=3*" %%a in ('reg query "HKLM\Software\Microsoft\Windows NT\CurrentVersion\NetworkCards" /k /v /f "Description" /s /e ^| findstr /ri "REG_SZ"') do (
-    for /f %%g in ('reg query "HKLM\System\CurrentControlSet\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}" /s /f "%%b" /d ^| findstr /C:"HKEY"') do (
-        reg export "%%g" "%SystemDrive%\Hone\HoneRevert\ognic.reg" /y
-        reg add "%%g" /v "MIMOPowerSaveMode" /t REG_SZ /d "3" /f
-        reg add "%%g" /v "PowerSavingMode" /t REG_SZ /d "0" /f
-        reg add "%%g" /v "EnableGreenEthernet" /t REG_SZ /d "0" /f
-        reg add "%%g" /v "*EEE" /t REG_SZ /d "0" /f
-        reg add "%%g" /v "EnableConnectedPowerGating" /t REG_DWORD /d "0" /f
-        reg add "%%g" /v "EnableDynamicPowerGating" /t REG_SZ /d "0" /f
-        reg add "%%g" /v "EnableSavePowerNow" /t REG_SZ /d "0" /f
-        reg add "%%g" /v "PnPCapabilities" /t REG_SZ /d "24" /f
-        Rem more powersaving options
-        reg add "%%g" /v "*NicAutoPowerSaver" /t REG_SZ /d "0" /f
-        reg add "%%g" /v "ULPMode" /t REG_SZ /d "0" /f
-        reg add "%%g" /v "EnablePME" /t REG_SZ /d "0" /f
-        reg add "%%g" /v "AlternateSemaphoreDelay" /t REG_SZ /d "0" /f
-        reg add "%%g" /v "AutoPowerSaveModeEnabled" /t REG_SZ /d "0" /f
-    )
+	for /f %%g in ('reg query "HKLM\System\CurrentControlSet\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}" /s /f "%%b" /d ^| findstr /C:"HKEY"') do (
+		reg export "%%g" "%SystemDrive%\Hone\HoneRevert\ognic.reg" /y
+		reg add "%%g" /v "MIMOPowerSaveMode" /t REG_SZ /d "3" /f
+		reg add "%%g" /v "PowerSavingMode" /t REG_SZ /d "0" /f
+		reg add "%%g" /v "EnableGreenEthernet" /t REG_SZ /d "0" /f
+		reg add "%%g" /v "*EEE" /t REG_SZ /d "0" /f
+		reg add "%%g" /v "EnableConnectedPowerGating" /t REG_DWORD /d "0" /f
+		reg add "%%g" /v "EnableDynamicPowerGating" /t REG_SZ /d "0" /f
+		reg add "%%g" /v "EnableSavePowerNow" /t REG_SZ /d "0" /f
+		reg add "%%g" /v "PnPCapabilities" /t REG_SZ /d "24" /f
+		Rem more powersaving options
+		reg add "%%g" /v "*NicAutoPowerSaver" /t REG_SZ /d "0" /f
+		reg add "%%g" /v "ULPMode" /t REG_SZ /d "0" /f
+		reg add "%%g" /v "EnablePME" /t REG_SZ /d "0" /f
+		reg add "%%g" /v "AlternateSemaphoreDelay" /t REG_SZ /d "0" /f
+		reg add "%%g" /v "AutoPowerSaveModeEnabled" /t REG_SZ /d "0" /f
+	)
 ) >nul 2>&1
 start /B cmd /c "ipconfig /release & ipconfig /renew" >nul 2>&1
 goto Tweaks
 
 :Netsh
 if "%NETOF%" == "%COL%[91mOFF" (
-    reg add "HKCU\Software\Hone" /v InternetTweaks /f
-    netsh int tcp set global dca=enabled
-    netsh int tcp set global netdma=enabled
-    netsh interface isatap set state disabled
-    netsh int tcp set global timestamps=disabled
-    netsh int tcp set supplemental Internet congestionprovider=ctcp
-    netsh int tcp set global rss=enabled
-    netsh int tcp set global nonsackrttresiliency=disabled
-    netsh int tcp set global initialRto=2000
-    netsh int udp set global uro=enabled
-    netsh int tcp set supplemental template=custom icw=10
-    netsh interface teredo set state disable
-    netsh int tcp set global hystart=disabled
+	reg add "HKCU\Software\Hone" /v InternetTweaks /f
+	netsh int tcp set global dca=enabled
+	netsh int tcp set global netdma=enabled
+	netsh interface isatap set state disabled
+	netsh int tcp set global timestamps=disabled
+	netsh int tcp set supplemental Internet congestionprovider=ctcp
+	netsh int tcp set global rss=enabled
+	netsh int tcp set global nonsackrttresiliency=disabled
+	netsh int tcp set global initialRto=2000
+	netsh int udp set global uro=enabled
+	netsh int tcp set supplemental template=custom icw=10
+	netsh interface teredo set state disable
+	netsh int tcp set global hystart=disabled
 
-    
+
 netsh interface ip set interface ethernet currenthoplimit=64
 ) >nul 2>&1 else (
-    reg delete "HKCU\Software\Hone" /v InternetTweaks /f
-    netsh int tcp set supplemental Internet congestionprovider=default
-    netsh int tcp set global initialRto=3000
-    netsh int tcp set global rss=default
-    netsh int tcp set global chimney=default
-    netsh int tcp set global dca=default
-    netsh int tcp set global netdma=default
-    netsh int tcp set global ecncapability=default
-    netsh int tcp set global timestamps=default
-    netsh int tcp set global nonsackrttresiliency=default
-    netsh int tcp set global hystart=enabled
-    netsh interface isatap set state default
-    netsh interface ip set interface ethernet currenthoplimit=128
+	reg delete "HKCU\Software\Hone" /v InternetTweaks /f
+	netsh int tcp set supplemental Internet congestionprovider=default
+	netsh int tcp set global initialRto=3000
+	netsh int tcp set global rss=default
+	netsh int tcp set global chimney=default
+	netsh int tcp set global dca=default
+	netsh int tcp set global netdma=default
+	netsh int tcp set global ecncapability=default
+	netsh int tcp set global timestamps=default
+	netsh int tcp set global nonsackrttresiliency=default
+	netsh int tcp set global hystart=enabled
+	netsh interface isatap set state default
+	netsh interface ip set interface ethernet currenthoplimit=128
 ) >nul 2>&1
 goto Tweaks
 
 :AllGPUTweaks
 if "%ALLOF%" == "%COL%[91mOFF" (
-    cls
-    reg add "HKCU\Software\Hone" /v "AllGPUTweaks" /f
-    ::Enable Hardware Accelerated Scheduling
-    reg query "HKLM\System\CurrentControlSet\Control\GraphicsDrivers" /v "HwSchMode" && reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers" /v "HwSchMode" /t Reg_DWORD /d "2" /f
-    ::Enable gdi hardware acceleration
-    for /f %%a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Class" /v "VgaCompatible" /s ^| findstr "HKEY"') do reg add "%%a" /v "KMD_EnableGDIAcceleration" /t Reg_DWORD /d "1" /f
-    ::Enable GameMode
-    reg add "HKCU\Software\Microsoft\GameBar" /v "AllowAutoGameMode" /t Reg_DWORD /d "1" /f
-    reg add "HKCU\Software\Microsoft\GameBar" /v "AutoGameModeEnabled" /t Reg_DWORD /d "1" /f
-    ::FSO
-    reg add "HKCU\System\GameConfigStore" /v "GameDVR_Enabled" /t REG_DWORD /d "0" /f
-    reg add "HKCU\System\GameConfigStore" /v "GameDVR_FSEBehaviorMode" /t REG_DWORD /d "2" /f
-    reg add "HKCU\System\GameConfigStore" /v "GameDVR_FSEBehavior" /t REG_DWORD /d "2" /f
-    reg add "HKCU\System\GameConfigStore" /v "GameDVR_HonorUserFSEBehaviorMode" /t REG_DWORD /d "1" /f
-    reg add "HKCU\System\GameConfigStore" /v "GameDVR_DXGIHonorFSEWindowsCompatible" /t REG_DWORD /d "1" /f
-    reg add "HKCU\System\GameConfigStore" /v "GameDVR_EFSEFeatureFlags" /t REG_DWORD /d "0" /f
-    reg add "HKCU\System\GameConfigStore" /v "GameDVR_DSEBehavior" /t REG_DWORD /d "2" /f
-    ::Disable GpuEnergyDrv
-    reg add "HKLM\SYSTEM\CurrentControlSet\Services\GpuEnergyDrv" /v "Start" /t Reg_DWORD /d "4" /f
-    reg add "HKLM\SYSTEM\CurrentControlSet\Services\GpuEnergyDr" /v "Start" /t Reg_DWORD /d "4" /f
-    ::Disable Preemption
-    reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "EnablePreemption" /t Reg_DWORD /d "0" /f
-    )>nul 2>&1 else (
-    reg delete "HKCU\Software\Hone" /v "AllGPUTweaks" /f
-    ::Enable Hardware Accelerated Scheduling
-    reg query "HKLM\System\CurrentControlSet\Control\GraphicsDrivers" /v "HwSchMode" && reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers" /v "HwSchMode" /t Reg_DWORD /d "1" /f
-    ::Disable gdi hardware acceleration
-    for /f %%a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Class" /v "VgaCompatible" /s ^| findstr "HKEY"') do reg delete "%%a" /v "KMD_EnableGDIAcceleration" /f
-    ::Enable GameMode
-    reg add "HKCU\Software\Microsoft\GameBar" /v "AllowAutoGameMode" /t Reg_DWORD /d "1" /f
-    reg add "HKCU\Software\Microsoft\GameBar" /v "AutoGameModeEnabled" /t Reg_DWORD /d "1" /f
-    ::FSO
-    reg delete "HKCU\System\GameConfigStore" /v "GameDVR_Enabled" /f
-    reg delete "HKCU\System\GameConfigStore" /v "GameDVR_FSEBehaviorMode" /f
-    reg delete "HKCU\System\GameConfigStore" /v "GameDVR_FSEBehavior" /f
-    reg delete "HKCU\System\GameConfigStore" /v "GameDVR_HonorUserFSEBehaviorMode" /f
-    reg delete "HKCU\System\GameConfigStore" /v "GameDVR_DXGIHonorFSEWindowsCompatible" /f
-    reg delete "HKCU\System\GameConfigStore" /v "GameDVR_EFSEFeatureFlags" /f
-    reg delete "HKCU\System\GameConfigStore" /v "GameDVR_DSEBehavior" /f
-    ::Disable GpuEnergyDrv
-    reg add "HKLM\SYSTEM\CurrentControlSet\Services\GpuEnergyDrv" /v "Start" /t Reg_DWORD /d "2" /f
-    reg add "HKLM\SYSTEM\CurrentControlSet\Services\GpuEnergyDr" /v "Start" /t Reg_DWORD /d "2" /f
-    ::Disable Preemption
-    reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "EnablePreemption" /t Reg_DWORD /d "1" /f
+	cls
+	reg add "HKCU\Software\Hone" /v "AllGPUTweaks" /f
+	::Enable Hardware Accelerated Scheduling
+	reg query "HKLM\System\CurrentControlSet\Control\GraphicsDrivers" /v "HwSchMode" && reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers" /v "HwSchMode" /t Reg_DWORD /d "2" /f
+	::Enable gdi hardware acceleration
+	for /f %%a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Class" /v "VgaCompatible" /s ^| findstr "HKEY"') do reg add "%%a" /v "KMD_EnableGDIAcceleration" /t Reg_DWORD /d "1" /f
+	::Enable GameMode
+	reg add "HKCU\Software\Microsoft\GameBar" /v "AllowAutoGameMode" /t Reg_DWORD /d "1" /f
+	reg add "HKCU\Software\Microsoft\GameBar" /v "AutoGameModeEnabled" /t Reg_DWORD /d "1" /f
+	::FSO
+	reg add "HKCU\System\GameConfigStore" /v "GameDVR_Enabled" /t REG_DWORD /d "0" /f
+	reg add "HKCU\System\GameConfigStore" /v "GameDVR_FSEBehaviorMode" /t REG_DWORD /d "2" /f
+	reg add "HKCU\System\GameConfigStore" /v "GameDVR_FSEBehavior" /t REG_DWORD /d "2" /f
+	reg add "HKCU\System\GameConfigStore" /v "GameDVR_HonorUserFSEBehaviorMode" /t REG_DWORD /d "1" /f
+	reg add "HKCU\System\GameConfigStore" /v "GameDVR_DXGIHonorFSEWindowsCompatible" /t REG_DWORD /d "1" /f
+	reg add "HKCU\System\GameConfigStore" /v "GameDVR_EFSEFeatureFlags" /t REG_DWORD /d "0" /f
+	reg add "HKCU\System\GameConfigStore" /v "GameDVR_DSEBehavior" /t REG_DWORD /d "2" /f
+	::Disable GpuEnergyDrv
+	reg add "HKLM\SYSTEM\CurrentControlSet\Services\GpuEnergyDrv" /v "Start" /t Reg_DWORD /d "4" /f
+	reg add "HKLM\SYSTEM\CurrentControlSet\Services\GpuEnergyDr" /v "Start" /t Reg_DWORD /d "4" /f
+	::Disable Preemption
+	reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "EnablePreemption" /t Reg_DWORD /d "0" /f
+	)>nul 2>&1 else (
+	reg delete "HKCU\Software\Hone" /v "AllGPUTweaks" /f
+	::Enable Hardware Accelerated Scheduling
+	reg query "HKLM\System\CurrentControlSet\Control\GraphicsDrivers" /v "HwSchMode" && reg add "HKLM\System\CurrentControlSet\Control\GraphicsDrivers" /v "HwSchMode" /t Reg_DWORD /d "1" /f
+	::Disable gdi hardware acceleration
+	for /f %%a in ('reg query "HKLM\SYSTEM\CurrentControlSet\Control\Class" /v "VgaCompatible" /s ^| findstr "HKEY"') do reg delete "%%a" /v "KMD_EnableGDIAcceleration" /f
+	::Enable GameMode
+	reg add "HKCU\Software\Microsoft\GameBar" /v "AllowAutoGameMode" /t Reg_DWORD /d "1" /f
+	reg add "HKCU\Software\Microsoft\GameBar" /v "AutoGameModeEnabled" /t Reg_DWORD /d "1" /f
+	::FSO
+	reg delete "HKCU\System\GameConfigStore" /v "GameDVR_Enabled" /f
+	reg delete "HKCU\System\GameConfigStore" /v "GameDVR_FSEBehaviorMode" /f
+	reg delete "HKCU\System\GameConfigStore" /v "GameDVR_FSEBehavior" /f
+	reg delete "HKCU\System\GameConfigStore" /v "GameDVR_HonorUserFSEBehaviorMode" /f
+	reg delete "HKCU\System\GameConfigStore" /v "GameDVR_DXGIHonorFSEWindowsCompatible" /f
+	reg delete "HKCU\System\GameConfigStore" /v "GameDVR_EFSEFeatureFlags" /f
+	reg delete "HKCU\System\GameConfigStore" /v "GameDVR_DSEBehavior" /f
+	::Disable GpuEnergyDrv
+	reg add "HKLM\SYSTEM\CurrentControlSet\Services\GpuEnergyDrv" /v "Start" /t Reg_DWORD /d "2" /f
+	reg add "HKLM\SYSTEM\CurrentControlSet\Services\GpuEnergyDr" /v "Start" /t Reg_DWORD /d "2" /f
+	::Disable Preemption
+	reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers\Scheduler" /v "EnablePreemption" /t Reg_DWORD /d "1" /f
 )>nul 2>&1
 goto Tweaks
 
@@ -871,167 +871,167 @@ goto Tweaks
 
 :Debloat
 if "%DEBOF%" == "%COL%[91mOFF" (
-    reg add "HKCU\Software\Hone" /v DebloatTweaks /f
-	schtasks /Change /TN "Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser" /Disable 
-	reg add "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\AutoLogger-Diagtrack-Listener" /v "Start" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Visibility" /v "DiagnosticErrorText" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Strings" /v "DiagnosticErrorText" /t REG_SZ /d "" /f  
-	reg add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Strings" /v "DiagnosticLinkText" /t REG_SZ /d "" /f  
-	reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\PhishingFilter" /v "EnabledV9" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\TabletPC" /v "PreventHandwritingDataSharing" /t REG_DWORD /d "1" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\HandwritingErrorReports" /v "PreventHandwritingErrorReports" /t REG_DWORD /d "1" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppCompat" /v "DisableInventory" /t REG_DWORD /d "1" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppCompat" /v "DisableUAR" /t REG_DWORD /d "1" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "NoLockScreenCamera" /t REG_DWORD /d "1" /f  
-	reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" /v "Enabled" /t REG_DWORD /d "0" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo" /v "Enabled" /t REG_DWORD /d "0" /f  
-	reg add "HKCU\Software\Microsoft\Input\TIPC" /v "Enabled" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\System" /v "AllowExperimentation" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\Bluetooth" /v "AllowAdvertising" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Microsoft\SQMClient\Windows" /v "CEIPEnable" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Messaging" /v "AllowMessageSync" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Biometrics" /v "Enabled" /t REG_DWORD /d "0" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications" /v "ToastEnabled" /t REG_DWORD /d "0" /f  
-	reg add "HKCU\Control Panel\International\User Profile" /v "HttpAcceptLanguageOptOut" /t REG_DWORD /d "1" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\AppHost" /v "EnableWebContentEvaluation" /t REG_DWORD /d "0" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{C1D23ACC-752B-43E5-8448-8D0E519CD6D6}" /v "Value" /t REG_SZ /d "Deny" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "Start_TrackProgs" /t REG_DWORD /d "0" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowSyncProviderNotifications" /t REG_DWORD /d "0" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{2297E4E2-5DBE-466D-A12B-0F8286F0D9CA}" /v "Value" /t REG_SZ /d "Deny" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{E5323777-F976-4f5b-9B55-B94699C46E44}" /v "Value" /t REG_SZ /d "Deny" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{2EEF81BE-33FA-4800-9670-1CD474972C3F}" /v "Value" /t REG_SZ /d "Deny" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{52079E78-A92B-413F-B213-E8FE35712E72}" /v "Value" /t REG_SZ /d "Deny" /f   
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{7D7E8402-7C54-4821-A34E-AEEFD62DED93}" /v "Value" /t REG_SZ /d "Deny" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{D89823BA-7180-4B81-B50C-7E471E6121A3}" /v "Value" /t REG_SZ /d "Deny" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{8BC668CF-7728-45BD-93F8-CF2B3B41D7AB}" /v "Value" /t REG_SZ /d "Deny" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{9231CB4C-BF57-4AF3-8C55-FDA7BFCC04C5}" /v "Value" /t REG_SZ /d "Deny" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{E390DF20-07DF-446D-B962-F5C953062741}" /v "Value" /t REG_SZ /d "Deny" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{992AFA70-6F47-4148-B3E9-3003349C1548}" /v "Value" /t REG_SZ /d "Deny" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v "GlobalUserDisabled" /t REG_DWORD /d "1" /f  
-	reg add "HKLM\SYSTEM\CurrentControlSet\Services\DiagTrack" /v "Start" /t REG_DWORD /d "4" /f  
-	reg add "HKLM\SYSTEM\CurrentControlSet\Services\dmwappushservice" /v "Start" /t REG_DWORD /d "4" /f  
-	reg add "HKLM\SYSTEM\CurrentControlSet\Control\WMI\Autologger\AutoLogger-Diagtrack-Listener" /v "Start" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\WMDRM" /v "DisableOnline" /t REG_DWORD /d "1" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{A8804298-2D5F-42E3-9531-9C8C39EB29CE}" /v "Value" /t REG_SZ /d "Deny" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\LooselyCoupled" /v "Value" /t REG_SZ /d "Deny" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\CredUI" /v "DisablePasswordReveal" /t REG_DWORD /d "1" /f  
-	reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main" /v "DoNotTrack" /t REG_DWORD /d "1" /f  
-	reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main" /v "OptimizeWindowsSearchResultsForScreenReaders" /t REG_DWORD /d "0" /f  
-	reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\FlipAhead" /v "FPEnabled" /t REG_DWORD /d "0" /f   
-	reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\User\Default\SearchScopes" /v "ShowSearchSuggestionsGlobal" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\Browser" /v "AllowAddressBarDropdown" /t REG_DWORD /d "0" /f  
-	reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Privacy" /v "EnableEncryptedMediaExtensions" /t REG_DWORD /d "0" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync" /v "SyncPolicy" /t REG_DWORD /d "5" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Personalization" /v "Enabled" /t REG_DWORD /d "0" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\BrowserSettings" /v "Enabled" /t REG_DWORD /d "0" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Credentials" /v "Enabled" /t REG_DWORD /d "0" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Language" /v "Enabled" /t REG_DWORD /d "0" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Accessibility" /v "Enabled" /t REG_DWORD /d "0" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Windows" /v "Enabled" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCloudSearch" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "ConnectedSearchUseWeb" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "DisableWebSearch" /t REG_DWORD /d "1" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowSearchToUseLocation" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCortana" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Microsoft\Speech_OneCore\Preferences" /v "ModelDownloadAllowed" /t REG_DWORD /d "0" /f  
-	reg add "HKCU\Software\Microsoft\InputPersonalization\TrainedDataStore" /v "HarvestContacts" /t REG_DWORD /d "0" /f  
-	reg add "HKCU\Software\Microsoft\InputPersonalization" /v "RestrictImplicitTextCollection" /t REG_DWORD /d "1" /f  
-	reg add "HKCU\Software\Microsoft\InputPersonalization" /v "RestrictImplicitInkCollection" /t REG_DWORD /d "1" /f  
-	reg add "HKCU\Software\Microsoft\Personalization\Settings" /v "AcceptedPrivacyPolicy" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors" /v "DisableWindowsLocationProvider" /t REG_DWORD /d "1" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors" /v "DisableLocationScripting" /t REG_DWORD /d "1" /f  
-	reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\Sensor\Permissions\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}" /v "SensorPermissionState" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "AllowTelemetry" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "DoNotShowFeedbackNotifications" /t REG_DWORD /d "1" /f  
-	reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" /v "AllowTelemetry" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization" /v "DODownloadMode" /t REG_DWORD /d "0" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeliveryOptimization" /v "SystemSettingsDownloadMode" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Speech" /v "AllowSpeechModelUpdate" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpgrade" /t REG_DWORD /d "1" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpgradePeriod" /t REG_DWORD /d "1" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpdatePeriod" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Metadata" /v "PreventDeviceMetadataFromNetwork" /t REG_DWORD /d "1" /f  	
-	reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsStore\WindowsUpdate" /v "AutoDownload" /t REG_DWORD /d "2" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "NoAutoUpdate" /t REG_DWORD /d "1" /f  
-	reg add "HKLM\SYSTEM\CurrentControlSet\Services\wuauserv" /v "Start" /t REG_DWORD /d "3" /f  
-	reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Services\7971f918-a847-4430-9279-4a52d1efe18d" /v "RegisteredWithAU" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Microsoft\OneDrive" /v "PreventNetworkTrafficPreUserSignIn" /t REG_DWORD /d "1" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" /v "SpyNetReporting" /t REG_DWORD /d "0" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" /v "SubmitSamplesConsent" /t REG_DWORD /d "2" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\MRT" /v "DontReportInfectionInformation" /t REG_DWORD /d "1" /f  
-	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /v "DisableAntiSpyware" /t REG_DWORD /d "1" /f  
-	reg add "HKCU\Software\Microsoft\Siuf\Rules" /v "NumberOfSIUFInPeriod" /t REG_DWORD /d "0" /f  
-	reg add "HKCU\Software\Microsoft\Siuf\Rules" /v "PeriodInNanoSeconds" /t REG_DWORD /d "0" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" /v "BingSearchEnabled" /t REG_DWORD /d "0" /f  
-	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SilentInstalledAppsEnabled" /t REG_DWORD /d "0" /f  
+	reg add "HKCU\Software\Hone" /v DebloatTweaks /f
+	schtasks /Change /TN "Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser" /Disable
+	reg add "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\AutoLogger-Diagtrack-Listener" /v "Start" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Visibility" /v "DiagnosticErrorText" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Strings" /v "DiagnosticErrorText" /t REG_SZ /d "" /f
+	reg add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Strings" /v "DiagnosticLinkText" /t REG_SZ /d "" /f
+	reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\PhishingFilter" /v "EnabledV9" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\TabletPC" /v "PreventHandwritingDataSharing" /t REG_DWORD /d "1" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\HandwritingErrorReports" /v "PreventHandwritingErrorReports" /t REG_DWORD /d "1" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppCompat" /v "DisableInventory" /t REG_DWORD /d "1" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppCompat" /v "DisableUAR" /t REG_DWORD /d "1" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "NoLockScreenCamera" /t REG_DWORD /d "1" /f
+	reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" /v "Enabled" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo" /v "Enabled" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Software\Microsoft\Input\TIPC" /v "Enabled" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\System" /v "AllowExperimentation" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\Bluetooth" /v "AllowAdvertising" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Microsoft\SQMClient\Windows" /v "CEIPEnable" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Messaging" /v "AllowMessageSync" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Biometrics" /v "Enabled" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications" /v "ToastEnabled" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Control Panel\International\User Profile" /v "HttpAcceptLanguageOptOut" /t REG_DWORD /d "1" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\AppHost" /v "EnableWebContentEvaluation" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{C1D23ACC-752B-43E5-8448-8D0E519CD6D6}" /v "Value" /t REG_SZ /d "Deny" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "Start_TrackProgs" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowSyncProviderNotifications" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{2297E4E2-5DBE-466D-A12B-0F8286F0D9CA}" /v "Value" /t REG_SZ /d "Deny" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{E5323777-F976-4f5b-9B55-B94699C46E44}" /v "Value" /t REG_SZ /d "Deny" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{2EEF81BE-33FA-4800-9670-1CD474972C3F}" /v "Value" /t REG_SZ /d "Deny" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{52079E78-A92B-413F-B213-E8FE35712E72}" /v "Value" /t REG_SZ /d "Deny" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{7D7E8402-7C54-4821-A34E-AEEFD62DED93}" /v "Value" /t REG_SZ /d "Deny" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{D89823BA-7180-4B81-B50C-7E471E6121A3}" /v "Value" /t REG_SZ /d "Deny" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{8BC668CF-7728-45BD-93F8-CF2B3B41D7AB}" /v "Value" /t REG_SZ /d "Deny" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{9231CB4C-BF57-4AF3-8C55-FDA7BFCC04C5}" /v "Value" /t REG_SZ /d "Deny" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{E390DF20-07DF-446D-B962-F5C953062741}" /v "Value" /t REG_SZ /d "Deny" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{992AFA70-6F47-4148-B3E9-3003349C1548}" /v "Value" /t REG_SZ /d "Deny" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v "GlobalUserDisabled" /t REG_DWORD /d "1" /f
+	reg add "HKLM\SYSTEM\CurrentControlSet\Services\DiagTrack" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKLM\SYSTEM\CurrentControlSet\Services\dmwappushservice" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKLM\SYSTEM\CurrentControlSet\Control\WMI\Autologger\AutoLogger-Diagtrack-Listener" /v "Start" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\WMDRM" /v "DisableOnline" /t REG_DWORD /d "1" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{A8804298-2D5F-42E3-9531-9C8C39EB29CE}" /v "Value" /t REG_SZ /d "Deny" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\LooselyCoupled" /v "Value" /t REG_SZ /d "Deny" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\CredUI" /v "DisablePasswordReveal" /t REG_DWORD /d "1" /f
+	reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main" /v "DoNotTrack" /t REG_DWORD /d "1" /f
+	reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main" /v "OptimizeWindowsSearchResultsForScreenReaders" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\FlipAhead" /v "FPEnabled" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\User\Default\SearchScopes" /v "ShowSearchSuggestionsGlobal" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\Browser" /v "AllowAddressBarDropdown" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Privacy" /v "EnableEncryptedMediaExtensions" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync" /v "SyncPolicy" /t REG_DWORD /d "5" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Personalization" /v "Enabled" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\BrowserSettings" /v "Enabled" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Credentials" /v "Enabled" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Language" /v "Enabled" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Accessibility" /v "Enabled" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Windows" /v "Enabled" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCloudSearch" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "ConnectedSearchUseWeb" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "DisableWebSearch" /t REG_DWORD /d "1" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowSearchToUseLocation" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCortana" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Microsoft\Speech_OneCore\Preferences" /v "ModelDownloadAllowed" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Software\Microsoft\InputPersonalization\TrainedDataStore" /v "HarvestContacts" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Software\Microsoft\InputPersonalization" /v "RestrictImplicitTextCollection" /t REG_DWORD /d "1" /f
+	reg add "HKCU\Software\Microsoft\InputPersonalization" /v "RestrictImplicitInkCollection" /t REG_DWORD /d "1" /f
+	reg add "HKCU\Software\Microsoft\Personalization\Settings" /v "AcceptedPrivacyPolicy" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors" /v "DisableWindowsLocationProvider" /t REG_DWORD /d "1" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors" /v "DisableLocationScripting" /t REG_DWORD /d "1" /f
+	reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\Sensor\Permissions\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}" /v "SensorPermissionState" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "AllowTelemetry" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "DoNotShowFeedbackNotifications" /t REG_DWORD /d "1" /f
+	reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" /v "AllowTelemetry" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization" /v "DODownloadMode" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeliveryOptimization" /v "SystemSettingsDownloadMode" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Speech" /v "AllowSpeechModelUpdate" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpgrade" /t REG_DWORD /d "1" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpgradePeriod" /t REG_DWORD /d "1" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpdatePeriod" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Metadata" /v "PreventDeviceMetadataFromNetwork" /t REG_DWORD /d "1" /f  
+	reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsStore\WindowsUpdate" /v "AutoDownload" /t REG_DWORD /d "2" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "NoAutoUpdate" /t REG_DWORD /d "1" /f
+	reg add "HKLM\SYSTEM\CurrentControlSet\Services\wuauserv" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Services\7971f918-a847-4430-9279-4a52d1efe18d" /v "RegisteredWithAU" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Microsoft\OneDrive" /v "PreventNetworkTrafficPreUserSignIn" /t REG_DWORD /d "1" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" /v "SpyNetReporting" /t REG_DWORD /d "0" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" /v "SubmitSamplesConsent" /t REG_DWORD /d "2" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\MRT" /v "DontReportInfectionInformation" /t REG_DWORD /d "1" /f
+	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /v "DisableAntiSpyware" /t REG_DWORD /d "1" /f
+	reg add "HKCU\Software\Microsoft\Siuf\Rules" /v "NumberOfSIUFInPeriod" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Software\Microsoft\Siuf\Rules" /v "PeriodInNanoSeconds" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" /v "BingSearchEnabled" /t REG_DWORD /d "0" /f
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SilentInstalledAppsEnabled" /t REG_DWORD /d "0" /f
 	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SoftLandingEnabled" /t REG_DWORD /d "0" /f
 )>nul 2>&1 else (
-    reg delete "HKCU\Software\Hone" /v DebloatTweaks /f
-    schtasks /Change /TN "Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser" /Enable >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "Allow Telemetry" /f >nul 2>&1
-    reg delete "HKLM\SYSTEM\CurrentControlSet\Control\WMI\Autologger\AutoLogger-Diagtrack-Listener" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Visibility" /v "DiagnosticErrorText" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Strings" /f >nul 2>&1
-    reg delete "HKCU\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\TabletPC" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\HandwritingErrorReports" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppCompat" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\Bluetooth" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\System" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\Messaging" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Policies\Microsoft\Biometrics" /f >nul 2>&1
-    reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications" /v "ToastEnabled" /f >nul 2>&1
-    reg delete "HKCU\Control Panel\International\User Profile" /v "HttpAcceptLanguageOptOut" /f >nul 2>&1
-    reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\AppHost" /v "EnableWebContentEvaluation" /f >nul 2>&1
-    reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowSyncProviderNotifications" /f >nul 2>&1
-    reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v "GlobalUserDisabled" /f >nul 2>&1
-    reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync" /v "SyncPolicy" /f >nul 2>&1
-    reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess" /f >nul 2>&1
-    reg delete "HKLM\SYSTEM\CurrentControlSet\Control\WMI\Autologger\AutoLogger-Diagtrack-Listener" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Policies\Microsoft\WMDRM" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\CredUI" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\Browser" /f >nul 2>&1
-    reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\BrowserSettings" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Microsoft\Speech_OneCore\Preferences" /v "ModelDownloadAllowed" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors" /f >nul 2>&1
-    reg delete "HKCU\Software\Microsoft\Windows NT\CurrentVersion\Sensor" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "AllowTelemetry" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "DoNotShowFeedbackNotifications" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization" /f >nul 2>&1
-    reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\DeliveryOptimization" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Policies\Microsoft\Speech" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsStore" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Microsoft\OneDrive" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /f >nul 2>&1
-    reg delete "HKLM\SOFTWARE\Policies\Microsoft\MRT" /f >nul 2>&1
-    reg delete "HKCU\Software\Microsoft\Siuf" /f >nul 2>&1
-    reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" /v "BingSearchEnabled" /f >nul 2>&1
-    reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SilentInstalledAppsEnabled" /t REG_DWORD /d "1" /f >nul 2>&1
-    reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SoftLandingEnabled" /t REG_DWORD /d "1" /f >nul 2>&1
-    reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" /v "Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
-    reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo" /v "Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
-    reg add "HKCU\Software\Microsoft\Input\TIPC" /v "Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
-    reg add "HKLM\SYSTEM\CurrentControlSet\Services\wuauserv" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
-    reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Services\7971f918-a847-4430-9279-4a52d1efe18d" /v "RegisteredWithAU" /t REG_DWORD /d "0" /f >nul 2>&1
-    reg add "HKCU\Software\Microsoft\Personalization\Settings" /v "AcceptedPrivacyPolicy" /t REG_DWORD /d "1" /f >nul 2>&1
-    reg add "HKCU\Software\Microsoft\InputPersonalization" /v "RestrictImplicitTextCollection" /t REG_DWORD /d "0" /f >nul 2>&1
-    reg add "HKCU\Software\Microsoft\InputPersonalization" /v "RestrictImplicitInkCollection" /t REG_DWORD /d "0" /f >nul 2>&1
-    reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Metadata" /v "PreventDeviceMetadataFromNetwork" /t REG_DWORD /d "0" /f >nul 2>&1
-    reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" /v "AllowTelemetry" /t REG_DWORD /d "1" /f >nul 2>&1
-    reg add "HKLM\SOFTWARE\Microsoft\SQMClient\Windows" /v "CEIPEnable" /t REG_DWORD /d "0" /f >nul 2>&1
-    reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "Start_TrackProgs" /t REG_DWORD /d "0" /f >nul 2>&1
-    reg add "HKCU\Software\Microsoft\InputPersonalization\TrainedDataStore" /v "HarvestContacts" /t REG_DWORD /d "1" /f >nul 2>&1
-    reg add "HKLM\SYSTEM\CurrentControlSet\Services\dmwappushservice" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
-    reg add "HKLM\SYSTEM\CurrentControlSet\Services\DiagTrack" /v "Start" /t REG_DWORD /d "2" /f >nul 2>&1
-    reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Credentials" /v "Enabled" /t REG_DWORD /d "1" /f >nul 2>&1
-    reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Language" /v "Enabled" /t REG_DWORD /d "1" /f >nul 2>&1
-    reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Accessibility" /v "Enabled" /t REG_DWORD /d "1" /f >nul 2>&1
-    reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Windows" /v "Enabled" /t REG_DWORD /d "1" /f >nul 2>&1
-    reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Personalization" /v "Enabled" /t REG_DWORD /d "1" /f  
+	reg delete "HKCU\Software\Hone" /v DebloatTweaks /f
+	schtasks /Change /TN "Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser" /Enable >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "Allow Telemetry" /f >nul 2>&1
+	reg delete "HKLM\SYSTEM\CurrentControlSet\Control\WMI\Autologger\AutoLogger-Diagtrack-Listener" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Visibility" /v "DiagnosticErrorText" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Strings" /f >nul 2>&1
+	reg delete "HKCU\SOFTWARE\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\TabletPC" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\HandwritingErrorReports" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppCompat" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\Bluetooth" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\System" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\Messaging" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Policies\Microsoft\Biometrics" /f >nul 2>&1
+	reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications" /v "ToastEnabled" /f >nul 2>&1
+	reg delete "HKCU\Control Panel\International\User Profile" /v "HttpAcceptLanguageOptOut" /f >nul 2>&1
+	reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\AppHost" /v "EnableWebContentEvaluation" /f >nul 2>&1
+	reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowSyncProviderNotifications" /f >nul 2>&1
+	reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v "GlobalUserDisabled" /f >nul 2>&1
+	reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync" /v "SyncPolicy" /f >nul 2>&1
+	reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess" /f >nul 2>&1
+	reg delete "HKLM\SYSTEM\CurrentControlSet\Control\WMI\Autologger\AutoLogger-Diagtrack-Listener" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Policies\Microsoft\WMDRM" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\CredUI" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\Browser" /f >nul 2>&1
+	reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\BrowserSettings" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Microsoft\Speech_OneCore\Preferences" /v "ModelDownloadAllowed" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors" /f >nul 2>&1
+	reg delete "HKCU\Software\Microsoft\Windows NT\CurrentVersion\Sensor" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "AllowTelemetry" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "DoNotShowFeedbackNotifications" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization" /f >nul 2>&1
+	reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\DeliveryOptimization" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Policies\Microsoft\Speech" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsStore" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Microsoft\OneDrive" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /f >nul 2>&1
+	reg delete "HKLM\SOFTWARE\Policies\Microsoft\MRT" /f >nul 2>&1
+	reg delete "HKCU\Software\Microsoft\Siuf" /f >nul 2>&1
+	reg delete "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" /v "BingSearchEnabled" /f >nul 2>&1
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SilentInstalledAppsEnabled" /t REG_DWORD /d "1" /f >nul 2>&1
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SoftLandingEnabled" /t REG_DWORD /d "1" /f >nul 2>&1
+	reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" /v "Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo" /v "Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
+	reg add "HKCU\Software\Microsoft\Input\TIPC" /v "Enabled" /t REG_DWORD /d "0" /f >nul 2>&1
+	reg add "HKLM\SYSTEM\CurrentControlSet\Services\wuauserv" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
+	reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Services\7971f918-a847-4430-9279-4a52d1efe18d" /v "RegisteredWithAU" /t REG_DWORD /d "0" /f >nul 2>&1
+	reg add "HKCU\Software\Microsoft\Personalization\Settings" /v "AcceptedPrivacyPolicy" /t REG_DWORD /d "1" /f >nul 2>&1
+	reg add "HKCU\Software\Microsoft\InputPersonalization" /v "RestrictImplicitTextCollection" /t REG_DWORD /d "0" /f >nul 2>&1
+	reg add "HKCU\Software\Microsoft\InputPersonalization" /v "RestrictImplicitInkCollection" /t REG_DWORD /d "0" /f >nul 2>&1
+	reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Metadata" /v "PreventDeviceMetadataFromNetwork" /t REG_DWORD /d "0" /f >nul 2>&1
+	reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" /v "AllowTelemetry" /t REG_DWORD /d "1" /f >nul 2>&1
+	reg add "HKLM\SOFTWARE\Microsoft\SQMClient\Windows" /v "CEIPEnable" /t REG_DWORD /d "0" /f >nul 2>&1
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "Start_TrackProgs" /t REG_DWORD /d "0" /f >nul 2>&1
+	reg add "HKCU\Software\Microsoft\InputPersonalization\TrainedDataStore" /v "HarvestContacts" /t REG_DWORD /d "1" /f >nul 2>&1
+	reg add "HKLM\SYSTEM\CurrentControlSet\Services\dmwappushservice" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
+	reg add "HKLM\SYSTEM\CurrentControlSet\Services\DiagTrack" /v "Start" /t REG_DWORD /d "2" /f >nul 2>&1
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Credentials" /v "Enabled" /t REG_DWORD /d "1" /f >nul 2>&1
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Language" /v "Enabled" /t REG_DWORD /d "1" /f >nul 2>&1
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Accessibility" /v "Enabled" /t REG_DWORD /d "1" /f >nul 2>&1
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Windows" /v "Enabled" /t REG_DWORD /d "1" /f >nul 2>&1
+	reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Personalization" /v "Enabled" /t REG_DWORD /d "1" /f
 ) >nul 2>&1
 goto Tweaks
 
@@ -1043,9 +1043,9 @@ if "%MITOF%" == "%COL%[91mOFF" (
 	::Disable SEHOP
 	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\kernel" /v "DisableExceptionChainValidation" /t Reg_DWORD /d "1" /f
 	::Disable Spectre And Meltdown
-    reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "FeatureSettings" /t REG_DWORD /d "1" /f
-    reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "FeatureSettingsOverride" /t REG_DWORD /d "3" /f
-    reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "FeatureSettingsOverrideMask" /t REG_DWORD /d "3" /f
+	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "FeatureSettings" /t REG_DWORD /d "1" /f
+	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "FeatureSettingsOverride" /t REG_DWORD /d "3" /f
+	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "FeatureSettingsOverrideMask" /t REG_DWORD /d "3" /f
 	cd %temp%
 	if not exist "%temp%\NSudo.exe" curl -g -L -# -o "%temp%\NSudo.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/NSudo.exe"
 	NSudo -U:S -ShowWindowMode:Hide -wait cmd /c "reg add "HKLM\SYSTEM\CurrentControlSet\Services\TrustedInstaller" /v "Start" /t Reg_DWORD /d "3" /f"
@@ -1057,10 +1057,10 @@ if "%MITOF%" == "%COL%[91mOFF" (
 	::Disable NTFS/ReFS and FS Mitigations
 	reg add "HKLM\System\CurrentControlSet\Control\Session Manager" /v "ProtectionMode" /t Reg_DWORD /d "0" /f
 	::Disable System Mitigations
-    for /f "tokens=3 skip=2" %%i in ('reg query "HKLM\System\CurrentControlSet\Control\Session Manager\kernel" /v "MitigationAuditOptions"') do set mitigation_mask=%%i
-    for /l %%i in (0,1,9) do set mitigation_mask=!mitigation_mask:%%i=2!
-    reg add "HKLM\System\CurrentControlSet\Control\Session Manager\kernel" /v "MitigationOptions" /t REG_BINARY /d "!mitigation_mask!" /f
-    reg add "HKLM\System\CurrentControlSet\Control\Session Manager\kernel" /v "MitigationAuditOptions" /t REG_BINARY /d "!mitigation_mask!" /f
+	for /f "tokens=3 skip=2" %%i in ('reg query "HKLM\System\CurrentControlSet\Control\Session Manager\kernel" /v "MitigationAuditOptions"') do set mitigation_mask=%%i
+	for /l %%i in (0,1,9) do set mitigation_mask=!mitigation_mask:%%i=2!
+	reg add "HKLM\System\CurrentControlSet\Control\Session Manager\kernel" /v "MitigationOptions" /t REG_BINARY /d "!mitigation_mask!" /f
+	reg add "HKLM\System\CurrentControlSet\Control\Session Manager\kernel" /v "MitigationAuditOptions" /t REG_BINARY /d "!mitigation_mask!" /f
 ) >nul 2>&1 else (
 	reg delete "HKCU\Software\Hone" /v MitigationsTweaks /f
 	::Turn Core Isolation Memory Integrity ON
@@ -1082,8 +1082,8 @@ if "%MITOF%" == "%COL%[91mOFF" (
 	::Enable NTFS/ReFS and FS Mitigations
 	reg delete "HKLM\System\CurrentControlSet\Control\Session Manager" /v "ProtectionMode" /f
 	::Disable System Mitigations
-    reg delete "HKLM\System\CurrentControlSet\Control\Session Manager\kernel" /v "MitigationOptions" /f
-    reg delete "HKLM\System\CurrentControlSet\Control\Session Manager\kernel" /v "MitigationAuditOptions" /f
+	reg delete "HKLM\System\CurrentControlSet\Control\Session Manager\kernel" /v "MitigationOptions" /f
+	reg delete "HKLM\System\CurrentControlSet\Control\Session Manager\kernel" /v "MitigationAuditOptions" /f
 ) >nul 2>&1
 goto Tweaks
 
@@ -1094,7 +1094,7 @@ if "%MOUOF%" neq "%COL%[91mOFF" (
 	reg add "HKEY_CURRENT_USER\Control Panel\Mouse" /v "SmoothMouseYCurve" /t REG_BINARY /d "0000000000000000fd11010000000000002404000000000000fc12000000000000c0bb0100000000" /f >nul 2>&1
 	goto Tweaks
 )
-echo what is your display scaling? 
+echo what is your display scaling?
 echo go to settings , system , display , then type the scale percentage like 100, 125, 150
 set /p choice=" Scale >  "
 reg add "HKCU\Control Panel\Mouse" /v "MouseSpeed" /t REG_SZ /d "0" /f >nul 2>&1
@@ -1109,13 +1109,13 @@ goto tweaks
 
 :DisableHDCP
 for /f %%a in ('reg query "HKLM\System\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HKEY"') do (
-if "%HDCOF%" == "%COL%[91mOFF" (
-	reg add "HKCU\Software\Hone" /v HDCTweaks /f
-	reg add "%%a" /v "RMHdcpKeyglobZero" /t REG_DWORD /d "1" /f
-) >nul 2>&1 else (
-	reg delete "HKCU\Software\Hone" /v HDCTweaks /f
-	reg add "%%a" /v "RMHdcpKeyglobZero" /t REG_DWORD /d "0" /f
-) >nul 2>&1
+	if "%HDCOF%" == "%COL%[91mOFF" (
+		reg add "HKCU\Software\Hone" /v HDCTweaks /f
+		reg add "%%a" /v "RMHdcpKeyglobZero" /t REG_DWORD /d "1" /f
+	) >nul 2>&1 else (
+		reg delete "HKCU\Software\Hone" /v HDCTweaks /f
+		reg add "%%a" /v "RMHdcpKeyglobZero" /t REG_DWORD /d "0" /f
+	) >nul 2>&1
 )
 goto Tweaks
 
@@ -1144,9 +1144,9 @@ if "%NPIOF%" == "%COL%[91mOFF" (
 	del /F /Q "C:\Hone\Resources\nvidiaProfileInspector.zip"
 	curl -g -L -# -o "C:\Hone\Resources\nvidiaProfileInspector\Latency_and_Performances_Settings_by_Hone_Team2.nip" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Latency_and_Performances_Settings_by_Hone_Team2.nip"
 	cd "C:\Hone\Resources\nvidiaProfileInspector\"
-	nvidiaProfileInspector.exe "Latency_and_Performances_Settings_by_Hone_Team2.nip" 
+	nvidiaProfileInspector.exe "Latency_and_Performances_Settings_by_Hone_Team2.nip"
 ) >nul 2>&1 else (
-::https://github.com/Orbmu2k/nvidiaProfileInspector/releases/latest/download/nvidiaProfileInspector.zip
+	::https://github.com/Orbmu2k/nvidiaProfileInspector/releases/latest/download/nvidiaProfileInspector.zip
 	reg delete "HKCU\Software\Hone" /v NpiTweaks /f
 	rmdir /S /Q "C:\Hone\Resources\nvidiaProfileInspector\"
 	curl -g -L -# -o C:\Hone\Resources\nvidiaProfileInspector.zip "https://github.com/Orbmu2k/nvidiaProfileInspector/releases/latest/download/nvidiaProfileInspector.zip"
@@ -1185,140 +1185,140 @@ goto tweaks
 
 :NvidiaTweaks
 if "%NVIOF%" == "%COL%[91mOFF" (
-reg add "HKCU\Software\Hone" /v "NvidiaTweaks" /f
-::Nvidia Reg
-reg add "HKCU\Software\NVIDIA Corporation\Global\NVTweak\Devices\509901423-0\Color" /v "NvCplUseColorCorrection" /t Reg_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "PlatformSupportMiracast" /t Reg_DWORD /d "0" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\Global\NVTweak" /v "DisplayPowerSaving" /t Reg_DWORD /d "0" /f
-::Unrestricted Clocks
-cd "%SystemDrive%\Program Files\NVIDIA Corporation\NVSMI\"
-nvidia-smi -acp UNRESTRICTED >nul 2>&1
-nvidia-smi -acp DEFAULT >nul 2>&1
-::Nvidia Registry Key
-for /f %%a in ('reg query "HKLM\System\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HKEY"') do (
-::Disalbe Tiled Display
-reg add "%%a" /v "EnableTiledDisplay" /t REG_DWORD /d "0" /f
-::Disable TCC
-reg add "%%a" /v "TCCSupported" /t REG_DWORD /d "0" /f
-)
-::Silk Smoothness Option
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\FTS" /v "EnableRID61684" /t REG_DWORD /d "1" /f
+	reg add "HKCU\Software\Hone" /v "NvidiaTweaks" /f
+	::Nvidia Reg
+	reg add "HKCU\Software\NVIDIA Corporation\Global\NVTweak\Devices\509901423-0\Color" /v "NvCplUseColorCorrection" /t Reg_DWORD /d "0" /f
+	reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "PlatformSupportMiracast" /t Reg_DWORD /d "0" /f
+	reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\Global\NVTweak" /v "DisplayPowerSaving" /t Reg_DWORD /d "0" /f
+	::Unrestricted Clocks
+	cd "%SystemDrive%\Program Files\NVIDIA Corporation\NVSMI\"
+	nvidia-smi -acp UNRESTRICTED >nul 2>&1
+	nvidia-smi -acp DEFAULT >nul 2>&1
+	::Nvidia Registry Key
+	for /f %%a in ('reg query "HKLM\System\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HKEY"') do (
+		::Disalbe Tiled Display
+		reg add "%%a" /v "EnableTiledDisplay" /t REG_DWORD /d "0" /f
+		::Disable TCC
+		reg add "%%a" /v "TCCSupported" /t REG_DWORD /d "0" /f
+	)
+	::Silk Smoothness Option
+	reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\FTS" /v "EnableRID61684" /t REG_DWORD /d "1" /f
 ) >nul 2>&1 else (
-reg delete "HKCU\Software\Hone" /v "NvidiaTweaks" /f
-::Nvidia Reg
-reg delete "HKCU\Software\NVIDIA Corporation\Global\NVTweak\Devices\509901423-0\Color" /v "NvCplUseColorCorrection" /f
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "PlatformSupportMiracast" /t Reg_DWORD /d "1" /f
-reg delete "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\Global\NVTweak" /v "DisplayPowerSaving" /f
-::Nvidia Registry Key
-for /f %%a in ('reg query "HKLM\System\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HKEY"') do (
-::Reset Tiled Display
-reg delete "%%a" /v "EnableTiledDisplay" /f
-::Reset TCC
-reg delete "%%a" /v "TCCSupported" /f
-) >nul 2>&1
+	reg delete "HKCU\Software\Hone" /v "NvidiaTweaks" /f
+	::Nvidia Reg
+	reg delete "HKCU\Software\NVIDIA Corporation\Global\NVTweak\Devices\509901423-0\Color" /v "NvCplUseColorCorrection" /f
+	reg add "HKLM\SYSTEM\CurrentControlSet\Control\GraphicsDrivers" /v "PlatformSupportMiracast" /t Reg_DWORD /d "1" /f
+	reg delete "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm\Global\NVTweak" /v "DisplayPowerSaving" /f
+	::Nvidia Registry Key
+	for /f %%a in ('reg query "HKLM\System\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}" /t REG_SZ /s /e /f "NVIDIA" ^| findstr "HKEY"') do (
+		::Reset Tiled Display
+		reg delete "%%a" /v "EnableTiledDisplay" /f
+		::Reset TCC
+		reg delete "%%a" /v "TCCSupported" /f
+	) >nul 2>&1
 ) >nul 2>&1
 goto Tweaks
 
 :DisableWriteCombining
 if "%DWCOF%" == "%COL%[91mOFF" (
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "DisableWriteCombining" /t Reg_DWORD /d "1" /f
+	reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "DisableWriteCombining" /t Reg_DWORD /d "1" /f
 ) >nul 2>&1 else (
-reg delete "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "DisableWriteCombining" /f
+	reg delete "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "DisableWriteCombining" /f
 ) >nul 2>&1
 
 :Service
 if "%SERVOF%" == "%COL%[91mOFF" (
-    reg add "HKCU\Software\Hone" /v ServicesTweaks /f
+	reg add "HKCU\Software\Hone" /v ServicesTweaks /f
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\xbgm" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\XboxGipSvc" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc" /v "Start" /t REG_DWORD /d "4" /f 
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time" /v "Start" /t REG_DWORD /d "4" /f  
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time" /v "Start" /t REG_DWORD /d "4" /f
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\spectrum" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wcncsvc" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WebClient" /v "Start" /t REG_DWORD /d "4" /f 
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WebClient" /v "Start" /t REG_DWORD /d "4" /f
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SysMain" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NcaSvc" /v "Start" /t REG_DWORD /d "4" /f  
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NcaSvc" /v "Start" /t REG_DWORD /d "4" /f
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\diagsvc" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\UserDataSvc" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\stisvc" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\AdobeFlashPlayerUpdateSvc" /v "Start" /t REG_DWORD /d "4" /f 
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\TrkWks" /v "Start" /t REG_DWORD /d "4" /f 
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\dmwappushservice" /v "Start" /t REG_DWORD /d "4" /f   
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PimIndexMaintenanceSvc" /v "Start" /t REG_DWORD /d "4" /f   
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\DiagTrack" /v "Start" /t REG_DWORD /d "4" /f 
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\AdobeFlashPlayerUpdateSvc" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\TrkWks" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\dmwappushservice" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PimIndexMaintenanceSvc" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\DiagTrack" /v "Start" /t REG_DWORD /d "4" /f
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\GoogleChromeElevationService" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\OneSyncSvc" /v "Start" /t REG_DWORD /d "4" /f 
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ibtsiva" /v "Start" /t REG_DWORD /d "4" /f  
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SNMPTRAP" /v "Start" /t REG_DWORD /d "4" /f   	
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\pla" /v "Start" /t REG_DWORD /d "4" /f 
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ssh-agent" /v "Start" /t REG_DWORD /d "4" /f   
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\sshd" /v "Start" /t REG_DWORD /d "4" /f  
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\DoSvc" /v "Start" /t REG_DWORD /d "4" /f    
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WbioSrvc" /v "Start" /t REG_DWORD /d "4" /f  
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PcaSvc" /v "Start" /t REG_DWORD /d "4" /f  
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NetTcpPortSharing" /v "Start" /t REG_DWORD /d "4" /f  
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wersvc" /v "Start" /t REG_DWORD /d "4" /f   
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\gupdate" /v "Start" /t REG_DWORD /d "4" /f   
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\gupdatem" /v "Start" /t REG_DWORD /d "4" /f  
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MSiSCSI" /v "Start" /t REG_DWORD /d "4" /f  
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WMPNetworkSvc" /v "Start" /t REG_DWORD /d "4" /f  
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\OneSyncSvc" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ibtsiva" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SNMPTRAP" /v "Start" /t REG_DWORD /d "4" /f   
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\pla" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ssh-agent" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\sshd" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\DoSvc" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WbioSrvc" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PcaSvc" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NetTcpPortSharing" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wersvc" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\gupdate" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\gupdatem" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MSiSCSI" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WMPNetworkSvc" /v "Start" /t REG_DWORD /d "4" /f
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CDPUserSvc" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation" /v "Start" /t REG_DWORD /d "4" /f   
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\UnistoreSvc" /v "Start" /t REG_DWORD /d "4" /f 
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MapsBroker" /v "Start" /t REG_DWORD /d "4" /f  
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\debugregsvc" /v "Start" /t REG_DWORD /d "4" /f  
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Ndu" /v "Start" /d "2" /t REG_DWORD /f  
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\TimeBrokerSvc" /v "Start" /d "3" /t REG_DWORD /f 
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\VaultSvc" /v "Start" /t REG_DWORD /d "3" /f 
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\UnistoreSvc" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MapsBroker" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\debugregsvc" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Ndu" /v "Start" /d "2" /t REG_DWORD /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\TimeBrokerSvc" /v "Start" /d "3" /t REG_DWORD /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\VaultSvc" /v "Start" /t REG_DWORD /d "3" /f
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wuauserv" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CertPropSvc" /v "Start" /t REG_DWORD /d "3" /f   
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CertPropSvc" /v "Start" /t REG_DWORD /d "3" /f
 	)>nul 2>&1 else (
-    reg delete "HKCU\Software\Hone" /v ServicesTweaks /f   
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\xbgm" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\XboxGipSvc" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wuauserv" /v "Start" /t REG_DWORD /d "3" /f 
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time" /v "Start" /t REG_DWORD /d "3" /f  
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\spectrum" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wcncsvc" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WebClient" /v "Start" /t REG_DWORD /d "3" /f 
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SysMain" /v "Start" /t REG_DWORD /d "2" /f >nul 2>&1
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NcaSvc" /v "Start" /t REG_DWORD /d "3" /f  
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\AdobeFlashPlayerUpdateSvc" /v "Start" /t REG_DWORD /d "3" /f 
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\GoogleChromeElevationService" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\TrkWks" /v "Start" /t REG_DWORD /d "3" /f 
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ibtsiva" /v "Start" /t REG_DWORD /d "3" /f  
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\sshd" /v "Start" /t REG_DWORD /d "3" /f 
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\gupdate" /v "Start" /t REG_DWORD /d "2" /f   
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\gupdatem" /v "Start" /t REG_DWORD /d "3" /f  
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PimIndexMaintenanceSvc" /v "Start" /t REG_DWORD /d "3" /f  
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\diagsvc" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\UserDataSvc" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\stisvc" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\dmwappushservice" /v "Start" /t REG_DWORD /d "3" /f   
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\DiagTrack" /v "Start" /t REG_DWORD /d "2" /f 
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\VaultSvc" /v "Start" /t REG_DWORD /d "3" /f  
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\OneSyncSvc" /v "Start" /t REG_DWORD /d "2" /f 
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SNMPTRAP" /v "Start" /t REG_DWORD /d "3" /f   
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\pla" /v "Start" /t REG_DWORD /d "3" /f 
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ssh-agent" /v "Start" /t REG_DWORD /d "3" /f   
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\DoSvc" /v "Start" /t REG_DWORD /d "2" /f   
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CertPropSvc" /v "Start" /t REG_DWORD /d "3" /f   
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WbioSrvc" /v "Start" /t REG_DWORD /d "3" /f  
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PcaSvc" /v "Start" /t REG_DWORD /d "2" /f  
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NetTcpPortSharing" /v "Start" /t REG_DWORD /d "4" /f  
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wersvc" /v "Start" /t REG_DWORD /d "3" /f   
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MSiSCSI" /v "Start" /t REG_DWORD /d "3" /f  
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WMPNetworkSvc" /v "Start" /t REG_DWORD /d "3" /f  
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CDPUserSvc" /v "Start" /t REG_DWORD /d "2" /f >nul 2>&1
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WpnUserService" /v "Start" /t REG_DWORD /d "2" /f 
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation" /v "Start" /t REG_DWORD /d "2" /f   
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\UnistoreSvc" /v "Start" /t REG_DWORD /d "3" /f 
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MapsBroker" /v "Start" /t REG_DWORD /d "2" /f  
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\debugregsvc" /v "Start" /t REG_DWORD /d "3" /f  
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Ndu" /v "Start" /d "2" /t REG_DWORD /f  
-    reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\TimeBrokerSvc" /v "Start" /d "3" /t REG_DWORD /f 
-)>nul 2>&1	
+	reg delete "HKCU\Software\Hone" /v ServicesTweaks /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\xbgm" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\XboxGipSvc" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wuauserv" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\spectrum" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wcncsvc" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WebClient" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SysMain" /v "Start" /t REG_DWORD /d "2" /f >nul 2>&1
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NcaSvc" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\AdobeFlashPlayerUpdateSvc" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\GoogleChromeElevationService" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\TrkWks" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ibtsiva" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\sshd" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\gupdate" /v "Start" /t REG_DWORD /d "2" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\gupdatem" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PimIndexMaintenanceSvc" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\diagsvc" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\UserDataSvc" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\stisvc" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\dmwappushservice" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\DiagTrack" /v "Start" /t REG_DWORD /d "2" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\VaultSvc" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\OneSyncSvc" /v "Start" /t REG_DWORD /d "2" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SNMPTRAP" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\pla" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ssh-agent" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\DoSvc" /v "Start" /t REG_DWORD /d "2" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CertPropSvc" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WbioSrvc" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PcaSvc" /v "Start" /t REG_DWORD /d "2" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NetTcpPortSharing" /v "Start" /t REG_DWORD /d "4" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wersvc" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MSiSCSI" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WMPNetworkSvc" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CDPUserSvc" /v "Start" /t REG_DWORD /d "2" /f >nul 2>&1
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WpnUserService" /v "Start" /t REG_DWORD /d "2" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation" /v "Start" /t REG_DWORD /d "2" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\UnistoreSvc" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MapsBroker" /v "Start" /t REG_DWORD /d "2" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\debugregsvc" /v "Start" /t REG_DWORD /d "3" /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Ndu" /v "Start" /d "2" /t REG_DWORD /f
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\TimeBrokerSvc" /v "Start" /d "3" /t REG_DWORD /f
+)>nul 2>&1
 goto tweaks
 
 :Affinity
@@ -1361,7 +1361,7 @@ if %NumberOfCores% gtr 4 (
 )
 
 if %NumberOfLogicalProcessors% gtr %NumberOfCores% (
-::HyperThreading Enabled
+	::HyperThreading Enabled
 	for /f %%i in ('wmic path Win32_USBController get PNPDeviceID^| findstr /l "PCI\VEN_"') do (
 		reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /t REG_DWORD /d "4" /f >nul 2>&1
 		reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /t REG_BINARY /d "C0" >nul 2>&1
@@ -1375,7 +1375,7 @@ if %NumberOfLogicalProcessors% gtr %NumberOfCores% (
 		reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /t REG_BINARY /d "30" /f >nul 2>&1
 	)
 ) else (
-::HyperThreading Disabled
+	::HyperThreading Disabled
 	for /f %%i in ('wmic path Win32_USBController get PNPDeviceID^| findstr /l "PCI\VEN_"') do (
 		reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "DevicePolicy" /t REG_DWORD /d "4" /f >nul 2>&1
 		reg add "HKLM\System\CurrentControlSet\Enum\%%i\Device Parameters\Interrupt Management\Affinity Policy" /v "AssignmentSetOverride" /t REG_BINARY /d "08" /f >nul 2>&1
@@ -1397,22 +1397,22 @@ echo.
 echo.
 echo.
 echo.
-echo.                                                                          %COL%[33m.  
-echo.                                                                       +N. 
-echo.                                                              //        oMMs 
-echo.                                                             +Nm`    ``yMMm- 
-echo.                                                          ``dMMsoyhh-hMMd.  
-echo.                                                          `yy/MMMMNh:dMMh`   
-echo.                                                         .hMM.sso++:oMMs`    
-echo.                                                        -mMMy:osyyys.No      
-echo.                                                       :NMMs-oo+/syy:-       
-echo.                                                      /NMN+ ``   :ys.        
-echo.                                                     `NMN:        +.         
-echo.                                                     om-                    
-echo.                                                      `.                                            
-echo. 
-echo. 
-echo. 
+echo.                                                                          %COL%[33m.
+echo.                                                                       +N.
+echo.                                                              //        oMMs
+echo.                                                             +Nm`    ``yMMm-
+echo.                                                          ``dMMsoyhh-hMMd.
+echo.                                                          `yy/MMMMNh:dMMh`
+echo.                                                         .hMM.sso++:oMMs`
+echo.                                                        -mMMy:osyyys.No
+echo.                                                       :NMMs-oo+/syy:-
+echo.                                                      /NMN+ ``   :ys.
+echo.                                                     `NMN:        +.
+echo.                                                     om-
+echo.                                                      `.
+echo.
+echo.
+echo.
 echo.
 echo.
 echo.
@@ -1575,15 +1575,15 @@ if "%CRSOF%" == "%COL%[91mOFF" (
 goto Tweaks
 
 ::System responsiveness, PanTeR Said to use 14 (20 hexa)
-reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "SystemResponsiveness" /t Reg_DWORD /d "20" /f 
+reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "SystemResponsiveness" /t Reg_DWORD /d "20" /f
 
 ::Disable Power Throttling
-reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /f 
+reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /f
 ::Enable Power Throttling If Laptop
 for /f "tokens=2 delims={}" %%n in ('wmic path Win32_SystemEnclosure get ChassisTypes /value') do set /a ChassisTypes=%%n
 if defined ChassisTypes if %ChassisTypes% GEQ 8 if %ChassisTypes% LSS 12 (
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /v "PowerThrottlingOff" /t Reg_DWORD /d "1" /f 
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /f 
+	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /v "PowerThrottlingOff" /t Reg_DWORD /d "1" /f
+	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /f
 )
 
 ::::::::::::::::::::::
@@ -1591,8 +1591,8 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /f
 ::::::::::::::::::::::
 
 ::Reliable Timestamp
-reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Reliability" /v "TimeStampInterval" /t Reg_DWORD /d "1" /f 
-reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Reliability" /v "IoPriority" /t Reg_DWORD /d "3" /f 
+reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Reliability" /v "TimeStampInterval" /t Reg_DWORD /d "1" /f
+reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Reliability" /v "IoPriority" /t Reg_DWORD /d "3" /f
 
 :MMCSS
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\MMCSS" /v "Start" /t Reg_DWORD /d "4" /f >nul 2>&1
@@ -1612,9 +1612,9 @@ cls
 echo.
 echo.
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -1627,8 +1627,8 @@ echo.
 echo              %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Install/Update OBS             %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m Recording                      %COL%[33m[ %COL%[37m3 %COL%[33m]%COL%[37m Streaming
 echo              %COL%[90mAutomatically install or update      %COL%[90mAutomated recording settings for     %COL%[90mAutomated streaming settings for
 echo              %COL%[90mOBS using the official link          %COL%[90mOBS based on your preference         %COL%[90mOBS based on your preference
-echo.                   
-echo.                                                                                             
+echo.
+echo.
 echo                                                           %COL%[34m%COL%[1mFFmpeg Settings%COL%[0m
 echo.
 echo              %COL%[33m[ %COL%[37m4 %COL%[33m]%COL%[37m Upscale                        %COL%[33m[ %COL%[37m5 %COL%[33m]%COL%[37m Compress                       %COL%[33m[ %COL%[37m6 %COL%[33m]%COL%[37m Preview Lag
@@ -1646,7 +1646,7 @@ echo.
 echo                                                            %COL%[34m%COL%[1mVideo Editor Settings%COL%[0m
 echo.
 echo              %COL%[33m[ %COL%[37m10 %COL%[33m]%COL%[37m Install A Video Editor (NLE)  %COL%[33m[ %COL%[37m11 %COL%[33m]%COL%[37m Project Settings              %COL%[33m[ %COL%[37m12 %COL%[33m]%COL%[37m Renders
-echo              %COL%[90mDownload ^& install a		  %COL%[90mAutomated Project settings	       %COL%[90mAutomated render settings 
+echo              %COL%[90mDownload ^& install a		  %COL%[90mAutomated Project settings	       %COL%[90mAutomated render settings
 echo		     %COL%[90mNon-Linear editing software	  %COL%[90mfor Vegas pro                        %COL%[90mfor Vegas pro
 echo.
 echo                                                 %COL%[90m[ B for back ]         %COL%[31m[ X to close ]
@@ -1768,7 +1768,7 @@ if %encoder% == NVENC (
 		"Mode=Advanced"
 	) do echo.%%~i)>"%temp%\Basic.ini"
 	echo.{"bf":0,"cqp":17,"keyint_sec":0,"lookahead":"false","preset":"hp","profile":"baseline","psycho_aq":"false","rate_control":"CQP"} >"%temp%\RecordEncoder.json"
-	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\" 
+	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	move /Y "%temp%\RecordEncoder.json" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	goto Recording
 ) ELSE (
@@ -1824,7 +1824,7 @@ if %encoder% == NVENC (
 
 	) do echo.%%~i)> "%temp%\Basic.ini"
 	echo.{"bf":0,"cqp":18,"keyint_sec":0,"lookahead":"false","preset":"hp","profile":"baseline","psycho_aq":"false","rate_control":"CQP"} >"%temp%\RecordEncoder.json"
-	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\" 
+	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	move /Y "%temp%\RecordEncoder.json" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	goto Recording
 ) ELSE (
@@ -1880,7 +1880,7 @@ if %encoder% == NVENC (
 
 	) do echo.%%~i)> "%temp%\Basic.ini"
 	echo.{"bf":0,"cqp":18,"keyint_sec":0,"lookahead":"false","preset":"hp","profile":"baseline","psycho_aq":"false","rate_control":"CQP"} >"%temp%\RecordEncoder.json"
-	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\" 
+	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	move /Y "%temp%\RecordEncoder.json" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	goto Recording
 ) ELSE (
@@ -1900,8 +1900,8 @@ echo                              %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Qual
 echo                              %COL%[90mSettings for the best                                %COL%[90mSettings for the best
 echo                              %COL%[90mquality in OBS                                       %COL%[90mperformance in OBS
 echo.
-echo.                                                                                                                  
-echo.                                                                                                                  
+echo.
+echo.
 echo.
 echo.
 echo.
@@ -1976,7 +1976,7 @@ if %encoder% == NVENC (
 		"Mode=Advanced"
 	) do echo.%%~i)> "%temp%\Basic.ini"
 	echo.{"bitrate":6000,"preset":"hp","profile":"baseline","rate_control":"CBR"} >"%temp%\StreamEncoder.json"
-	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\" 
+	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	move /Y "%temp%\StreamEncoder.json" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	goto Streaming
 ) ELSE (
@@ -2031,7 +2031,7 @@ if %encoder% == NVENC (
 		"Mode=Advanced"
 	) do echo.%%~i)> "%temp%\Basic.ini"
 	echo.{"bitrate":4500,"preset":"hp","profile":"baseline","rate_control":"CBR"} >"%temp%\StreamEncoder.json"
-	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\" 
+	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	move /Y "%temp%\StreamEncoder.json" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	goto Streaming
 ) ELSE (
@@ -2050,8 +2050,8 @@ echo.
 echo                            %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m 4k                                             %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m 8k
 echo                            %COL%[90mModify the scale of a video                          %COL%[90mModify the scale of a video
 echo                            %COL%[90mto turn it to 4k                                     %COL%[90mto turn it to 8k
-echo. 
-echo.                                                                                                                  
+echo.
+echo.
 echo.
 echo.
 echo.
@@ -2084,22 +2084,35 @@ goto upscale
 :4k
 cls
 set /p "file= Drag the file you want upscaled into this window >> "
+:: where /q ffmpeg.exe with the double ampersand/pipe is used to check if ffmpeg is already in the path, since it might be installed in a directory other than the default
 if %encoder% == NVENC (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\4k.mp4" -y
+	where /q ffmpeg.exe && (
+		ffmpeg -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\4k.mp4" -y
+	) || (
+		%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\4k.mp4" -y
+	)
 ) else (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\4k.mp4" 
+	where /q ffmpeg.exe && (
+		ffmpeg -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\4k.mp4"
+	) || (
+		%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\4k.mp4"
+	)
 )
 goto upscale
 
 :8k
 cls
 set /p "file= Drag the file you want upscaled into this window >> "
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=7680:4320:flags=neighbor -r 60 -vcodec libx264 -profile:v high -preset fast -qmin 19 -qmax 19 "%SystemDrive%\users\%username%\desktop\8k.mp4" 
+where /q ffmpeg.exe && (
+	ffmpeg -i %file% -vf scale=7680:4320:flags=neighbor -r 60 -vcodec libx264 -profile:v high -preset fast -qmin 19 -qmax 19 "%SystemDrive%\users\%username%\desktop\8k.mp4"
+) || (
+	%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=7680:4320:flags=neighbor -r 60 -vcodec libx264 -profile:v high -preset fast -qmin 19 -qmax 19 "%SystemDrive%\users\%username%\desktop\8k.mp4"
+)
 goto upscale
 
-
 :compress
-if not exist %SystemDrive%\ffmpeg ( call:ffmpeginstall )
+:: check if ffmpeg is in path, if it isn't, check if it's in the default installation path, and if it isn't, install it
+where /q ffmpeg.exe || if not exist %SystemDrive%\ffmpeg call :ffmpeginstall
 cls
 echo.
 echo.
@@ -2109,7 +2122,7 @@ echo                         %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Heavy    
 echo                         %COL%[90mLower the scale ^& fps of a video                     %COL%[90mLower only the scale of a video
 echo                         %COL%[90mto make it take up much less space                   %COL%[90mto make it take up less space
 echo.
-echo.                                                                                                                  
+echo.
 echo.
 echo.
 echo.
@@ -2143,9 +2156,17 @@ goto compress
 cls
 set /p "file= Drag the file you want upscaled into this window >> "
 if %encoder% == NVENC (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4" -y
+	where /q ffmpeg.exe && (
+		ffmpeg -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4" -y
+	) || (
+		%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4" -y
+	)
 ) else (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4" 
+	where /q ffmpeg.exe && (
+		ffmpeg -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4"
+	) || (
+		%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4"
+	)
 )
 goto compress
 
@@ -2153,9 +2174,17 @@ goto compress
 cls
 set /p "file= Drag the file you want upscaled into this window >> "
 if %encoder% == NVENC (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4" -y
+	where /q ffmpeg.exe && (
+		ffmpeg -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4" -y
+	) || (
+		%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4" -y
+	)
 ) else (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4" 
+	where /q ffmpeg.exe && (
+		ffmpeg -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4"
+	) || (
+		%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4"
+	)
 )
 goto compress
 
@@ -2164,9 +2193,17 @@ if not exist %SystemDrive%\ffmpeg ( call:ffmpeginstall )
 cls
 set /p "file= Drag the file you want to use in vegas (remember you need to replace it with the original file afterwards) >> "
 if %encoder% == NVENC (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=1920:1080:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -qmin 24 -qmax 24 "%SystemDrive%\users\%username%\desktop\previewlag.mp4" -y
+	where /q ffmpeg.exe && (
+		ffmpeg -i "%file%" -vf scale=1920:1080:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -qmin 24 -qmax 24 "%SystemDrive%\users\%username%\desktop\previewlag.mp4" -y
+	) || (
+		%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=1920:1080:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -qmin 24 -qmax 24 "%SystemDrive%\users\%username%\desktop\previewlag.mp4" -y
+	)
 ) else (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=1920:1080:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 24 -qmax 24 "%SystemDrive%\users\%username%\desktop\previewlag.mp4"
+	where /q ffmpeg.exe && (
+		ffmpeg -i "%file%" -vf scale=1920:1080:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 24 -qmax 24 "%SystemDrive%\users\%username%\desktop\previewlag.mp4"
+	) || (
+		%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=1920:1080:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 24 -qmax 24 "%SystemDrive%\users\%username%\desktop\previewlag.mp4"
+	)
 )
 goto HoneRenders
 
@@ -2176,7 +2213,7 @@ echo FFmpeg not found... Installing...
 curl -g -L -# -o "%temp%\ffmpeg.exe" "https://cdn.discordapp.com/attachments/798652558351794196/809493909704015892/ffmpeg-4.2-setup.exe"
 "%temp%\ffmpeg.exe" /SP /VERYSILENT /SUPPRESSMSGBOXES /NOCANCEL /NORESTART /ALLUSERS
 goto :eof
- 
+
 :blurinstall
 :: delete old blur
 rmdir /s /q "%SystemDrive%\program files (x86)\blur"
@@ -2195,7 +2232,7 @@ echo                       %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m 60 - 120 FP
 echo                       %COL%[90mAutomated Blur settings                              %COL%[90mAutomated Blur settings
 echo                       %COL%[90mfor FPS games recorded in 60 to 120 FPS              %COL%[90mfor FPS games recorded in above 240 FPS
 echo.
-echo.                                                                                                                  
+echo.
 echo.
 echo.
 echo.
@@ -2259,7 +2296,7 @@ if %encoder% == NVENC (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): nvidia"
 		"deduplicate: false"
-		"custom ffmpeg filters:" 
+		"custom ffmpeg filters:"
 		.
 		"- advanced blur"
 		"blur weighting gaussian std dev: 2"
@@ -2305,7 +2342,7 @@ if %encoder% == AMF (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): amd"
 		"deduplicate: false"
-		"custom ffmpeg filters:" 
+		"custom ffmpeg filters:"
 		.
 		"- advanced blur"
 		"blur weighting gaussian std dev: 2"
@@ -2351,7 +2388,7 @@ if %encoder% == CPU (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): intel"
 		"deduplicate: false"
-		"custom ffmpeg filters:" 
+		"custom ffmpeg filters:"
 		.
 		"- advanced blur"
 		"blur weighting gaussian std dev: 2"
@@ -2466,7 +2503,7 @@ if %encoder% == AMF (
 		"interpolation tuning: weak"
 		"interpolation algorithm: 13"
 	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS240+.cfg"
-) 
+)
 
 if %encoder% == CPU (
 	(for %%i in (
@@ -2531,7 +2568,7 @@ echo         %COL%[90mAutomated Blur settings                   %COL%[90mAutomat
 echo         %COL%[90mfor clips recorded in 180 - 360 FPS       %COL%[90mfor clips recorded above 480 FPS      %COL%[90mfor clips to be rendered in 30 FPS
 echo.
 echo.
-echo.                                                                                                                  
+echo.
 echo.
 echo.
 echo.
@@ -2654,7 +2691,7 @@ if %encoder% == AMF (
 		"interpolation tuning: weak"
 		"interpolation algorithm: 13"
 	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS180-360FPS.cfg"
-) 
+)
 
 if %encoder% == CPU (
 	(for %%i in (
@@ -2742,7 +2779,7 @@ if %encoder% == NVENC (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): nvidia"
 		"deduplicate: false"
-		"custom ffmpeg filters:" 
+		"custom ffmpeg filters:"
 		.
 		"- advanced blur"
 		"blur weighting gaussian std dev: 1"
@@ -2788,7 +2825,7 @@ if %encoder% == AMF (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): amd"
 		"deduplicate: false"
-		"custom ffmpeg filters:" 
+		"custom ffmpeg filters:"
 		.
 		"- advanced blur"
 		"blur weighting gaussian std dev: 1"
@@ -2801,7 +2838,7 @@ if %encoder% == AMF (
 		"interpolation tuning: weak"
 		"interpolation algorithm: 2"
 	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS480FPS.cfg"
-) 
+)
 
 if %encoder% == CPU (
 	(for %%i in (
@@ -2834,7 +2871,7 @@ if %encoder% == CPU (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): intel"
 		"deduplicate: false"
-		"custom ffmpeg filters:" 
+		"custom ffmpeg filters:"
 		.
 		"- advanced blur"
 		"blur weighting gaussian std dev: 1"
@@ -2948,7 +2985,7 @@ if %encoder% == AMF (
 		"interpolation tuning: weak"
 		"interpolation algorithm: 23"
 	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneAnyFPS.cfg"
-) 
+)
 
 if %encoder% == CPU (
 	(for %%i in (
@@ -3007,16 +3044,16 @@ cls
 echo.
 echo.
 call :HoneTitle
-echo                       %COL%[90mUnfortunately, Hone cannot supply unofficial distributions of software. If you 
+echo                       %COL%[90mUnfortunately, Hone cannot supply unofficial distributions of software. If you
 echo                       %COL%[90mcannot buy Vegas Pro, an alternative that we recommend is a freemium video editing software
 echo                       %COL%[90mcalled 'DaVinci Resolve' (note: this program does not contain render settings)^^!
 echo.
 echo.
 echo                           %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Vegas Pro website                        %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m DaVinci Resolve website
 echo                           %COL%[90mPaid with supported renders                    %COL%[90mFree but unsupported renders
-echo.                                                                           
 echo.
-echo.                                                                                                                  
+echo.
+echo.
 echo.
 echo.
 echo.
@@ -3043,26 +3080,25 @@ if /i "%choice%"=="X" exit /b
 goto NLEInstall
 
 :ProjectSettings
-
 cls
 if exist "%SystemDrive%\Program Files\VEGAS\VEGAS Pro 17.0" (
-curl -g -k -L -# -o "%temp%\project.reg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Settings/ProjectProperties17.reg"
-reg query "HKCU\SOFTWARE\Sony Creative Software\VEGAS Pro\17.0\Metrics\Application" >nul 2>&1 || start Vegas170.exe >nul 2>&1
+	curl -g -k -L -# -o "%temp%\project.reg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Settings/ProjectProperties17.reg"
+	reg query "HKCU\SOFTWARE\Sony Creative Software\VEGAS Pro\17.0\Metrics\Application" >nul 2>&1 || start Vegas170.exe >nul 2>&1
 ) else if exist "%SystemDrive%\Program Files\VEGAS\VEGAS Pro 17" (
-curl -g -k -L -# -o "%temp%\project.reg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Settings/ProjectProperties17.reg"
-reg query "HKCU\SOFTWARE\Sony Creative Software\VEGAS Pro\17.0\Metrics\Application" >nul 2>&1 || start Vegas170.exe >nul 2>&1
+	curl -g -k -L -# -o "%temp%\project.reg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Settings/ProjectProperties17.reg"
+	reg query "HKCU\SOFTWARE\Sony Creative Software\VEGAS Pro\17.0\Metrics\Application" >nul 2>&1 || start Vegas170.exe >nul 2>&1
 ) else if exist "%SystemDrive%\Program Files\VEGAS\VEGAS Pro 18" (
-curl -g -k -L -# -o "%temp%\project.reg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Settings/ProjectProperties18.reg"
-reg query "HKCU\SOFTWARE\Sony Creative Software\VEGAS Pro\18.0\Metrics\Application" >nul 2>&1 || start Vegas180.exe >nul 2>&1
+	curl -g -k -L -# -o "%temp%\project.reg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Settings/ProjectProperties18.reg"
+	reg query "HKCU\SOFTWARE\Sony Creative Software\VEGAS Pro\18.0\Metrics\Application" >nul 2>&1 || start Vegas180.exe >nul 2>&1
 ) else if exist "%SystemDrive%\Program Files\VEGAS\VEGAS Pro 18.0" (
-curl -g -k -L -# -o "%temp%\project.reg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Settings/ProjectProperties18.reg"
-reg query "HKCU\SOFTWARE\Sony Creative Software\VEGAS Pro\18.0\Metrics\Application" >nul 2>&1 || start Vegas180.exe >nul 2>&1
+	curl -g -k -L -# -o "%temp%\project.reg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Settings/ProjectProperties18.reg"
+	reg query "HKCU\SOFTWARE\Sony Creative Software\VEGAS Pro\18.0\Metrics\Application" >nul 2>&1 || start Vegas180.exe >nul 2>&1
 ) else if exist "%SystemDrive%\Program Files\VEGAS\VEGAS Pro 19.0" (
-curl -g -k -L -# -o "%temp%\project.reg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Settings/ProjectProperties18.reg"
-reg query "HKCU\SOFTWARE\Sony Creative Software\VEGAS Pro\19.0\Metrics\Application" >nul 2>&1 || start Vegas190.exe >nul 2>&1
+	curl -g -k -L -# -o "%temp%\project.reg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Settings/ProjectProperties18.reg"
+	reg query "HKCU\SOFTWARE\Sony Creative Software\VEGAS Pro\19.0\Metrics\Application" >nul 2>&1 || start Vegas190.exe >nul 2>&1
 ) else if exist "%SystemDrive%\Program Files\VEGAS\VEGAS Pro 19" (
-curl -g -k -L -# -o "%temp%\project.reg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Settings/ProjectProperties18.reg"
-reg query "HKCU\SOFTWARE\Sony Creative Software\VEGAS Pro\19.0\Metrics\Application" >nul 2>&1 || start Vegas190.exe >nul 2>&1
+	curl -g -k -L -# -o "%temp%\project.reg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Settings/ProjectProperties18.reg"
+	reg query "HKCU\SOFTWARE\Sony Creative Software\VEGAS Pro\19.0\Metrics\Application" >nul 2>&1 || start Vegas190.exe >nul 2>&1
 ) else echo Vegas Pro 17-19 isn't installed... & pause & goto HoneRenders
 taskkill /f /im Vegas170.exe >nul 2>&1
 taskkill /f /im Vegas180.exe >nul 2>&1
@@ -3122,12 +3158,12 @@ for %%i in (DSCOF AUTOF DRIOF BCDOF NONOF CS0OF TOFOF PS0OF IDLOF CONG DPSOF) do
 	powercfg /qh scheme_current sub_processor IDLEDISABLE | find "Current AC Power Setting Index: 0x00000000" && set "IDLOF=%COL%[91mOFF"
 	::DSCP Tweaks
 	reg query "HKLM\Software\Policies\Microsoft\Windows\QoS\javaw" || set "DSCOF=%COL%[91mOFF"
-    ::AutoTuning Tweak
-    reg query "HKCU\Software\Hone" /v "TuningTweak" || set "AUTOF=%COL%[91mOFF"
-    ::Congestion Provider Tweak
-    reg query "HKCU\Software\Hone" /v "TuningTweak1" || set "CONG=%COL%[91mOFF"
-    ::Disable USB Powersavings
-    reg query "HKCU\Software\Hone" /v "DUSBPowerSavings" || set "DPSOF=%COL%[91mOFF"
+	::AutoTuning Tweak
+	reg query "HKCU\Software\Hone" /v "TuningTweak" || set "AUTOF=%COL%[91mOFF"
+	::Congestion Provider Tweak
+	reg query "HKCU\Software\Hone" /v "TuningTweak1" || set "CONG=%COL%[91mOFF"
+	::Disable USB Powersavings
+	reg query "HKCU\Software\Hone" /v "DUSBPowerSavings" || set "DPSOF=%COL%[91mOFF"
 	::Nvidia Drivers
 	cd "%SystemDrive%\Program Files\NVIDIA Corporation\NVSMI"
 	for /f "tokens=1 skip=1" %%a in ('nvidia-smi --query-gpu^=driver_version --format^=csv') do if "%%a" neq "497.09" set "DRIOF=%COL%[91mOFF
@@ -3157,11 +3193,11 @@ call :HoneTitle
 echo                                                           %COL%[1;4;34mNetwork Tweaks%COL%[0m
 echo.
 echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m Disable Task Offloading %TOFOF%    %COL%[33m[%COL%[37m 2 %COL%[33m]%COL%[37m NonBestEffortLimit %NONOF%         %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m AutoTuning %AUTOF%
-echo              %COL%[90mTask Offloading assigns the          %COL%[90mAllocate more bandwidth to apps      %COL%[90mCan reduce bufferbloat, 
+echo              %COL%[90mTask Offloading assigns the          %COL%[90mAllocate more bandwidth to apps      %COL%[90mCan reduce bufferbloat,
 echo              %COL%[90mCPU to handle the NIC load           %COL%[90mUse only on fast connections         %COL%[90mbut lower your Network speed
 echo.
-echo                           %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m DSCP Value %DSCOF%                     %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Wifi Congestion Provider %CONG% 
-echo                           %COL%[90mSet the priority of your network         %COL%[90mTurn ON only, if you have WIFI. 
+echo                           %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m DSCP Value %DSCOF%                     %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Wifi Congestion Provider %CONG%
+echo                           %COL%[90mSet the priority of your network         %COL%[90mTurn ON only, if you have WIFI.
 echo                           %COL%[90mtraffic to expedited forwarding          %COL%[90mChanges the algorithm on how data is processed.
 echo.
 echo.
@@ -3200,11 +3236,11 @@ goto Advanced
 
 :TaskOffloading
 if "%TOFOF%" == "%COL%[91mOFF" (
-netsh int ip set global taskoffload=disabled >nul 2>&1
-reg add HKLM\SYSTEM\CurrentControlSet\Services\TCPIP\Parameters /v DisableTaskOffload /t REG_DWORD /d 1 /f >nul 2>&1
+	netsh int ip set global taskoffload=disabled >nul 2>&1
+	reg add HKLM\SYSTEM\CurrentControlSet\Services\TCPIP\Parameters /v DisableTaskOffload /t REG_DWORD /d 1 /f >nul 2>&1
 ) else (
-netsh int ip set global taskoffload=enabled >nul 2>&1
-reg add HKLM\SYSTEM\CurrentControlSet\Services\TCPIP\Parameters /v DisableTaskOffload /t REG_DWORD /d 0 /f >nul 2>&1
+	netsh int ip set global taskoffload=enabled >nul 2>&1
+	reg add HKLM\SYSTEM\CurrentControlSet\Services\TCPIP\Parameters /v DisableTaskOffload /t REG_DWORD /d 0 /f >nul 2>&1
 )
 goto Advanced
 
@@ -3220,11 +3256,11 @@ goto Advanced
 :Autotuning
 if "%AUTOF%" == "%COL%[91mOFF" (
 	reg add "HKCU\Software\Hone" /v TuningTweak /f >nul 2>&1
-    netsh int tcp set global autotuninglevel=disabled >nul 2>&1
+	netsh int tcp set global autotuninglevel=disabled >nul 2>&1
 	netsh winsock set autotuning off >nul 2>&1
 ) else (
 	reg delete "HKCU\Software\Hone" /v TuningTweak /f >nul 2>&1
-    netsh int tcp set global autotuninglevel=normal >nul 2>&1
+	netsh int tcp set global autotuninglevel=normal >nul 2>&1
 	netsh winsock set autotuning on >nul 2>&1
 )
 goto Advanced
@@ -3232,16 +3268,16 @@ goto Advanced
 :Congestion
 if "%CONG%" == "%COL%[91mOFF" (
 	reg add "HKCU\Software\Hone" /v TuningTweak1 /f >nul 2>&1
-    netsh int tcp set supplemental Internet congestionprovider=newreno >nul 2>&1
+	netsh int tcp set supplemental Internet congestionprovider=newreno >nul 2>&1
 ) else (
 	reg delete "HKCU\Software\Hone" /v TuningTweak1 /f >nul 2>&1
-     netsh int tcp set supplemental Internet congestionprovider=ctcp >nul 2>&1
+	 netsh int tcp set supplemental Internet congestionprovider=ctcp >nul 2>&1
 )
 goto Advanced
 
 :DSCPValue
 if "%DSCOF%" == "%COL%[91mOFF" (
-	reg add "HKLM\SYSTEM\CurrentControlSet\Services\Psched" /v "Start" /t Reg_DWORD /d "1" /f  
+	reg add "HKLM\SYSTEM\CurrentControlSet\Services\Psched" /v "Start" /t Reg_DWORD /d "1" /f
 	sc start Psched
 	for %%i in (csgo VALORANT-Win64-Shipping javaw FortniteClient-Win64-Shipping ModernWarfare r5apex) do (
 		reg query "HKLM\Software\Policies\Microsoft\Windows\QoS\%%i" || (
@@ -3267,7 +3303,7 @@ if "%DSCOF%" == "%COL%[91mOFF" (
 	reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Psched" /v "MaxOutstandingSends" /t REG_DWORD /d "65000" /f
 ) >nul 2>&1 else (
 	for %%i in (csgo VALORANT-Win64-Shipping javaw FortniteClient-Win64-Shipping ModernWarfare r5apex) do (
-	    reg delete "HKLM\Software\Policies\Microsoft\Windows\QoS\%%i" /f
+		reg delete "HKLM\Software\Policies\Microsoft\Windows\QoS\%%i" /f
 	) >nul 2>&1
 	reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Psched\DiffservByteMappingConforming" /v "ServiceTypeGuaranteed" /f
 	reg delete "HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Psched\DiffservByteMappingConforming" /v "ServiceTypeNetworkControl" /f
@@ -3315,7 +3351,7 @@ echo Would you like to install?
 %SystemRoot%\System32\choice.exe/c:YN /n /m "[Y] Yes  [N] No"
 if %errorlevel% == 2 goto Advanced
 cd "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup"
-curl -LJ https://github.com/RadNotRed/HoneCtrl/blob/main/Files/Driverinstall.bat?raw=true -o Driverinstall.bat 
+curl -LJ https://github.com/RadNotRed/HoneCtrl/blob/main/Files/Driverinstall.bat?raw=true -o Driverinstall.bat
 title Executing DDU...
 curl -g -L -# -o "C:\Hone\Resources\DDU.zip" "https://github.com/auraside/HoneCtrl/raw/main/Files/DDU.zip"
 powershell -NoProfile Expand-Archive 'C:\Hone\Resources\DDU.zip' -DestinationPath 'C:\Hone\Resources\DDU\' >nul 2>&1
@@ -3415,22 +3451,22 @@ echo.
 echo.
 echo.
 echo.
-echo.                                                                           %COL%[33m.  
-echo.                                                                        +N. 
-echo.                                                               //        oMMs 
-echo.                                                              +Nm`    ``yMMm- 
-echo.                                                           ``dMMsoyhh-hMMd.  
-echo.                                                           `yy/MMMMNh:dMMh`   
-echo.                                                          .hMM.sso++:oMMs`    
-echo.                                                         -mMMy:osyyys.No      
-echo.                                                        :NMMs-oo+/syy:-       
-echo.                                                       /NMN+ ``   :ys.        
-echo.                                                      `NMN:        +.         
-echo.                                                      om-                    
-echo.                                                       `.                                            
-echo. 
-echo. 
-echo. 
+echo.                                                                           %COL%[33m.
+echo.                                                                        +N.
+echo.                                                               //        oMMs
+echo.                                                              +Nm`    ``yMMm-
+echo.                                                           ``dMMsoyhh-hMMd.
+echo.                                                           `yy/MMMMNh:dMMh`
+echo.                                                          .hMM.sso++:oMMs`
+echo.                                                         -mMMy:osyyys.No
+echo.                                                        :NMMs-oo+/syy:-
+echo.                                                       /NMN+ ``   :ys.
+echo.                                                      `NMN:        +.
+echo.                                                      om-
+echo.                                                       `.
+echo.
+echo.
+echo.
 echo.
 echo.
 echo                                                      %COL%[1;4;34mSelect Minecraft Version%COL%[0m
@@ -3470,23 +3506,23 @@ echo.
 echo.
 echo.
 echo.
-echo.                                                                           %COL%[33m.  
-echo.                                                                        +N. 
-echo.                                                               //        oMMs 
-echo.                                                              +Nm`    ``yMMm- 
-echo.                                                           ``dMMsoyhh-hMMd.  
-echo.                                                           `yy/MMMMNh:dMMh`   
-echo.                                                          .hMM.sso++:oMMs`    
-echo.                                                         -mMMy:osyyys.No      
-echo.                                                        :NMMs-oo+/syy:-       
-echo.                                                       /NMN+ ``   :ys.        
-echo.                                                      `NMN:        +.         
-echo.                                                      om-                    
-echo.                                                       `.                                            
-echo. 
-echo. 
-echo. 
-echo. 
+echo.                                                                           %COL%[33m.
+echo.                                                                        +N.
+echo.                                                               //        oMMs
+echo.                                                              +Nm`    ``yMMm-
+echo.                                                           ``dMMsoyhh-hMMd.
+echo.                                                           `yy/MMMMNh:dMMh`
+echo.                                                          .hMM.sso++:oMMs`
+echo.                                                         -mMMy:osyyys.No
+echo.                                                        :NMMs-oo+/syy:-
+echo.                                                       /NMN+ ``   :ys.
+echo.                                                      `NMN:        +.
+echo.                                                      om-
+echo.                                                       `.
+echo.
+echo.
+echo.
+echo.
 echo.
 echo                                                   %COL%[37m Settings have been applied
 echo.
@@ -3501,230 +3537,230 @@ goto GameSettings
 :1.7.10
 cd %appdata%\.minecraft\
 (
-    echo ofRenderDistanceChunks:4
-    echo ofFogType:3
-    echo ofFogStart:0.6
-    echo ofMipmapType:0
-    echo ofLoadFar:false
-    echo ofPreloadedChunks:0
-    echo ofOcclusionFancy:false
-    echo ofSmoothFps:false
-    echo ofSmoothWorld:false
-    echo ofAoLevel:0.0
-    echo ofClouds:3
-    echo ofCloudsHeight:0.0
-    echo ofTrees:1
-    echo ofGrass:0
-    echo ofDroppedItems:1
-    echo ofRain:3
-    echo ofWater:0
-    echo ofAnimatedWater:0
-    echo ofAnimatedLava:0
-    echo ofAnimatedFire:true
-    echo ofAnimatedPortal:true
-    echo ofAnimatedRedstone:false
-    echo ofAnimatedExplosion:true
-    echo ofAnimatedFlame:true
-    echo ofAnimatedSmoke:true
-    echo ofVoidParticles:false
-    echo ofWaterParticles:true
-    echo ofPortalParticles:true
-    echo ofPotionParticles:true
-    echo ofDrippingWaterLava:true
-    echo ofAnimatedTerrain:true
-    echo ofAnimatedTextures:true
-    echo ofAnimatedItems:true
-    echo ofRainSplash:false
-    echo ofLagometer:false
-    echo ofShowFps:false
-    echo ofAutoSaveTicks:28800
-    echo ofBetterGrass:3
-    echo ofConnectedTextures:3
-    echo ofWeather:false
-    echo ofSky:false
-    echo ofStars:false
-    echo ofSunMoon:true
-    echo ofVignette:1
-    echo ofChunkUpdates:1
-    echo ofChunkLoading:0
-    echo ofChunkUpdatesDynamic:false
-    echo ofTime:0
-    echo ofClearWater:true
-    echo ofDepthFog:false
-    echo ofAaLevel:0
-    echo ofProfiler:false
-    echo ofBetterSnow:false
-    echo ofSwampColors:false
-    echo ofRandomMobs:false
-    echo ofSmoothBiomes:false
-    echo ofCustomFonts:false
-    echo ofCustomColors:false
-    echo ofCustomSky:false
-    echo ofShowCapes:true
-    echo ofNaturalTextures:false
-    echo ofLazyChunkLoading:true
-    echo ofDynamicFov:false
-    echo ofDynamicLights:3
-    echo ofFullscreenMode:Default
-    echo ofFastMath:true
-    echo ofFastRender:true
-    echo ofTranslucentBlocks:1
+	echo ofRenderDistanceChunks:4
+	echo ofFogType:3
+	echo ofFogStart:0.6
+	echo ofMipmapType:0
+	echo ofLoadFar:false
+	echo ofPreloadedChunks:0
+	echo ofOcclusionFancy:false
+	echo ofSmoothFps:false
+	echo ofSmoothWorld:false
+	echo ofAoLevel:0.0
+	echo ofClouds:3
+	echo ofCloudsHeight:0.0
+	echo ofTrees:1
+	echo ofGrass:0
+	echo ofDroppedItems:1
+	echo ofRain:3
+	echo ofWater:0
+	echo ofAnimatedWater:0
+	echo ofAnimatedLava:0
+	echo ofAnimatedFire:true
+	echo ofAnimatedPortal:true
+	echo ofAnimatedRedstone:false
+	echo ofAnimatedExplosion:true
+	echo ofAnimatedFlame:true
+	echo ofAnimatedSmoke:true
+	echo ofVoidParticles:false
+	echo ofWaterParticles:true
+	echo ofPortalParticles:true
+	echo ofPotionParticles:true
+	echo ofDrippingWaterLava:true
+	echo ofAnimatedTerrain:true
+	echo ofAnimatedTextures:true
+	echo ofAnimatedItems:true
+	echo ofRainSplash:false
+	echo ofLagometer:false
+	echo ofShowFps:false
+	echo ofAutoSaveTicks:28800
+	echo ofBetterGrass:3
+	echo ofConnectedTextures:3
+	echo ofWeather:false
+	echo ofSky:false
+	echo ofStars:false
+	echo ofSunMoon:true
+	echo ofVignette:1
+	echo ofChunkUpdates:1
+	echo ofChunkLoading:0
+	echo ofChunkUpdatesDynamic:false
+	echo ofTime:0
+	echo ofClearWater:true
+	echo ofDepthFog:false
+	echo ofAaLevel:0
+	echo ofProfiler:false
+	echo ofBetterSnow:false
+	echo ofSwampColors:false
+	echo ofRandomMobs:false
+	echo ofSmoothBiomes:false
+	echo ofCustomFonts:false
+	echo ofCustomColors:false
+	echo ofCustomSky:false
+	echo ofShowCapes:true
+	echo ofNaturalTextures:false
+	echo ofLazyChunkLoading:true
+	echo ofDynamicFov:false
+	echo ofDynamicLights:3
+	echo ofFullscreenMode:Default
+	echo ofFastMath:true
+	echo ofFastRender:true
+	echo ofTranslucentBlocks:1
 ) > optionsof.txt
 goto MinecraftConfirmation
 
 :1.8.9
 cd %appdata%\.minecraft\
 (
-    echo ofFogType:3
-    echo ofFogStart:0.6
-    echo ofMipmapType:0
-    echo ofOcclusionFancy:false
-    echo ofSmoothFps:false
-    echo ofSmoothWorld:false
-    echo ofAoLevel:0.0
-    echo ofClouds:3
-    echo ofCloudsHeight:0.0
-    echo ofTrees:1
-    echo ofDroppedItems:1
-    echo ofRain:3
-    echo ofAnimatedWater:0
-    echo ofAnimatedLava:0
-    echo ofAnimatedFire:true
-    echo ofAnimatedPortal:true
-    echo ofAnimatedRedstone:false
-    echo ofAnimatedExplosion:true
-    echo ofAnimatedFlame:true
-    echo ofAnimatedSmoke:true
-    echo ofVoidParticles:false
-    echo ofWaterParticles:true
-    echo ofPortalParticles:true
-    echo ofPotionParticles:true
-    echo ofFireworkParticles:true
-    echo ofDrippingWaterLava:true
-    echo ofAnimatedTerrain:true
-    echo ofAnimatedTextures:true
-    echo ofRainSplash:false
-    echo ofLagometer:false
-    echo ofShowFps:false
-    echo ofAutoSaveTicks:28800
-    echo ofBetterGrass:3
-    echo ofConnectedTextures:3
-    echo ofWeather:false
-    echo ofSky:false
-    echo ofStars:false
-    echo ofSunMoon:true
-    echo ofVignette:1
-    echo ofChunkUpdates:1
-    echo ofChunkUpdatesDynamic:false
-    echo ofTime:0
-    echo ofClearWater:false
-    echo ofAaLevel:0
-    echo ofAfLevel:1
-    echo ofProfiler:false
-    echo ofBetterSnow:false
-    echo ofSwampColors:false
-    echo ofRandomEntities:false
-    echo ofSmoothBiomes:false
-    echo ofCustomFonts:false
-    echo ofCustomColors:false
-    echo ofCustomItems:false
-    echo ofCustomSky:true
-    echo ofShowCapes:true
-    echo ofNaturalTextures:false
-    echo ofEmissiveTextures:false
-    echo ofLazyChunkLoading:true
-    echo ofRenderRegions:true
-    echo ofSmartAnimations:true
-    echo ofDynamicFov:false
-    echo ofAlternateBlocks:false
-    echo ofDynamicLights:3
-    echo ofScreenshotSize:1
-    echo ofCustomEntityModels:false
-    echo ofCustomGuis:false
-    echo ofShowGlErrors:false
-    echo ofFullscreenMode:Default
-    echo ofFastMath:true
-    echo ofFastRender:true
-    echo ofTranslucentBlocks:1
-    echo key_of.key.zoom:29
+	echo ofFogType:3
+	echo ofFogStart:0.6
+	echo ofMipmapType:0
+	echo ofOcclusionFancy:false
+	echo ofSmoothFps:false
+	echo ofSmoothWorld:false
+	echo ofAoLevel:0.0
+	echo ofClouds:3
+	echo ofCloudsHeight:0.0
+	echo ofTrees:1
+	echo ofDroppedItems:1
+	echo ofRain:3
+	echo ofAnimatedWater:0
+	echo ofAnimatedLava:0
+	echo ofAnimatedFire:true
+	echo ofAnimatedPortal:true
+	echo ofAnimatedRedstone:false
+	echo ofAnimatedExplosion:true
+	echo ofAnimatedFlame:true
+	echo ofAnimatedSmoke:true
+	echo ofVoidParticles:false
+	echo ofWaterParticles:true
+	echo ofPortalParticles:true
+	echo ofPotionParticles:true
+	echo ofFireworkParticles:true
+	echo ofDrippingWaterLava:true
+	echo ofAnimatedTerrain:true
+	echo ofAnimatedTextures:true
+	echo ofRainSplash:false
+	echo ofLagometer:false
+	echo ofShowFps:false
+	echo ofAutoSaveTicks:28800
+	echo ofBetterGrass:3
+	echo ofConnectedTextures:3
+	echo ofWeather:false
+	echo ofSky:false
+	echo ofStars:false
+	echo ofSunMoon:true
+	echo ofVignette:1
+	echo ofChunkUpdates:1
+	echo ofChunkUpdatesDynamic:false
+	echo ofTime:0
+	echo ofClearWater:false
+	echo ofAaLevel:0
+	echo ofAfLevel:1
+	echo ofProfiler:false
+	echo ofBetterSnow:false
+	echo ofSwampColors:false
+	echo ofRandomEntities:false
+	echo ofSmoothBiomes:false
+	echo ofCustomFonts:false
+	echo ofCustomColors:false
+	echo ofCustomItems:false
+	echo ofCustomSky:true
+	echo ofShowCapes:true
+	echo ofNaturalTextures:false
+	echo ofEmissiveTextures:false
+	echo ofLazyChunkLoading:true
+	echo ofRenderRegions:true
+	echo ofSmartAnimations:true
+	echo ofDynamicFov:false
+	echo ofAlternateBlocks:false
+	echo ofDynamicLights:3
+	echo ofScreenshotSize:1
+	echo ofCustomEntityModels:false
+	echo ofCustomGuis:false
+	echo ofShowGlErrors:false
+	echo ofFullscreenMode:Default
+	echo ofFastMath:true
+	echo ofFastRender:true
+	echo ofTranslucentBlocks:1
+	echo key_of.key.zoom:29
 ) > optionsof.txt
 goto MinecraftConfirmation
 
 :1.18.2
 cd %appdata%\.minecraft\
 (
-    echo ofFogType:3
-    echo ofFogStart:0.6
-    echo ofMipmapType:0
-    echo ofOcclusionFancy:false
-    echo ofSmoothFps:false
-    echo ofSmoothWorld:false
-    echo ofAoLevel:0.0
-    echo ofClouds:3
-    echo ofCloudsHeight:0.0
-    echo ofTrees:1
-    echo ofDroppedItems:1
-    echo ofRain:3
-    echo ofAnimatedWater:0
-    echo ofAnimatedLava:0
-    echo ofAnimatedFire:true
-    echo ofAnimatedPortal:true
-    echo ofAnimatedRedstone:false
-    echo ofAnimatedExplosion:true
-    echo ofAnimatedFlame:true
-    echo ofAnimatedSmoke:true
-    echo ofVoidParticles:false
-    echo ofWaterParticles:true
-    echo ofPortalParticles:true
-    echo ofPotionParticles:true
-    echo ofFireworkParticles:true
-    echo ofDrippingWaterLava:true
-    echo ofAnimatedTerrain:true
-    echo ofAnimatedTextures:true
-    echo ofRainSplash:false
-    echo ofLagometer:false
-    echo ofShowFps:false
-    echo ofAutoSaveTicks:28800
-    echo ofBetterGrass:3
-    echo ofConnectedTextures:3
-    echo ofWeather:false
-    echo ofSky:false
-    echo ofStars:fale
-    echo ofSunMoon:true
-    echo ofVignette:1
-    echo ofChunkUpdates:1
-    echo ofChunkUpdatesDynamic:false
-    echo ofTime:0
-    echo ofAaLevel:0
-    echo ofAfLevel:1
-    echo ofProfiler:false
-    echo ofBetterSnow:false
-    echo ofSwampColors:false
-    echo ofRandomEntities:false
-    echo ofCustomFonts:false
-    echo ofCustomColors:false
-    echo ofCustomItems:false
-    echo ofCustomSky:true
-    echo ofShowCapes:true
-    echo ofNaturalTextures:false
-    echo ofEmissiveTextures:false
-    echo ofLazyChunkLoading:true
-    echo ofRenderRegions:true
-    echo ofSmartAnimations:true
-    echo ofDynamicFov:false
-    echo ofAlternateBlocks:false
-    echo ofDynamicLights:3
-    echo ofScreenshotSize:1
-    echo ofCustomEntityModels:false
-    echo ofCustomGuis:false
-    echo ofShowGlErrors:false
-    echo ofFastMath:true
-    echo ofFastRender:true
-    echo ofTranslucentBlocks:0
-    echo ofChatBackground:3
-    echo ofChatShadow:false
-    echo ofTelemetry:2
-    echo key_of.key.zoom:key.keyboard.left.control
+	echo ofFogType:3
+	echo ofFogStart:0.6
+	echo ofMipmapType:0
+	echo ofOcclusionFancy:false
+	echo ofSmoothFps:false
+	echo ofSmoothWorld:false
+	echo ofAoLevel:0.0
+	echo ofClouds:3
+	echo ofCloudsHeight:0.0
+	echo ofTrees:1
+	echo ofDroppedItems:1
+	echo ofRain:3
+	echo ofAnimatedWater:0
+	echo ofAnimatedLava:0
+	echo ofAnimatedFire:true
+	echo ofAnimatedPortal:true
+	echo ofAnimatedRedstone:false
+	echo ofAnimatedExplosion:true
+	echo ofAnimatedFlame:true
+	echo ofAnimatedSmoke:true
+	echo ofVoidParticles:false
+	echo ofWaterParticles:true
+	echo ofPortalParticles:true
+	echo ofPotionParticles:true
+	echo ofFireworkParticles:true
+	echo ofDrippingWaterLava:true
+	echo ofAnimatedTerrain:true
+	echo ofAnimatedTextures:true
+	echo ofRainSplash:false
+	echo ofLagometer:false
+	echo ofShowFps:false
+	echo ofAutoSaveTicks:28800
+	echo ofBetterGrass:3
+	echo ofConnectedTextures:3
+	echo ofWeather:false
+	echo ofSky:false
+	echo ofStars:fale
+	echo ofSunMoon:true
+	echo ofVignette:1
+	echo ofChunkUpdates:1
+	echo ofChunkUpdatesDynamic:false
+	echo ofTime:0
+	echo ofAaLevel:0
+	echo ofAfLevel:1
+	echo ofProfiler:false
+	echo ofBetterSnow:false
+	echo ofSwampColors:false
+	echo ofRandomEntities:false
+	echo ofCustomFonts:false
+	echo ofCustomColors:false
+	echo ofCustomItems:false
+	echo ofCustomSky:true
+	echo ofShowCapes:true
+	echo ofNaturalTextures:false
+	echo ofEmissiveTextures:false
+	echo ofLazyChunkLoading:true
+	echo ofRenderRegions:true
+	echo ofSmartAnimations:true
+	echo ofDynamicFov:false
+	echo ofAlternateBlocks:false
+	echo ofDynamicLights:3
+	echo ofScreenshotSize:1
+	echo ofCustomEntityModels:false
+	echo ofCustomGuis:false
+	echo ofShowGlErrors:false
+	echo ofFastMath:true
+	echo ofFastRender:true
+	echo ofTranslucentBlocks:0
+	echo ofChatBackground:3
+	echo ofChatShadow:false
+	echo ofTelemetry:2
+	echo key_of.key.zoom:key.keyboard.left.control
 ) > optionsof.txt
 goto MinecraftConfirmation
 
@@ -3734,36 +3770,36 @@ goto MainMenu
 cls
 echo.
 echo.
-echo.                                                                                
-echo. 
-echo.                                                                                
-echo.                                                                               
-echo             @@@    @@@@@@@@@@@@@@   @@@                                        
-echo         %@@@   @@@@              @@@   @@@@                                    
-echo         %@@@   @@@@              @@@   @@@@                                    
-echo         %@@@                           @@@@                                    
-echo         %@@@                               @@@                     @@@         
-echo      @@@,      @@@@       @@@                 @@@@              @@@   @@@@     
-echo      @@@,      @@@@       @@@                 @@@@              @@@   @@@@     
-echo      @@@,                                         @@@@@@@       @@@   @@@@     
-echo      @@@,          @@@@@@@                               @@@@@@@@@@   @@@@     
-echo      @@@,          @@@@@@@                               @@@@@@@@@@   @@@@     
-echo      @@@,   @@@    @@@       @@@@                                     @@@@     
-echo      @@@,      @@@@@@@@@@@@@@                                         @@@@     
-echo      @@@,                                                             @@@@     
-echo      @@@,                                                             @@@@     
-echo      @@@,                                                             @@@@     
-echo      @@@,                                                             @@@@     
-echo      @@@,                                                             @@@@     
-echo      @@@,                                                             @@@@     
-echo      @@@,                                                          @@@         
-echo         %@@@                                                       @@@         
-echo         %@@@                                                       @@@         
-echo         %@@@       @@@@@@@       @@@@@@@@@@@@@       @@@@@@@       @@@         
-echo         %@@@       @@@@@@@       @@@       @@@       @@@@@@@       @@@         
-echo         %@@@   @@@@   @@@@   @@@@          @@@    @@@    @@@    @@@            
-echo         %@@@   @@@@   @@@@   @@@@          @@@    @@@    @@@    @@@            
-echo             @@@           @@@                 @@@@          @@@@               
+echo.
+echo.
+echo.
+echo.
+echo             @@@    @@@@@@@@@@@@@@   @@@
+echo         %@@@   @@@@              @@@   @@@@
+echo         %@@@   @@@@              @@@   @@@@
+echo         %@@@                           @@@@
+echo         %@@@                               @@@                     @@@
+echo      @@@,      @@@@       @@@                 @@@@              @@@   @@@@
+echo      @@@,      @@@@       @@@                 @@@@              @@@   @@@@
+echo      @@@,                                         @@@@@@@       @@@   @@@@
+echo      @@@,          @@@@@@@                               @@@@@@@@@@   @@@@
+echo      @@@,          @@@@@@@                               @@@@@@@@@@   @@@@
+echo      @@@,   @@@    @@@       @@@@                                     @@@@
+echo      @@@,      @@@@@@@@@@@@@@                                         @@@@
+echo      @@@,                                                             @@@@
+echo      @@@,                                                             @@@@
+echo      @@@,                                                             @@@@
+echo      @@@,                                                             @@@@
+echo      @@@,                                                             @@@@
+echo      @@@,                                                             @@@@
+echo      @@@,                                                          @@@
+echo         %@@@                                                       @@@
+echo         %@@@                                                       @@@
+echo         %@@@       @@@@@@@       @@@@@@@@@@@@@       @@@@@@@       @@@
+echo         %@@@       @@@@@@@       @@@       @@@       @@@@@@@       @@@
+echo         %@@@   @@@@   @@@@   @@@@          @@@    @@@    @@@    @@@
+echo         %@@@   @@@@   @@@@   @@@@          @@@    @@@    @@@    @@@
+echo             @@@           @@@                 @@@@          @@@@
 echo					      hi
 echo.
 echo.
@@ -3782,7 +3818,7 @@ timeout /t 3 >nul 2>&1
 cls
 echo I don't have more dogs for you sorry
 timeout /t 3 >nul 2>&1
-cls 
+cls
 echo Maybe come back at another time? I'll get some for ya
 timeout /t 3 >nul 2>&1
 cls
@@ -3796,21 +3832,21 @@ echo.
 echo.
 echo.
 echo.
-echo.                                                                           %COL%[33m.  
-echo.                                                                          +N. 
-echo.                                                               //        oMMs 
-echo.                                                              +Nm`    ``yMMm- 
-echo.                                                           ``dMMsoyhh-hMMd.  
-echo.                                                           `yy/MMMMNh:dMMh`   
-echo.                                                          .hMM.sso++:oMMs`    
-echo.                                                         -mMMy:osyyys.No      
-echo.                                                        :NMMs-oo+/syy:-       
-echo.                                                       /NMN+ ``   :ys.        
-echo.                                                      `NMN:        +.         
-echo.                                                      om-                    
-echo.                                                       `.                                            
-echo. 
-echo. 
+echo.                                                                           %COL%[33m.
+echo.                                                                          +N.
+echo.                                                               //        oMMs
+echo.                                                              +Nm`    ``yMMm-
+echo.                                                           ``dMMsoyhh-hMMd.
+echo.                                                           `yy/MMMMNh:dMMh`
+echo.                                                          .hMM.sso++:oMMs`
+echo.                                                         -mMMy:osyyys.No
+echo.                                                        :NMMs-oo+/syy:-
+echo.                                                       /NMN+ ``   :ys.
+echo.                                                      `NMN:        +.
+echo.                                                      om-
+echo.                                                       `.
+echo.
+echo.
 echo.
 echo                  %COL%[33m[ %COL%[37m1 %COL%[33m] %COL%[37mAbout                                                   %COL%[33m[ %COL%[37m2 %COL%[33m] %COL%[37mDisclaimer
 echo.
@@ -3873,7 +3909,7 @@ echo.
 echo %COL%[91m  WARNING:
 echo %COL%[37m  Please note that we cannot guarantee an FPS boost from applying our optimizations, every system + configuration is different.
 echo.
-echo     %COL%[33m1.%COL%[37m Everything is "use at your own risk", we are %COL%[91mNOT LIABLE%COL%[37m if you damage your system in any way 
+echo     %COL%[33m1.%COL%[37m Everything is "use at your own risk", we are %COL%[91mNOT LIABLE%COL%[37m if you damage your system in any way
 echo        (ex. not following the disclaimers carefully).
 echo.
 echo     %COL%[33m2.%COL%[37m If you don't know what a tweak is, do not use it and contact our support team to receive more assistance.
@@ -3882,7 +3918,7 @@ echo     %COL%[33m3.%COL%[37m Even though we have an automatic restore point fea
 echo.
 echo   For any questions and/or concerns, please join our discord: discord.gg/hone
 echo.
-echo   Please enter "I agree" without quotes to continue: 
+echo   Please enter "I agree" without quotes to continue:
 echo.
 echo.
 echo.
@@ -4064,8 +4100,8 @@ goto :eof
 
 
 
-echo       :::    :::     ::::::::     ::::    :::    ::::::::::     
-echo      :+:    :+:    :+:    :+:    :+:+:   :+:    :+:            
+echo       :::    :::     ::::::::     ::::    :::    ::::::::::
+echo      :+:    :+:    :+:    :+:    :+:+:   :+:    :+:
 echo     +:+    +:+    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo    +#++:++#++    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo   +#+    +#+    +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -4076,9 +4112,9 @@ echo                                                             ##     ###    #
 echo                                                              ########      ########
 
 echo.                                          %COL%[33m+N.
-echo.                               //        oMMs         
-echo.                              +Nm`    ``yMMm-      ::::::::     ::::    :::    :::::::::: 
-echo.                           ``dMMsoyhh-hMMd.      :+:    :+:    :+:+:   :+:    :+:  
+echo.                               //        oMMs
+echo.                              +Nm`    ``yMMm-      ::::::::     ::::    :::    ::::::::::
+echo.                           ``dMMsoyhh-hMMd.      :+:    :+:    :+:+:   :+:    :+:
 echo.                           `yy/MMMMNh:dMMh`     +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                          .hMM.sso++:oMMs`     +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                         -mMMy:osyyys.No      +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -4089,23 +4125,23 @@ echo.                      om-                                                  
 echo.                       `.                                                                  ########      ########
 
 echo.                                          %COL%[33m+N.
-echo.                               //        oMMs         
-echo.                              +Nm`    ``yMMm-               :::    :::     ::::::::     ::::    :::    :::::::::: 
-echo.                           ``dMMsoyhh-hMMd.                :+:    :+:    :+:    :+:    :+:+:   :+:    :+:  
-echo.                           `yy/MMMMNh:dMMh`               +:+    +:+    +:+    +:+    :+:+:+  +:+    +:+    
-echo.                          .hMM.sso++:oMMs`               +#++:++#++    +#+    +:+    +#+ +:+ +#+    +#++:++#    
-echo.                         -mMMy:osyyys.No                +#+    +#+    +#+    +#+    +#+  +#+#+#    +#+   
-echo.                        :NMMs-oo+/syy:-                #+#    #+#    #+#    #+#    #+#   #+#+#    #+#   
+echo.                               //        oMMs
+echo.                              +Nm`    ``yMMm-               :::    :::     ::::::::     ::::    :::    ::::::::::
+echo.                           ``dMMsoyhh-hMMd.                :+:    :+:    :+:    :+:    :+:+:   :+:    :+:
+echo.                           `yy/MMMMNh:dMMh`               +:+    +:+    +:+    +:+    :+:+:+  +:+    +:+
+echo.                          .hMM.sso++:oMMs`               +#++:++#++    +#+    +:+    +#+ +:+ +#+    +#++:++#
+echo.                         -mMMy:osyyys.No                +#+    +#+    +#+    +#+    +#+  +#+#+#    +#+
+echo.                        :NMMs-oo+/syy:-                #+#    #+#    #+#    #+#    #+#   #+#+#    #+#
 echo.                       /NMN+ ``   :ys.                ###    ###     ########     ###    ####    ##########
-echo.                      `NMN:        +.                
-echo.                      om-                            
-echo.                       `.                            
+echo.                      `NMN:        +.
+echo.                      om-
+echo.                       `.
 
 :ColorText
 echo off
 <nul set /p ".=%DEL%" > "%~2"
 findstr /v /a:%1 /R "^$" "%~2" nul
-del "%~2" > nul  
+del "%~2" > nul
 goto :eof
 
 :HoneCtrlError
@@ -4126,7 +4162,7 @@ echo.
 echo.
 echo      [X] Close
 echo.
-%SystemRoot%\System32\choice.exe /c:X /n /m "%DEL%                                >:" 
+%SystemRoot%\System32\choice.exe /c:X /n /m "%DEL%                                >:"
 exit /b
 goto :eof
 
