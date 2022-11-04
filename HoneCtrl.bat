@@ -80,7 +80,7 @@ if "%~f0" == "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\Driverinst
 )
 
 :CheckForUpdates
-set local=2.55
+set local=2.56
 set localtwo=%local%
 if exist "%temp%\Updater.bat" DEL /S /Q /F "%temp%\Updater.bat" >nul 2>&1
 curl -g -L -# -o "%temp%\Updater.bat" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/HoneCtrlVer" >nul 2>&1
@@ -179,18 +179,18 @@ if "%choice%"=="9" goto Dog
 goto MainMenu
 
 :HoneTitle
-echo.                                      %COL%[33m+N.
-echo.                           //        oMMs
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
-echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
-echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
-echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
-echo.                    :NMMs-oo+/syy:-     #+#    #+#    #+#   #+#+#    #+#          %COL%[37m#+#%COL%[33m    +#+   #+#     #+#   #+#
-echo.                   /NMN+ ``   :ys.      ########     ###    ####    ##########   %COL%[37m###%COL%[33m       ######        ######
-echo.                  `NMN:        +.                                                      ##    ###     ##    ###
-echo.                  om-                                                                   #######       #######
-echo.                   `.
+echo                                       %COL%[33m+N.
+echo                            //        oMMs
+echo                           +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo                        ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
+echo                        `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
+echo                       .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
+echo                      -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
+echo                     :NMMs-oo+/syy:-     #+#    #+#    #+#   #+#+#    #+#          %COL%[37m#+#%COL%[33m    +#+   #+#     #+#   #+#
+echo                    /NMN+ ``   :ys.      ########     ###    ####    ##########   %COL%[37m###%COL%[33m       ######        ######
+echo                   `NMN:        +.                                                      ##    ###     ##    ###
+echo                   om-                                                                   #######       #######
+echo                    `.
 goto :eof
 
 :Comingsoon
@@ -359,13 +359,13 @@ echo                                                               %COL%[1;4;34m
 echo.
 echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m Disable Services %COL%[93mN/A           %COL%[33m[%COL%[37m 2 %COL%[33m]%COL%[37m Debloat %COL%[93mN/A                    %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m Disable Mitigations %MITOF%
 echo              %COL%[90mDisables services and lowers memory  %COL%[90mThis tweak will debloat your         %COL%[90mDisable protections against memory
-echo              %COL%[90mDon't use if you are using Wi-Fi     %COL%[90msystem and disable telemetry         %COL%[90mbased attacks that consume perf
+echo              %COL%[91mDon't use if you are using Wi-Fi     %COL%[90msystem and disable telemetry         %COL%[90mbased attacks that consume perf
 echo.
 echo                                                           %COL%[1;4;34mNetwork Tweaks%COL%[0m
 echo.
 echo              %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m Optimize TCP/IP %TCPOF%            %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Optimize NIC %NICOF%               %COL%[33m[%COL%[37m 6 %COL%[33m]%COL%[37m Optimize Netsh %NETOF%
 echo              %COL%[90mTweaks your Internet Protocol        %COL%[90mOptimize your Network Card settings  %COL%[90mThis tweak will optimize your
-echo              %COL%[90mDon't use if you are using Wi-Fi     %COL%[90mDon't use if you are using Wi-Fi     %COL%[90mcomputer network configuration
+echo              %COL%[91mDon't use if you are using Wi-Fi     %COL%[91mDon't use if you are using Wi-Fi     %COL%[90mcomputer network configuration
 echo.
 echo                                                             %COL%[1;4;34mGPU ^& CPU%COL%[0m
 echo.
@@ -411,7 +411,7 @@ rem echo                                                           %COL%[1;4;34m
 rem echo.
 rem echo              %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m Disable USB Power Savings %BLANK%  %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m CSRSS high priority %BLANK%        %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Disable HPET %BLANK%
 rem echo              %COL%[90mTweaks your Internet Protocol        %COL%[90mCSRSS is for mouse input, setting    %COL%[90mCSRSS is responsible for mouse input
-rem echo              %COL%[90mDon't use if you are using Wi-Fi     %COL%[90mhigh priority may improve latency    %COL%[90mset to high to improve input latency
+rem echo              %COL%[91mDon't use if you are using Wi-Fi     %COL%[90mhigh priority may improve latency    %COL%[90mset to high to improve input latency
 echo                                                        %COL%[1;4;34mMiscellaneous Tweaks%COL%[0m
 echo.
 echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m Cleaner %BLANK%                    %COL%[33m[%COL%[37m 2 %COL%[33m]%COL%[37m Game-Booster %BLANK%               %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m Soft Restart %BLANK%
@@ -419,7 +419,7 @@ echo              %COL%[90mRemove adware, unused devices, and   %COL%[90mSets GP
 echo              %COL%[90mtemp files. Empties recycle bin.     %COL%[90mDisables fullscreen optimizations    %COL%[90muse this to receive a quick boost
 echo.
 echo.
-echo.                                                     	  %COL%[1;4;31mAdvanced Tweaks%COL%[0m
+echo                                                      	  %COL%[1;4;31mAdvanced Tweaks%COL%[0m
 echo.
 echo.			 			     %COL%[33m[%COL%[37m Press A to go to page %COL%[33m]
 echo.
@@ -566,6 +566,8 @@ goto Advanced
 
 :TimerRes
 cd C:\Hone\Resources
+sc config "STR" start= auto >nul 2>&1
+start /b net start STR >nul 2>&1
 if "%TMROF%" == "%COL%[91mOFF" (
 	if not exist SetTimerResolutionService.exe (
 		::https://forums.guru3d.com/threads/windows-timer-resolution-tool-in-form-of-system-service.376458/
@@ -574,8 +576,19 @@ if "%TMROF%" == "%COL%[91mOFF" (
 	)
 	sc config "STR" start=auto >nul 2>&1
 	start /b net start STR >nul 2>&1
-	bcdedit /set useplatformtick true >nul 2>&1
 	bcdedit /set disabledynamictick yes >nul 2>&1
+	bcdedit /deletevalue useplatformclock >nul 2>&1
+	for /F "tokens=2 delims==" %%G in (
+    	'wmic OS get buildnumber /value'
+	) do @for /F "tokens=*" %%x in ("%%G") do (
+		set "VAR=%%~x"
+	)
+	if !VAR! geq 19042 (
+		bcdedit /deletevalue useplatformtick >nul 2>&1
+	)
+	if !VAR! lss 19042 (
+		bcdedit /set useplatformtick yes >nul 2>&1
+	)
 ) else (
 	sc config "STR" start=disabled >nul 2>&1
 	start /b net stop STR >nul 2>&1
@@ -701,6 +714,30 @@ start /B cmd /c "ipconfig /release & ipconfig /renew" >nul 2>&1
 goto Tweaks
 
 :NIC
+Reg query "HKCU\Software\Hone" /v "WifiDisclaimer4" >nul 2>&1 && goto NIC2
+cls
+echo.
+echo.
+call :HoneTitle
+echo.
+echo                                        %COL%[90m HoneCtrl is a free and open-source desktop utility
+echo                                        %COL%[90m    made to improve your day-to-day productivity
+echo.
+echo.
+echo.
+echo %COL%[91m  WARNING:
+echo %COL%[91m  This tweak is for ethernet users only, if you're on Wi-Fi, do not run this tweak.
+echo.
+echo   %COL%[37mFor any questions and/or concerns, please join our discord: discord.gg/hone
+echo.
+echo   %COL%[37mPlease enter "I understand" without quotes to continue:
+echo.
+echo.
+echo.
+set /p "input=%DEL%                                                            >: %COL%[92m"
+if /i "!input!" neq "i understand" goto Tweaks
+Reg add "HKCU\Software\Hone" /v "WifiDisclaimer4" /f >nul 2>&1
+:NIC2
 cd %SystemDrive%\Hone\HoneRevert
 if "%NICOF%" neq "%COL%[91mOFF" (
 	reg import ognic.reg >nul 2>&1
@@ -737,17 +774,11 @@ if "%NETOF%" == "%COL%[91mOFF" (
 	netsh int tcp set global netdma=enabled
 	netsh interface isatap set state disabled
 	netsh int tcp set global timestamps=disabled
-	netsh int tcp set supplemental Internet congestionprovider=ctcp
 	netsh int tcp set global rss=enabled
 	netsh int tcp set global nonsackrttresiliency=disabled
 	netsh int tcp set global initialRto=2000
-	netsh int udp set global uro=enabled
 	netsh int tcp set supplemental template=custom icw=10
-	netsh interface teredo set state disable
-	netsh int tcp set global hystart=disabled
-
-
-netsh interface ip set interface ethernet currenthoplimit=64
+    netsh interface ip set interface ethernet currenthoplimit=64
 ) >nul 2>&1 else (
 	reg delete "HKCU\Software\Hone" /v InternetTweaks /f
 	netsh int tcp set supplemental Internet congestionprovider=default
@@ -756,12 +787,8 @@ netsh interface ip set interface ethernet currenthoplimit=64
 	netsh int tcp set global chimney=default
 	netsh int tcp set global dca=default
 	netsh int tcp set global netdma=default
-	netsh int tcp set global ecncapability=default
 	netsh int tcp set global timestamps=default
 	netsh int tcp set global nonsackrttresiliency=default
-	netsh int tcp set global hystart=enabled
-	netsh interface isatap set state default
-	netsh interface ip set interface ethernet currenthoplimit=128
 ) >nul 2>&1
 goto Tweaks
 
@@ -950,7 +977,7 @@ if "%DEBOF%" == "%COL%[91mOFF" (
 	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpgrade" /t REG_DWORD /d "1" /f
 	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpgradePeriod" /t REG_DWORD /d "1" /f
 	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpdatePeriod" /t REG_DWORD /d "0" /f
-	reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Metadata" /v "PreventDeviceMetadataFromNetwork" /t REG_DWORD /d "1" /f  
+	reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Metadata" /v "PreventDeviceMetadataFromNetwork" /t REG_DWORD /d "1" /f
 	reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsStore\WindowsUpdate" /v "AutoDownload" /t REG_DWORD /d "2" /f
 	reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "NoAutoUpdate" /t REG_DWORD /d "1" /f
 	reg add "HKLM\SYSTEM\CurrentControlSet\Services\wuauserv" /v "Start" /t REG_DWORD /d "3" /f
@@ -1227,6 +1254,30 @@ if "%DWCOF%" == "%COL%[91mOFF" (
 ) >nul 2>&1
 
 :Service
+Reg query "HKCU\Software\Hone" /v "WifiDisclaimer1" >nul 2>&1 && goto Service2
+cls
+echo.
+echo.
+call :HoneTitle
+echo.
+echo                                        %COL%[90m HoneCtrl is a free and open-source desktop utility
+echo                                        %COL%[90m    made to improve your day-to-day productivity
+echo.
+echo.
+echo.
+echo %COL%[91m  WARNING:
+echo %COL%[91m  This tweak is for ethernet users only, if you're on Wi-Fi, do not run this tweak.
+echo.
+echo   %COL%[37mFor any questions and/or concerns, please join our discord: discord.gg/hone
+echo.
+echo   %COL%[37mPlease enter "I understand" without quotes to continue:
+echo.
+echo.
+echo.
+set /p "input=%DEL%                                                            >: %COL%[92m"
+if /i "!input!" neq "i understand" goto Tweaks
+Reg add "HKCU\Software\Hone" /v "WifiDisclaimer1" /f >nul 2>&1
+:Service2
 if "%SERVOF%" == "%COL%[91mOFF" (
 	reg add "HKCU\Software\Hone" /v ServicesTweaks /f
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\xbgm" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
@@ -1249,7 +1300,7 @@ if "%SERVOF%" == "%COL%[91mOFF" (
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\GoogleChromeElevationService" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\OneSyncSvc" /v "Start" /t REG_DWORD /d "4" /f
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ibtsiva" /v "Start" /t REG_DWORD /d "4" /f
-	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SNMPTRAP" /v "Start" /t REG_DWORD /d "4" /f   
+	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SNMPTRAP" /v "Start" /t REG_DWORD /d "4" /f
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\pla" /v "Start" /t REG_DWORD /d "4" /f
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ssh-agent" /v "Start" /t REG_DWORD /d "4" /f
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\sshd" /v "Start" /t REG_DWORD /d "4" /f
@@ -1272,7 +1323,7 @@ if "%SERVOF%" == "%COL%[91mOFF" (
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\VaultSvc" /v "Start" /t REG_DWORD /d "3" /f
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wuauserv" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CertPropSvc" /v "Start" /t REG_DWORD /d "3" /f
-	)>nul 2>&1 else (
+)>nul 2>&1 else (
 	reg delete "HKCU\Software\Hone" /v ServicesTweaks /f
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\xbgm" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
 	reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\XboxGipSvc" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
@@ -1397,19 +1448,19 @@ echo.
 echo.
 echo.
 echo.
-echo.                                                                          %COL%[33m.
-echo.                                                                       +N.
-echo.                                                              //        oMMs
-echo.                                                             +Nm`    ``yMMm-
-echo.                                                          ``dMMsoyhh-hMMd.
-echo.                                                          `yy/MMMMNh:dMMh`
-echo.                                                         .hMM.sso++:oMMs`
-echo.                                                        -mMMy:osyyys.No
-echo.                                                       :NMMs-oo+/syy:-
-echo.                                                      /NMN+ ``   :ys.
-echo.                                                     `NMN:        +.
-echo.                                                     om-
-echo.                                                      `.
+echo                                                                           %COL%[33m.
+echo                                                                        +N.
+echo                                                               //        oMMs
+echo                                                              +Nm`    ``yMMm-
+echo                                                           ``dMMsoyhh-hMMd.
+echo                                                           `yy/MMMMNh:dMMh`
+echo                                                          .hMM.sso++:oMMs`
+echo                                                         -mMMy:osyyys.No
+echo                                                        :NMMs-oo+/syy:-
+echo                                                       /NMN+ ``   :ys.
+echo                                                      `NMN:        +.
+echo                                                      om-
+echo                                                       `.
 echo.
 echo.
 echo.
@@ -1611,18 +1662,18 @@ if not defined encoder set encoder=CPU
 cls
 echo.
 echo.
-echo.                                      %COL%[33m+N.
-echo.                           //        oMMs
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
-echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
-echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
-echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
-echo.                    :NMMs-oo+/syy:-     #+#    #+#    #+#   #+#+#    #+#          %COL%[37m#+#%COL%[33m    +#+   #+#     #+#   #+#
-echo.                   /NMN+ ``   :ys.      ########     ###    ####    ##########   %COL%[37m###%COL%[33m       ######        ######
-echo.                  `NMN:        +.                                                      ##    ###     ##    ###
-echo.                  om-                                                                   #######       #######
-echo.                   `.                                      %COL%[34m%COL%[1mOBS Settings%COL%[0m
+echo                                       %COL%[33m+N.
+echo                            //        oMMs
+echo                           +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo                        ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
+echo                        `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
+echo                       .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
+echo                      -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
+echo                     :NMMs-oo+/syy:-     #+#    #+#    #+#   #+#+#    #+#          %COL%[37m#+#%COL%[33m    +#+   #+#     #+#   #+#
+echo                    /NMN+ ``   :ys.      ########     ###    ####    ##########   %COL%[37m###%COL%[33m       ######        ######
+echo                   `NMN:        +.                                                      ##    ###     ##    ###
+echo                   om-                                                                   #######       #######
+echo                    `.                                      %COL%[34m%COL%[1mOBS Settings%COL%[0m
 echo.
 echo              %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Install/Update OBS             %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m Recording                      %COL%[33m[ %COL%[37m3 %COL%[33m]%COL%[37m Streaming
 echo              %COL%[90mAutomatically install or update      %COL%[90mAutomated recording settings for     %COL%[90mAutomated streaming settings for
@@ -3135,11 +3186,11 @@ echo.
 echo.
 echo %COL%[91m  WARNING:
 echo.
-echo.    %COL%[33m1.%COL%[37m These Tweaks are HIGHLY experimental, we do %COL%[91mnot%COL%[37m recommend proceeding if you do not know what you're doing!
+echo     %COL%[33m1.%COL%[37m These Tweaks are HIGHLY experimental, we do %COL%[91mnot%COL%[37m recommend proceeding if you do not know what you're doing!
 echo.
 echo     %COL%[33m1.%COL%[37m Everything is "use at your own risk", we are %COL%[91mNOT LIABLE%COL%[37m if you damage your system in any way.
 echo.
-echo.    %COL%[33m1.%COL%[37m Even though we have an automatic restore point feature, we %COL%[91mHighly%COL%[37m recommend making a manual restore point before running.
+echo     %COL%[33m1.%COL%[37m Even though we have an automatic restore point feature, we %COL%[91mHighly%COL%[37m recommend making a manual restore point before running.
 echo.
 echo     Please enter "I agree" (without quotes) to continue:
 echo.
@@ -3266,6 +3317,30 @@ if "%AUTOF%" == "%COL%[91mOFF" (
 goto Advanced
 
 :Congestion
+Reg query "HKCU\Software\Hone" /v "WifiDisclaimer3" >nul 2>&1 && goto Congestion2
+cls
+echo.
+echo.
+call :HoneTitle
+echo.
+echo                                        %COL%[90m HoneCtrl is a free and open-source desktop utility
+echo                                        %COL%[90m    made to improve your day-to-day productivity
+echo.
+echo.
+echo.
+echo %COL%[91m  WARNING:
+echo %COL%[91m  This tweak is for Wi-Fi users only, if you're on Ethernet, do not run this tweak.
+echo.
+echo   %COL%[37mFor any questions and/or concerns, please join our discord: discord.gg/hone
+echo.
+echo   %COL%[37mPlease enter "I understand" without quotes to continue:
+echo.
+echo.
+echo.
+set /p "input=%DEL%                                                            >: %COL%[92m"
+if /i "!input!" neq "i understand" goto Tweaks
+Reg add "HKCU\Software\Hone" /v "WifiDisclaimer3" /f >nul 2>&1
+:Congestion2
 if "%CONG%" == "%COL%[91mOFF" (
 	reg add "HKCU\Software\Hone" /v TuningTweak1 /f >nul 2>&1
 	netsh int tcp set supplemental Internet congestionprovider=newreno >nul 2>&1
@@ -3451,19 +3526,19 @@ echo.
 echo.
 echo.
 echo.
-echo.                                                                           %COL%[33m.
-echo.                                                                        +N.
-echo.                                                               //        oMMs
-echo.                                                              +Nm`    ``yMMm-
-echo.                                                           ``dMMsoyhh-hMMd.
-echo.                                                           `yy/MMMMNh:dMMh`
-echo.                                                          .hMM.sso++:oMMs`
-echo.                                                         -mMMy:osyyys.No
-echo.                                                        :NMMs-oo+/syy:-
-echo.                                                       /NMN+ ``   :ys.
-echo.                                                      `NMN:        +.
-echo.                                                      om-
-echo.                                                       `.
+echo                                                                            %COL%[33m.
+echo                                                                         +N.
+echo                                                                //        oMMs
+echo                                                               +Nm`    ``yMMm-
+echo                                                            ``dMMsoyhh-hMMd.
+echo                                                            `yy/MMMMNh:dMMh`
+echo                                                           .hMM.sso++:oMMs`
+echo                                                          -mMMy:osyyys.No
+echo                                                         :NMMs-oo+/syy:-
+echo                                                        /NMN+ ``   :ys.
+echo                                                       `NMN:        +.
+echo                                                       om-
+echo                                                        `.
 echo.
 echo.
 echo.
@@ -3506,19 +3581,19 @@ echo.
 echo.
 echo.
 echo.
-echo.                                                                           %COL%[33m.
-echo.                                                                        +N.
-echo.                                                               //        oMMs
-echo.                                                              +Nm`    ``yMMm-
-echo.                                                           ``dMMsoyhh-hMMd.
-echo.                                                           `yy/MMMMNh:dMMh`
-echo.                                                          .hMM.sso++:oMMs`
-echo.                                                         -mMMy:osyyys.No
-echo.                                                        :NMMs-oo+/syy:-
-echo.                                                       /NMN+ ``   :ys.
-echo.                                                      `NMN:        +.
-echo.                                                      om-
-echo.                                                       `.
+echo                                                                            %COL%[33m.
+echo                                                                         +N.
+echo                                                                //        oMMs
+echo                                                               +Nm`    ``yMMm-
+echo                                                            ``dMMsoyhh-hMMd.
+echo                                                            `yy/MMMMNh:dMMh`
+echo                                                           .hMM.sso++:oMMs`
+echo                                                          -mMMy:osyyys.No
+echo                                                         :NMMs-oo+/syy:-
+echo                                                        /NMN+ ``   :ys.
+echo                                                       `NMN:        +.
+echo                                                       om-
+echo                                                        `.
 echo.
 echo.
 echo.
@@ -3832,19 +3907,19 @@ echo.
 echo.
 echo.
 echo.
-echo.                                                                           %COL%[33m.
-echo.                                                                          +N.
-echo.                                                               //        oMMs
-echo.                                                              +Nm`    ``yMMm-
-echo.                                                           ``dMMsoyhh-hMMd.
-echo.                                                           `yy/MMMMNh:dMMh`
-echo.                                                          .hMM.sso++:oMMs`
-echo.                                                         -mMMy:osyyys.No
-echo.                                                        :NMMs-oo+/syy:-
-echo.                                                       /NMN+ ``   :ys.
-echo.                                                      `NMN:        +.
-echo.                                                      om-
-echo.                                                       `.
+echo                                                                            %COL%[33m.
+echo                                                                           +N.
+echo                                                                //        oMMs
+echo                                                               +Nm`    ``yMMm-
+echo                                                            ``dMMsoyhh-hMMd.
+echo                                                            `yy/MMMMNh:dMMh`
+echo                                                           .hMM.sso++:oMMs`
+echo                                                          -mMMy:osyyys.No
+echo                                                         :NMMs-oo+/syy:-
+echo                                                        /NMN+ ``   :ys.
+echo                                                       `NMN:        +.
+echo                                                       om-
+echo                                                        `.
 echo.
 echo.
 echo.
@@ -4111,31 +4186,31 @@ echo                                                                     ###    
 echo                                                             ##     ###    ##     ###
 echo                                                              ########      ########
 
-echo.                                          %COL%[33m+N.
-echo.                               //        oMMs
-echo.                              +Nm`    ``yMMm-      ::::::::     ::::    :::    ::::::::::
-echo.                           ``dMMsoyhh-hMMd.      :+:    :+:    :+:+:   :+:    :+:
-echo.                           `yy/MMMMNh:dMMh`     +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
-echo.                          .hMM.sso++:oMMs`     +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
-echo.                         -mMMy:osyyys.No      +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
-echo.                        :NMMs-oo+/syy:-      #+#    #+#    #+#   #+#+#    #+#          #+#   #+#    #+#    #+#    #+#
-echo.                       /NMN+ ``   :ys.       ########     ###    ####    ##########   ###     ########      ########
-echo.                      `NMN:        +.                                                             ###           ###
-echo.                      om-                                                                 ##     ###    ##     ###
-echo.                       `.                                                                  ########      ########
+echo                                           %COL%[33m+N.
+echo                                //        oMMs
+echo                               +Nm`    ``yMMm-      ::::::::     ::::    :::    ::::::::::
+echo                            ``dMMsoyhh-hMMd.      :+:    :+:    :+:+:   :+:    :+:
+echo                            `yy/MMMMNh:dMMh`     +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
+echo                           .hMM.sso++:oMMs`     +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
+echo                          -mMMy:osyyys.No      +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
+echo                         :NMMs-oo+/syy:-      #+#    #+#    #+#   #+#+#    #+#          #+#   #+#    #+#    #+#    #+#
+echo                        /NMN+ ``   :ys.       ########     ###    ####    ##########   ###     ########      ########
+echo                       `NMN:        +.                                                             ###           ###
+echo                       om-                                                                 ##     ###    ##     ###
+echo                        `.                                                                  ########      ########
 
-echo.                                          %COL%[33m+N.
-echo.                               //        oMMs
-echo.                              +Nm`    ``yMMm-               :::    :::     ::::::::     ::::    :::    ::::::::::
-echo.                           ``dMMsoyhh-hMMd.                :+:    :+:    :+:    :+:    :+:+:   :+:    :+:
-echo.                           `yy/MMMMNh:dMMh`               +:+    +:+    +:+    +:+    :+:+:+  +:+    +:+
-echo.                          .hMM.sso++:oMMs`               +#++:++#++    +#+    +:+    +#+ +:+ +#+    +#++:++#
-echo.                         -mMMy:osyyys.No                +#+    +#+    +#+    +#+    +#+  +#+#+#    +#+
-echo.                        :NMMs-oo+/syy:-                #+#    #+#    #+#    #+#    #+#   #+#+#    #+#
-echo.                       /NMN+ ``   :ys.                ###    ###     ########     ###    ####    ##########
-echo.                      `NMN:        +.
-echo.                      om-
-echo.                       `.
+echo                                           %COL%[33m+N.
+echo                                //        oMMs
+echo                               +Nm`    ``yMMm-               :::    :::     ::::::::     ::::    :::    ::::::::::
+echo                            ``dMMsoyhh-hMMd.                :+:    :+:    :+:    :+:    :+:+:   :+:    :+:
+echo                            `yy/MMMMNh:dMMh`               +:+    +:+    +:+    +:+    :+:+:+  +:+    +:+
+echo                           .hMM.sso++:oMMs`               +#++:++#++    +#+    +:+    +#+ +:+ +#+    +#++:++#
+echo                          -mMMy:osyyys.No                +#+    +#+    +#+    +#+    +#+  +#+#+#    +#+
+echo                         :NMMs-oo+/syy:-                #+#    #+#    #+#    #+#    #+#   #+#+#    #+#
+echo                        /NMN+ ``   :ys.                ###    ###     ########     ###    ####    ##########
+echo                       `NMN:        +.
+echo                       om-
+echo                        `.
 
 :ColorText
 echo off
