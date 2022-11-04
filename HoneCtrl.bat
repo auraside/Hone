@@ -579,7 +579,7 @@ if "%TMROF%" == "%COL%[91mOFF" (
 	bcdedit /set disabledynamictick yes >nul 2>&1
 	bcdedit /deletevalue useplatformclock >nul 2>&1
 	for /F "tokens=2 delims==" %%G in (
-    	'wmic OS get buildnumber /value'
+		'wmic OS get buildnumber /value'
 	) do @for /F "tokens=*" %%x in ("%%G") do (
 		set "VAR=%%~x"
 	)
@@ -778,7 +778,7 @@ if "%NETOF%" == "%COL%[91mOFF" (
 	netsh int tcp set global nonsackrttresiliency=disabled
 	netsh int tcp set global initialRto=2000
 	netsh int tcp set supplemental template=custom icw=10
-    netsh interface ip set interface ethernet currenthoplimit=64
+	netsh interface ip set interface ethernet currenthoplimit=64
 ) >nul 2>&1 else (
 	reg delete "HKCU\Software\Hone" /v InternetTweaks /f
 	netsh int tcp set supplemental Internet congestionprovider=default
