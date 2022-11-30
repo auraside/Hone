@@ -30,7 +30,7 @@ cd C:\Hone
 Reg.exe add HKLM /F >nul 2>&1
 if %errorlevel% neq 0 start "" /wait /I /min powershell -NoProfile -Command start -verb runas "'%~s0'" && exit /b
 
-::Show Detailed BSoD 
+::Show Detailed BSoD
 Reg add "HKLM\System\CurrentControlSet\Control\CrashControl" /v "DisplayParameters" /t REG_DWORD /d "1" /f >nul 2>&1
 
 ::Blank/Color Character
@@ -46,9 +46,9 @@ cls
 echo.
 echo.
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -66,7 +66,7 @@ echo.
 echo %COL%[91m  WARNING:
 echo %COL%[37m  Please note that we cannot guarantee an FPS boost from applying our optimizations, every system + configuration is different.
 echo.
-echo     %COL%[33m1.%COL%[37m Everything is "use at your own risk", we are %COL%[91mNOT LIABLE%COL%[37m if you damage your system in any way 
+echo     %COL%[33m1.%COL%[37m Everything is "use at your own risk", we are %COL%[91mNOT LIABLE%COL%[37m if you damage your system in any way
 echo        (ex. not following the disclaimers carefully).
 echo.
 echo     %COL%[33m2.%COL%[37m If you don't know what a tweak is, do not use it and contact our support team to receive more assistance.
@@ -75,7 +75,7 @@ echo     %COL%[33m3.%COL%[37m Even though we have an automatic restore point fea
 echo.
 echo   For any questions and/or concerns, please join our discord: discord.gg/hone
 echo.
-echo   Please enter "I agree" without quotes to continue: 
+echo   Please enter "I agree" without quotes to continue:
 echo.
 echo.
 echo.
@@ -148,9 +148,9 @@ cls
 echo.
 echo.
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -162,7 +162,7 @@ echo.                   `.
 echo.
 echo                                        %COL%[90m HoneCtrl is a free and open-source desktop utility
 echo                                        %COL%[90m    made to improve your day-to-day productivity
-echo. 
+echo.
 echo.
 echo.
 echo.
@@ -179,13 +179,13 @@ echo.
 echo.
 echo.
 echo                                               %COL%[33m[%COL%[37m 6 %COL%[33m]%COL%[37m Advanced           %COL%[33m[%COL%[37m 7 %COL%[33m]%COL%[37m More
-echo. 
 echo.
 echo.
 echo.
 echo.
 echo.
-echo                                                            %COL%[31m[ X to close ]%COL%[37m  
+echo.
+echo                                                            %COL%[31m[ X to close ]%COL%[37m
 echo.
 %SystemRoot%\System32\choice.exe /c:1234567XD /n /m "%DEL%                                        Select a corresponding number to the options above > "
 set choice=%errorlevel%
@@ -205,9 +205,9 @@ cls
 echo.
 echo.
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -223,7 +223,7 @@ echo.
 echo.
 echo.
 echo.
-echo                                  %COL%[31m This feature has not been finished yet but will be coming soon.  
+echo                                  %COL%[31m This feature has not been finished yet but will be coming soon.
 echo.
 echo.
 echo.
@@ -318,9 +318,9 @@ cls
 echo.
 echo                                                                                                                        %COL%[36mPage 1/2
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -384,9 +384,9 @@ cls
 echo.
 echo                                                                                                                        %COL%[36mPage 2/2
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -447,9 +447,9 @@ cls
 echo.
 echo.
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -473,7 +473,7 @@ echo.
 echo.                                                     	  %COL%[1;4;31mAdvanced Tweaks%COL%[0m
 echo.
 echo.			 			     %COL%[33m[%COL%[37m Press A to go to page %COL%[33m]
-echo.	
+echo.
 echo.
 echo.
 echo.
@@ -690,9 +690,9 @@ cls
 echo.
 echo.
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -712,12 +712,12 @@ echo %COL%[91m  This tweak is for ethernet users only, if you're on Wi-Fi, do no
 echo.
 echo   %COL%[37mFor any questions and/or concerns, please join our discord: discord.gg/hone
 echo.
-echo   %COL%[37mPlease enter "I understand" without quotes to continue: 
+echo   %COL%[37mPlease enter "I understand" without quotes to continue:
 echo.
 echo.
 echo.
 set /p "input=%DEL%                                                            >: %COL%[92m"
-if /i "!input!" neq "i understand" goto Tweaks 
+if /i "!input!" neq "i understand" goto Tweaks
 Reg add "HKCU\Software\Hone" /v "WifiDisclaimer2" /f >nul 2>&1
 :TCPIP2
 if "%TCPOF%" equ "%COL%[91mOFF" (
@@ -758,7 +758,7 @@ if "%TCPOF%" equ "%COL%[91mOFF" (
 		Reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "TcpInitialRTT" /d "300" /t REG_DWORD /f
         Reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "UseZeroBroadcast" /d "0" /t REG_DWORD /f
         Reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\%%i" /v "DeadGWDetectDefault" /d "1" /t REG_DWORD /f
-	) 
+	)
 ) >nul 2>&1 else (
 	Reg delete "HKCU\Software\Hone" /v "TCPIP" /f
 	PowerShell -NoProfile -NonInteractive -Command ^
@@ -804,9 +804,9 @@ cls
 echo.
 echo.
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -826,12 +826,12 @@ echo %COL%[91m  This tweak is for ethernet users only, if you're on Wi-Fi, do no
 echo.
 echo   %COL%[37mFor any questions and/or concerns, please join our discord: discord.gg/hone
 echo.
-echo   %COL%[37mPlease enter "I understand" without quotes to continue: 
+echo   %COL%[37mPlease enter "I understand" without quotes to continue:
 echo.
 echo.
 echo.
 set /p "input=%DEL%                                                            >: %COL%[92m"
-if /i "!input!" neq "i understand" goto Tweaks 
+if /i "!input!" neq "i understand" goto Tweaks
 Reg add "HKCU\Software\Hone" /v "WifiDisclaimer4" /f >nul 2>&1
 :NIC2
 cd %SystemDrive%\Hone\HoneRevert
@@ -876,11 +876,7 @@ if "%NETOF%" equ "%COL%[91mOFF" (
     netsh int tcp set global nonsackrttresiliency=disabled
     netsh int tcp set global initialRto=2000
     netsh int tcp set supplemental template=custom icw=10
-
-
-
-    
-netsh interface ip set interface ethernet currenthoplimit=64
+    netsh interface ip set interface ethernet currenthoplimit=64
 ) >nul 2>&1 else (
     Reg delete "HKCU\Software\Hone" /v InternetTweaks /f
     netsh int tcp set supplemental Internet congestionprovider=default
@@ -1002,98 +998,98 @@ goto Tweaks
 :Debloat
 if "%DEBOF%" equ "%COL%[91mOFF" (
     Reg add "HKCU\Software\Hone" /v DebloatTweaks /f
-	schtasks /Change /TN "Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser" /Disable 
-	Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\AutoLogger-Diagtrack-Listener" /v "Start" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Visibility" /v "DiagnosticErrorText" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Strings" /v "DiagnosticErrorText" /t REG_SZ /d "" /f  
-	Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Strings" /v "DiagnosticLinkText" /t REG_SZ /d "" /f  
-	Reg.exe add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\PhishingFilter" /v "EnabledV9" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\TabletPC" /v "PreventHandwritingDataSharing" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\HandwritingErrorReports" /v "PreventHandwritingErrorReports" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppCompat" /v "DisableInventory" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppCompat" /v "DisableUAR" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "NoLockScreenCamera" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" /v "Enabled" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo" /v "Enabled" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Input\TIPC" /v "Enabled" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\System" /v "AllowExperimentation" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\Bluetooth" /v "AllowAdvertising" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Microsoft\SQMClient\Windows" /v "CEIPEnable" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Messaging" /v "AllowMessageSync" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Biometrics" /v "Enabled" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications" /v "ToastEnabled" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKCU\Control Panel\International\User Profile" /v "HttpAcceptLanguageOptOut" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\AppHost" /v "EnableWebContentEvaluation" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{C1D23ACC-752B-43E5-8448-8D0E519CD6D6}" /v "Value" /t REG_SZ /d "Deny" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "Start_TrackProgs" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowSyncProviderNotifications" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{2297E4E2-5DBE-466D-A12B-0F8286F0D9CA}" /v "Value" /t REG_SZ /d "Deny" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{E5323777-F976-4f5b-9B55-B94699C46E44}" /v "Value" /t REG_SZ /d "Deny" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{2EEF81BE-33FA-4800-9670-1CD474972C3F}" /v "Value" /t REG_SZ /d "Deny" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{52079E78-A92B-413F-B213-E8FE35712E72}" /v "Value" /t REG_SZ /d "Deny" /f   
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{7D7E8402-7C54-4821-A34E-AEEFD62DED93}" /v "Value" /t REG_SZ /d "Deny" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{D89823BA-7180-4B81-B50C-7E471E6121A3}" /v "Value" /t REG_SZ /d "Deny" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{8BC668CF-7728-45BD-93F8-CF2B3B41D7AB}" /v "Value" /t REG_SZ /d "Deny" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{9231CB4C-BF57-4AF3-8C55-FDA7BFCC04C5}" /v "Value" /t REG_SZ /d "Deny" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{E390DF20-07DF-446D-B962-F5C953062741}" /v "Value" /t REG_SZ /d "Deny" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{992AFA70-6F47-4148-B3E9-3003349C1548}" /v "Value" /t REG_SZ /d "Deny" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v "GlobalUserDisabled" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\DiagTrack" /v "Start" /t REG_DWORD /d "4" /f  
-	Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\dmwappushservice" /v "Start" /t REG_DWORD /d "4" /f  
-	Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control\WMI\Autologger\AutoLogger-Diagtrack-Listener" /v "Start" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\WMDRM" /v "DisableOnline" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{A8804298-2D5F-42E3-9531-9C8C39EB29CE}" /v "Value" /t REG_SZ /d "Deny" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\LooselyCoupled" /v "Value" /t REG_SZ /d "Deny" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\CredUI" /v "DisablePasswordReveal" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main" /v "DoNotTrack" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main" /v "OptimizeWindowsSearchResultsForScreenReaders" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\FlipAhead" /v "FPEnabled" /t REG_DWORD /d "0" /f   
-	Reg.exe add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\User\Default\SearchScopes" /v "ShowSearchSuggestionsGlobal" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\Browser" /v "AllowAddressBarDropdown" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Privacy" /v "EnableEncryptedMediaExtensions" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync" /v "SyncPolicy" /t REG_DWORD /d "5" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Personalization" /v "Enabled" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\BrowserSettings" /v "Enabled" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Credentials" /v "Enabled" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Language" /v "Enabled" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Accessibility" /v "Enabled" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Windows" /v "Enabled" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCloudSearch" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "ConnectedSearchUseWeb" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "DisableWebSearch" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowSearchToUseLocation" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCortana" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Microsoft\Speech_OneCore\Preferences" /v "ModelDownloadAllowed" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKCU\Software\Microsoft\InputPersonalization\TrainedDataStore" /v "HarvestContacts" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKCU\Software\Microsoft\InputPersonalization" /v "RestrictImplicitTextCollection" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKCU\Software\Microsoft\InputPersonalization" /v "RestrictImplicitInkCollection" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Personalization\Settings" /v "AcceptedPrivacyPolicy" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors" /v "DisableWindowsLocationProvider" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors" /v "DisableLocationScripting" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\Sensor\Permissions\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}" /v "SensorPermissionState" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "AllowTelemetry" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "DoNotShowFeedbackNotifications" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" /v "AllowTelemetry" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization" /v "DODownloadMode" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeliveryOptimization" /v "SystemSettingsDownloadMode" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Speech" /v "AllowSpeechModelUpdate" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpgrade" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpgradePeriod" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpdatePeriod" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Metadata" /v "PreventDeviceMetadataFromNetwork" /t REG_DWORD /d "1" /f  	
-	Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsStore\WindowsUpdate" /v "AutoDownload" /t REG_DWORD /d "2" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "NoAutoUpdate" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\wuauserv" /v "Start" /t REG_DWORD /d "3" /f  
-	Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Services\7971f918-a847-4430-9279-4a52d1efe18d" /v "RegisteredWithAU" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Microsoft\OneDrive" /v "PreventNetworkTrafficPreUserSignIn" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" /v "SpyNetReporting" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" /v "SubmitSamplesConsent" /t REG_DWORD /d "2" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\MRT" /v "DontReportInfectionInformation" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /v "DisableAntiSpyware" /t REG_DWORD /d "1" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Siuf\Rules" /v "NumberOfSIUFInPeriod" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Siuf\Rules" /v "PeriodInNanoSeconds" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" /v "BingSearchEnabled" /t REG_DWORD /d "0" /f  
-	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SilentInstalledAppsEnabled" /t REG_DWORD /d "0" /f  
+	schtasks /Change /TN "Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser" /Disable
+	Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\AutoLogger-Diagtrack-Listener" /v "Start" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Visibility" /v "DiagnosticErrorText" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Strings" /v "DiagnosticErrorText" /t REG_SZ /d "" /f
+	Reg.exe add "HKLM\SOFTWARE\Microsoft\WindowsSelfHost\UI\Strings" /v "DiagnosticLinkText" /t REG_SZ /d "" /f
+	Reg.exe add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\PhishingFilter" /v "EnabledV9" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\TabletPC" /v "PreventHandwritingDataSharing" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\HandwritingErrorReports" /v "PreventHandwritingErrorReports" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppCompat" /v "DisableInventory" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppCompat" /v "DisableUAR" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v "NoLockScreenCamera" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\AdvertisingInfo" /v "Enabled" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\AdvertisingInfo" /v "Enabled" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Software\Microsoft\Input\TIPC" /v "Enabled" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\System" /v "AllowExperimentation" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\Bluetooth" /v "AllowAdvertising" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Microsoft\SQMClient\Windows" /v "CEIPEnable" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Messaging" /v "AllowMessageSync" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Biometrics" /v "Enabled" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\PushNotifications" /v "ToastEnabled" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Control Panel\International\User Profile" /v "HttpAcceptLanguageOptOut" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\AppHost" /v "EnableWebContentEvaluation" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{C1D23ACC-752B-43E5-8448-8D0E519CD6D6}" /v "Value" /t REG_SZ /d "Deny" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "Start_TrackProgs" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "ShowSyncProviderNotifications" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{2297E4E2-5DBE-466D-A12B-0F8286F0D9CA}" /v "Value" /t REG_SZ /d "Deny" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{E5323777-F976-4f5b-9B55-B94699C46E44}" /v "Value" /t REG_SZ /d "Deny" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{2EEF81BE-33FA-4800-9670-1CD474972C3F}" /v "Value" /t REG_SZ /d "Deny" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{52079E78-A92B-413F-B213-E8FE35712E72}" /v "Value" /t REG_SZ /d "Deny" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{7D7E8402-7C54-4821-A34E-AEEFD62DED93}" /v "Value" /t REG_SZ /d "Deny" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{D89823BA-7180-4B81-B50C-7E471E6121A3}" /v "Value" /t REG_SZ /d "Deny" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{8BC668CF-7728-45BD-93F8-CF2B3B41D7AB}" /v "Value" /t REG_SZ /d "Deny" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{9231CB4C-BF57-4AF3-8C55-FDA7BFCC04C5}" /v "Value" /t REG_SZ /d "Deny" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{E390DF20-07DF-446D-B962-F5C953062741}" /v "Value" /t REG_SZ /d "Deny" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{992AFA70-6F47-4148-B3E9-3003349C1548}" /v "Value" /t REG_SZ /d "Deny" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\BackgroundAccessApplications" /v "GlobalUserDisabled" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\DiagTrack" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\dmwappushservice" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Control\WMI\Autologger\AutoLogger-Diagtrack-Listener" /v "Start" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\WMDRM" /v "DisableOnline" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\{A8804298-2D5F-42E3-9531-9C8C39EB29CE}" /v "Value" /t REG_SZ /d "Deny" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeviceAccess\Global\LooselyCoupled" /v "Value" /t REG_SZ /d "Deny" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\CredUI" /v "DisablePasswordReveal" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main" /v "DoNotTrack" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Main" /v "OptimizeWindowsSearchResultsForScreenReaders" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\FlipAhead" /v "FPEnabled" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\User\Default\SearchScopes" /v "ShowSearchSuggestionsGlobal" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Microsoft\PolicyManager\current\device\Browser" /v "AllowAddressBarDropdown" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\CurrentVersion\AppContainer\Storage\microsoft.microsoftedge_8wekyb3d8bbwe\MicrosoftEdge\Privacy" /v "EnableEncryptedMediaExtensions" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync" /v "SyncPolicy" /t REG_DWORD /d "5" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Personalization" /v "Enabled" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\BrowserSettings" /v "Enabled" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Credentials" /v "Enabled" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Language" /v "Enabled" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Accessibility" /v "Enabled" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Windows" /v "Enabled" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCloudSearch" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "ConnectedSearchUseWeb" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "DisableWebSearch" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowSearchToUseLocation" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCortana" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Microsoft\Speech_OneCore\Preferences" /v "ModelDownloadAllowed" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Software\Microsoft\InputPersonalization\TrainedDataStore" /v "HarvestContacts" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Software\Microsoft\InputPersonalization" /v "RestrictImplicitTextCollection" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKCU\Software\Microsoft\InputPersonalization" /v "RestrictImplicitInkCollection" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKCU\Software\Microsoft\Personalization\Settings" /v "AcceptedPrivacyPolicy" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors" /v "DisableWindowsLocationProvider" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors" /v "DisableLocationScripting" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\Sensor\Permissions\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}" /v "SensorPermissionState" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "AllowTelemetry" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DataCollection" /v "DoNotShowFeedbackNotifications" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection" /v "AllowTelemetry" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization" /v "DODownloadMode" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\DeliveryOptimization" /v "SystemSettingsDownloadMode" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Speech" /v "AllowSpeechModelUpdate" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpgrade" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpgradePeriod" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate" /v "DeferUpdatePeriod" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Metadata" /v "PreventDeviceMetadataFromNetwork" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsStore\WindowsUpdate" /v "AutoDownload" /t REG_DWORD /d "2" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "NoAutoUpdate" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKLM\SYSTEM\CurrentControlSet\Services\wuauserv" /v "Start" /t REG_DWORD /d "3" /f
+	Reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Services\7971f918-a847-4430-9279-4a52d1efe18d" /v "RegisteredWithAU" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Microsoft\OneDrive" /v "PreventNetworkTrafficPreUserSignIn" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" /v "SpyNetReporting" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" /v "SubmitSamplesConsent" /t REG_DWORD /d "2" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\MRT" /v "DontReportInfectionInformation" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKLM\SOFTWARE\Policies\Microsoft\Windows Defender" /v "DisableAntiSpyware" /t REG_DWORD /d "1" /f
+	Reg.exe add "HKCU\Software\Microsoft\Siuf\Rules" /v "NumberOfSIUFInPeriod" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Software\Microsoft\Siuf\Rules" /v "PeriodInNanoSeconds" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\Search" /v "BingSearchEnabled" /t REG_DWORD /d "0" /f
+	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SilentInstalledAppsEnabled" /t REG_DWORD /d "0" /f
 	Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v "SoftLandingEnabled" /t REG_DWORD /d "0" /f
 )>nul 2>&1 else (
     Reg delete "HKCU\Software\Hone" /v DebloatTweaks /f
@@ -1161,7 +1157,7 @@ if "%DEBOF%" equ "%COL%[91mOFF" (
     Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Language" /v "Enabled" /t REG_DWORD /d "1" /f >nul 2>&1
     Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Accessibility" /v "Enabled" /t REG_DWORD /d "1" /f >nul 2>&1
     Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Windows" /v "Enabled" /t REG_DWORD /d "1" /f >nul 2>&1
-    Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Personalization" /v "Enabled" /t REG_DWORD /d "1" /f  
+    Reg.exe add "HKCU\Software\Microsoft\Windows\CurrentVersion\SettingSync\Groups\Personalization" /v "Enabled" /t REG_DWORD /d "1" /f
 ) >nul 2>&1
 goto Tweaks
 
@@ -1224,7 +1220,7 @@ if "%MOUOF%" neq "%COL%[91mOFF" (
 	Reg add "HKEY_CURRENT_USER\Control Panel\Mouse" /v "SmoothMouseYCurve" /t REG_BINARY /d "0000000000000000fd11010000000000002404000000000000fc12000000000000c0bb0100000000" /f >nul 2>&1
 	goto Tweaks
 )
-echo what is your display scaling? 
+echo what is your display scaling?
 echo go to settings , system , display , then type the scale percentage like 100, 125, 150
 set /p choice=" Scale >  "
 Reg add "HKCU\Control Panel\Mouse" /v "MouseSpeed" /t REG_SZ /d "0" /f >nul 2>&1
@@ -1274,7 +1270,7 @@ if "%NPIOF%" equ "%COL%[91mOFF" (
 	del /F /Q "C:\Hone\Resources\nvidiaProfileInspector.zip"
 	curl -g -L -# -o "C:\Hone\Resources\nvidiaProfileInspector\Latency_and_Performances_Settings_by_Hone_Team2.nip" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Latency_and_Performances_Settings_by_Hone_Team2.nip"
 	cd "C:\Hone\Resources\nvidiaProfileInspector\"
-	nvidiaProfileInspector.exe "Latency_and_Performances_Settings_by_Hone_Team2.nip" 
+	nvidiaProfileInspector.exe "Latency_and_Performances_Settings_by_Hone_Team2.nip"
 ) >nul 2>&1 else (
 ::https://github.com/Orbmu2k/nvidiaProfileInspector/releases/latest/download/nvidiaProfileInspector.zip
 	Reg delete "HKCU\Software\Hone" /v NpiTweaks /f
@@ -1363,9 +1359,9 @@ cls
 echo.
 echo.
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -1385,106 +1381,106 @@ echo %COL%[91m  This tweak is for ethernet users only, if you're on Wi-Fi, do no
 echo.
 echo   %COL%[37mFor any questions and/or concerns, please join our discord: discord.gg/hone
 echo.
-echo   %COL%[37mPlease enter "I understand" without quotes to continue: 
+echo   %COL%[37mPlease enter "I understand" without quotes to continue:
 echo.
 echo.
 echo.
 set /p "input=%DEL%                                                            >: %COL%[92m"
-if /i "!input!" neq "i understand" goto Tweaks 
+if /i "!input!" neq "i understand" goto Tweaks
 Reg add "HKCU\Software\Hone" /v "WifiDisclaimer1" /f >nul 2>&1
 :Service2
 if "%SERVOF%" equ "%COL%[91mOFF" (
     Reg add "HKCU\Software\Hone" /v ServicesTweaks /f
 	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\xbgm" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
 	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\XboxGipSvc" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc" /v "Start" /t REG_DWORD /d "4" /f 
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time" /v "Start" /t REG_DWORD /d "4" /f  
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time" /v "Start" /t REG_DWORD /d "4" /f
 	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\spectrum" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
 	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wcncsvc" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WebClient" /v "Start" /t REG_DWORD /d "4" /f 
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WebClient" /v "Start" /t REG_DWORD /d "4" /f
 	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SysMain" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NcaSvc" /v "Start" /t REG_DWORD /d "4" /f  
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NcaSvc" /v "Start" /t REG_DWORD /d "4" /f
 	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\diagsvc" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
 	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\UserDataSvc" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
 	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\stisvc" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\AdobeFlashPlayerUpdateSvc" /v "Start" /t REG_DWORD /d "4" /f 
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\TrkWks" /v "Start" /t REG_DWORD /d "4" /f 
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\dmwappushservice" /v "Start" /t REG_DWORD /d "4" /f   
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PimIndexMaintenanceSvc" /v "Start" /t REG_DWORD /d "4" /f   
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\DiagTrack" /v "Start" /t REG_DWORD /d "4" /f 
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\AdobeFlashPlayerUpdateSvc" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\TrkWks" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\dmwappushservice" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PimIndexMaintenanceSvc" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\DiagTrack" /v "Start" /t REG_DWORD /d "4" /f
 	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\GoogleChromeElevationService" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\OneSyncSvc" /v "Start" /t REG_DWORD /d "4" /f 
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ibtsiva" /v "Start" /t REG_DWORD /d "4" /f  
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SNMPTRAP" /v "Start" /t REG_DWORD /d "4" /f   	
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\pla" /v "Start" /t REG_DWORD /d "4" /f 
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ssh-agent" /v "Start" /t REG_DWORD /d "4" /f   
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\sshd" /v "Start" /t REG_DWORD /d "4" /f  
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\DoSvc" /v "Start" /t REG_DWORD /d "4" /f    
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WbioSrvc" /v "Start" /t REG_DWORD /d "4" /f  
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PcaSvc" /v "Start" /t REG_DWORD /d "4" /f  
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NetTcpPortSharing" /v "Start" /t REG_DWORD /d "4" /f  
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wersvc" /v "Start" /t REG_DWORD /d "4" /f   
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\gupdate" /v "Start" /t REG_DWORD /d "4" /f   
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\gupdatem" /v "Start" /t REG_DWORD /d "4" /f  
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MSiSCSI" /v "Start" /t REG_DWORD /d "4" /f  
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WMPNetworkSvc" /v "Start" /t REG_DWORD /d "4" /f  
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\OneSyncSvc" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ibtsiva" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SNMPTRAP" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\pla" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ssh-agent" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\sshd" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\DoSvc" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WbioSrvc" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PcaSvc" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NetTcpPortSharing" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wersvc" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\gupdate" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\gupdatem" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MSiSCSI" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WMPNetworkSvc" /v "Start" /t REG_DWORD /d "4" /f
 	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CDPUserSvc" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation" /v "Start" /t REG_DWORD /d "4" /f   
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\UnistoreSvc" /v "Start" /t REG_DWORD /d "4" /f 
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MapsBroker" /v "Start" /t REG_DWORD /d "4" /f  
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\debugregsvc" /v "Start" /t REG_DWORD /d "4" /f  
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Ndu" /v "Start" /d "2" /t REG_DWORD /f  
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\TimeBrokerSvc" /v "Start" /d "3" /t REG_DWORD /f 
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\VaultSvc" /v "Start" /t REG_DWORD /d "3" /f 
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\UnistoreSvc" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MapsBroker" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\debugregsvc" /v "Start" /t REG_DWORD /d "4" /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Ndu" /v "Start" /d "2" /t REG_DWORD /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\TimeBrokerSvc" /v "Start" /d "3" /t REG_DWORD /f
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\VaultSvc" /v "Start" /t REG_DWORD /d "3" /f
 	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wuauserv" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
-	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CertPropSvc" /v "Start" /t REG_DWORD /d "3" /f   
+	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CertPropSvc" /v "Start" /t REG_DWORD /d "3" /f
 	)>nul 2>&1 else (
-    Reg delete "HKCU\Software\Hone" /v ServicesTweaks /f   
+    Reg delete "HKCU\Software\Hone" /v ServicesTweaks /f
     Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\xbgm" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
     Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\XboxGipSvc" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
     Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WaaSMedicSvc" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wuauserv" /v "Start" /t REG_DWORD /d "3" /f 
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time" /v "Start" /t REG_DWORD /d "3" /f  
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wuauserv" /v "Start" /t REG_DWORD /d "3" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time" /v "Start" /t REG_DWORD /d "3" /f
     Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\spectrum" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
     Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wcncsvc" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WebClient" /v "Start" /t REG_DWORD /d "3" /f 
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WebClient" /v "Start" /t REG_DWORD /d "3" /f
     Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SysMain" /v "Start" /t REG_DWORD /d "2" /f >nul 2>&1
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NcaSvc" /v "Start" /t REG_DWORD /d "3" /f  
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\AdobeFlashPlayerUpdateSvc" /v "Start" /t REG_DWORD /d "3" /f 
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NcaSvc" /v "Start" /t REG_DWORD /d "3" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\AdobeFlashPlayerUpdateSvc" /v "Start" /t REG_DWORD /d "3" /f
     Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\GoogleChromeElevationService" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\TrkWks" /v "Start" /t REG_DWORD /d "3" /f 
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ibtsiva" /v "Start" /t REG_DWORD /d "3" /f  
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\sshd" /v "Start" /t REG_DWORD /d "3" /f 
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\gupdate" /v "Start" /t REG_DWORD /d "2" /f   
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\gupdatem" /v "Start" /t REG_DWORD /d "3" /f  
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PimIndexMaintenanceSvc" /v "Start" /t REG_DWORD /d "3" /f  
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\TrkWks" /v "Start" /t REG_DWORD /d "3" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ibtsiva" /v "Start" /t REG_DWORD /d "3" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\sshd" /v "Start" /t REG_DWORD /d "3" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\gupdate" /v "Start" /t REG_DWORD /d "2" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\gupdatem" /v "Start" /t REG_DWORD /d "3" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PimIndexMaintenanceSvc" /v "Start" /t REG_DWORD /d "3" /f
     Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\diagsvc" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
     Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\UserDataSvc" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
     Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\stisvc" /v "Start" /t REG_DWORD /d "3" /f >nul 2>&1
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\dmwappushservice" /v "Start" /t REG_DWORD /d "3" /f   
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\DiagTrack" /v "Start" /t REG_DWORD /d "2" /f 
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\VaultSvc" /v "Start" /t REG_DWORD /d "3" /f  
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\OneSyncSvc" /v "Start" /t REG_DWORD /d "2" /f 
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SNMPTRAP" /v "Start" /t REG_DWORD /d "3" /f   
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\pla" /v "Start" /t REG_DWORD /d "3" /f 
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ssh-agent" /v "Start" /t REG_DWORD /d "3" /f   
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\DoSvc" /v "Start" /t REG_DWORD /d "2" /f   
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CertPropSvc" /v "Start" /t REG_DWORD /d "3" /f   
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WbioSrvc" /v "Start" /t REG_DWORD /d "3" /f  
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PcaSvc" /v "Start" /t REG_DWORD /d "2" /f  
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NetTcpPortSharing" /v "Start" /t REG_DWORD /d "4" /f  
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wersvc" /v "Start" /t REG_DWORD /d "3" /f   
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MSiSCSI" /v "Start" /t REG_DWORD /d "3" /f  
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WMPNetworkSvc" /v "Start" /t REG_DWORD /d "3" /f  
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\dmwappushservice" /v "Start" /t REG_DWORD /d "3" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\DiagTrack" /v "Start" /t REG_DWORD /d "2" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\VaultSvc" /v "Start" /t REG_DWORD /d "3" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\OneSyncSvc" /v "Start" /t REG_DWORD /d "2" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SNMPTRAP" /v "Start" /t REG_DWORD /d "3" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\pla" /v "Start" /t REG_DWORD /d "3" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\ssh-agent" /v "Start" /t REG_DWORD /d "3" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\DoSvc" /v "Start" /t REG_DWORD /d "2" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CertPropSvc" /v "Start" /t REG_DWORD /d "3" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WbioSrvc" /v "Start" /t REG_DWORD /d "3" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PcaSvc" /v "Start" /t REG_DWORD /d "2" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NetTcpPortSharing" /v "Start" /t REG_DWORD /d "4" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wersvc" /v "Start" /t REG_DWORD /d "3" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MSiSCSI" /v "Start" /t REG_DWORD /d "3" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WMPNetworkSvc" /v "Start" /t REG_DWORD /d "3" /f
     Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\CDPUserSvc" /v "Start" /t REG_DWORD /d "2" /f >nul 2>&1
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WpnUserService" /v "Start" /t REG_DWORD /d "2" /f 
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation" /v "Start" /t REG_DWORD /d "2" /f   
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\UnistoreSvc" /v "Start" /t REG_DWORD /d "3" /f 
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MapsBroker" /v "Start" /t REG_DWORD /d "2" /f  
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\debugregsvc" /v "Start" /t REG_DWORD /d "3" /f  
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Ndu" /v "Start" /d "2" /t REG_DWORD /f  
-    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\TimeBrokerSvc" /v "Start" /d "3" /t REG_DWORD /f 
-)>nul 2>&1	
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WpnUserService" /v "Start" /t REG_DWORD /d "2" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation" /v "Start" /t REG_DWORD /d "2" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\UnistoreSvc" /v "Start" /t REG_DWORD /d "3" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MapsBroker" /v "Start" /t REG_DWORD /d "2" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\debugregsvc" /v "Start" /t REG_DWORD /d "3" /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Ndu" /v "Start" /d "2" /t REG_DWORD /f
+    Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\TimeBrokerSvc" /v "Start" /d "3" /t REG_DWORD /f
+)>nul 2>&1
 goto tweaks
 
 :Affinity
@@ -1563,22 +1559,22 @@ echo.
 echo.
 echo.
 echo.
-echo.                                                                          %COL%[33m.  
-echo.                                                                       +N. 
-echo.                                                              //        oMMs 
-echo.                                                             +Nm`    ``yMMm- 
-echo.                                                          ``dMMsoyhh-hMMd.  
-echo.                                                          `yy/MMMMNh:dMMh`   
-echo.                                                         .hMM.sso++:oMMs`    
-echo.                                                        -mMMy:osyyys.No      
-echo.                                                       :NMMs-oo+/syy:-       
-echo.                                                      /NMN+ ``   :ys.        
-echo.                                                     `NMN:        +.         
-echo.                                                     om-                    
-echo.                                                      `.                                            
-echo. 
-echo. 
-echo. 
+echo.                                                                          %COL%[33m.
+echo.                                                                       +N.
+echo.                                                              //        oMMs
+echo.                                                             +Nm`    ``yMMm-
+echo.                                                          ``dMMsoyhh-hMMd.
+echo.                                                          `yy/MMMMNh:dMMh`
+echo.                                                         .hMM.sso++:oMMs`
+echo.                                                        -mMMy:osyyys.No
+echo.                                                       :NMMs-oo+/syy:-
+echo.                                                      /NMN+ ``   :ys.
+echo.                                                     `NMN:        +.
+echo.                                                     om-
+echo.                                                      `.
+echo.
+echo.
+echo.
 echo.
 echo.
 echo.
@@ -1741,15 +1737,15 @@ if "%CRSOF%" equ "%COL%[91mOFF" (
 goto Tweaks
 
 ::System responsiveness, PanTeR Said to use 14 (20 hexa)
-Reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "SystemResponsiveness" /t Reg_DWORD /d "20" /f 
+Reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "SystemResponsiveness" /t Reg_DWORD /d "20" /f
 
 ::Disable Power Throttling
-Reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /f 
+Reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /f
 ::Enable Power Throttling If Laptop
 for /f "tokens=2 delims={}" %%n in ('wmic path Win32_SystemEnclosure get ChassisTypes /value') do set /a ChassisTypes=%%n
 if defined ChassisTypes if %ChassisTypes% GEQ 8 if %ChassisTypes% LSS 12 (
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /v "PowerThrottlingOff" /t Reg_DWORD /d "1" /f 
-Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /f 
+Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /v "PowerThrottlingOff" /t Reg_DWORD /d "1" /f
+Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /f
 )
 
 ::::::::::::::::::::::
@@ -1757,8 +1753,8 @@ Reg add "HKLM\SYSTEM\CurrentControlSet\Control\Power\PowerThrottling" /f
 ::::::::::::::::::::::
 
 ::Reliable Timestamp
-Reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Reliability" /v "TimeStampInterval" /t Reg_DWORD /d "1" /f 
-Reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Reliability" /v "IoPriority" /t Reg_DWORD /d "3" /f 
+Reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Reliability" /v "TimeStampInterval" /t Reg_DWORD /d "1" /f
+Reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Reliability" /v "IoPriority" /t Reg_DWORD /d "3" /f
 
 :MMCSS
 Reg add "HKLM\SYSTEM\CurrentControlSet\Services\MMCSS" /v "Start" /t Reg_DWORD /d "4" /f >nul 2>&1
@@ -1771,8 +1767,8 @@ Reg add "HKLM\SYSTEM\CurrentControlSet\Services\MMCSS" /v "Start" /t Reg_DWORD /
 :HoneRenders
 ::Detect encoder for obs, blur, and ffmpeg settings
 for /F "tokens=* skip=1" %%n in ('WMIC path Win32_VideoController get Name ^| findstr "."') do set GPU_NAME=%%n
-echo %GPU_NAME% | find "NVIDIA" && set encoder=NVENC 
-echo %GPU_NAME% | find "AMD" && set encoder=AMF 
+echo %GPU_NAME% | find "NVIDIA" && set encoder=NVENC
+echo %GPU_NAME% | find "AMD" && set encoder=AMF
 if not defined encoder set encoder=CPU
 
 cls
@@ -1780,9 +1776,9 @@ color 06
 echo.
 echo.
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -1795,8 +1791,8 @@ echo.
 echo              %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Install/Update OBS             %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m Recording                      %COL%[33m[ %COL%[37m3 %COL%[33m]%COL%[37m Streaming
 echo              %COL%[90mAutomatically install or update      %COL%[90mAutomated recording settings for     %COL%[90mAutomated streaming settings for
 echo              %COL%[90mOBS using the official link          %COL%[90mOBS based on your preference         %COL%[90mOBS based on your preference
-echo.                   
-echo.                                                                                             
+echo.
+echo.
 echo                                                           %COL%[34m%COL%[1mFFmpeg Settings%COL%[0m
 echo.
 echo              %COL%[33m[ %COL%[37m4 %COL%[33m]%COL%[37m Upscale                        %COL%[33m[ %COL%[37m5 %COL%[33m]%COL%[37m Compress                       %COL%[33m[ %COL%[37m6 %COL%[33m]%COL%[37m Preview Lag
@@ -1814,7 +1810,7 @@ echo.
 echo                                                            %COL%[34m%COL%[1mVideo Editor Settings%COL%[0m
 echo.
 echo              %COL%[33m[ %COL%[37m10 %COL%[33m]%COL%[37m Install A Video Editor (NLE)  %COL%[33m[ %COL%[37m11 %COL%[33m]%COL%[37m Project Settings              %COL%[33m[ %COL%[37m12 %COL%[33m]%COL%[37m Renders
-echo              %COL%[90mDownload ^& install a		  %COL%[90mAutomated Project settings	       %COL%[90mAutomated render settings 
+echo              %COL%[90mDownload ^& install a		  %COL%[90mAutomated Project settings	       %COL%[90mAutomated render settings
 echo		     %COL%[90mNon-Linear editing software	  %COL%[90mfor Vegas pro                        %COL%[90mfor Vegas pro
 echo.
 echo                                                 %COL%[90m[ B for back ]         %COL%[31m[ X to close ]
@@ -1849,15 +1845,16 @@ curl -g -L -# -o "%temp%\OBS.exe" "%OBS:~6,84%"
 start "" /D "%temp%" OBS -s
 goto:eof
 
+
 :Recording
 cls
 color 06
 echo.
 echo.
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -1869,7 +1866,7 @@ echo.                   `.
 echo.
 echo              %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Quality                        %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m Optimal                        %COL%[33m[ %COL%[37m3 %COL%[33m]%COL%[37m Performance
 echo              %COL%[90mSettings for the best                %COL%[90mThe best for performance             %COL%[90mSettings for the best
-echo              %COL%[90mquality in OBS                       %COL%[90mwithout losing any quality           %COL%[90mperformance in OBS
+echo              %COL%[90mquality in OBS                       %COL%[90mwithout losing much quality          %COL%[90mperformance in OBS
 echo.
 echo.
 echo.
@@ -1909,7 +1906,13 @@ IF %encoder% equ NVENC (
 	if not exist "%appdata%\obs-studio\basic\profiles\Untitled\basic.ini" start obs64.exe
 	taskkill /f /im obs64.exe >nul 2>&1
 	Reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%SystemDrive%\Program Files\obs-studio\bin\64bit\obs64.exe" /t Reg_SZ /d "~ RUNASADMIN" /f >nul 2>&1
+	:: get monitor resolution
+	powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1)" > "%temp%\width.txt"
+	powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1 -Skip 1)" > "%temp%\height.txt"
+	set /p width=<"%temp%\width.txt"
+	set /p height=<"%temp%\height.txt"
 	cls & set /p FPS="What FPS would you like to record in? >: "
+	if %FPS% gtr 120 echo Warning: Recording at high FPS with the Quality preset can cause lag on weaker systems.
 	(for %%i in (
 		"[AdvOut]"
 		"RecEncoder=jim_nvenc"
@@ -1933,10 +1936,10 @@ IF %encoder% equ NVENC (
 		"Name=Untitled"
 		.
 		"[Video]"
-		"BaseCX=1920"
-		"BaseCY=1080"
-		"OutputCX=1920"
-		"OutputCY=1080"
+		"BaseCX=!width!"
+		"BaseCY=!height!"
+		"OutputCX=!width!"
+		"OutputCY=!height!"
 		"FPSDen=1"
 		"FPSType=2"
 		"ScaleType=bilinear"
@@ -1948,8 +1951,8 @@ IF %encoder% equ NVENC (
 		"RecType=Standard"
 		"Mode=Advanced"
 	) do echo.%%~i)>"%temp%\Basic.ini"
-	echo.{"bf":0,"cqp":17,"keyint_sec":0,"lookahead":"false","preset":"hp","profile":"baseline","psycho_aq":"false","rate_control":"CQP"} >"%temp%\RecordEncoder.json"
-	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\" 
+	echo.{"bf":4,"cqp":17,"keyint_sec":5,"lookahead":"true","preset":"hq","profile":"high","psycho_aq":"true","rate_control":"CQP"} >"%temp%\RecordEncoder.json"
+	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	move /Y "%temp%\RecordEncoder.json" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	goto Recording
 ) ELSE (
@@ -1964,6 +1967,10 @@ IF %encoder% equ NVENC (
 	cd "%SystemDrive%\Program Files\obs-studio\bin\64bit"
 	taskkill /f /im obs64.exe >nul 2>&1
 	Reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%SystemDrive%\Program Files\obs-studio\bin\64bit\obs64.exe" /t Reg_SZ /d "~ RUNASADMIN" /f >nul 2>&1
+	powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1)" > "%temp%\width.txt"
+	powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1 -Skip 1)" > "%temp%\height.txt"
+	set /p width=<"%temp%\width.txt"
+	set /p height=<"%temp%\height.txt"
 	cls & set /p FPS="What FPS would you like to record in? >: "
 	(for %%i in (
 		"[AdvOut]"
@@ -1988,10 +1995,10 @@ IF %encoder% equ NVENC (
 		"Name=Untitled"
 		.
 		"[Video]"
-		"BaseCX=1920"
-		"BaseCY=1080"
-		"OutputCX=1920"
-		"OutputCY=1080"
+		"BaseCX=!width!"
+		"BaseCY=!height!"
+		"OutputCX=!width!"
+		"OutputCY=!height!"
 		"FPSDen=1"
 		"FPSType=2"
 		"ScaleType=bilinear"
@@ -2004,8 +2011,8 @@ IF %encoder% equ NVENC (
 		"Mode=Advanced"
 
 	) do echo.%%~i)> "%temp%\Basic.ini"
-	echo.{"bf":0,"cqp":18,"keyint_sec":0,"lookahead":"false","preset":"hp","profile":"baseline","psycho_aq":"false","rate_control":"CQP"} >"%temp%\RecordEncoder.json"
-	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\" 
+	echo.{"bf":0,"cqp":18,"keyint_sec":0,"lookahead":"false","preset":"hp","profile":"main","psycho_aq":"false","rate_control":"CQP"} >"%temp%\RecordEncoder.json"
+	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	move /Y "%temp%\RecordEncoder.json" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	goto Recording
 ) ELSE (
@@ -2020,6 +2027,10 @@ IF %encoder% equ NVENC (
 	cd "%SystemDrive%\Program Files\obs-studio\bin\64bit"
 	taskkill /f /im obs64.exe >nul 2>&1
 	Reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%SystemDrive%\Program Files\obs-studio\bin\64bit\obs64.exe" /t Reg_SZ /d "~ RUNASADMIN" /f >nul 2>&1
+	powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1)" > "%temp%\width.txt"
+	powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1 -Skip 1)" > "%temp%\height.txt"
+	set /p width=<"%temp%\width.txt"
+	set /p height=<"%temp%\height.txt"
 	cls & set /p FPS="What FPS would you like to record in? >: "
 	(for %%i in (
 		"[AdvOut]"
@@ -2044,10 +2055,10 @@ IF %encoder% equ NVENC (
 		"Name=Untitled"
 		.
 		"[Video]"
-		"BaseCX=1920"
-		"BaseCY=1080"
-		"OutputCX=1280"
-		"OutputCY=720"
+		"BaseCX=!width!"
+		"BaseCY=!height!"
+		"OutputCX=!width!"
+		"OutputCY=!height!"
 		"FPSDen=1"
 		"FPSType=2"
 		"ScaleType=bicubic"
@@ -2060,8 +2071,8 @@ IF %encoder% equ NVENC (
 		"Mode=Advanced"
 
 	) do echo.%%~i)> "%temp%\Basic.ini"
-	echo.{"bf":0,"cqp":18,"keyint_sec":0,"lookahead":"false","preset":"hp","profile":"baseline","psycho_aq":"false","rate_control":"CQP"} >"%temp%\RecordEncoder.json"
-	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\" 
+	echo.{"bf":0,"cqp":20,"keyint_sec":0,"lookahead":"false","preset":"hp","profile":"baseline","psycho_aq":"false","rate_control":"CQP"} >"%temp%\RecordEncoder.json"
+	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	move /Y "%temp%\RecordEncoder.json" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	goto Recording
 ) ELSE (
@@ -2077,9 +2088,9 @@ color 06
 echo.
 echo.
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -2093,8 +2104,8 @@ echo                              %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Qual
 echo                              %COL%[90mSettings for the best                                %COL%[90mSettings for the best
 echo                              %COL%[90mquality in OBS                                       %COL%[90mperformance in OBS
 echo.
-echo.                                                                                                                  
-echo.                                                                                                                  
+echo.
+echo.
 echo.
 echo.
 echo.
@@ -2129,6 +2140,10 @@ IF %encoder% equ NVENC (
 	cd "%SystemDrive%\Program Files\obs-studio\bin\64bit"
 	taskkill /f /im obs64.exe >nul 2>&1
 	Reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%SystemDrive%\Program Files\obs-studio\bin\64bit\obs64.exe" /t Reg_SZ /d "~ RUNASADMIN" /f >nul 2>&1
+	powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1)" > "%temp%\width.txt"
+	powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1 -Skip 1)" > "%temp%\height.txt"
+	set /p width=<"%temp%\width.txt"
+	set /p height=<"%temp%\height.txt"
 	(for %%i in (
 		"[AdvOut]"
 		"RecEncoder=jim_nvenc"
@@ -2153,10 +2168,10 @@ IF %encoder% equ NVENC (
 		"Name=Untitled"
 		.
 		"[Video]"
-		"BaseCX=1920"
-		"BaseCY=1080"
-		"OutputCX=1920"
-		"OutputCY=1080"
+		"BaseCX=!width!"
+		"BaseCY=!height!"
+		"OutputCX=!width!"
+		"OutputCY=!height!"
 		"FPSDen=1"
 		"FPSType=2"
 		"ScaleType=bilinear"
@@ -2168,8 +2183,8 @@ IF %encoder% equ NVENC (
 		"RecType=Standard"
 		"Mode=Advanced"
 	) do echo.%%~i)> "%temp%\Basic.ini"
-	echo.{"bitrate":6000,"preset":"hp","profile":"baseline","rate_control":"CBR"} >"%temp%\StreamEncoder.json"
-	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\" 
+	echo.{"bitrate":6000,"bf":4,"keyint_sec":5,"lookahead":"true","preset":"hq","profile":"high","psycho_aq":"true","rate_control":"CBR"} >"%temp%\StreamEncoder.json"
+	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	move /Y "%temp%\StreamEncoder.json" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	goto Streaming
 ) ELSE (
@@ -2184,6 +2199,10 @@ IF %encoder% equ NVENC (
 	cd "%SystemDrive%\Program Files\obs-studio\bin\64bit"
 	taskkill /f /im obs64.exe >nul 2>&1
 	Reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%SystemDrive%\Program Files\obs-studio\bin\64bit\obs64.exe" /t Reg_SZ /d "~ RUNASADMIN" /f >nul 2>&1
+	powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1)" > "%temp%\width.txt"
+	powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1 -Skip 1)" > "%temp%\height.txt"
+	set /p width=<"%temp%\width.txt"
+	set /p height=<"%temp%\height.txt"
 	(for %%i in (
 		"[AdvOut]"
 		"RecEncoder=jim_nvenc"
@@ -2208,10 +2227,10 @@ IF %encoder% equ NVENC (
 		"Name=Untitled"
 		.
 		"[Video]"
-		"BaseCX=1920"
-		"BaseCY=1080"
-		"OutputCX=1920"
-		"OutputCY=1080"
+		"BaseCX=!width!"
+		"BaseCY=!height!"
+		"OutputCX=!width!"
+		"OutputCY=!height!"
 		"FPSDen=1"
 		"FPSType=2"
 		"ScaleType=bilinear"
@@ -2224,7 +2243,7 @@ IF %encoder% equ NVENC (
 		"Mode=Advanced"
 	) do echo.%%~i)> "%temp%\Basic.ini"
 	echo.{"bitrate":4500,"preset":"hp","profile":"baseline","rate_control":"CBR"} >"%temp%\StreamEncoder.json"
-	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\" 
+	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	move /Y "%temp%\StreamEncoder.json" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	goto Streaming
 ) ELSE (
@@ -2240,9 +2259,9 @@ color 06
 echo.
 echo.
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -2255,8 +2274,8 @@ echo.
 echo                            %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m 4k                                             %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m 8k
 echo                            %COL%[90mModify the scale of a video                          %COL%[90mModify the scale of a video
 echo                            %COL%[90mto turn it to 4k                                     %COL%[90mto turn it to 8k
-echo. 
-echo.                                                                                                                  
+echo.
+echo.
 echo.
 echo.
 echo.
@@ -2290,16 +2309,16 @@ goto upscale
 cls
 set /p "file= Drag the file you want upscaled into this window >> "
 IF %encoder% equ NVENC (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\4k.mp4" -y
+%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=-2:2160:flags=neighbor -c:v hevc_nvenc -preset p7 -rc vbr -b:v 250M -cq 20 -pix_fmt yuv420p10le "%userprofile%\desktop\4k.mp4" -y
 ) else (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\4k.mp4" 
+%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=-2:2160:flags=neighbor -c:v hevc_amf -quality quality -qp_i 18 -qp_p 20 -qp_b 24 -pix_fmt yuv420p10le "%userprofile%\desktop\4k.mp4"
 )
 goto upscale
 
 :8k
 cls
 set /p "file= Drag the file you want upscaled into this window >> "
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=7680:4320:flags=neighbor -r 60 -vcodec libx264 -profile:v high -preset fast -qmin 19 -qmax 19 "%SystemDrive%\users\%username%\desktop\8k.mp4" 
+%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=-2:4320:flags=neighbor -c:v libx264 -preset slow -aq-mode 3 -crf 22 -pix_fmt yuv420p10le "%userprofile%\desktop\8k.mp4"
 goto upscale
 
 
@@ -2310,9 +2329,9 @@ color 06
 echo.
 echo.
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -2323,10 +2342,10 @@ echo.                  om-                                                      
 echo.                   `.
 echo.
 echo                         %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Heavy                                          %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m Light
-echo                         %COL%[90mLower the scale ^& fps of a video                     %COL%[90mLower only the scale of a video
+echo                         %COL%[90mCompress a video                     	 	     %COL%[90mCompress a video
 echo                         %COL%[90mto make it take up much less space                   %COL%[90mto make it take up less space
 echo.
-echo.                                                                                                                  
+echo.
 echo.
 echo.
 echo.
@@ -2358,42 +2377,32 @@ goto compress
 
 :heavy
 cls
-set /p "file= Drag the file you want upscaled into this window >> "
-IF %encoder% equ NVENC (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4" -y
-) else (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4" 
-)
+set /p "file= Drag the file you want compressed into this window >> "
+%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=-2:ih*0.75:flags=bicubic -c:v libx264 -preset slower -crf 23 -aq-mode 3 -c:a aac -b:a 128k "%userprofile%\desktop\heavycompress.mp4" -y
 goto compress
 
 :Light
 cls
-set /p "file= Drag the file you want upscaled into this window >> "
-IF %encoder% equ NVENC (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4" -y
-) else (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4" 
-)
+set /p "file= Drag the file you want compressed into this window >> "
+%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -c:v libx264 -preset slow -crf 18 -aq-mode 3 -c:a aac -b:a 256k "%userprofile%\desktop\lightcompress.mp4" -y
 goto compress
 
 :PreviewLag
 if not exist %SystemDrive%\ffmpeg ( call:ffmpeginstall )
 cls
 set /p "file= Drag the file you want to use in vegas (remember you need to replace it with the original file afterwards) >> "
-IF %encoder% equ NVENC (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=1920:1080:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -qmin 24 -qmax 24 "%SystemDrive%\users\%username%\desktop\previewlag.mp4" -y
-) else (
-%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=1920:1080:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 24 -qmax 24 "%SystemDrive%\users\%username%\desktop\previewlag.mp4"
-)
+%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=-2:ih/2:flags=bicubic -c:v libx264 -preset superfast -crf 23 -tune fastdecode -c:a copy "%userprofile%\desktop\previewlag.mp4" -y
 goto HoneRenders
 
 :ffmpeginstall
 cls
 echo FFmpeg not found... Installing...
-curl -g -L -# -o "%temp%\ffmpeg.exe" "https://cdn.discordapp.com/attachments/798652558351794196/809493909704015892/ffmpeg-4.2-setup.exe"
-"%temp%\ffmpeg.exe" /SP /VERYSILENT /SUPPRESSMSGBOXES /NOCANCEL /NORESTART /ALLUSERS
+curl -g -L -# -o "%temp%\ffmpeg.zip" "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip"
+powershell -Command "Expand-Archive -Path %temp%\ffmpeg.zip -DestinationPath %SystemDrive%\ffmpeg"
+powershell -Command "Convert-Path 'C:\ffmpeg\ffmpeg-*-essentials_build\*' | ForEach-Object {Move-Item $_ 'C:\ffmpeg'}"
+powershell -Command "Convert-Path 'C:\ffmpeg\ffmpeg-*-essentials_build\' | Remove-Item"
 goto:eof
- 
+
 :blurinstall
 :: delete old blur
 rmdir /s /q "%SystemDrive%\program files (x86)\blur"
@@ -2408,9 +2417,9 @@ color 06
 echo.
 echo.
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -2424,7 +2433,7 @@ echo                       %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m 60 - 120 FP
 echo                       %COL%[90mAutomated Blur settings                              %COL%[90mAutomated Blur settings
 echo                       %COL%[90mfor FPS games recorded in 60 to 120 FPS              %COL%[90mfor FPS games recorded in above 240 FPS
 echo.
-echo.                                                                                                                  
+echo.
 echo.
 echo.
 echo.
@@ -2456,7 +2465,7 @@ goto FPSGames
 
 :60120
 if not exist "%SystemDrive%\Program Files (x86)\blur" call:blurinstall
-if exist "%SystemDrive%\users\%username%\documents\HoneFPS60-120.cfg" goto skip
+if exist "%userprofile%\documents\HoneFPS60-120.cfg" goto skip
 if %encoder% equ NVENC (
 	(for %%i in (
 		"- blur"
@@ -2471,7 +2480,7 @@ if %encoder% equ NVENC (
 		.
 		"- rendering"
 		"quality: 15"
-		"preview: true"
+		"preview: false"
 		"detailed filenames: false"
 		.
 		"- timescale"
@@ -2488,19 +2497,19 @@ if %encoder% equ NVENC (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): nvidia"
 		"deduplicate: false"
-		"custom ffmpeg filters:" 
+		"custom ffmpeg filters: -c:v h264_nvenc -preset p7 -rc vbr -b:v 250M -cq 18 -c:a copy"
 		.
 		"- advanced blur"
 		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
-		"blur weighting bound: [0,1]"
+		"blur weighting bound: [0,2]"
 		.
 		"- advanced interpolation"
 		"interpolation program (svp/rife/rife-ncnn): svp"
 		"interpolation speed: medium"
 		"interpolation tuning: film"
 		"interpolation algorithm: 13"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS60-120.cfg"
+	) do echo.%%~i)> "%userprofile%\Documents\HoneFPS60-120.cfg"
 )
 
 if %encoder% equ AMF (
@@ -2517,7 +2526,7 @@ if %encoder% equ AMF (
 		.
 		"- rendering"
 		"quality: 15"
-		"preview: true"
+		"preview: false"
 		"detailed filenames: false"
 		.
 		"- timescale"
@@ -2534,19 +2543,19 @@ if %encoder% equ AMF (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): amd"
 		"deduplicate: false"
-		"custom ffmpeg filters:" 
+		"custom ffmpeg filters: -c:v h264_amf -quality quality -qp_i 16 -qp_p 18 -qp_b 22 -c:a copy"
 		.
 		"- advanced blur"
 		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
-		"blur weighting bound: [0,1]"
+		"blur weighting bound: [0,2]"
 		.
 		"- advanced interpolation"
 		"interpolation program (svp/rife/rife-ncnn): svp"
 		"interpolation speed: medium"
 		"interpolation tuning: film"
 		"interpolation algorithm: 13"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS60-120.cfg"
+	) do echo.%%~i)> "%userprofile%\Documents\HoneFPS60-120.cfg"
 )
 
 if %encoder% equ CPU (
@@ -2563,7 +2572,7 @@ if %encoder% equ CPU (
 		.
 		"- rendering"
 		"quality: 15"
-		"preview: true"
+		"preview: false"
 		"detailed filenames: false"
 		.
 		"- timescale"
@@ -2580,31 +2589,31 @@ if %encoder% equ CPU (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): intel"
 		"deduplicate: false"
-		"custom ffmpeg filters:" 
+		"custom ffmpeg filters: -c:v libx264 -preset slow -aq-mode 3 -crf 17 -c:a copy"
 		.
 		"- advanced blur"
 		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
-		"blur weighting bound: [0,1]"
+		"blur weighting bound: [0,2]"
 		.
 		"- advanced interpolation"
 		"interpolation program (svp/rife/rife-ncnn): svp"
 		"interpolation speed: medium"
 		"interpolation tuning: film"
 		"interpolation algorithm: 13"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS60-120.cfg"
+	) do echo.%%~i)> "%userprofile%\Documents\HoneFPS60-120.cfg"
 )
 
 :skip
 cls
 set /p "file= Print the path of the file you want blurred into this window >> "
-"%SystemDrive%\program files (x86)\blur\blur.exe" -i %file% -c "%SystemDrive%\users\%username%\Documents\HoneFPS60-120.cfg" -n -p -v
+"%SystemDrive%\program files (x86)\blur\blur.exe" -i %file% -c "%userprofile%\Documents\HoneFPS60-120.cfg" -n -p -v
 goto HoneRenders
 
 
 :240
 if not exist "%SystemDrive%\Program Files (x86)\blur\" call:blurinstall
-if exist "%SystemDrive%\users\%username%\documents\HoneFPS240+.cfg" goto skip
+if exist "%userprofile%\documents\HoneFPS240+.cfg" goto skip
 if %encoder% equ NVENC (
 	(for %%i in (
 		"- blur"
@@ -2615,11 +2624,11 @@ if %encoder% equ NVENC (
 		.
 		"- interpolation"
 		"interpolate: true"
-		"interpolated fps: 960"
+		"interpolated fps: 1440
 		.
 		"- rendering"
 		"quality: 15"
-		"preview: true"
+		"preview: false"
 		"detailed filenames: false"
 		.
 		"- timescale"
@@ -2636,19 +2645,19 @@ if %encoder% equ NVENC (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): nvidia"
 		"deduplicate: false"
-		"custom ffmpeg filters:"
+		"custom ffmpeg filters: -c:v h264_nvenc -preset p7 -rc vbr -b:v 250M -cq 18 -c:a copy"
 		.
 		"- advanced blur"
 		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
-		"blur weighting bound: [0,1]"
+		"blur weighting bound: [0,2]"
 		.
 		"- advanced interpolation"
 		"interpolation program (svp/rife/rife-ncnn): svp"
 		"interpolation speed: medium"
 		"interpolation tuning: weak"
 		"interpolation algorithm: 13"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS240+.cfg"
+	) do echo.%%~i)> "%userprofile%\Documents\HoneFPS240+.cfg"
 )
 
 if %encoder% equ AMF (
@@ -2665,7 +2674,7 @@ if %encoder% equ AMF (
 		.
 		"- rendering"
 		"quality: 15"
-		"preview: true"
+		"preview: false"
 		"detailed filenames: false"
 		.
 		"- timescale"
@@ -2682,20 +2691,20 @@ if %encoder% equ AMF (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): amd"
 		"deduplicate: false"
-		"custom ffmpeg filters:"
+		"custom ffmpeg filters: -c:v h264_amf -quality quality -qp_i 16 -qp_p 18 -qp_b 22 -c:a copy"
 		.
 		"- advanced blur"
 		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
-		"blur weighting bound: [0,1]"
+		"blur weighting bound: [0,2]"
 		.
 		"- advanced interpolation"
 		"interpolation program (svp/rife/rife-ncnn): svp"
 		"interpolation speed: medium"
 		"interpolation tuning: weak"
 		"interpolation algorithm: 13"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS240+.cfg"
-) 
+	) do echo.%%~i)> "%userprofile%\Documents\HoneFPS240+.cfg"
+)
 
 if %encoder% equ CPU (
 	(for %%i in (
@@ -2707,7 +2716,7 @@ if %encoder% equ CPU (
 		.
 		"- interpolation"
 		"interpolate: true"
-		"interpolated fps: 960"
+		"interpolated fps: 1440"
 		.
 		"- rendering"
 		"quality: 15"
@@ -2728,25 +2737,25 @@ if %encoder% equ CPU (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): intel"
 		"deduplicate: false"
-		"custom ffmpeg filters:"
+		"custom ffmpeg filters: -c:v libx264 -preset slow -aq-mode 3 -crf 17 -c:a copy"
 		.
 		"- advanced blur"
 		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
-		"blur weighting bound: [0,1]"
+		"blur weighting bound: [0,2]"
 		.
 		"- advanced interpolation"
 		"interpolation program (svp/rife/rife-ncnn): svp"
 		"interpolation speed: medium"
 		"interpolation tuning: weak"
 		"interpolation algorithm: 13"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS240+.cfg"
+	) do echo.%%~i)> "%userprofile%\Documents\HoneFPS240+.cfg"
 )
 
 :skip
 cls
 set /p "file= Print the path of the file you want blurred into this windoww >> "
-"%SystemDrive%\program files (x86)\blur\blur.exe" -i %file% -c "%SystemDrive%\users\%username%\Documents\HoneFPS240+.cfg" -n -p -v
+"%SystemDrive%\program files (x86)\blur\blur.exe" -i %file% -c "%userprofile%\Documents\HoneFPS240+.cfg" -n -p -v
 goto HoneRenders
 
 :MinecraftBlur
@@ -2755,9 +2764,9 @@ color 06
 echo.
 echo.
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -2766,13 +2775,14 @@ echo.                   /NMN+ ``   :ys.      ########     ###    ####    #######
 echo.                  `NMN:        +.                                                      ##    ###     ##    ###
 echo.                  om-                                                                   #######       #######
 echo.                   `.
+echo				%COL%[33m%COL%[4mDisclaimer: Using Blur is not recommended for Minecraft clips below 180 FPS.%COL%[0m
 echo.
-echo         %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m 180 - 360 FPS                       %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m 480+ FPS                        %COL%[33m[ %COL%[37m3 %COL%[33m]%COL%[37m Any FPS (30 FPS Renders)
-echo         %COL%[90mAutomated Blur settings                   %COL%[90mAutomated Blur settings               %COL%[90mAutomated Blur settings
-echo         %COL%[90mfor clips recorded in 180 - 360 FPS       %COL%[90mfor clips recorded above 480 FPS      %COL%[90mfor clips to be rendered in 30 FPS
+echo         		%COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m 180+ FPS (60 FPS Renders)                    %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m 180+ FPS (30 FPS Renders)
+echo         		%COL%[90mAutomated Blur settings                            %COL%[90mAutomated Blur settings
+echo         		%COL%[90mfor clips recorded in 180+ FPS                     %COL%[90mfor clips to be rendered in 30 FPS
 echo.
 echo.
-echo.                                                                                                                  
+echo.
 echo.
 echo.
 echo.
@@ -2795,27 +2805,26 @@ echo.
 echo                                                 %COL%[90m[ B for back ]         %COL%[31m[ X to close ]
 echo.
 set /p choice="%DEL%                                        %COL%[37mSelect a corresponding number to the options above > "
-if /i "%choice%"=="1" goto 180360
-if /i "%choice%"=="2" goto 480
-if /i "%choice%"=="3" goto Any
+if /i "%choice%"=="1" goto 180plus
+if /i "%choice%"=="2" goto 30fps
 if /i "%choice%"=="B" goto HoneRenders
 if /i "%choice%"=="X" exit /b
 goto MinecraftBlur
 
-:180360
+:180plus
 if not exist "%SystemDrive%\Program Files (x86)\blur\" call:blurinstall
-if exist "%SystemDrive%\users\%username%\documents\HoneFPS180-360FPS.cfg" goto skip
+if exist "%userprofile%\documents\HoneMC180plusFPS.cfg" goto skip
 if %encoder% equ NVENC (
 	(for %%i in (
 		"- blur"
 		"blur: true"
-		"blur amount: 1.6"
+		"blur amount: 1.3"
 		"blur output fps: 60"
 		"blur weighting: gaussian_sym"
 
 		"- interpolation"
 		"interpolate: true"
-		"interpolated fps: 1920"
+		"interpolated fps: 1980"
 
 		"- rendering"
 		"quality: 15"
@@ -2836,10 +2845,10 @@ if %encoder% equ NVENC (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): nvidia"
 		"deduplicate: true"
-		"custom ffmpeg filters: "
+		"custom ffmpeg filters: -c:v h264_nvenc -preset p7 -rc vbr -b:v 250M -cq 18 -c:a copy"
 
 		"- advanced blur"
-		"blur weighting gaussian std dev: 1"
+		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
 		"blur weighting bound: [0,1]"
 
@@ -2848,20 +2857,20 @@ if %encoder% equ NVENC (
 		"interpolation speed: medium"
 		"interpolation tuning: weak"
 		"interpolation algorithm: 13"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS180-360FPS.cfg"
+	) do echo.%%~i)> "%userprofile%\documents\HoneMC180plusFPS.cfg"
 )
 
 if %encoder% equ AMF (
 	(for %%i in (
 		"- blur"
 		"blur: true"
-		"blur amount: 1.6"
+		"blur amount: 1.3"
 		"blur output fps: 60"
 		"blur weighting: gaussian_sym"
 
 		"- interpolation"
 		"interpolate: true"
-		"interpolated fps: 1920"
+		"interpolated fps: 1980"
 
 		"- rendering"
 		"quality: 15"
@@ -2882,10 +2891,10 @@ if %encoder% equ AMF (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): amd"
 		"deduplicate: true"
-		"custom ffmpeg filters: "
+		"custom ffmpeg filters: -c:v h264_amf -quality quality -qp_i 16 -qp_p 18 -qp_b 22 -c:a copy"
 
 		"- advanced blur"
-		"blur weighting gaussian std dev: 1"
+		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
 		"blur weighting bound: [0,1]"
 
@@ -2894,20 +2903,20 @@ if %encoder% equ AMF (
 		"interpolation speed: medium"
 		"interpolation tuning: weak"
 		"interpolation algorithm: 13"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS180-360FPS.cfg"
-) 
+	) do echo.%%~i)> "%userprofile%\documents\HoneMC180plusFPS.cfg"
+)
 
 if %encoder% equ CPU (
 	(for %%i in (
 		"- blur"
 		"blur: true"
-		"blur amount: 1.6"
+		"blur amount: 1.3"
 		"blur output fps: 60"
 		"blur weighting: gaussian_sym"
 
 		"- interpolation"
 		"interpolate: true"
-		"interpolated fps: 1920"
+		"interpolated fps: 1980"
 
 		"- rendering"
 		"quality: 15"
@@ -2928,10 +2937,10 @@ if %encoder% equ CPU (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): intel"
 		"deduplicate: true"
-		"custom ffmpeg filters: "
+		"custom ffmpeg filters: -c:v libx264 -preset slow -aq-mode 3 -crf 17 -c:a copy"
 
 		"- advanced blur"
-		"blur weighting gaussian std dev: 1"
+		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
 		"blur weighting bound: [0,1]"
 
@@ -2940,307 +2949,160 @@ if %encoder% equ CPU (
 		"interpolation speed: medium"
 		"interpolation tuning: weak"
 		"interpolation algorithm: 13"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS180-360FPS.cfg"
+	) do echo.%%~i)> "%userprofile%\documents\HoneMC180plusFPS.cfg"
 )
 
 :skip
 cls
 set /p "file= Print the path of the file you want blurred into this window >> "
-"%SystemDrive%\program files (x86)\blur\blur.exe" -i %file% -c "%SystemDrive%\users\%username%\Documents\HoneFPS180-360FPS.cfg" -n -p -v
+"%SystemDrive%\program files (x86)\blur\blur.exe" -i "%file%" -c "%userprofile%\documents\HoneMC180plusFPS.cfg" -n -p -v
 goto HoneRenders
 
-:480
-if not exist "%SystemDrive%\Program Files (x86)\blur\" cls & echo blur isn't installed... & timeout 3 & goto HoneRenders
-if exist "%SystemDrive%\users\%username%\documents\HoneFPS480FPS.cfg" goto skip
+:30fps
+if not exist "%SystemDrive%\Program Files (x86)\blur\" call:blurinstall
+if exist "%userprofile%\documents\HoneMC30FPS.cfg" goto skip
 if %encoder% equ NVENC (
 	(for %%i in (
 		"- blur"
 		"blur: true"
-		"blur amount: 2.22"
-		"blur output fps: 60"
-		"blur weighting: gaussian_sym"
-		.
+		"blur amount: 1"
+		"blur output fps: 30"
+		"blur weighting: equal"
+
 		"- interpolation"
 		"interpolate: true"
-		"interpolated fps: 1920"
-		.
+		"interpolated fps: 720"
+
 		"- rendering"
 		"quality: 15"
 		"preview: true"
 		"detailed filenames: false"
-		.
+
 		"- timescale"
 		"input timescale: 1"
 		"output timescale: 1"
 		"adjust timescaled audio pitch: false"
-		.
+
 		"- filters"
 		"brightness: 1"
 		"saturation: 1"
 		"contrast: 1"
-		.
+
 		"- advanced rendering"
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): nvidia"
-		"deduplicate: false"
-		"custom ffmpeg filters:" 
-		.
+		"deduplicate: true"
+		"custom ffmpeg filters: -c:v h264_nvenc -preset p7 -rc vbr -b:v 250M -cq 18 -c:a copy"
+
 		"- advanced blur"
-		"blur weighting gaussian std dev: 1"
+		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
-		"blur weighting bound: [0,2]"
-		.
+		"blur weighting bound: [0,1]"
+
 		"- advanced interpolation"
 		"interpolation program (svp/rife/rife-ncnn): svp"
-		"interpolation speed: faster"
+		"interpolation speed: medium"
 		"interpolation tuning: weak"
-		"interpolation algorithm: 2"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS480FPS.cfg"
+		"interpolation algorithm: 13"
+	) do echo.%%~i)> "%userprofile%\documents\HoneMC30FPS.cfg"
 )
 
 if %encoder% equ AMF (
 	(for %%i in (
 		"- blur"
 		"blur: true"
-		"blur amount: 2.22"
-		"blur output fps: 60"
-		"blur weighting: gaussian_sym"
-		.
+		"blur amount: 1"
+		"blur output fps: 30"
+		"blur weighting: equal"
+
 		"- interpolation"
 		"interpolate: true"
-		"interpolated fps: 1920"
-		.
+		"interpolated fps: 720"
+
 		"- rendering"
 		"quality: 15"
 		"preview: true"
 		"detailed filenames: false"
-		.
+
 		"- timescale"
 		"input timescale: 1"
 		"output timescale: 1"
 		"adjust timescaled audio pitch: false"
-		.
+
 		"- filters"
 		"brightness: 1"
 		"saturation: 1"
 		"contrast: 1"
-		.
+
 		"- advanced rendering"
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): amd"
-		"deduplicate: false"
-		"custom ffmpeg filters:" 
-		.
+		"deduplicate: true"
+		"custom ffmpeg filters: -c:v h264_amf -quality quality -qp_i 16 -qp_p 18 -qp_b 22 -c:a copy"
+
 		"- advanced blur"
-		"blur weighting gaussian std dev: 1"
+		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
-		"blur weighting bound: [0,2]"
-		.
+		"blur weighting bound: [0,1]"
+
 		"- advanced interpolation"
 		"interpolation program (svp/rife/rife-ncnn): svp"
-		"interpolation speed: faster"
+		"interpolation speed: medium"
 		"interpolation tuning: weak"
-		"interpolation algorithm: 2"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS480FPS.cfg"
-) 
+		"interpolation algorithm: 13"
+	) do echo.%%~i)> "%userprofile%\documents\HoneMC30FPS.cfg"
+)
 
 if %encoder% equ CPU (
 	(for %%i in (
 		"- blur"
 		"blur: true"
-		"blur amount: 2.22"
-		"blur output fps: 60"
-		"blur weighting: gaussian_sym"
-		.
+		"blur amount: 1"
+		"blur output fps: 30"
+		"blur weighting: equal"
+
 		"- interpolation"
 		"interpolate: true"
-		"interpolated fps: 1920"
-		.
+		"interpolated fps: 720"
+
 		"- rendering"
 		"quality: 15"
 		"preview: true"
 		"detailed filenames: false"
-		.
+
 		"- timescale"
 		"input timescale: 1"
 		"output timescale: 1"
 		"adjust timescaled audio pitch: false"
-		.
+
 		"- filters"
 		"brightness: 1"
 		"saturation: 1"
 		"contrast: 1"
-		.
+
 		"- advanced rendering"
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): intel"
-		"deduplicate: false"
-		"custom ffmpeg filters:" 
-		.
+		"deduplicate: true"
+		"custom ffmpeg filters: -c:v libx264 -preset slow -aq-mode 3 -crf 17 -c:a copy"
+
 		"- advanced blur"
-		"blur weighting gaussian std dev: 1"
+		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
-		"blur weighting bound: [0,2]"
-		.
+		"blur weighting bound: [0,1]"
+
 		"- advanced interpolation"
 		"interpolation program (svp/rife/rife-ncnn): svp"
-		"interpolation speed: faster"
+		"interpolation speed: medium"
 		"interpolation tuning: weak"
-		"interpolation algorithm: 2"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS480FPS.cfg"
+		"interpolation algorithm: 13"
+	) do echo.%%~i)> "%userprofile%\documents\HoneMC30FPS.cfg"
 )
 
 :skip
 cls
 set /p "file= Print the path of the file you want blurred into this window >> "
-"%SystemDrive%\program files (x86)\blur\blur.exe" -i %file% -c "%SystemDrive%\users\%username%\Documents\HoneFPS480FPS.cfg" -n -p -v
-goto HoneRenders
-
-:Any
-if not exist "%SystemDrive%\Program Files (x86)\blur\" cls & echo blur isn't installed... & timeout 3 & goto HoneRenders
-if exist "%SystemDrive%\users\%username%\documents\HoneAnyFPS.cfg" goto skip
-if %encoder% equ NVENC (
-	(for %%i in (
-		"- blur"
-		"blur: true"
-		"blur amount: 1.1"
-		"blur output fps: 30"
-		"blur weighting: equal"
-		.
-		"- interpolation"
-		"interpolate: true"
-		"interpolated fps: 1920"
-		.
-		"- rendering"
-		"quality: 15"
-		"preview: true"
-		"detailed filenames: false"
-		.
-		"- timescale"
-		"input timescale: 1"
-		"output timescale: 1"
-		"adjust timescaled audio pitch: false"
-		.
-		"- filters"
-		"brightness: 1"
-		"saturation: 1"
-		"contrast: 1"
-		.
-		"- advanced rendering"
-		"gpu: true"
-		"gpu type (nvidia/amd/intel): nvidia"
-		"deduplicate: true"
-		"custom ffmpeg filters: "
-		.
-		"- advanced blur"
-		"blur weighting gaussian std dev: 1"
-		"blur weighting triangle reverse: false"
-		"blur weighting bound: [0,1,1,1,1,0]"
-		.
-		"- advanced interpolation"
-		"interpolation program (svp/rife/rife-ncnn): svp"
-		"interpolation speed: medium"
-		"interpolation tuning: weak"
-		"interpolation algorithm: 23"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneAnyFPS.cfg"
-)
-
-if %encoder% equ AMF (
-	(for %%i in (
-		"- blur"
-		"blur: true"
-		"blur amount: 1.1"
-		"blur output fps: 30"
-		"blur weighting: equal"
-		.
-		"- interpolation"
-		"interpolate: true"
-		"interpolated fps: 1920"
-		.
-		"- rendering"
-		"quality: 15"
-		"preview: true"
-		"detailed filenames: false"
-		.
-		"- timescale"
-		"input timescale: 1"
-		"output timescale: 1"
-		"adjust timescaled audio pitch: false"
-		.
-		"- filters"
-		"brightness: 1"
-		"saturation: 1"
-		"contrast: 1"
-		.
-		"- advanced rendering"
-		"gpu: true"
-		"gpu type (nvidia/amd/intel): amd"
-		"deduplicate: true"
-		"custom ffmpeg filters: "
-		.
-		"- advanced blur"
-		"blur weighting gaussian std dev: 1"
-		"blur weighting triangle reverse: false"
-		"blur weighting bound: [0,1,1,1,1,0]"
-		.
-		"- advanced interpolation"
-		"interpolation program (svp/rife/rife-ncnn): svp"
-		"interpolation speed: medium"
-		"interpolation tuning: weak"
-		"interpolation algorithm: 23"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneAnyFPS.cfg"
-) 
-
-if %encoder% equ CPU (
-	(for %%i in (
-		"- blur"
-		"blur: true"
-		"blur amount: 1.1"
-		"blur output fps: 30"
-		"blur weighting: equal"
-		.
-		"- interpolation"
-		"interpolate: true"
-		"interpolated fps: 1920"
-		.
-		"- rendering"
-		"quality: 15"
-		"preview: true"
-		"detailed filenames: false"
-		.
-		"- timescale"
-		"input timescale: 1"
-		"output timescale: 1"
-		"adjust timescaled audio pitch: false"
-		.
-		"- filters"
-		"brightness: 1"
-		"saturation: 1"
-		"contrast: 1"
-		.
-		"- advanced rendering"
-		"gpu: true"
-		"gpu type (nvidia/amd/intel): intel"
-		"deduplicate: true"
-		"custom ffmpeg filters: "
-		.
-		"- advanced blur"
-		"blur weighting gaussian std dev: 1"
-		"blur weighting triangle reverse: false"
-		"blur weighting bound: [0,1,1,1,1,0]"
-		.
-		"- advanced interpolation"
-		"interpolation program (svp/rife/rife-ncnn): svp"
-		"interpolation speed: medium"
-		"interpolation tuning: weak"
-		"interpolation algorithm: 23"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneAnyFPS.cfg"
-)
-
-:skip
-cls
-set /p "file= Print the path of the file you want blurred into this window >> "
-"%SystemDrive%\program files (x86)\blur\blur.exe" -i %file% -c "%SystemDrive%\users\%username%\Documents\HoneAnyFPS.cfg" -n -p -v
+"%SystemDrive%\program files (x86)\blur\blur.exe" -i "%file%" -c "%userprofile%\documents\HoneMC30FPS.cfg" -n -p -v
 goto HoneRenders
 
 :NLEInstall
@@ -3249,9 +3111,9 @@ color 06
 echo.
 echo.
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -3260,16 +3122,16 @@ echo.                   /NMN+ ``   :ys.      ########     ###    ####    #######
 echo.                  `NMN:        +.                                                      ##    ###     ##    ###
 echo.                  om-                                                                   #######       #######
 echo.                   `.
-echo                       %COL%[90mUnfortunately, Hone cannot supply unofficial distributions of software. If you 
+echo                       %COL%[90mUnfortunately, Hone cannot supply unofficial distributions of software. If you
 echo                       %COL%[90mcannot buy Vegas Pro, an alternative that we recommend is a freemium video editing software
 echo                       %COL%[90mcalled 'DaVinci Resolve' (note: this program does not contain render settings)^^!
 echo.
 echo.
 echo                           %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Vegas Pro website                        %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m DaVinci Resolve website
 echo                           %COL%[90mPaid with supported renders                    %COL%[90mFree but unsupported renders
-echo.                                                                           
 echo.
-echo.                                                                                                                  
+echo.
+echo.
 echo.
 echo.
 echo.
@@ -3344,9 +3206,9 @@ cls
 echo.
 echo.
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -3418,9 +3280,9 @@ cls
 echo.
 echo.
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -3432,11 +3294,11 @@ echo.                   `.
 echo                                                           %COL%[1;4;34mNetwork Tweaks%COL%[0m
 echo.
 echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m Disable Task Offloading %TOFOF%    %COL%[33m[%COL%[37m 2 %COL%[33m]%COL%[37m NonBestEffortLimit %NONOF%         %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m AutoTuning %AUTOF%
-echo              %COL%[90mTask Offloading assigns the          %COL%[90mAllocate more bandwidth to apps      %COL%[90mCan reduce bufferbloat, 
+echo              %COL%[90mTask Offloading assigns the          %COL%[90mAllocate more bandwidth to apps      %COL%[90mCan reduce bufferbloat,
 echo              %COL%[90mCPU to handle the NIC load           %COL%[90mUse only on fast connections         %COL%[90mbut lower your Network speed
 echo.
-echo                           %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m DSCP Value %DSCOF%                      %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Wi-fi Congestion Provider %CONG% 
-echo                           %COL%[90mSet the priority of your network          %COL%[91mTurn ON only, if you have Wi-Fi. 
+echo                           %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m DSCP Value %DSCOF%                      %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Wi-fi Congestion Provider %CONG%
+echo                           %COL%[90mSet the priority of your network          %COL%[91mTurn ON only, if you have Wi-Fi.
 echo                           %COL%[90mtraffic to expedited forwarding           %COL%[90mChanges the algorithm on how data is processed.
 echo.
 echo.
@@ -3510,9 +3372,9 @@ cls
 echo.
 echo.
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -3532,12 +3394,12 @@ echo %COL%[91m  This tweak is for Wi-Fi users only, if you're on Ethernet, do no
 echo.
 echo   %COL%[37mFor any questions and/or concerns, please join our discord: discord.gg/hone
 echo.
-echo   %COL%[37mPlease enter "I understand" without quotes to continue: 
+echo   %COL%[37mPlease enter "I understand" without quotes to continue:
 echo.
 echo.
 echo.
 set /p "input=%DEL%                                                            >: %COL%[92m"
-if /i "!input!" neq "i understand" goto Tweaks 
+if /i "!input!" neq "i understand" goto Tweaks
 Reg add "HKCU\Software\Hone" /v "WifiDisclaimer3" /f >nul 2>&1
 :Congestion2
 if "%CONG%" equ "%COL%[91mOFF" (
@@ -3551,7 +3413,7 @@ goto Advanced
 
 :DSCPValue
 if "%DSCOF%" equ "%COL%[91mOFF" (
-	Reg add "HKLM\SYSTEM\CurrentControlSet\Services\Psched" /v "Start" /t Reg_DWORD /d "1" /f  
+	Reg add "HKLM\SYSTEM\CurrentControlSet\Services\Psched" /v "Start" /t Reg_DWORD /d "1" /f
 	sc start Psched
 	for %%i in (csgo VALORANT-Win64-Shipping javaw FortniteClient-Win64-Shipping ModernWarfare r5apex) do (
 		Reg query "HKLM\Software\Policies\Microsoft\Windows\QoS\%%i" || (
@@ -3683,9 +3545,9 @@ cls
 echo.
 echo.
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -3736,22 +3598,22 @@ echo.
 echo.
 echo.
 echo.
-echo.                                                                           %COL%[33m.  
-echo.                                                                        +N. 
-echo.                                                               //        oMMs 
-echo.                                                              +Nm`    ``yMMm- 
-echo.                                                           ``dMMsoyhh-hMMd.  
-echo.                                                           `yy/MMMMNh:dMMh`   
-echo.                                                          .hMM.sso++:oMMs`    
-echo.                                                         -mMMy:osyyys.No      
-echo.                                                        :NMMs-oo+/syy:-       
-echo.                                                       /NMN+ ``   :ys.        
-echo.                                                      `NMN:        +.         
-echo.                                                      om-                    
-echo.                                                       `.                                            
-echo. 
-echo. 
-echo. 
+echo.                                                                           %COL%[33m.
+echo.                                                                        +N.
+echo.                                                               //        oMMs
+echo.                                                              +Nm`    ``yMMm-
+echo.                                                           ``dMMsoyhh-hMMd.
+echo.                                                           `yy/MMMMNh:dMMh`
+echo.                                                          .hMM.sso++:oMMs`
+echo.                                                         -mMMy:osyyys.No
+echo.                                                        :NMMs-oo+/syy:-
+echo.                                                       /NMN+ ``   :ys.
+echo.                                                      `NMN:        +.
+echo.                                                      om-
+echo.                                                       `.
+echo.
+echo.
+echo.
 echo.
 echo.
 echo                                                      %COL%[1;4;34mSelect Minecraft Version%COL%[0m
@@ -3791,23 +3653,23 @@ echo.
 echo.
 echo.
 echo.
-echo.                                                                           %COL%[33m.  
-echo.                                                                        +N. 
-echo.                                                               //        oMMs 
-echo.                                                              +Nm`    ``yMMm- 
-echo.                                                           ``dMMsoyhh-hMMd.  
-echo.                                                           `yy/MMMMNh:dMMh`   
-echo.                                                          .hMM.sso++:oMMs`    
-echo.                                                         -mMMy:osyyys.No      
-echo.                                                        :NMMs-oo+/syy:-       
-echo.                                                       /NMN+ ``   :ys.        
-echo.                                                      `NMN:        +.         
-echo.                                                      om-                    
-echo.                                                       `.                                            
-echo. 
-echo. 
-echo. 
-echo. 
+echo.                                                                           %COL%[33m.
+echo.                                                                        +N.
+echo.                                                               //        oMMs
+echo.                                                              +Nm`    ``yMMm-
+echo.                                                           ``dMMsoyhh-hMMd.
+echo.                                                           `yy/MMMMNh:dMMh`
+echo.                                                          .hMM.sso++:oMMs`
+echo.                                                         -mMMy:osyyys.No
+echo.                                                        :NMMs-oo+/syy:-
+echo.                                                       /NMN+ ``   :ys.
+echo.                                                      `NMN:        +.
+echo.                                                      om-
+echo.                                                       `.
+echo.
+echo.
+echo.
+echo.
 echo.
 echo                                                   %COL%[37m Settings have been applied
 echo.
@@ -4049,36 +3911,36 @@ goto MainMenu
 cls
 echo.
 echo.
-echo.                                                                                
-echo. 
-echo.                                                                                
-echo.                                                                               
-echo             @@@    @@@@@@@@@@@@@@   @@@                                        
-echo         %@@@   @@@@              @@@   @@@@                                    
-echo         %@@@   @@@@              @@@   @@@@                                    
-echo         %@@@                           @@@@                                    
-echo         %@@@                               @@@                     @@@         
-echo      @@@,      @@@@       @@@                 @@@@              @@@   @@@@     
-echo      @@@,      @@@@       @@@                 @@@@              @@@   @@@@     
-echo      @@@,                                         @@@@@@@       @@@   @@@@     
-echo      @@@,          @@@@@@@                               @@@@@@@@@@   @@@@     
-echo      @@@,          @@@@@@@                               @@@@@@@@@@   @@@@     
-echo      @@@,   @@@    @@@       @@@@                                     @@@@     
-echo      @@@,      @@@@@@@@@@@@@@                                         @@@@     
-echo      @@@,                                                             @@@@     
-echo      @@@,                                                             @@@@     
-echo      @@@,                                                             @@@@     
-echo      @@@,                                                             @@@@     
-echo      @@@,                                                             @@@@     
-echo      @@@,                                                             @@@@     
-echo      @@@,                                                          @@@         
-echo         %@@@                                                       @@@         
-echo         %@@@                                                       @@@         
-echo         %@@@       @@@@@@@       @@@@@@@@@@@@@       @@@@@@@       @@@         
-echo         %@@@       @@@@@@@       @@@       @@@       @@@@@@@       @@@         
-echo         %@@@   @@@@   @@@@   @@@@          @@@    @@@    @@@    @@@            
-echo         %@@@   @@@@   @@@@   @@@@          @@@    @@@    @@@    @@@            
-echo             @@@           @@@                 @@@@          @@@@               
+echo.
+echo.
+echo.
+echo.
+echo             @@@    @@@@@@@@@@@@@@   @@@
+echo         %@@@   @@@@              @@@   @@@@
+echo         %@@@   @@@@              @@@   @@@@
+echo         %@@@                           @@@@
+echo         %@@@                               @@@                     @@@
+echo      @@@,      @@@@       @@@                 @@@@              @@@   @@@@
+echo      @@@,      @@@@       @@@                 @@@@              @@@   @@@@
+echo      @@@,                                         @@@@@@@       @@@   @@@@
+echo      @@@,          @@@@@@@                               @@@@@@@@@@   @@@@
+echo      @@@,          @@@@@@@                               @@@@@@@@@@   @@@@
+echo      @@@,   @@@    @@@       @@@@                                     @@@@
+echo      @@@,      @@@@@@@@@@@@@@                                         @@@@
+echo      @@@,                                                             @@@@
+echo      @@@,                                                             @@@@
+echo      @@@,                                                             @@@@
+echo      @@@,                                                             @@@@
+echo      @@@,                                                             @@@@
+echo      @@@,                                                             @@@@
+echo      @@@,                                                          @@@
+echo         %@@@                                                       @@@
+echo         %@@@                                                       @@@
+echo         %@@@       @@@@@@@       @@@@@@@@@@@@@       @@@@@@@       @@@
+echo         %@@@       @@@@@@@       @@@       @@@       @@@@@@@       @@@
+echo         %@@@   @@@@   @@@@   @@@@          @@@    @@@    @@@    @@@
+echo         %@@@   @@@@   @@@@   @@@@          @@@    @@@    @@@    @@@
+echo             @@@           @@@                 @@@@          @@@@
 echo					      hi
 echo.
 echo.
@@ -4097,7 +3959,7 @@ timeout /t 3 >nul 2>&1
 cls
 echo I don't have more dogs for you sorry
 timeout /t 3 >nul 2>&1
-cls 
+cls
 echo Maybe come back at another time? I'll get some for ya
 timeout /t 3 >nul 2>&1
 cls
@@ -4110,21 +3972,21 @@ echo.
 echo.
 echo.
 echo.
-echo.                                                                           %COL%[33m.  
-echo.                                                                          +N. 
-echo.                                                               //        oMMs 
-echo.                                                              +Nm`    ``yMMm- 
-echo.                                                           ``dMMsoyhh-hMMd.  
-echo.                                                           `yy/MMMMNh:dMMh`   
-echo.                                                          .hMM.sso++:oMMs`    
-echo.                                                         -mMMy:osyyys.No      
-echo.                                                        :NMMs-oo+/syy:-       
-echo.                                                       /NMN+ ``   :ys.        
-echo.                                                      `NMN:        +.         
-echo.                                                      om-                    
-echo.                                                       `.                                            
-echo. 
-echo. 
+echo.                                                                           %COL%[33m.
+echo.                                                                          +N.
+echo.                                                               //        oMMs
+echo.                                                              +Nm`    ``yMMm-
+echo.                                                           ``dMMsoyhh-hMMd.
+echo.                                                           `yy/MMMMNh:dMMh`
+echo.                                                          .hMM.sso++:oMMs`
+echo.                                                         -mMMy:osyyys.No
+echo.                                                        :NMMs-oo+/syy:-
+echo.                                                       /NMN+ ``   :ys.
+echo.                                                      `NMN:        +.
+echo.                                                      om-
+echo.                                                       `.
+echo.
+echo.
 echo.
 echo                  %COL%[33m[ %COL%[37m1 %COL%[33m] %COL%[37mAbout                                                   %COL%[33m[ %COL%[37m2 %COL%[33m] %COL%[37mDisclaimer
 echo.
@@ -4178,9 +4040,9 @@ cls
 echo.
 echo.
 echo.                                      %COL%[33m+N.
-echo.                           //        oMMs         
-echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
-echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                           //        oMMs
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    ::::::::::
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:
 echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -4198,7 +4060,7 @@ echo.
 echo %COL%[91m  WARNING:
 echo %COL%[37m  Please note that we cannot guarantee an FPS boost from applying our optimizations, every system + configuration is different.
 echo.
-echo     %COL%[33m1.%COL%[37m Everything is "use at your own risk", we are %COL%[91mNOT LIABLE%COL%[37m if you damage your system in any way 
+echo     %COL%[33m1.%COL%[37m Everything is "use at your own risk", we are %COL%[91mNOT LIABLE%COL%[37m if you damage your system in any way
 echo        (ex. not following the disclaimers carefully).
 echo.
 echo     %COL%[33m2.%COL%[37m If you don't know what a tweak is, do not use it and contact our support team to receive more assistance.
@@ -4207,7 +4069,7 @@ echo     %COL%[33m3.%COL%[37m Even though we have an automatic restore point fea
 echo.
 echo   For any questions and/or concerns, please join our discord: discord.gg/hone
 echo.
-echo   Please enter "I agree" without quotes to continue: 
+echo   Please enter "I agree" without quotes to continue:
 echo.
 echo.
 echo.
@@ -4389,8 +4251,8 @@ goto:eof
 
 
 
-echo       :::    :::     ::::::::     ::::    :::    ::::::::::     
-echo      :+:    :+:    :+:    :+:    :+:+:   :+:    :+:            
+echo       :::    :::     ::::::::     ::::    :::    ::::::::::
+echo      :+:    :+:    :+:    :+:    :+:+:   :+:    :+:
 echo     +:+    +:+    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo    +#++:++#++    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo   +#+    +#+    +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -4400,8 +4262,8 @@ echo                                                                     ###    
 echo                                                             ##     ###    ##     ###
 echo                                                              ########      ########
 
-echo       :::    :::     ::::::::     ::::    :::    ::::::::::     
-echo      :+:    :+:    :+:    :+:    :+:+:   :+:    :+:            
+echo       :::    :::     ::::::::     ::::    :::    ::::::::::
+echo      :+:    :+:    :+:    :+:    :+:+:   :+:    :+:
 echo     +:+    +:+    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo    +#++:++#++    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo   +#+    +#+    +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -4412,9 +4274,9 @@ echo                                                             ##     ###    #
 echo                                                              ########      ########
 
 echo.                                          %COL%[33m+N.
-echo.                               //        oMMs         
-echo.                              +Nm`    ``yMMm-      ::::::::     ::::    :::    :::::::::: 
-echo.                           ``dMMsoyhh-hMMd.      :+:    :+:    :+:+:   :+:    :+:  
+echo.                               //        oMMs
+echo.                              +Nm`    ``yMMm-      ::::::::     ::::    :::    ::::::::::
+echo.                           ``dMMsoyhh-hMMd.      :+:    :+:    :+:+:   :+:    :+:
 echo.                           `yy/MMMMNh:dMMh`     +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
 echo.                          .hMM.sso++:oMMs`     +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
 echo.                         -mMMy:osyyys.No      +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
@@ -4425,23 +4287,23 @@ echo.                      om-                                                  
 echo.                       `.                                                                  ########      ########
 
 echo.                                          %COL%[33m+N.
-echo.                               //        oMMs         
-echo.                              +Nm`    ``yMMm-               :::    :::     ::::::::     ::::    :::    :::::::::: 
-echo.                           ``dMMsoyhh-hMMd.                :+:    :+:    :+:    :+:    :+:+:   :+:    :+:  
-echo.                           `yy/MMMMNh:dMMh`               +:+    +:+    +:+    +:+    :+:+:+  +:+    +:+    
-echo.                          .hMM.sso++:oMMs`               +#++:++#++    +#+    +:+    +#+ +:+ +#+    +#++:++#    
-echo.                         -mMMy:osyyys.No                +#+    +#+    +#+    +#+    +#+  +#+#+#    +#+   
-echo.                        :NMMs-oo+/syy:-                #+#    #+#    #+#    #+#    #+#   #+#+#    #+#   
+echo.                               //        oMMs
+echo.                              +Nm`    ``yMMm-               :::    :::     ::::::::     ::::    :::    ::::::::::
+echo.                           ``dMMsoyhh-hMMd.                :+:    :+:    :+:    :+:    :+:+:   :+:    :+:
+echo.                           `yy/MMMMNh:dMMh`               +:+    +:+    +:+    +:+    :+:+:+  +:+    +:+
+echo.                          .hMM.sso++:oMMs`               +#++:++#++    +#+    +:+    +#+ +:+ +#+    +#++:++#
+echo.                         -mMMy:osyyys.No                +#+    +#+    +#+    +#+    +#+  +#+#+#    +#+
+echo.                        :NMMs-oo+/syy:-                #+#    #+#    #+#    #+#    #+#   #+#+#    #+#
 echo.                       /NMN+ ``   :ys.                ###    ###     ########     ###    ####    ##########
-echo.                      `NMN:        +.                
-echo.                      om-                            
-echo.                       `.                            
+echo.                      `NMN:        +.
+echo.                      om-
+echo.                       `.
 
 :ColorText
 echo off
 <nul set /p ".=%DEL%" > "%~2"
 findstr /v /a:%1 /R "^$" "%~2" nul
-del "%~2" > nul  
+del "%~2" > nul
 goto :eof
 
 :HoneCtrlError
