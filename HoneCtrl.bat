@@ -91,7 +91,7 @@ del /Q "C:\Users\%username%\AppData\Roaming\Microsoft\Windows\Start Menu\Program
 )
 
 :CheckForUpdates
-set local=2.55
+set local=2.56
 set localtwo=%local%
 if exist "%temp%\Updater.bat" DEL /S /Q /F "%temp%\Updater.bat" >nul 2>&1
 curl -g -L -# -o "%temp%\Updater.bat" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/HoneCtrlVer" >nul 2>&1
@@ -113,7 +113,7 @@ IF "%local%" gtr "%localtwo%" (
 	echo      [Y] Yes, Update
 	echo      [N] No
 	echo.
-	choice /c:YN /n /m "%DEL%                                >:"
+	%SystemRoot%\System32\choice.exe /c:YN /n /m "%DEL%                                >:"
 	set choice=!errorlevel!
 	if !choice! equ 1 (
 		curl -L -o %0 "https://github.com/auraside/HoneCtrl/releases/latest/download/HoneCtrl.Bat" >nul 2>&1
@@ -187,7 +187,7 @@ echo.
 echo.
 echo                                                            %COL%[31m[ X to close ]%COL%[37m  
 echo.
-choice /c:1234567X /n /m "%DEL%                                        Select a corresponding number to the options above > "
+%SystemRoot%\System32\choice.exe /c:1234567XD /n /m "%DEL%                                        Select a corresponding number to the options above > "
 set choice=%errorlevel%
 if "%choice%"=="1" set PG=TweaksPG1 & goto Tweaks
 if "%choice%"=="2" goto GameSettings
@@ -197,7 +197,7 @@ if "%choice%"=="5" call:Comingsoon
 if "%choice%"=="6" goto disclaimer2
 if "%choice%"=="7" goto More
 if "%choice%"=="8" exit /b
-if "%choice%"=="9" goto Disclaimer2
+if "%choice%"=="9" goto Dog
 goto MainMenu
 
 :Comingsoon
@@ -399,13 +399,13 @@ echo                                                               %COL%[1;4;34m
 echo.
 echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m Disable Services %COL%[93mN/A           %COL%[33m[%COL%[37m 2 %COL%[33m]%COL%[37m Debloat %COL%[93mN/A                    %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m Disable Mitigations %MITOF%
 echo              %COL%[90mDisables services and lowers memory  %COL%[90mThis tweak will debloat your         %COL%[90mDisable protections against memory
-echo              %COL%[90mDon't use if you are using Wi-Fi     %COL%[90msystem and disable telemetry         %COL%[90mbased attacks that consume perf
+echo              %COL%[91mDon't use if you are using Wi-Fi     %COL%[90msystem and disable telemetry         %COL%[90mbased attacks that consume perf
 echo.
 echo                                                           %COL%[1;4;34mNetwork Tweaks%COL%[0m
 echo.
 echo              %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m Optimize TCP/IP %TCPOF%            %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Optimize NIC %NICOF%               %COL%[33m[%COL%[37m 6 %COL%[33m]%COL%[37m Optimize Netsh %NETOF%
 echo              %COL%[90mTweaks your Internet Protocol        %COL%[90mOptimize your Network Card settings  %COL%[90mThis tweak will optimize your
-echo              %COL%[90mDon't use if you are using Wi-Fi     %COL%[90mDon't use if you are using Wi-Fi     %COL%[90mcomputer network configuration
+echo              %COL%[91mDon't use if you are using Wi-Fi     %COL%[91mDon't use if you are using Wi-Fi     %COL%[90mcomputer network configuration
 echo.
 echo                                                             %COL%[1;4;34mGPU ^& CPU%COL%[0m
 echo.
@@ -462,7 +462,7 @@ rem echo                                                           %COL%[1;4;34m
 rem echo.
 rem echo              %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m Disable USB Power Savings %BLANK%  %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m CSRSS high priority %BLANK%        %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Disable HPET %BLANK%
 rem echo              %COL%[90mTweaks your Internet Protocol        %COL%[90mCSRSS is for mouse input, setting    %COL%[90mCSRSS is responsible for mouse input
-rem echo              %COL%[90mDon't use if you are using Wi-Fi     %COL%[90mhigh priority may improve latency    %COL%[90mset to high to improve input latency
+rem echo              %COL%[91mDon't use if you are using Wi-Fi     %COL%[90mhigh priority may improve latency    %COL%[90mset to high to improve input latency
 echo                                                        %COL%[1;4;34mMiscellaneous Tweaks%COL%[0m
 echo.
 echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m Cleaner %BLANK%                    %COL%[33m[%COL%[37m 2 %COL%[33m]%COL%[37m Game-Booster %BLANK%               %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m Soft Restart %BLANK%
@@ -617,16 +617,29 @@ goto Advanced
 
 :TimerRes
 cd C:\Hone\Resources
+sc config "STR" start= auto >nul 2>&1
+start /b net start STR >nul 2>&1
 if "%TMROF%" equ "%COL%[91mOFF" (
 	if not exist SetTimerResolutionService.exe (
 		::https://forums.guru3d.com/threads/windows-timer-resolution-tool-in-form-of-system-service.376458/
 		curl -g -L -# -o "C:\Hone\Resources\SetTimerResolutionService.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/SetTimerResolutionService.exe" >nul 2>&1
 		%windir%\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe /i SetTimerResolutionService.exe >nul 2>&1
 	)
-	sc config "STR" start=auto >nul 2>&1
-	start /b net start STR >nul 2>&1
-	bcdedit /set useplatformtick true >nul 2>&1
-	bcdedit /set disabledynamictick yes >nul 2>&1
+		sc config "STR" start=auto >nul 2>&1
+		start /b net start STR >nul 2>&1
+		bcdedit /set disabledynamictick yes >nul 2>&1
+		bcdedit /deletevalue useplatformclock >nul 2>&1
+	for /F "tokens=2 delims==" %%G in (
+	'wmic OS get buildnumber /value'
+	) do @for /F "tokens=*" %%x in ("%%G") do (
+		set "VAR=%%~x"
+	)
+	if !VAR! geq 19042 (
+		bcdedit /deletevalue useplatformtick >nul 2>&1
+	)
+	if !VAR! lss 19042 (
+		bcdedit /set useplatformtick yes >nul 2>&1
+	)
 ) else (
 	sc config "STR" start=disabled >nul 2>&1
 	start /b net stop STR >nul 2>&1
@@ -672,7 +685,41 @@ if "%MSIOF%" equ "%COL%[91mOFF" (
 goto Tweaks
 
 :TCPIP
+Reg query "HKCU\Software\Hone" /v "WifiDisclaimer2" >nul 2>&1 && goto TCPIP2
 cls
+echo.
+echo.
+echo.                                      %COL%[33m+N.
+echo.                           //        oMMs         
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
+echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
+echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
+echo.                    :NMMs-oo+/syy:-     #+#    #+#    #+#   #+#+#    #+#          %COL%[37m#+#%COL%[33m    +#+   #+#     #+#   #+#
+echo.                   /NMN+ ``   :ys.      ########     ###    ####    ##########   %COL%[37m###%COL%[33m       ######        ######
+echo.                  `NMN:        +.                                                      ##    ###     ##    ###
+echo.                  om-                                                                   #######       #######
+echo.                   `.
+echo.
+echo                                        %COL%[90m HoneCtrl is a free and open-source desktop utility
+echo                                        %COL%[90m    made to improve your day-to-day productivity
+echo.
+echo.
+echo.
+echo %COL%[91m  WARNING:
+echo %COL%[91m  This tweak is for ethernet users only, if you're on Wi-Fi, do not run this tweak.
+echo.
+echo   %COL%[37mFor any questions and/or concerns, please join our discord: discord.gg/hone
+echo.
+echo   %COL%[37mPlease enter "I understand" without quotes to continue: 
+echo.
+echo.
+echo.
+set /p "input=%DEL%                                                            >: %COL%[92m"
+if /i "!input!" neq "i understand" goto Tweaks 
+Reg add "HKCU\Software\Hone" /v "WifiDisclaimer2" /f >nul 2>&1
+:TCPIP2
 if "%TCPOF%" equ "%COL%[91mOFF" (
 	Reg add "HKCU\Software\Hone" /v "TCPIP" /f
 	PowerShell -NoProfile -NonInteractive -Command ^
@@ -752,6 +799,41 @@ start /B cmd /c "ipconfig /release & ipconfig /renew" >nul 2>&1
 goto Tweaks
 
 :NIC
+Reg query "HKCU\Software\Hone" /v "WifiDisclaimer4" >nul 2>&1 && goto NIC2
+cls
+echo.
+echo.
+echo.                                      %COL%[33m+N.
+echo.                           //        oMMs         
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
+echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
+echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
+echo.                    :NMMs-oo+/syy:-     #+#    #+#    #+#   #+#+#    #+#          %COL%[37m#+#%COL%[33m    +#+   #+#     #+#   #+#
+echo.                   /NMN+ ``   :ys.      ########     ###    ####    ##########   %COL%[37m###%COL%[33m       ######        ######
+echo.                  `NMN:        +.                                                      ##    ###     ##    ###
+echo.                  om-                                                                   #######       #######
+echo.                   `.
+echo.
+echo                                        %COL%[90m HoneCtrl is a free and open-source desktop utility
+echo                                        %COL%[90m    made to improve your day-to-day productivity
+echo.
+echo.
+echo.
+echo %COL%[91m  WARNING:
+echo %COL%[91m  This tweak is for ethernet users only, if you're on Wi-Fi, do not run this tweak.
+echo.
+echo   %COL%[37mFor any questions and/or concerns, please join our discord: discord.gg/hone
+echo.
+echo   %COL%[37mPlease enter "I understand" without quotes to continue: 
+echo.
+echo.
+echo.
+set /p "input=%DEL%                                                            >: %COL%[92m"
+if /i "!input!" neq "i understand" goto Tweaks 
+Reg add "HKCU\Software\Hone" /v "WifiDisclaimer4" /f >nul 2>&1
+:NIC2
 cd %SystemDrive%\Hone\HoneRevert
 if "%NICOF%" neq "%COL%[91mOFF" (
 	reg import ognic.reg >nul 2>&1
@@ -766,16 +848,16 @@ Reg add "%%g" /v "MIMOPowerSaveMode" /t REG_SZ /d "3" /f
 Reg add "%%g" /v "PowerSavingMode" /t REG_SZ /d "0" /f
 Reg add "%%g" /v "EnableGreenEthernet" /t REG_SZ /d "0" /f
 Reg add "%%g" /v "*EEE" /t REG_SZ /d "0" /f
-Reg add "%%g" /v "EnableConnectedPowerGating" /t REG_DWORD /d "0" /f
-Reg add "%%g" /v "EnableDynamicPowerGating" /t REG_SZ /d "0" /f
-Reg add "%%g" /v "EnableSavePowerNow" /t REG_SZ /d "0" /f
-Reg add "%%g" /v "PnPCapabilities" /t REG_SZ /d "24" /f
 Rem more powersaving options
-Reg add "%%g" /v "*NicAutoPowerSaver" /t REG_SZ /d "0" /f
-Reg add "%%g" /v "ULPMode" /t REG_SZ /d "0" /f
-Reg add "%%g" /v "EnablePME" /t REG_SZ /d "0" /f
-Reg add "%%g" /v "AlternateSemaphoreDelay" /t REG_SZ /d "0" /f
-Reg add "%%g" /v "AutoPowerSaveModeEnabled" /t REG_SZ /d "0" /f
+Rem Reg add "%%g" /v "EnableConnectedPowerGating" /t REG_DWORD /d "0" /f
+Rem add "%%g" /v "EnableDynamicPowerGating" /t REG_SZ /d "0" /f
+Rem Reg add "%%g" /v "EnableSavePowerNow" /t REG_SZ /d "0" /f
+Rem Reg add "%%g" /v "PnPCapabilities" /t REG_SZ /d "24" /f
+Rem Reg add "%%g" /v "*NicAutoPowerSaver" /t REG_SZ /d "0" /f
+Rem Reg add "%%g" /v "ULPMode" /t REG_SZ /d "0" /f
+Rem Reg add "%%g" /v "EnablePME" /t REG_SZ /d "0" /f
+Rem Reg add "%%g" /v "AlternateSemaphoreDelay" /t REG_SZ /d "0" /f
+Rem Reg add "%%g" /v "AutoPowerSaveModeEnabled" /t REG_SZ /d "0" /f
 
 )
 ) >nul 2>&1
@@ -790,14 +872,12 @@ if "%NETOF%" equ "%COL%[91mOFF" (
     netsh int tcp set global netdma=enabled
     netsh interface isatap set state disabled
     netsh int tcp set global timestamps=disabled
-    netsh int tcp set supplemental Internet congestionprovider=ctcp
     netsh int tcp set global rss=enabled
     netsh int tcp set global nonsackrttresiliency=disabled
     netsh int tcp set global initialRto=2000
-    netsh int udp set global uro=enabled
     netsh int tcp set supplemental template=custom icw=10
-    netsh interface teredo set state disable
-    netsh int tcp set global hystart=disabled
+
+
 
     
 netsh interface ip set interface ethernet currenthoplimit=64
@@ -809,12 +889,9 @@ netsh interface ip set interface ethernet currenthoplimit=64
     netsh int tcp set global chimney=default
     netsh int tcp set global dca=default
     netsh int tcp set global netdma=default
-    netsh int tcp set global ecncapability=default
     netsh int tcp set global timestamps=default
     netsh int tcp set global nonsackrttresiliency=default
-    netsh int tcp set global hystart=enabled
-    netsh interface isatap set state default
-    netsh interface ip set interface ethernet currenthoplimit=128
+
 ) >nul 2>&1
 goto Tweaks
 
@@ -1278,8 +1355,44 @@ Reg add "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "DisableWriteCombin
 ) >nul 2>&1 else (
 Reg delete "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "DisableWriteCombining" /f
 ) >nul 2>&1
+goto Tweaks
 
 :Service
+Reg query "HKCU\Software\Hone" /v "WifiDisclaimer1" >nul 2>&1 && goto Service2
+cls
+echo.
+echo.
+echo.                                      %COL%[33m+N.
+echo.                           //        oMMs         
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
+echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
+echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
+echo.                    :NMMs-oo+/syy:-     #+#    #+#    #+#   #+#+#    #+#          %COL%[37m#+#%COL%[33m    +#+   #+#     #+#   #+#
+echo.                   /NMN+ ``   :ys.      ########     ###    ####    ##########   %COL%[37m###%COL%[33m       ######        ######
+echo.                  `NMN:        +.                                                      ##    ###     ##    ###
+echo.                  om-                                                                   #######       #######
+echo.                   `.
+echo.
+echo                                        %COL%[90m HoneCtrl is a free and open-source desktop utility
+echo                                        %COL%[90m    made to improve your day-to-day productivity
+echo.
+echo.
+echo.
+echo %COL%[91m  WARNING:
+echo %COL%[91m  This tweak is for ethernet users only, if you're on Wi-Fi, do not run this tweak.
+echo.
+echo   %COL%[37mFor any questions and/or concerns, please join our discord: discord.gg/hone
+echo.
+echo   %COL%[37mPlease enter "I understand" without quotes to continue: 
+echo.
+echo.
+echo.
+set /p "input=%DEL%                                                            >: %COL%[92m"
+if /i "!input!" neq "i understand" goto Tweaks 
+Reg add "HKCU\Software\Hone" /v "WifiDisclaimer1" /f >nul 2>&1
+:Service2
 if "%SERVOF%" equ "%COL%[91mOFF" (
     Reg add "HKCU\Software\Hone" /v ServicesTweaks /f
 	Reg.exe add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\xbgm" /v "Start" /t REG_DWORD /d "4" /f >nul 2>&1
@@ -1487,7 +1600,7 @@ echo.
 echo                                                       [ press X to go back ]
 echo.
 echo.
-choice /c:12X /n /m "%DEL%                                                               >:"
+%SystemRoot%\System32\choice.exe /c:12X /n /m "%DEL%                                                               >:"
 if %errorlevel% equ 3 goto Tweaks
 if %errorlevel% equ 1 reg add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v "Win32PrioritySeparation" /t REG_DWORD /d "22" /f >nul 2>&1
 if %errorlevel% equ 2 reg add "HKLM\SYSTEM\CurrentControlSet\Control\PriorityControl" /v "Win32PrioritySeparation" /t REG_DWORD /d "40" /f >nul 2>&1
@@ -1662,9 +1775,6 @@ echo %GPU_NAME% | find "NVIDIA" && set encoder=NVENC
 echo %GPU_NAME% | find "AMD" && set encoder=AMF 
 if not defined encoder set encoder=CPU
 
-
-pause
-
 cls
 color 06
 echo.
@@ -1732,7 +1842,7 @@ if exist "%SystemDrive%\Program Files\obs-studio\uninstall.exe" start /w "" "%Sy
 rmdir /s /q "%appdata%\obs-studio" >nul 2>&1
 
 :: get url to OBS
-for /f "skip=147 tokens=2" %%I in ('curl -s https://obsproject.com/') do set "OBS=%%I" & goto end
+for /f "skip=150 tokens=2" %%I in ('curl -s https://obsproject.com/') do set "OBS=%%I" & goto end
 :end
 :: Install OBS Silently
 curl -g -L -# -o "%temp%\OBS.exe" "%OBS:~6,84%"
@@ -3325,9 +3435,9 @@ echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m Disable Task Offload
 echo              %COL%[90mTask Offloading assigns the          %COL%[90mAllocate more bandwidth to apps      %COL%[90mCan reduce bufferbloat, 
 echo              %COL%[90mCPU to handle the NIC load           %COL%[90mUse only on fast connections         %COL%[90mbut lower your Network speed
 echo.
-echo                           %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m DSCP Value %DSCOF%                     %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Wifi Congestion Provider %CONG% 
-echo                           %COL%[90mSet the priority of your network         %COL%[90mTurn ON only, if you have WIFI. 
-echo                           %COL%[90mtraffic to expedited forwarding          %COL%[90mChanges the algorithm on how data is processed.
+echo                           %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m DSCP Value %DSCOF%                      %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Wi-fi Congestion Provider %CONG% 
+echo                           %COL%[90mSet the priority of your network          %COL%[91mTurn ON only, if you have Wi-Fi. 
+echo                           %COL%[90mtraffic to expedited forwarding           %COL%[90mChanges the algorithm on how data is processed.
 echo.
 echo.
 echo                                                            %COL%[1;4;34mPower Tweaks%COL%[0m
@@ -3395,6 +3505,41 @@ if "%AUTOF%" equ "%COL%[91mOFF" (
 goto Advanced
 
 :Congestion
+Reg query "HKCU\Software\Hone" /v "WifiDisclaimer3" >nul 2>&1 && goto Congestion2
+cls
+echo.
+echo.
+echo.                                      %COL%[33m+N.
+echo.                           //        oMMs         
+echo.                          +Nm`    ``yMMm-     ::::::::     ::::    :::    :::::::::: 
+echo.                       ``dMMsoyhh-hMMd.     :+:    :+:    :+:+:   :+:    :+:  
+echo.                       `yy/MMMMNh:dMMh`    +:+    +:+    :+:+:+  +:+    +:+                 +::+:+::      +::+:+::
+echo.                      .hMM.sso++:oMMs`    +#+    +:+    +#+ +:+ +#+    +#++:++#           ++:    #++    ++:    #++
+echo.                     -mMMy:osyyys.No     +#+    +#+    +#+  +#+#+#    +#+                +#+    +#+    +#+    +#+
+echo.                    :NMMs-oo+/syy:-     #+#    #+#    #+#   #+#+#    #+#          %COL%[37m#+#%COL%[33m    +#+   #+#     #+#   #+#
+echo.                   /NMN+ ``   :ys.      ########     ###    ####    ##########   %COL%[37m###%COL%[33m       ######        ######
+echo.                  `NMN:        +.                                                      ##    ###     ##    ###
+echo.                  om-                                                                   #######       #######
+echo.                   `.
+echo.
+echo                                        %COL%[90m HoneCtrl is a free and open-source desktop utility
+echo                                        %COL%[90m    made to improve your day-to-day productivity
+echo.
+echo.
+echo.
+echo %COL%[91m  WARNING:
+echo %COL%[91m  This tweak is for Wi-Fi users only, if you're on Ethernet, do not run this tweak.
+echo.
+echo   %COL%[37mFor any questions and/or concerns, please join our discord: discord.gg/hone
+echo.
+echo   %COL%[37mPlease enter "I understand" without quotes to continue: 
+echo.
+echo.
+echo.
+set /p "input=%DEL%                                                            >: %COL%[92m"
+if /i "!input!" neq "i understand" goto Tweaks 
+Reg add "HKCU\Software\Hone" /v "WifiDisclaimer3" /f >nul 2>&1
+:Congestion2
 if "%CONG%" equ "%COL%[91mOFF" (
 	Reg add "HKCU\Software\Hone" /v TuningTweak1 /f >nul 2>&1
     netsh int tcp set supplemental Internet congestionprovider=newreno >nul 2>&1
@@ -3477,10 +3622,10 @@ cls
 echo This will uninstall your current graphics driver. The optimized driver will be installed after you reboot.
 echo.
 echo Would you like to install?
-choice /c:YN /n /m "[Y] Yes  [N] No"
+%SystemRoot%\System32\choice.exe /c:YN /n /m "[Y] Yes  [N] No"
 if %errorlevel% equ 2 goto Advanced
 cd "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup"
-curl -LJ https://github.com/auraside/HoneCtrl/blob/main/Files/Driverinstall.bat?raw=true -o Driverinstall.bat 
+curl -LJ https://github.com/RadNotRed/HoneCtrl/blob/main/Files/Driverinstall.bat?raw=true -o Driverinstall.bat 
 title Executing DDU...
 curl -g -L -# -o "C:\Hone\Resources\DDU.zip" "https://github.com/auraside/HoneCtrl/raw/main/Files/DDU.zip"
 powershell -NoProfile Expand-Archive 'C:\Hone\Resources\DDU.zip' -DestinationPath 'C:\Hone\Resources\DDU\' >nul 2>&1
@@ -3496,7 +3641,7 @@ echo.
 echo Drivers will be installed opon PC startup.
 echo.
 echo Would you like to continue and restart your PC?
-choice /c:YN /n /m "[Y] Yes  [N] No"
+%SystemRoot%\System32\choice.exe /c:YN /n /m "[Y] Yes  [N] No"
 if %errorlevel% equ 1 (
 	shutdown /s /t 60 /c "A restart is required, we'll do that now" /f /d p:0:0
 	timeout 5
@@ -3577,7 +3722,7 @@ echo.
 echo.
 echo                                                 %COL%[90m[ B for back ]         %COL%[31m[ X to close ]%COL%[37m
 echo.
-choice /c:1BX /n /m "%DEL%                                        Select a corresponding number to the options above >"
+%SystemRoot%\System32\choice.exe /c:1BX /n /m "%DEL%                                        Select a corresponding number to the options above >"
 set choice=%errorlevel%
 if "%choice%"=="1" goto Minecraft
 if "%choice%"=="2" goto MainMenu
@@ -3632,7 +3777,7 @@ echo.
 echo.
 echo                                                 %COL%[90m[ B for back ]         %COL%[31m[ X to close ]%COL%[37m
 echo.
-choice /c:123BX /n /m "%DEL%                                        Select a corresponding number to the options above >"
+%SystemRoot%\System32\choice.exe /c:123BX /n /m "%DEL%                                        Select a corresponding number to the options above >"
 set choice=%errorlevel%
 if %choice% equ 1 goto 1.7.10
 if %choice% equ 2 goto 1.8.9
@@ -3671,7 +3816,7 @@ echo.
 echo.
 echo                                                          %COL%[90m[ B for back ]%COL%[37m
 echo.
-choice /c:B /n /m "%DEL%                                                               >:"
+%SystemRoot%\System32\choice.exe /c:B /n /m "%DEL%                                                               >:"
 goto GameSettings
 
 :1.7.10
@@ -3900,6 +4045,65 @@ goto MinecraftConfirmation
 
 goto MainMenu
 
+:dog
+cls
+echo.
+echo.
+echo.                                                                                
+echo. 
+echo.                                                                                
+echo.                                                                               
+echo             @@@    @@@@@@@@@@@@@@   @@@                                        
+echo         %@@@   @@@@              @@@   @@@@                                    
+echo         %@@@   @@@@              @@@   @@@@                                    
+echo         %@@@                           @@@@                                    
+echo         %@@@                               @@@                     @@@         
+echo      @@@,      @@@@       @@@                 @@@@              @@@   @@@@     
+echo      @@@,      @@@@       @@@                 @@@@              @@@   @@@@     
+echo      @@@,                                         @@@@@@@       @@@   @@@@     
+echo      @@@,          @@@@@@@                               @@@@@@@@@@   @@@@     
+echo      @@@,          @@@@@@@                               @@@@@@@@@@   @@@@     
+echo      @@@,   @@@    @@@       @@@@                                     @@@@     
+echo      @@@,      @@@@@@@@@@@@@@                                         @@@@     
+echo      @@@,                                                             @@@@     
+echo      @@@,                                                             @@@@     
+echo      @@@,                                                             @@@@     
+echo      @@@,                                                             @@@@     
+echo      @@@,                                                             @@@@     
+echo      @@@,                                                             @@@@     
+echo      @@@,                                                          @@@         
+echo         %@@@                                                       @@@         
+echo         %@@@                                                       @@@         
+echo         %@@@       @@@@@@@       @@@@@@@@@@@@@       @@@@@@@       @@@         
+echo         %@@@       @@@@@@@       @@@       @@@       @@@@@@@       @@@         
+echo         %@@@   @@@@   @@@@   @@@@          @@@    @@@    @@@    @@@            
+echo         %@@@   @@@@   @@@@   @@@@          @@@    @@@    @@@    @@@            
+echo             @@@           @@@                 @@@@          @@@@               
+echo					      hi
+echo.
+echo.
+echo                  		  X to close
+echo.
+%SystemRoot%\System32\choice.exe /c:XD /n /m "%DEL%
+set choice=%errorlevel%
+if "%choice%"=="1" exit /b
+if "%choice%"=="2" goto Dog2
+goto dog
+
+:dog2
+cls
+echo So you want more dog?
+timeout /t 3 >nul 2>&1
+cls
+echo I don't have more dogs for you sorry
+timeout /t 3 >nul 2>&1
+cls 
+echo Maybe come back at another time? I'll get some for ya
+timeout /t 3 >nul 2>&1
+cls
+echo bye
+timeout /t 2  >nul 2>&1
+exit /b
 :More
 cls
 echo.
@@ -3944,7 +4148,7 @@ echo.
 echo.
 echo                                                 %COL%[90m[ B for back ]         %COL%[31m[ X to close ]%COL%[37m
 echo.
-choice /c:12345BX /n /m "%DEL%                                        Select a corresponding number to the options above >"
+%SystemRoot%\System32\choice.exe /c:12345BX /n /m "%DEL%                                        Select a corresponding number to the options above >"
 set choice=%errorlevel%
 if "%choice%"=="1" goto About
 if "%choice%"=="2" goto ViewDisclaimer
@@ -3965,7 +4169,7 @@ call :ColorText 8 "                                                      [ press
 echo.
 echo.
 echo.
-choice /c:X /n /m "%DEL%                                                               >:"
+%SystemRoot%\System32\choice.exe /c:X /n /m "%DEL%                                                               >:"
 set choice=%errorlevel%
 if "%choice%"=="1" goto More
 
@@ -4009,7 +4213,7 @@ echo.
 echo.
 echo                                                         [ press X to go back ]
 echo.
-choice /c:X /n /m "%DEL%                                                                 >:"
+%SystemRoot%\System32\choice.exe /c:X /n /m "%DEL%                                                                 >:"
 set choice=%errorlevel%
 if "%choice%"=="1" goto More
 
@@ -4058,7 +4262,7 @@ echo.
 echo.
 call :ColorText 8 "                                                     [ press B to go back ]"
 echo.
-choice /c:B /n /m "%DEL%                                                               >:"
+%SystemRoot%\System32\choice.exe /c:B /n /m "%DEL%                                                               >:"
 set choice=%errorlevel%
 if "%choice%"=="1" goto More
 
@@ -4122,7 +4326,7 @@ for %%F in ("%file%") do Reg query "HKCU\Software\Microsoft\Windows NT\CurrentVe
 	echo CPU High Class
 ) >nul 2>&1
 echo.
-choice /c:"CQ" /n /m "%BS%               [C] Continue  [Q] Quit" & if !errorlevel! equ 2 exit /b
+%SystemRoot%\System32\choice.exe /c:"CQ" /n /m "%BS%               [C] Continue  [Q] Quit" & if !errorlevel! equ 2 exit /b
 goto:eof
 
 :softRestart
@@ -4179,7 +4383,7 @@ echo.
 echo.
 echo                             [X] Close
 echo.
-choice /c:X /n /m "%DEL%                                >:"
+%SystemRoot%\System32\choice.exe /c:X /n /m "%DEL%                                >:"
 Mode 130,45
 goto:eof
 
@@ -4258,7 +4462,7 @@ echo. ^& ^
 echo. ^& ^
 echo      [X] Close ^& ^
 echo. ^& ^
-choice /c:X /n /m "%DEL%                                >:" ^& ^
+%SystemRoot%\System32\choice.exe /c:X /n /m "%DEL%                                >:" ^& ^
 exit /b
 goto:eof
 
@@ -4282,7 +4486,7 @@ echo. ^& ^
 echo      [Y] Yes ^& ^
 echo      [N] No ^& ^
 echo. ^& ^
-choice /c:YNX /n /m "%DEL%                                >:" ^& ^
+%SystemRoot%\System32\choice.exe /c:YNX /n /m "%DEL%                                >:" ^& ^
 if !errorlevel! equ 1 ( ^
 	shutdown /s /t 60 /c "A restart is required, we'll do that now" /f /d p:0:0 ^& ^
 	timeout 5 ^& ^
