@@ -876,11 +876,7 @@ if "%NETOF%" equ "%COL%[91mOFF" (
     netsh int tcp set global nonsackrttresiliency=disabled
     netsh int tcp set global initialRto=2000
     netsh int tcp set supplemental template=custom icw=10
-
-
-
-
-netsh interface ip set interface ethernet currenthoplimit=64
+    netsh interface ip set interface ethernet currenthoplimit=64
 ) >nul 2>&1 else (
     Reg delete "HKCU\Software\Hone" /v InternetTweaks /f
     netsh int tcp set supplemental Internet congestionprovider=default
@@ -3491,7 +3487,7 @@ echo Would you like to install?
 %SystemRoot%\System32\choice.exe /c:YN /n /m "[Y] Yes  [N] No"
 if %errorlevel% equ 2 goto Advanced
 cd "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup"
-curl -LJ https://github.com/RadNotRed/HoneCtrl/blob/main/Files/Driverinstall.bat?raw=true -o Driverinstall.bat
+curl -LJ https://github.com/auraside/HoneCtrl/blob/main/Files/Driverinstall.bat?raw=true -o Driverinstall.bat 
 title Executing DDU...
 curl -g -L -# -o "C:\Hone\Resources\DDU.zip" "https://github.com/auraside/HoneCtrl/raw/main/Files/DDU.zip"
 powershell -NoProfile Expand-Archive 'C:\Hone\Resources\DDU.zip' -DestinationPath 'C:\Hone\Resources\DDU\' >nul 2>&1
