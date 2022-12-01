@@ -33,6 +33,7 @@ if %errorlevel% neq 0 start "" /wait /I /min powershell -NoProfile -Command star
 ::Show Detailed BSoD
 reg add "HKLM\System\CurrentControlSet\Control\CrashControl" /v "DisplayParameters" /t REG_DWORD /d "1" /f >nul 2>&1
 
+
 ::Blank/Color Character
 for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do rem"') do (set "DEL=%%a" & set "COL=%%b")
 
@@ -45,6 +46,7 @@ reg query "HKCU\Software\Hone" /v "Disclaimer" >nul 2>&1 && goto CheckForUpdates
 cls
 echo.
 echo.
+
 call :HoneTitle
 echo.
 echo                                        %COL%[90m HoneCtrl is a free and open-source desktop utility
@@ -634,6 +636,7 @@ if "%MSIOF%" == "%COL%[91mOFF" (
 goto Tweaks
 
 :TCPIP
+Reg query "HKCU\Software\Hone" /v "WifiDisclaimer2" >nul 2>&1 && goto TCPIP2
 cls
 if "%TCPOF%" == "%COL%[91mOFF" (
 	reg add "HKCU\Software\Hone" /v "TCPIP" /f
@@ -1252,6 +1255,7 @@ if "%DWCOF%" == "%COL%[91mOFF" (
 ) >nul 2>&1 else (
 	reg delete "HKLM\SYSTEM\CurrentControlSet\Services\nvlddmkm" /v "DisableWriteCombining" /f
 ) >nul 2>&1
+goto Tweaks
 
 :Service
 Reg query "HKCU\Software\Hone" /v "WifiDisclaimer1" >nul 2>&1 && goto Service2
@@ -1731,6 +1735,7 @@ curl -g -L -# -o "%temp%\OBS.exe" "%OBS:~6,84%"
 start "" /D "%temp%" OBS -s
 goto :eof
 
+
 :Recording
 cls
 echo.
@@ -1739,7 +1744,7 @@ call :HoneTitle
 echo.
 echo              %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Quality                        %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m Optimal                        %COL%[33m[ %COL%[37m3 %COL%[33m]%COL%[37m Performance
 echo              %COL%[90mSettings for the best                %COL%[90mThe best for performance             %COL%[90mSettings for the best
-echo              %COL%[90mquality in OBS                       %COL%[90mwithout losing any quality           %COL%[90mperformance in OBS
+echo              %COL%[90mquality in OBS                       %COL%[90mwithout losing much quality          %COL%[90mperformance in OBS
 echo.
 echo.
 echo.
@@ -1778,8 +1783,14 @@ if %encoder% == NVENC (
 	cd "%SystemDrive%\Program Files\obs-studio\bin\64bit"
 	if not exist "%appdata%\obs-studio\basic\profiles\Untitled\basic.ini" start obs64.exe
 	taskkill /f /im obs64.exe >nul 2>&1
-	reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%SystemDrive%\Program Files\obs-studio\bin\64bit\obs64.exe" /t Reg_SZ /d "~ RUNASADMIN" /f >nul 2>&1
+	Reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%SystemDrive%\Program Files\obs-studio\bin\64bit\obs64.exe" /t Reg_SZ /d "~ RUNASADMIN" /f >nul 2>&1
+	:: get monitor resolution
+	powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1)" > "%temp%\width.txt"
+	powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1 -Skip 1)" > "%temp%\height.txt"
+	set /p width=<"%temp%\width.txt"
+	set /p height=<"%temp%\height.txt"
 	cls & set /p FPS="What FPS would you like to record in? >: "
+	if %FPS% gtr 120 echo Warning: Recording at high FPS with the Quality preset can cause lag on weaker systems.
 	(for %%i in (
 		"[AdvOut]"
 		"RecEncoder=jim_nvenc"
@@ -1803,10 +1814,10 @@ if %encoder% == NVENC (
 		"Name=Untitled"
 		.
 		"[Video]"
-		"BaseCX=1920"
-		"BaseCY=1080"
-		"OutputCX=1920"
-		"OutputCY=1080"
+		"BaseCX=!width!"
+		"BaseCY=!height!"
+		"OutputCX=!width!"
+		"OutputCY=!height!"
 		"FPSDen=1"
 		"FPSType=2"
 		"ScaleType=bilinear"
@@ -1818,7 +1829,7 @@ if %encoder% == NVENC (
 		"RecType=Standard"
 		"Mode=Advanced"
 	) do echo.%%~i)>"%temp%\Basic.ini"
-	echo.{"bf":0,"cqp":17,"keyint_sec":0,"lookahead":"false","preset":"hp","profile":"baseline","psycho_aq":"false","rate_control":"CQP"} >"%temp%\RecordEncoder.json"
+	echo.{"bf":4,"cqp":17,"keyint_sec":5,"lookahead":"true","preset":"hq","profile":"high","psycho_aq":"true","rate_control":"CQP"} >"%temp%\RecordEncoder.json"
 	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	move /Y "%temp%\RecordEncoder.json" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	goto Recording
@@ -1833,7 +1844,11 @@ if not exist "%SystemDrive%\Program Files\obs-studio\bin\64bit" call:OBSInstall
 if %encoder% == NVENC (
 	cd "%SystemDrive%\Program Files\obs-studio\bin\64bit"
 	taskkill /f /im obs64.exe >nul 2>&1
-	reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%SystemDrive%\Program Files\obs-studio\bin\64bit\obs64.exe" /t Reg_SZ /d "~ RUNASADMIN" /f >nul 2>&1
+	Reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%SystemDrive%\Program Files\obs-studio\bin\64bit\obs64.exe" /t Reg_SZ /d "~ RUNASADMIN" /f >nul 2>&1
+	powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1)" > "%temp%\width.txt"
+	powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1 -Skip 1)" > "%temp%\height.txt"
+	set /p width=<"%temp%\width.txt"
+	set /p height=<"%temp%\height.txt"
 	cls & set /p FPS="What FPS would you like to record in? >: "
 	(for %%i in (
 		"[AdvOut]"
@@ -1858,10 +1873,10 @@ if %encoder% == NVENC (
 		"Name=Untitled"
 		.
 		"[Video]"
-		"BaseCX=1920"
-		"BaseCY=1080"
-		"OutputCX=1920"
-		"OutputCY=1080"
+		"BaseCX=!width!"
+		"BaseCY=!height!"
+		"OutputCX=!width!"
+		"OutputCY=!height!"
 		"FPSDen=1"
 		"FPSType=2"
 		"ScaleType=bilinear"
@@ -1874,7 +1889,7 @@ if %encoder% == NVENC (
 		"Mode=Advanced"
 
 	) do echo.%%~i)> "%temp%\Basic.ini"
-	echo.{"bf":0,"cqp":18,"keyint_sec":0,"lookahead":"false","preset":"hp","profile":"baseline","psycho_aq":"false","rate_control":"CQP"} >"%temp%\RecordEncoder.json"
+	echo.{"bf":0,"cqp":18,"keyint_sec":0,"lookahead":"false","preset":"hp","profile":"main","psycho_aq":"false","rate_control":"CQP"} >"%temp%\RecordEncoder.json"
 	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	move /Y "%temp%\RecordEncoder.json" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	goto Recording
@@ -1889,7 +1904,11 @@ if not exist "%SystemDrive%\Program Files\obs-studio\bin\64bit" call:OBSInstall
 if %encoder% == NVENC (
 	cd "%SystemDrive%\Program Files\obs-studio\bin\64bit"
 	taskkill /f /im obs64.exe >nul 2>&1
-	reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%SystemDrive%\Program Files\obs-studio\bin\64bit\obs64.exe" /t Reg_SZ /d "~ RUNASADMIN" /f >nul 2>&1
+	Reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%SystemDrive%\Program Files\obs-studio\bin\64bit\obs64.exe" /t Reg_SZ /d "~ RUNASADMIN" /f >nul 2>&1
+	powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1)" > "%temp%\width.txt"
+	powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1 -Skip 1)" > "%temp%\height.txt"
+	set /p width=<"%temp%\width.txt"
+	set /p height=<"%temp%\height.txt"
 	cls & set /p FPS="What FPS would you like to record in? >: "
 	(for %%i in (
 		"[AdvOut]"
@@ -1914,10 +1933,10 @@ if %encoder% == NVENC (
 		"Name=Untitled"
 		.
 		"[Video]"
-		"BaseCX=1920"
-		"BaseCY=1080"
-		"OutputCX=1280"
-		"OutputCY=720"
+		"BaseCX=!width!"
+		"BaseCY=!height!"
+		"OutputCX=!width!"
+		"OutputCY=!height!"
 		"FPSDen=1"
 		"FPSType=2"
 		"ScaleType=bicubic"
@@ -1930,7 +1949,7 @@ if %encoder% == NVENC (
 		"Mode=Advanced"
 
 	) do echo.%%~i)> "%temp%\Basic.ini"
-	echo.{"bf":0,"cqp":18,"keyint_sec":0,"lookahead":"false","preset":"hp","profile":"baseline","psycho_aq":"false","rate_control":"CQP"} >"%temp%\RecordEncoder.json"
+	echo.{"bf":0,"cqp":20,"keyint_sec":0,"lookahead":"false","preset":"hp","profile":"baseline","psycho_aq":"false","rate_control":"CQP"} >"%temp%\RecordEncoder.json"
 	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	move /Y "%temp%\RecordEncoder.json" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	goto Recording
@@ -1986,7 +2005,11 @@ if not exist "%SystemDrive%\Program Files\obs-studio\bin\64bit" call:OBSInstall
 if %encoder% == NVENC (
 	cd "%SystemDrive%\Program Files\obs-studio\bin\64bit"
 	taskkill /f /im obs64.exe >nul 2>&1
-	reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%SystemDrive%\Program Files\obs-studio\bin\64bit\obs64.exe" /t Reg_SZ /d "~ RUNASADMIN" /f >nul 2>&1
+	Reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%SystemDrive%\Program Files\obs-studio\bin\64bit\obs64.exe" /t Reg_SZ /d "~ RUNASADMIN" /f >nul 2>&1
+	powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1)" > "%temp%\width.txt"
+	powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1 -Skip 1)" > "%temp%\height.txt"
+	set /p width=<"%temp%\width.txt"
+	set /p height=<"%temp%\height.txt"
 	(for %%i in (
 		"[AdvOut]"
 		"RecEncoder=jim_nvenc"
@@ -2011,10 +2034,10 @@ if %encoder% == NVENC (
 		"Name=Untitled"
 		.
 		"[Video]"
-		"BaseCX=1920"
-		"BaseCY=1080"
-		"OutputCX=1920"
-		"OutputCY=1080"
+		"BaseCX=!width!"
+		"BaseCY=!height!"
+		"OutputCX=!width!"
+		"OutputCY=!height!"
 		"FPSDen=1"
 		"FPSType=2"
 		"ScaleType=bilinear"
@@ -2026,7 +2049,7 @@ if %encoder% == NVENC (
 		"RecType=Standard"
 		"Mode=Advanced"
 	) do echo.%%~i)> "%temp%\Basic.ini"
-	echo.{"bitrate":6000,"preset":"hp","profile":"baseline","rate_control":"CBR"} >"%temp%\StreamEncoder.json"
+	echo.{"bitrate":6000,"bf":4,"keyint_sec":5,"lookahead":"true","preset":"hq","profile":"high","psycho_aq":"true","rate_control":"CBR"} >"%temp%\StreamEncoder.json"
 	move /Y "%temp%\basic.ini" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	move /Y "%temp%\StreamEncoder.json" "%appdata%\obs-studio\basic\profiles\Untitled\"
 	goto Streaming
@@ -2041,7 +2064,11 @@ if not exist "%SystemDrive%\Program Files\obs-studio\bin\64bit" call:OBSInstall
 if %encoder% == NVENC (
 	cd "%SystemDrive%\Program Files\obs-studio\bin\64bit"
 	taskkill /f /im obs64.exe >nul 2>&1
-	reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%SystemDrive%\Program Files\obs-studio\bin\64bit\obs64.exe" /t Reg_SZ /d "~ RUNASADMIN" /f >nul 2>&1
+	Reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%SystemDrive%\Program Files\obs-studio\bin\64bit\obs64.exe" /t Reg_SZ /d "~ RUNASADMIN" /f >nul 2>&1
+	powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1)" > "%temp%\width.txt"
+	powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1 -Skip 1)" > "%temp%\height.txt"
+	set /p width=<"%temp%\width.txt"
+	set /p height=<"%temp%\height.txt"
 	(for %%i in (
 		"[AdvOut]"
 		"RecEncoder=jim_nvenc"
@@ -2066,10 +2093,10 @@ if %encoder% == NVENC (
 		"Name=Untitled"
 		.
 		"[Video]"
-		"BaseCX=1920"
-		"BaseCY=1080"
-		"OutputCX=1920"
-		"OutputCY=1080"
+		"BaseCX=!width!"
+		"BaseCY=!height!"
+		"OutputCX=!width!"
+		"OutputCY=!height!"
 		"FPSDen=1"
 		"FPSType=2"
 		"ScaleType=bilinear"
@@ -2138,15 +2165,15 @@ set /p "file= Drag the file you want upscaled into this window >> "
 :: where /q ffmpeg.exe with the double ampersand/pipe is used to check if ffmpeg is already in the path, since it might be installed in a directory other than the default
 if %encoder% == NVENC (
 	where /q ffmpeg.exe && (
-		ffmpeg -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\4k.mp4" -y
+		ffmpeg -i "%file%" -vf scale=-2:2160:flags=neighbor -c:v hevc_nvenc -preset p7 -rc vbr -b:v 250M -cq 20 -pix_fmt yuv420p10le "%userprofile%\desktop\4k.mp4" -y
 	) || (
-		%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\4k.mp4" -y
+		%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=-2:2160:flags=neighbor -c:v hevc_nvenc -preset p7 -rc vbr -b:v 250M -cq 20 -pix_fmt yuv420p10le "%userprofile%\desktop\4k.mp4" -y
 	)
 ) else (
 	where /q ffmpeg.exe && (
-		ffmpeg -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\4k.mp4"
+		ffmpeg -i "%file%" -vf scale=-2:2160:flags=neighbor -c:v hevc_amf -quality quality -qp_i 18 -qp_p 20 -qp_b 24 -pix_fmt yuv420p10le "%userprofile%\desktop\4k.mp4"
 	) || (
-		%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=3840:2160:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\4k.mp4"
+		%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=-2:2160:flags=neighbor -c:v hevc_amf -quality quality -qp_i 18 -qp_p 20 -qp_b 24 -pix_fmt yuv420p10le "%userprofile%\desktop\4k.mp4"
 	)
 )
 goto upscale
@@ -2155,11 +2182,10 @@ goto upscale
 cls
 set /p "file= Drag the file you want upscaled into this window >> "
 where /q ffmpeg.exe && (
-	ffmpeg -i %file% -vf scale=7680:4320:flags=neighbor -r 60 -vcodec libx264 -profile:v high -preset fast -qmin 19 -qmax 19 "%SystemDrive%\users\%username%\desktop\8k.mp4"
+	ffmpeg -i "%file%" -vf scale=-2:4320:flags=neighbor -c:v libx264 -preset slow -aq-mode 3 -crf 22 -pix_fmt yuv420p10le "%userprofile%\desktop\8k.mp4"
 ) || (
-	%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=7680:4320:flags=neighbor -r 60 -vcodec libx264 -profile:v high -preset fast -qmin 19 -qmax 19 "%SystemDrive%\users\%username%\desktop\8k.mp4"
+	%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=-2:4320:flags=neighbor -c:v libx264 -preset slow -aq-mode 3 -crf 22 -pix_fmt yuv420p10le "%userprofile%\desktop\8k.mp4"
 )
-goto upscale
 
 :compress
 :: check if ffmpeg is in path, if it isn't, check if it's in the default installation path, and if it isn't, install it
@@ -2170,7 +2196,7 @@ echo.
 call :HoneTitle
 echo.
 echo                         %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m Heavy                                          %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m Light
-echo                         %COL%[90mLower the scale ^& fps of a video                     %COL%[90mLower only the scale of a video
+echo                         %COL%[90mCompress a video                     	 	     %COL%[90mCompress a video
 echo                         %COL%[90mto make it take up much less space                   %COL%[90mto make it take up less space
 echo.
 echo.
@@ -2206,64 +2232,42 @@ goto compress
 :heavy
 cls
 set /p "file= Drag the file you want upscaled into this window >> "
-if %encoder% == NVENC (
 	where /q ffmpeg.exe && (
-		ffmpeg -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4" -y
+		ffmpeg -i "%file%" -vf scale=-2:ih*0.75:flags=bicubic -c:v libx264 -preset slower -crf 23 -aq-mode 3 -c:a aac -b:a 128k "%userprofile%\desktop\heavycompress.mp4" -y
 	) || (
-		%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4" -y
+		%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=-2:ih*0.75:flags=bicubic -c:v libx264 -preset slower -crf 23 -aq-mode 3 -c:a aac -b:a 128k "%userprofile%\desktop\heavycompress.mp4" -y
 	)
-) else (
-	where /q ffmpeg.exe && (
-		ffmpeg -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4"
-	) || (
-		%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=800:600:flags=neighbor -r 48 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\heavycompress.mp4"
-	)
-)
 goto compress
 
 :Light
 cls
 set /p "file= Drag the file you want upscaled into this window >> "
-if %encoder% == NVENC (
 	where /q ffmpeg.exe && (
-		ffmpeg -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4" -y
+		ffmpeg -i "%file%" -c:v libx264 -preset slow -crf 18 -aq-mode 3 -c:a aac -b:a 256k "%userprofile%\desktop\lightcompress.mp4" -y
 	) || (
-		%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -rc constqp -qp 14 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4" -y
+		%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -c:v libx264 -preset slow -crf 18 -aq-mode 3 -c:a aac -b:a 256k "%userprofile%\desktop\lightcompress.mp4" -y
 	)
-) else (
-	where /q ffmpeg.exe && (
-		ffmpeg -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4"
-	) || (
-		%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i %file% -vf scale=1280:720:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 13 -qmax 13 "%SystemDrive%\users\%username%\desktop\lightcompress.mp4"
-	)
-)
 goto compress
 
 :PreviewLag
 if not exist %SystemDrive%\ffmpeg ( call:ffmpeginstall )
 cls
 set /p "file= Drag the file you want to use in vegas (remember you need to replace it with the original file afterwards) >> "
-if %encoder% == NVENC (
 	where /q ffmpeg.exe && (
-		ffmpeg -i "%file%" -vf scale=1920:1080:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -qmin 24 -qmax 24 "%SystemDrive%\users\%username%\desktop\previewlag.mp4" -y
+		ffmpeg -i "%file%" -vf scale=-2:ih/2:flags=bicubic -c:v libx264 -preset superfast -crf 23 -tune fastdecode -c:a copy "%userprofile%\desktop\previewlag.mp4" -y
 	) || (
-		%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=1920:1080:flags=neighbor -r 60 -vcodec h264_nvenc -profile:v high -preset fast -qmin 24 -qmax 24 "%SystemDrive%\users\%username%\desktop\previewlag.mp4" -y
+		%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=-2:ih/2:flags=bicubic -c:v libx264 -preset superfast -crf 23 -tune fastdecode -c:a copy "%userprofile%\desktop\previewlag.mp4" -y
 	)
-) else (
-	where /q ffmpeg.exe && (
-		ffmpeg -i "%file%" -vf scale=1920:1080:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 24 -qmax 24 "%SystemDrive%\users\%username%\desktop\previewlag.mp4"
-	) || (
-		%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=1920:1080:flags=neighbor -r 60 -vcodec h264_amf -profile:v high -preset fast -qmin 24 -qmax 24 "%SystemDrive%\users\%username%\desktop\previewlag.mp4"
-	)
-)
 goto HoneRenders
 
 :ffmpeginstall
 cls
 echo FFmpeg not found... Installing...
-curl -g -L -# -o "%temp%\ffmpeg.exe" "https://cdn.discordapp.com/attachments/798652558351794196/809493909704015892/ffmpeg-4.2-setup.exe"
-"%temp%\ffmpeg.exe" /SP /VERYSILENT /SUPPRESSMSGBOXES /NOCANCEL /NORESTART /ALLUSERS
-goto :eof
+curl -g -L -# -o "%temp%\ffmpeg.zip" "https://www.gyan.dev/ffmpeg/builds/ffmpeg-release-essentials.zip"
+powershell -Command "Expand-Archive -Path %temp%\ffmpeg.zip -DestinationPath %SystemDrive%\ffmpeg"
+powershell -Command "Convert-Path 'C:\ffmpeg\ffmpeg-*-essentials_build\*' | ForEach-Object {Move-Item $_ 'C:\ffmpeg'}"
+powershell -Command "Convert-Path 'C:\ffmpeg\ffmpeg-*-essentials_build\' | Remove-Item"
+goto:eof
 
 :blurinstall
 :: delete old blur
@@ -2315,8 +2319,8 @@ goto FPSGames
 
 :60120
 if not exist "%SystemDrive%\Program Files (x86)\blur" call:blurinstall
-if exist "%SystemDrive%\users\%username%\documents\HoneFPS60-120.cfg" goto skip
-if %encoder% == NVENC (
+if exist "%userprofile%\documents\HoneFPS60-120.cfg" goto skip
+if %encoder% equ NVENC (
 	(for %%i in (
 		"- blur"
 		"blur: true"
@@ -2330,7 +2334,7 @@ if %encoder% == NVENC (
 		.
 		"- rendering"
 		"quality: 15"
-		"preview: true"
+		"preview: false"
 		"detailed filenames: false"
 		.
 		"- timescale"
@@ -2347,19 +2351,19 @@ if %encoder% == NVENC (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): nvidia"
 		"deduplicate: false"
-		"custom ffmpeg filters:"
+		"custom ffmpeg filters: -c:v h264_nvenc -preset p7 -rc vbr -b:v 250M -cq 18 -c:a copy"
 		.
 		"- advanced blur"
 		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
-		"blur weighting bound: [0,1]"
+		"blur weighting bound: [0,2]"
 		.
 		"- advanced interpolation"
 		"interpolation program (svp/rife/rife-ncnn): svp"
 		"interpolation speed: medium"
 		"interpolation tuning: film"
 		"interpolation algorithm: 13"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS60-120.cfg"
+	) do echo.%%~i)> "%userprofile%\Documents\HoneFPS60-120.cfg"
 )
 
 if %encoder% == AMF (
@@ -2376,7 +2380,7 @@ if %encoder% == AMF (
 		.
 		"- rendering"
 		"quality: 15"
-		"preview: true"
+		"preview: false"
 		"detailed filenames: false"
 		.
 		"- timescale"
@@ -2393,19 +2397,19 @@ if %encoder% == AMF (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): amd"
 		"deduplicate: false"
-		"custom ffmpeg filters:"
+		"custom ffmpeg filters: -c:v h264_amf -quality quality -qp_i 16 -qp_p 18 -qp_b 22 -c:a copy"
 		.
 		"- advanced blur"
 		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
-		"blur weighting bound: [0,1]"
+		"blur weighting bound: [0,2]"
 		.
 		"- advanced interpolation"
 		"interpolation program (svp/rife/rife-ncnn): svp"
 		"interpolation speed: medium"
 		"interpolation tuning: film"
 		"interpolation algorithm: 13"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS60-120.cfg"
+	) do echo.%%~i)> "%userprofile%\Documents\HoneFPS60-120.cfg"
 )
 
 if %encoder% == CPU (
@@ -2422,7 +2426,7 @@ if %encoder% == CPU (
 		.
 		"- rendering"
 		"quality: 15"
-		"preview: true"
+		"preview: false"
 		"detailed filenames: false"
 		.
 		"- timescale"
@@ -2439,32 +2443,32 @@ if %encoder% == CPU (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): intel"
 		"deduplicate: false"
-		"custom ffmpeg filters:"
+		"custom ffmpeg filters: -c:v libx264 -preset slow -aq-mode 3 -crf 17 -c:a copy"
 		.
 		"- advanced blur"
 		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
-		"blur weighting bound: [0,1]"
+		"blur weighting bound: [0,2]"
 		.
 		"- advanced interpolation"
 		"interpolation program (svp/rife/rife-ncnn): svp"
 		"interpolation speed: medium"
 		"interpolation tuning: film"
 		"interpolation algorithm: 13"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS60-120.cfg"
+	) do echo.%%~i)> "%userprofile%\Documents\HoneFPS60-120.cfg"
 )
 
 :skip
 cls
 set /p "file= Print the path of the file you want blurred into this window >> "
-"%SystemDrive%\program files (x86)\blur\blur.exe" -i %file% -c "%SystemDrive%\users\%username%\Documents\HoneFPS60-120.cfg" -n -p -v
+"%SystemDrive%\program files (x86)\blur\blur.exe" -i %file% -c "%userprofile%\Documents\HoneFPS60-120.cfg" -n -p -v
 goto HoneRenders
 
 
 :240
 if not exist "%SystemDrive%\Program Files (x86)\blur\" call:blurinstall
-if exist "%SystemDrive%\users\%username%\documents\HoneFPS240+.cfg" goto skip
-if %encoder% == NVENC (
+if exist "%userprofile%\documents\HoneFPS240+.cfg" goto skip
+if %encoder% equ NVENC (
 	(for %%i in (
 		"- blur"
 		"blur: true"
@@ -2474,11 +2478,11 @@ if %encoder% == NVENC (
 		.
 		"- interpolation"
 		"interpolate: true"
-		"interpolated fps: 960"
+		"interpolated fps: 1440
 		.
 		"- rendering"
 		"quality: 15"
-		"preview: true"
+		"preview: false"
 		"detailed filenames: false"
 		.
 		"- timescale"
@@ -2495,19 +2499,19 @@ if %encoder% == NVENC (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): nvidia"
 		"deduplicate: false"
-		"custom ffmpeg filters:"
+		"custom ffmpeg filters: -c:v h264_nvenc -preset p7 -rc vbr -b:v 250M -cq 18 -c:a copy"
 		.
 		"- advanced blur"
 		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
-		"blur weighting bound: [0,1]"
+		"blur weighting bound: [0,2]"
 		.
 		"- advanced interpolation"
 		"interpolation program (svp/rife/rife-ncnn): svp"
 		"interpolation speed: medium"
 		"interpolation tuning: weak"
 		"interpolation algorithm: 13"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS240+.cfg"
+	) do echo.%%~i)> "%userprofile%\Documents\HoneFPS240+.cfg"
 )
 
 if %encoder% == AMF (
@@ -2524,7 +2528,7 @@ if %encoder% == AMF (
 		.
 		"- rendering"
 		"quality: 15"
-		"preview: true"
+		"preview: false"
 		"detailed filenames: false"
 		.
 		"- timescale"
@@ -2541,19 +2545,19 @@ if %encoder% == AMF (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): amd"
 		"deduplicate: false"
-		"custom ffmpeg filters:"
+		"custom ffmpeg filters: -c:v h264_amf -quality quality -qp_i 16 -qp_p 18 -qp_b 22 -c:a copy"
 		.
 		"- advanced blur"
 		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
-		"blur weighting bound: [0,1]"
+		"blur weighting bound: [0,2]"
 		.
 		"- advanced interpolation"
 		"interpolation program (svp/rife/rife-ncnn): svp"
 		"interpolation speed: medium"
 		"interpolation tuning: weak"
 		"interpolation algorithm: 13"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS240+.cfg"
+	) do echo.%%~i)> "%userprofile%\Documents\HoneFPS240+.cfg"
 )
 
 if %encoder% == CPU (
@@ -2566,7 +2570,7 @@ if %encoder% == CPU (
 		.
 		"- interpolation"
 		"interpolate: true"
-		"interpolated fps: 960"
+		"interpolated fps: 1440"
 		.
 		"- rendering"
 		"quality: 15"
@@ -2587,25 +2591,25 @@ if %encoder% == CPU (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): intel"
 		"deduplicate: false"
-		"custom ffmpeg filters:"
+		"custom ffmpeg filters: -c:v libx264 -preset slow -aq-mode 3 -crf 17 -c:a copy"
 		.
 		"- advanced blur"
 		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
-		"blur weighting bound: [0,1]"
+		"blur weighting bound: [0,2]"
 		.
 		"- advanced interpolation"
 		"interpolation program (svp/rife/rife-ncnn): svp"
 		"interpolation speed: medium"
 		"interpolation tuning: weak"
 		"interpolation algorithm: 13"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS240+.cfg"
+	) do echo.%%~i)> "%userprofile%\Documents\HoneFPS240+.cfg"
 )
 
 :skip
 cls
 set /p "file= Print the path of the file you want blurred into this windoww >> "
-"%SystemDrive%\program files (x86)\blur\blur.exe" -i %file% -c "%SystemDrive%\users\%username%\Documents\HoneFPS240+.cfg" -n -p -v
+"%SystemDrive%\program files (x86)\blur\blur.exe" -i %file% -c "%userprofile%\Documents\HoneFPS240+.cfg" -n -p -v
 goto HoneRenders
 
 :MinecraftBlur
@@ -2613,10 +2617,11 @@ cls
 echo.
 echo.
 call :HoneTitle
+echo				%COL%[33m%COL%[4mDisclaimer: Using Blur is not recommended for Minecraft clips below 180 FPS.%COL%[0m
 echo.
-echo         %COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m 180 - 360 FPS                       %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m 480+ FPS                        %COL%[33m[ %COL%[37m3 %COL%[33m]%COL%[37m Any FPS (30 FPS Renders)
-echo         %COL%[90mAutomated Blur settings                   %COL%[90mAutomated Blur settings               %COL%[90mAutomated Blur settings
-echo         %COL%[90mfor clips recorded in 180 - 360 FPS       %COL%[90mfor clips recorded above 480 FPS      %COL%[90mfor clips to be rendered in 30 FPS
+echo         		%COL%[33m[ %COL%[37m1 %COL%[33m]%COL%[37m 180+ FPS (60 FPS Renders)                    %COL%[33m[ %COL%[37m2 %COL%[33m]%COL%[37m 180+ FPS (30 FPS Renders)
+echo         		%COL%[90mAutomated Blur settings                            %COL%[90mAutomated Blur settings
+echo         		%COL%[90mfor clips recorded in 180+ FPS                     %COL%[90mfor clips to be rendered in 30 FPS
 echo.
 echo.
 echo.
@@ -2642,27 +2647,26 @@ echo.
 echo                                                 %COL%[90m[ B for back ]         %COL%[31m[ X to close ]
 echo.
 set /p choice="%DEL%                                        %COL%[37mSelect a corresponding number to the options above > "
-if /i "%choice%"=="1" goto 180360
-if /i "%choice%"=="2" goto 480
-if /i "%choice%"=="3" goto Any
+if /i "%choice%"=="1" goto 180plus
+if /i "%choice%"=="2" goto 30fps
 if /i "%choice%"=="B" goto HoneRenders
 if /i "%choice%"=="X" exit /b
 goto MinecraftBlur
 
-:180360
+:180plus
 if not exist "%SystemDrive%\Program Files (x86)\blur\" call:blurinstall
-if exist "%SystemDrive%\users\%username%\documents\HoneFPS180-360FPS.cfg" goto skip
+if exist "%userprofile%\documents\HoneMC180plusFPS.cfg" goto skip
 if %encoder% == NVENC (
 	(for %%i in (
 		"- blur"
 		"blur: true"
-		"blur amount: 1.6"
+		"blur amount: 1.3"
 		"blur output fps: 60"
 		"blur weighting: gaussian_sym"
 
 		"- interpolation"
 		"interpolate: true"
-		"interpolated fps: 1920"
+		"interpolated fps: 1980"
 
 		"- rendering"
 		"quality: 15"
@@ -2683,10 +2687,10 @@ if %encoder% == NVENC (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): nvidia"
 		"deduplicate: true"
-		"custom ffmpeg filters: "
+		"custom ffmpeg filters: -c:v h264_nvenc -preset p7 -rc vbr -b:v 250M -cq 18 -c:a copy"
 
 		"- advanced blur"
-		"blur weighting gaussian std dev: 1"
+		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
 		"blur weighting bound: [0,1]"
 
@@ -2695,20 +2699,20 @@ if %encoder% == NVENC (
 		"interpolation speed: medium"
 		"interpolation tuning: weak"
 		"interpolation algorithm: 13"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS180-360FPS.cfg"
+	) do echo.%%~i)> "%userprofile%\documents\HoneMC180plusFPS.cfg"
 )
 
 if %encoder% == AMF (
 	(for %%i in (
 		"- blur"
 		"blur: true"
-		"blur amount: 1.6"
+		"blur amount: 1.3"
 		"blur output fps: 60"
 		"blur weighting: gaussian_sym"
 
 		"- interpolation"
 		"interpolate: true"
-		"interpolated fps: 1920"
+		"interpolated fps: 1980"
 
 		"- rendering"
 		"quality: 15"
@@ -2729,10 +2733,10 @@ if %encoder% == AMF (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): amd"
 		"deduplicate: true"
-		"custom ffmpeg filters: "
+		"custom ffmpeg filters: -c:v h264_amf -quality quality -qp_i 16 -qp_p 18 -qp_b 22 -c:a copy"
 
 		"- advanced blur"
-		"blur weighting gaussian std dev: 1"
+		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
 		"blur weighting bound: [0,1]"
 
@@ -2741,20 +2745,20 @@ if %encoder% == AMF (
 		"interpolation speed: medium"
 		"interpolation tuning: weak"
 		"interpolation algorithm: 13"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS180-360FPS.cfg"
+	) do echo.%%~i)> "%userprofile%\documents\HoneMC180plusFPS.cfg"
 )
 
 if %encoder% == CPU (
 	(for %%i in (
 		"- blur"
 		"blur: true"
-		"blur amount: 1.6"
+		"blur amount: 1.3"
 		"blur output fps: 60"
 		"blur weighting: gaussian_sym"
 
 		"- interpolation"
 		"interpolate: true"
-		"interpolated fps: 1920"
+		"interpolated fps: 1980"
 
 		"- rendering"
 		"quality: 15"
@@ -2775,10 +2779,10 @@ if %encoder% == CPU (
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): intel"
 		"deduplicate: true"
-		"custom ffmpeg filters: "
+		"custom ffmpeg filters: -c:v libx264 -preset slow -aq-mode 3 -crf 17 -c:a copy"
 
 		"- advanced blur"
-		"blur weighting gaussian std dev: 1"
+		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
 		"blur weighting bound: [0,1]"
 
@@ -2787,13 +2791,13 @@ if %encoder% == CPU (
 		"interpolation speed: medium"
 		"interpolation tuning: weak"
 		"interpolation algorithm: 13"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS180-360FPS.cfg"
+	) do echo.%%~i)> "%userprofile%\documents\HoneMC180plusFPS.cfg"
 )
 
 :skip
 cls
 set /p "file= Print the path of the file you want blurred into this window >> "
-"%SystemDrive%\program files (x86)\blur\blur.exe" -i %file% -c "%SystemDrive%\users\%username%\Documents\HoneFPS180-360FPS.cfg" -n -p -v
+"%SystemDrive%\program files (x86)\blur\blur.exe" -i "%file%" -c "%userprofile%\documents\HoneMC180plusFPS.cfg" -n -p -v
 goto HoneRenders
 
 :480
@@ -2967,127 +2971,127 @@ if %encoder% == NVENC (
 		"input timescale: 1"
 		"output timescale: 1"
 		"adjust timescaled audio pitch: false"
-		.
+
 		"- filters"
 		"brightness: 1"
 		"saturation: 1"
 		"contrast: 1"
-		.
+
 		"- advanced rendering"
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): nvidia"
 		"deduplicate: true"
-		"custom ffmpeg filters: "
-		.
+		"custom ffmpeg filters: -c:v h264_nvenc -preset p7 -rc vbr -b:v 250M -cq 18 -c:a copy"
+
 		"- advanced blur"
-		"blur weighting gaussian std dev: 1"
+		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
-		"blur weighting bound: [0,1,1,1,1,0]"
-		.
+		"blur weighting bound: [0,1]"
+
 		"- advanced interpolation"
 		"interpolation program (svp/rife/rife-ncnn): svp"
 		"interpolation speed: medium"
 		"interpolation tuning: weak"
-		"interpolation algorithm: 23"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneAnyFPS.cfg"
+		"interpolation algorithm: 13"
+	) do echo.%%~i)> "%userprofile%\documents\HoneMC30FPS.cfg"
 )
 
 if %encoder% == AMF (
 	(for %%i in (
 		"- blur"
 		"blur: true"
-		"blur amount: 1.1"
+		"blur amount: 1"
 		"blur output fps: 30"
 		"blur weighting: equal"
-		.
+
 		"- interpolation"
 		"interpolate: true"
-		"interpolated fps: 1920"
-		.
+		"interpolated fps: 720"
+
 		"- rendering"
 		"quality: 15"
 		"preview: true"
 		"detailed filenames: false"
-		.
+
 		"- timescale"
 		"input timescale: 1"
 		"output timescale: 1"
 		"adjust timescaled audio pitch: false"
-		.
+
 		"- filters"
 		"brightness: 1"
 		"saturation: 1"
 		"contrast: 1"
-		.
+
 		"- advanced rendering"
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): amd"
 		"deduplicate: true"
-		"custom ffmpeg filters: "
-		.
+		"custom ffmpeg filters: -c:v h264_amf -quality quality -qp_i 16 -qp_p 18 -qp_b 22 -c:a copy"
+
 		"- advanced blur"
-		"blur weighting gaussian std dev: 1"
+		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
-		"blur weighting bound: [0,1,1,1,1,0]"
-		.
+		"blur weighting bound: [0,1]"
+
 		"- advanced interpolation"
 		"interpolation program (svp/rife/rife-ncnn): svp"
 		"interpolation speed: medium"
 		"interpolation tuning: weak"
-		"interpolation algorithm: 23"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneAnyFPS.cfg"
+		"interpolation algorithm: 13"
+	) do echo.%%~i)> "%userprofile%\documents\HoneMC30FPS.cfg"
 )
 
 if %encoder% == CPU (
 	(for %%i in (
 		"- blur"
 		"blur: true"
-		"blur amount: 1.1"
+		"blur amount: 1"
 		"blur output fps: 30"
 		"blur weighting: equal"
-		.
+
 		"- interpolation"
 		"interpolate: true"
-		"interpolated fps: 1920"
-		.
+		"interpolated fps: 720"
+
 		"- rendering"
 		"quality: 15"
 		"preview: true"
 		"detailed filenames: false"
-		.
+
 		"- timescale"
 		"input timescale: 1"
 		"output timescale: 1"
 		"adjust timescaled audio pitch: false"
-		.
+
 		"- filters"
 		"brightness: 1"
 		"saturation: 1"
 		"contrast: 1"
-		.
+
 		"- advanced rendering"
 		"gpu: true"
 		"gpu type (nvidia/amd/intel): intel"
 		"deduplicate: true"
-		"custom ffmpeg filters: "
-		.
+		"custom ffmpeg filters: -c:v libx264 -preset slow -aq-mode 3 -crf 17 -c:a copy"
+
 		"- advanced blur"
-		"blur weighting gaussian std dev: 1"
+		"blur weighting gaussian std dev: 2"
 		"blur weighting triangle reverse: false"
-		"blur weighting bound: [0,1,1,1,1,0]"
-		.
+		"blur weighting bound: [0,1]"
+
 		"- advanced interpolation"
 		"interpolation program (svp/rife/rife-ncnn): svp"
 		"interpolation speed: medium"
 		"interpolation tuning: weak"
-		"interpolation algorithm: 23"
-	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneAnyFPS.cfg"
+		"interpolation algorithm: 13"
+	) do echo.%%~i)> "%userprofile%\documents\HoneMC30FPS.cfg"
 )
 
 :skip
 cls
 set /p "file= Print the path of the file you want blurred into this window >> "
-"%SystemDrive%\program files (x86)\blur\blur.exe" -i %file% -c "%SystemDrive%\users\%username%\Documents\HoneAnyFPS.cfg" -n -p -v
+"%SystemDrive%\program files (x86)\blur\blur.exe" -i "%file%" -c "%userprofile%\documents\HoneMC30FPS.cfg" -n -p -v
 goto HoneRenders
 
 :NLEInstall
@@ -3247,9 +3251,9 @@ echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m Disable Task Offload
 echo              %COL%[90mTask Offloading assigns the          %COL%[90mAllocate more bandwidth to apps      %COL%[90mCan reduce bufferbloat,
 echo              %COL%[90mCPU to handle the NIC load           %COL%[90mUse only on fast connections         %COL%[90mbut lower your Network speed
 echo.
-echo                           %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m DSCP Value %DSCOF%                     %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Wifi Congestion Provider %CONG%
-echo                           %COL%[90mSet the priority of your network         %COL%[90mTurn ON only, if you have WIFI.
-echo                           %COL%[90mtraffic to expedited forwarding          %COL%[90mChanges the algorithm on how data is processed.
+echo                           %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m DSCP Value %DSCOF%                      %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Wi-fi Congestion Provider %CONG%
+echo                           %COL%[90mSet the priority of your network          %COL%[91mTurn ON only, if you have Wi-Fi.
+echo                           %COL%[90mtraffic to expedited forwarding           %COL%[90mChanges the algorithm on how data is processed.
 echo.
 echo.
 echo                                                            %COL%[1;4;34mPower Tweaks%COL%[0m
@@ -3426,7 +3430,7 @@ echo Would you like to install?
 %SystemRoot%\System32\choice.exe/c:YN /n /m "[Y] Yes  [N] No"
 if %errorlevel% == 2 goto Advanced
 cd "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup"
-curl -LJ https://github.com/RadNotRed/HoneCtrl/blob/main/Files/Driverinstall.bat?raw=true -o Driverinstall.bat
+curl -LJ https://github.com/auraside/HoneCtrl/blob/main/Files/Driverinstall.bat?raw=true -o Driverinstall.bat 
 title Executing DDU...
 curl -g -L -# -o "C:\Hone\Resources\DDU.zip" "https://github.com/auraside/HoneCtrl/raw/main/Files/DDU.zip"
 powershell -NoProfile Expand-Archive 'C:\Hone\Resources\DDU.zip' -DestinationPath 'C:\Hone\Resources\DDU\' >nul 2>&1
@@ -3568,6 +3572,7 @@ echo.
 echo                                                 %COL%[90m[ B for back ]         %COL%[31m[ X to close ]%COL%[37m
 echo.
 %SystemRoot%\System32\choice.exe/c:123BX /n /m "%DEL%                                        Select a corresponding number to the options above >"
+
 set choice=%errorlevel%
 if %choice% == 1 goto 1.7.10
 if %choice% == 2 goto 1.8.9
