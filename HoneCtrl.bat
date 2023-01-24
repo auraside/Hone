@@ -4467,7 +4467,7 @@ echo.
 set /p choice="%DEL%                                        %COL%[37mSelect a corresponding number to the options above > "
 if /i "%choice%"=="1" goto Auto
 if /i "%choice%"=="2" goto Manual
-if /i "%choice%"=="2" goto Reset
+if /i "%choice%"=="3" goto Reset
 if /i "%choice%"=="B" goto MainMenu
 if /i "%choice%"=="X" exit /b
 goto Aesthetics
@@ -4811,6 +4811,7 @@ if exist "%userprofile%\Documents\systemtransparency.ini" del /Q "%userprofile%\
 if exist "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\Clear.exe" ( goto Reset1 ) else ( goto Reset2 ) >nul 2>&1
 :Reset1
 cd "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup"
+taskkill /IM Clear.exe /F >nul 2>&1
 Del /Q Clear.exe >nul 2>&1
 :Reset2
 taskkill /f /im explorer.exe >nul 2>&1
