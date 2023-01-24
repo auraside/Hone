@@ -4214,9 +4214,9 @@ if "%choice%"=="1" goto More
 
 :Cleaner
 cls
-rmdir /S /Q "C:\Hone\Resources\DeviceCleanupCmd\"
-del /F /Q "C:\Hone\Resources\AdwCleaner.exe"
-del /F /Q "C:\Hone\Resources\EmptyStandbyList.exe"
+rmdir /S /Q "C:\Hone\Resources\DeviceCleanupCmd\" >nul 2>&1
+del /F /Q "C:\Hone\Resources\AdwCleaner.exe" >nul 2>&1
+del /F /Q "C:\Hone\Resources\EmptyStandbyList.exe" >nul 2>&1
 curl -g -L -# -o "C:\Hone\Resources\EmptyStandbyList.exe" "https://wj32.org/wp/download/1455/"
 curl -g -L -# -o "C:\Hone\Resources\DeviceCleanupCmd.zip" "https://www.uwe-sieber.de/files/DeviceCleanupCmd.zip"
 curl -g -L -# -o "C:\Hone\Resources\AdwCleaner.exe" "https://adwcleaner.malwarebytes.com/adwcleaner?channel=release"
