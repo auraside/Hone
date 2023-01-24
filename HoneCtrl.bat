@@ -173,7 +173,7 @@ if "%choice%"=="1" set PG=TweaksPG1 & goto Tweaks
 if "%choice%"=="2" goto GameSettings
 if "%choice%"=="3" goto HoneRenders
 if "%choice%"=="4" call:Comingsoon
-if "%choice%"=="5" call:Comingsoon
+if "%choice%"=="5" goto Aesthetics
 if "%choice%"=="6" goto disclaimer2
 if "%choice%"=="7" goto More
 if "%choice%"=="8" exit /b
@@ -462,7 +462,7 @@ powercfg /changename 44444444-4444-4444-4444-444444444449 "Hone Ultimate Power P
 ::Enable Idle on Hyper-Threading
 set THREADS=%NUMBER_OF_PROCESSORS%
 for /f "tokens=2 delims==" %%n in ('wmic cpu get numberOfCores /value') do set CORES=%%n
-if "%CORES%" EQU "%NUMBER_OF_PROCESSORS%" (
+if "%CORES%" == "%NUMBER_OF_PROCESSORS%" (
 	powercfg -setacvalueindex 44444444-4444-4444-4444-444444444449 sub_processor IDLEDISABLE 1
 ) else (
 	powercfg -setacvalueindex 44444444-4444-4444-4444-444444444449 sub_processor IDLEDISABLE 0
@@ -1659,10 +1659,19 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Services\MMCSS" /v "Start" /t Reg_DWORD /
 
 :HoneRenders
 ::Detect encoder for obs, blur, and ffmpeg settings
-for /F "tokens=* skip=1" %%n in ('WMIC path Win32_VideoController get Name ^| findstr "."') do set GPU_NAME=%%n
+for /F "tokens=*" %%n in ('WMIC path Win32_VideoController get Name ^| findstr "NVIDIA"') do set GPU_NAME=%%n
 echo %GPU_NAME% | find "NVIDIA" && set encoder=NVENC
+if not defined encoder goto next
+if %encoder% == NVENC goto done
+:next
+for /F "tokens=*" %%n in ('WMIC path Win32_VideoController get Name ^| findstr "AMD"') do set GPU_NAME=%%n
 echo %GPU_NAME% | find "AMD" && set encoder=AMF
-if not defined encoder set encoder=CPU
+if not defined encoder goto next2
+if %encoder% == AMF goto done
+:next2
+set encoder=CPU
+goto done
+:done
 cls
 echo.
 echo.
@@ -2186,6 +2195,7 @@ where /q ffmpeg.exe && (
 ) || (
 	%SystemDrive%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=-2:4320:flags=neighbor -c:v libx264 -preset slow -aq-mode 3 -crf 22 -pix_fmt yuv420p10le "%userprofile%\desktop\8k.mp4"
 )
+goto upscale
 
 :compress
 :: check if ffmpeg is in path, if it isn't, check if it's in the default installation path, and if it isn't, install it
@@ -2320,7 +2330,7 @@ goto FPSGames
 :60120
 if not exist "%SystemDrive%\Program Files (x86)\blur" call:blurinstall
 if exist "%userprofile%\documents\HoneFPS60-120.cfg" goto skip
-if %encoder% equ NVENC (
+if %encoder% == NVENC (
 	(for %%i in (
 		"- blur"
 		"blur: true"
@@ -2468,7 +2478,7 @@ goto HoneRenders
 :240
 if not exist "%SystemDrive%\Program Files (x86)\blur\" call:blurinstall
 if exist "%userprofile%\documents\HoneFPS240+.cfg" goto skip
-if %encoder% equ NVENC (
+if %encoder% == NVENC (
 	(for %%i in (
 		"- blur"
 		"blur: true"
@@ -2652,6 +2662,151 @@ if /i "%choice%"=="2" goto 30fps
 if /i "%choice%"=="B" goto HoneRenders
 if /i "%choice%"=="X" exit /b
 goto MinecraftBlur
+
+:30fps
+if not exist "%SystemDrive%\Program Files (x86)\blur\" call:blurinstall
+if exist "%userprofile%\documents\HoneMC30FPS.cfg" goto skip
+if %encoder% == NVENC (
+	(for %%i in (
+		"- blur"
+		"blur: true"
+		"blur amount: 2.22"
+		"blur output fps: 60"
+		"blur weighting: gaussian_sym"
+		.
+		"- interpolation"
+		"interpolate: true"
+		"interpolated fps: 1920"
+		.
+		"- rendering"
+		"quality: 15"
+		"preview: true"
+		"detailed filenames: false"
+		.
+		"- timescale"
+		"input timescale: 1"
+		"output timescale: 1"
+		"adjust timescaled audio pitch: false"
+		.
+		"- filters"
+		"brightness: 1"
+		"saturation: 1"
+		"contrast: 1"
+		.
+		"- advanced rendering"
+		"gpu: true"
+		"gpu type (nvidia/amd/intel): nvidia"
+		"deduplicate: false"
+		"custom ffmpeg filters:" 
+		.
+		"- advanced blur"
+		"blur weighting gaussian std dev: 1"
+		"blur weighting triangle reverse: false"
+		"blur weighting bound: [0,2]"
+		.
+		"- advanced interpolation"
+		"interpolation program (svp/rife/rife-ncnn): svp"
+		"interpolation speed: faster"
+		"interpolation tuning: weak"
+		"interpolation algorithm: 2"
+	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS480FPS.cfg"
+)
+		"blur amount: 1"
+		"blur output fps: 30"
+		"blur weighting: equal"
+
+if %encoder% == AMF (
+	(for %%i in (
+		"- blur"
+		"blur: true"
+		"blur amount: 2.22"
+		"blur output fps: 60"
+		"blur weighting: gaussian_sym"
+		.
+		"- interpolation"
+		"interpolate: true"
+		"interpolated fps: 1920"
+		.
+		"- rendering"
+		"quality: 15"
+		"preview: true"
+		"detailed filenames: false"
+		.
+		"- timescale"
+		"input timescale: 1"
+		"output timescale: 1"
+		"adjust timescaled audio pitch: false"
+		.
+		"- filters"
+		"brightness: 1"
+		"saturation: 1"
+		"contrast: 1"
+		.
+		"- advanced rendering"
+		"gpu: true"
+		"gpu type (nvidia/amd/intel): amd"
+		"deduplicate: false"
+		"custom ffmpeg filters:" 
+		.
+		"- advanced blur"
+		"blur weighting gaussian std dev: 1"
+		"blur weighting triangle reverse: false"
+		"blur weighting bound: [0,2]"
+		.
+		"- advanced interpolation"
+		"interpolation program (svp/rife/rife-ncnn): svp"
+		"interpolation speed: faster"
+		"interpolation tuning: weak"
+		"interpolation algorithm: 2"
+	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS480FPS.cfg"
+) 
+		"interpolated fps: 720"
+
+if %encoder% == CPU (
+	(for %%i in (
+		"- blur"
+		"blur: true"
+		"blur amount: 2.22"
+		"blur output fps: 60"
+		"blur weighting: gaussian_sym"
+		.
+		"- interpolation"
+		"interpolate: true"
+		"interpolated fps: 1920"
+		.
+		"- rendering"
+		"quality: 15"
+		"preview: true"
+		"detailed filenames: false"
+		.
+		"- timescale"
+		"input timescale: 1"
+		"output timescale: 1"
+		"adjust timescaled audio pitch: false"
+		.
+		"- filters"
+		"brightness: 1"
+		"saturation: 1"
+		"contrast: 1"
+		.
+		"- advanced rendering"
+		"gpu: true"
+		"gpu type (nvidia/amd/intel): intel"
+		"deduplicate: false"
+		"custom ffmpeg filters:" 
+		.
+		"- advanced blur"
+		"blur weighting gaussian std dev: 1"
+		"blur weighting triangle reverse: false"
+		"blur weighting bound: [0,2]"
+		.
+		"- advanced interpolation"
+		"interpolation program (svp/rife/rife-ncnn): svp"
+		"interpolation speed: faster"
+		"interpolation tuning: weak"
+		"interpolation algorithm: 2"
+	) do echo.%%~i)> "%SystemDrive%\users\%username%\Documents\HoneFPS480FPS.cfg"
+)
 
 :180plus
 if not exist "%SystemDrive%\Program Files (x86)\blur\" call:blurinstall
@@ -3427,7 +3582,7 @@ cls
 echo This will uninstall your current graphics driver. The optimized driver will be installed after you reboot.
 echo.
 echo Would you like to install?
-%SystemRoot%\System32\choice.exe/c:YN /n /m "[Y] Yes  [N] No"
+%SystemRoot%\System32\choice.exe /c:YN /n /m "[Y] Yes  [N] No"
 if %errorlevel% == 2 goto Advanced
 cd "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup"
 curl -LJ https://github.com/auraside/HoneCtrl/blob/main/Files/Driverinstall.bat?raw=true -o Driverinstall.bat 
@@ -3446,7 +3601,7 @@ echo.
 echo Drivers will be installed opon PC startup.
 echo.
 echo Would you like to continue and restart your PC?
-%SystemRoot%\System32\choice.exe/c:YN /n /m "[Y] Yes  [N] No"
+%SystemRoot%\System32\choice.exe /c:YN /n /m "[Y] Yes  [N] No"
 if %errorlevel% == 1 (
 	shutdown /s /t 60 /c "A restart is required, we'll do that now" /f /d p:0:0
 	timeout 5
@@ -3516,7 +3671,7 @@ echo.
 echo.
 echo                                                 %COL%[90m[ B for back ]         %COL%[31m[ X to close ]%COL%[37m
 echo.
-%SystemRoot%\System32\choice.exe/c:1BX /n /m "%DEL%                                        Select a corresponding number to the options above >"
+%SystemRoot%\System32\choice.exe /c:1BX /n /m "%DEL%                                        Select a corresponding number to the options above >"
 set choice=%errorlevel%
 if "%choice%"=="1" goto Minecraft
 if "%choice%"=="2" goto MainMenu
@@ -3571,7 +3726,7 @@ echo.
 echo.
 echo                                                 %COL%[90m[ B for back ]         %COL%[31m[ X to close ]%COL%[37m
 echo.
-%SystemRoot%\System32\choice.exe/c:123BX /n /m "%DEL%                                        Select a corresponding number to the options above >"
+%SystemRoot%\System32\choice.exe /c:123BX /n /m "%DEL%                                        Select a corresponding number to the options above >"
 
 set choice=%errorlevel%
 if %choice% == 1 goto 1.7.10
@@ -3611,7 +3766,7 @@ echo.
 echo.
 echo                                                          %COL%[90m[ B for back ]%COL%[37m
 echo.
-%SystemRoot%\System32\choice.exe/c:B /n /m "%DEL%                                                               >:"
+%SystemRoot%\System32\choice.exe /c:B /n /m "%DEL%                                                               >:"
 goto GameSettings
 
 :1.7.10
@@ -4274,5 +4429,400 @@ if !errorlevel! == 1 ( ^
 	shutdown /r /t 7 /c "Restarting automatically..." /f /d p:0:0
 )
 exit /b
+
+
+:Aesthetics
+cls
+echo.
+echo.
+call :HoneTitle
+echo.
+echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m AUTO                 %COL%[33m[%COL%[37m 2 %COL%[33m]%COL%[37m MANUAL      %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m RESET
+echo              %COL%[90mApply all recommended         %COL%[90mCustomize your experience      %COL%[90mReset all Aesthetics
+echo              %COL%[90msettings automatically        %COL%[90mto your liking             %COL%[90mSettings to original
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                 %COL%[90m[ B for back ]         %COL%[31m[ X to close ]
+echo.
+set /p choice="%DEL%                                        %COL%[37mSelect a corresponding number to the options above > "
+if /i "%choice%"=="1" goto Auto
+if /i "%choice%"=="2" goto Manual
+if /i "%choice%"=="2" goto Reset
+if /i "%choice%"=="B" goto MainMenu
+if /i "%choice%"=="X" exit /b
+goto Aesthetics
+
+:Auto
+cls
+echo.
+call :HoneTitle
+echo                                                               %COL%[1;4;34mAesthetics Manual%COL%[0m
+echo.
+echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m Auto Transparency                 %COL%[33m[%COL%[37m 2 %COL%[33m]%COL%[37m PLACEHOLDER      %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m PLACEHOLDER
+echo              %COL%[90mApply recommended         %COL%[90mPLACEHOLDER      %COL%[90mPLACEHOLDER
+echo              %COL%[90mtransparency settings        %COL%[90mPLACEHOLDER             %COL%[90mPLACEHOLDER
+echo.
+echo              %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m PLACEHOLDER           %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m PLACEHOLDER                   %COL%[33m[%COL%[37m 6 %COL%[33m]%COL%[37m PLACEHOLDER
+echo              %COL%[90mPLACEHOLDER          %COL%[90mPLACEHOLDER          %COL%[90mPLACEHOLDER
+echo              %COL%[90mPLACEHOLDER                   %COL%[90mPLACEHOLDER                     %COL%[90mPLACEHOLDER
+echo.
+echo              %COL%[33m[%COL%[37m 7 %COL%[33m]%COL%[37m PLACEHOLDER    %COL%[33m[%COL%[37m 8 %COL%[33m]%COL%[37m PLACEHOLDER        %COL%[33m[%COL%[37m 9 %COL%[33m]%COL%[37m PLACEHOLDER
+echo              %COL%[90mPLACEHOLDER      %COL%[90mPLACEHOLDER           %COL%[90mPLACEHOLDER
+echo              %COL%[90mPLACEHOLDER                %COL%[90mPLACEHOLDER            %COL%[90mPLACEHOLDER
+echo.
+echo                                                            %COL%[1;4;34mPLACEHOLDER%COL%[0m
+echo.
+echo              %COL%[33m[%COL%[37m 10 %COL%[33m]%COL%[37m PLACEHOLDER              %COL%[33m[%COL%[37m 11 %COL%[33m]%COL%[37m PLACEHOLDER        %COL%[33m[%COL%[37m 12 %COL%[33m]%COL%[37m PLACEHOLDER
+echo              %COL%[90mPLACEHOLDER   %COL%[90mPLACEHOLDER     %COL%[90mPLACEHOLDER
+echo              %COL%[90mPLACEHOLDER   %COL%[90mPLACEHOLDER                    %COL%[90mPLACEHOLDER
+echo.
+echo              %COL%[33m[%COL%[37m 13 %COL%[33m]%COL%[37m PLACEHOLDER  %COL%[33m[%COL%[37m 14 %COL%[33m]%COL%[37m PLACEHOLDER             %COL%[33m[%COL%[37m 15 %COL%[33m]%COL%[37m PLACEHOLDER
+echo              %COL%[90mPLACEHOLDER     %COL%[90mPLACEHOLDER         %COL%[90mPLACEHOLDER
+echo              %COL%[90mPLACEHOLDER       %COL%[90mPLACEHOLDER                %COL%[90mPLACEHOLDER
+echo.
+echo.
+echo.
+echo                                                 %COL%[90m[ B for back ]         %COL%[31m[ X to close ]
+echo.
+set /p choice="%DEL%                                        %COL%[37mSelect a corresponding number to the options above > "
+if /i "%choice%"=="1" goto TransparencyAuto
+if /i "%choice%"=="X" exit /b
+if /i "%choice%"=="B" goto Aesthetics
+goto Auto
+
+:TransparencyAuto
+if exist "%userprofile%\Documents\systemtransparency.ini" del /Q "%userprofile%\Documents\systemtransparency.ini" >nul 2>&1
+if exist "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\Clear.exe" ( goto TransparencyAuto1 ) else ( goto TransparencyAuto11 ) >nul 2>&1
+:TransparencyAuto11
+cd "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup"
+curl -g -LJ -# "https://github.com/auraside/HoneCtrl/raw/main/Files/Aesthetics/Clear.exe" -o "Clear.exe"
+:TransparencyAuto1
+cd %userprofile%\documents
+(
+	echo [Settings]
+	echo trans=230
+	echo rclick=1
+	echo tbar=1
+	echo smenu=1
+	echo tool=1
+	echo explorer=1
+	echo notes=0
+	echo desktop=0
+	echo wmp=0
+	echo thumbs=0
+	echo op=
+	echo firefox=0
+	echo chrome=0
+	echo ie=0
+	echo deskbutton=0
+	echo mouseclock=0
+	echo alttabber=0
+) > systemtransparency.ini
+cd "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup"
+start Clear.exe
+taskkill /f /im explorer.exe
+cd C:\Windows
+start explorer.exe
+cls
+echo.
+echo.
+echo.
+echo.
+echo                                                                            %COL%[33m.
+echo                                                                         +N.
+echo                                                                //        oMMs
+echo                                                               +Nm`    ``yMMm-
+echo                                                            ``dMMsoyhh-hMMd.
+echo                                                            `yy/MMMMNh:dMMh`
+echo                                                           .hMM.sso++:oMMs`
+echo                                                          -mMMy:osyyys.No
+echo                                                         :NMMs-oo+/syy:-
+echo                                                        /NMN+ ``   :ys.
+echo                                                       `NMN:        +.
+echo                                                       om-
+echo                                                        `.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                   %COL%[37m Settings have been applied
+echo.
+echo.
+echo.
+echo.
+echo                                                          %COL%[90m[ B for back ]%COL%[37m
+echo.
+%SystemRoot%\System32\choice.exe /c:B /n /m "%DEL%                                                               >:"
+goto Auto
+
+:Manual
+cls
+echo.
+call :HoneTitle
+echo                                                               %COL%[1;4;34mAesthetics Manual%COL%[0m
+echo.
+echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m Transparency                 %COL%[33m[%COL%[37m 2 %COL%[33m]%COL%[37m PLACEHOLDER      %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m PLACEHOLDER
+echo              %COL%[90mCustomize what you want         %COL%[90mPLACEHOLDER      %COL%[90mPLACEHOLDER
+echo              %COL%[90mto be transparent        %COL%[90mPLACEHOLDER             %COL%[90mPLACEHOLDER
+echo.
+echo              %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m PLACEHOLDER           %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m PLACEHOLDER                   %COL%[33m[%COL%[37m 6 %COL%[33m]%COL%[37m PLACEHOLDER
+echo              %COL%[90mPLACEHOLDER          %COL%[90mPLACEHOLDER          %COL%[90mPLACEHOLDER
+echo              %COL%[90mPLACEHOLDER                   %COL%[90mPLACEHOLDER                     %COL%[90mPLACEHOLDER
+echo.
+echo              %COL%[33m[%COL%[37m 7 %COL%[33m]%COL%[37m PLACEHOLDER    %COL%[33m[%COL%[37m 8 %COL%[33m]%COL%[37m PLACEHOLDER        %COL%[33m[%COL%[37m 9 %COL%[33m]%COL%[37m PLACEHOLDER
+echo              %COL%[90mPLACEHOLDER      %COL%[90mPLACEHOLDER           %COL%[90mPLACEHOLDER
+echo              %COL%[90mPLACEHOLDER                %COL%[90mPLACEHOLDER            %COL%[90mPLACEHOLDER
+echo.
+echo                                                            %COL%[1;4;34mPLACEHOLDER%COL%[0m
+echo.
+echo              %COL%[33m[%COL%[37m 10 %COL%[33m]%COL%[37m PLACEHOLDER              %COL%[33m[%COL%[37m 11 %COL%[33m]%COL%[37m PLACEHOLDER        %COL%[33m[%COL%[37m 12 %COL%[33m]%COL%[37m PLACEHOLDER
+echo              %COL%[90mPLACEHOLDER   %COL%[90mPLACEHOLDER     %COL%[90mPLACEHOLDER
+echo              %COL%[90mPLACEHOLDER   %COL%[90mPLACEHOLDER                    %COL%[90mPLACEHOLDER
+echo.
+echo              %COL%[33m[%COL%[37m 13 %COL%[33m]%COL%[37m PLACEHOLDER  %COL%[33m[%COL%[37m 14 %COL%[33m]%COL%[37m PLACEHOLDER             %COL%[33m[%COL%[37m 15 %COL%[33m]%COL%[37m PLACEHOLDER
+echo              %COL%[90mPLACEHOLDER     %COL%[90mPLACEHOLDER         %COL%[90mPLACEHOLDER
+echo              %COL%[90mPLACEHOLDER       %COL%[90mPLACEHOLDER                %COL%[90mPLACEHOLDER
+echo.
+echo.
+echo.
+echo                                                 %COL%[90m[ B for back ]         %COL%[31m[ X to close ]
+echo.
+set /p choice="%DEL%                                        %COL%[37mSelect a corresponding number to the options above > "
+if /i "%choice%"=="1" goto TransparencySetup
+if /i "%choice%"=="X" exit /b
+if /i "%choice%"=="B" goto Aesthetics
+goto Manual
+
+:TransparencySetup
+if exist "%userprofile%\Documents\systemtransparency.ini" del /Q "%userprofile%\Documents\systemtransparency.ini" >nul 2>&1
+if exist "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\Clear.exe" ( goto TransparencySetup1 ) else ( goto TransparencySetup11 ) >nul 2>&1
+:TransparencySetup11
+cd "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup"
+curl -g -LJ -# "https://github.com/auraside/HoneCtrl/raw/main/Files/Aesthetics/Clear.exe" -o "Clear.exe"
+:TransparencySetup1
+cls
+echo.
+call :HoneTitle
+echo.
+echo Please select a transparency level, we recommend 200 or above (Lower = more transparent)
+echo.
+echo.
+echo %COL%[36m[ 100 ]         %COL%[36m[ 150 ]         %COL%[36m[ 200 ]         %COL%[36m[ 220 ]
+echo 	%COL%[36m[ 230 ]         %COL%[36m[ 240 ]         %COL%[36m[ 250 ]   
+echo. 
+echo 		     %COL%[90m[ B for back ]
+set /p choice="%DEL% "
+if /i "%choice%"=="100" set trans=100 & goto TransparencySetup2
+if /i "%choice%"=="150" set trans=150 & goto TransparencySetup2
+if /i "%choice%"=="200" set trans=200 & goto TransparencySetup2
+if /i "%choice%"=="220" set trans=220 & goto TransparencySetup2
+if /i "%choice%"=="230" set trans=230 & goto TransparencySetup2
+if /i "%choice%"=="240" set trans=240 & goto TransparencySetup2
+if /i "%choice%"=="250" set trans=250 & goto TransparencySetup2
+if /i "%choice%"=="B" goto Aesthetics
+goto TransparencySetup1
+
+:TransparencySetup2
+cls
+echo.
+call :HoneTitle
+echo.
+echo Do you want the right click menu to be transparent?
+echo.
+echo.
+echo %COL%[36m[ Y ]         %COL%[36m[ N ]         %COL%[90m[ B for back ]
+set "choice="
+%SystemRoot%\System32\choice.exe /c:ynb /n /m "%DEL% > "
+set choice=%errorlevel%
+if "%choice%"=="1" set rclick=1 & goto TransparencySetup3
+if "%choice%"=="2" set rclick=0 & goto TransparencySetup3
+if /i "%choice%"=="3" goto Aesthetics
+goto TransparencySetup2
+
+
+:TransparencySetup3
+cls
+echo.
+call :HoneTitle
+echo.
+echo Do you want the Taskbar to be transparent?
+echo.
+echo.
+echo %COL%[36m[ Y ]         %COL%[36m[ N ]         %COL%[90m[ B for back ]
+set "choice="
+%SystemRoot%\System32\choice.exe /c:ynb /n /m "%DEL% > "
+set choice=%errorlevel%
+if "%choice%"=="1" set tbar=1 & goto TransparencySetup4
+if "%choice%"=="2" set tbar=0 & goto TransparencySetup4
+if /i "%choice%"=="3" goto Aesthetics
+goto TransparencySetup3
+
+:TransparencySetup4
+cls
+echo.
+call :HoneTitle
+echo.
+echo Do you want the Start Menu to be transparent?
+echo.
+echo.
+echo %COL%[36m[ Y ]         %COL%[36m[ N ]         %COL%[90m[ B for back ]
+set "choice="
+%SystemRoot%\System32\choice.exe /c:ynb /n /m "%DEL% > "
+set choice=%errorlevel%
+if "%choice%"=="1" set smenu=1 & goto TransparencySetup5
+if "%choice%"=="2" set smenu=0 & goto TransparencySetup5
+if /i "%choice%"=="3" goto Aesthetics
+goto TransparencySetup4
+
+:TransparencySetup5
+cls
+echo.
+call :HoneTitle
+echo.
+echo Do you want Explorer to be transparent?
+echo.
+echo.
+echo %COL%[36m[ Y ]         %COL%[36m[ N ]         %COL%[90m[ B for back ]
+set "choice="
+%SystemRoot%\System32\choice.exe /c:ynb /n /m "%DEL% > "
+set choice=%errorlevel%
+if "%choice%"=="1" set explorer=1 & goto TransparencySetup6
+if "%choice%"=="2" set explorer=0 & goto TransparencySetup6
+if /i "%choice%"=="3" goto Aesthetics
+goto TransparencySetup5
+
+:TransparencySetup6
+cls
+echo.
+call :HoneTitle
+echo.
+echo Do you want Firefox to be transparent?
+echo.
+echo.
+echo %COL%[36m[ Y ]         %COL%[36m[ N ]         %COL%[90m[ B for back ]
+set "choice="
+%SystemRoot%\System32\choice.exe /c:ynb /n /m "%DEL% > "
+set choice=%errorlevel%
+if "%choice%"=="1" set firefox=1 & goto TransparencySetup7
+if "%choice%"=="2" set firefox=0 & goto TransparencySetup7
+if /i "%choice%"=="3" goto Aesthetics
+goto TransparencySetup6
+
+:TransparencySetup7
+cls
+echo.
+call :HoneTitle
+echo.
+echo Do you want Google Chrome to be transparent?
+echo.
+echo.
+echo %COL%[36m[ Y ]         %COL%[36m[ N ]         %COL%[90m[ B for back ]
+set "choice="
+%SystemRoot%\System32\choice.exe /c:ynb /n /m "%DEL% > "
+set choice=%errorlevel%
+if "%choice%"=="1" set chrome=1 & goto TransparencySetup8
+if "%choice%"=="2" set chrome=0 & goto TransparencySetup8
+if /i "%choice%"=="3" goto Aesthetics
+goto TransparencySetup7
+
+:TransparencySetup8
+cd %userprofile%\documents
+(
+	echo [Settings]
+	echo trans=%trans%
+	echo rclick=%rclick%
+	echo tbar=%tbar%
+	echo smenu=%smenu%
+	echo tool=%rclick%
+	echo explorer=%explorer%
+	echo notes=0
+	echo desktop=0
+	echo wmp=0
+	echo thumbs=0
+	echo op=
+	echo firefox=%firefox%
+	echo chrome=%chrome%
+	echo ie=0
+	echo deskbutton=0
+	echo mouseclock=0
+	echo alttabber=0
+) > systemtransparency.ini
+cd "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup"
+start Clear.exe
+taskkill /f /im explorer.exe
+cd C:\Windows
+start explorer.exe
+cls
+echo.
+echo.
+echo.
+echo.
+echo                                                                            %COL%[33m.
+echo                                                                         +N.
+echo                                                                //        oMMs
+echo                                                               +Nm`    ``yMMm-
+echo                                                            ``dMMsoyhh-hMMd.
+echo                                                            `yy/MMMMNh:dMMh`
+echo                                                           .hMM.sso++:oMMs`
+echo                                                          -mMMy:osyyys.No
+echo                                                         :NMMs-oo+/syy:-
+echo                                                        /NMN+ ``   :ys.
+echo                                                       `NMN:        +.
+echo                                                       om-
+echo                                                        `.
+echo.
+echo.
+echo.
+echo.
+echo.
+echo                                                   %COL%[37m Settings have been applied
+echo.
+echo.
+echo.
+echo.
+echo                                                          %COL%[90m[ B for back ]%COL%[37m
+echo.
+%SystemRoot%\System32\choice.exe /c:B /n /m "%DEL%                                                               >:"
+goto Manual
+
+:Reset
+if exist "%userprofile%\Documents\systemtransparency.ini" del /Q "%userprofile%\Documents\systemtransparency.ini" >nul 2>&1
+if exist "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup\Clear.exe" ( goto Reset1 ) else ( goto Reset2 ) >nul 2>&1
+:Reset1
+cd "%appdata%\Microsoft\Windows\Start Menu\Programs\Startup"
+Del /Q Clear.exe >nul 2>&1
+:Reset2
+taskkill /f /im explorer.exe >nul 2>&1
+cd C:\Windows >nul 2>&1
+start explorer.exe >nul 2>&1
+goto Aesthetics
+
+
+
+
+
+
+
 setlocal EnableDelayedExpansion
 goto :eof
