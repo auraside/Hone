@@ -1,13 +1,8 @@
 @echo off
-echo The drivers are 664Mb to 855Mb, so this will take a moment to download. (696 519 945 or 897,058,453 bytes)
+title Downloading Nvidia driver...
+echo The drivers are 664Mb to 855Mb, so this will take a moment to download. (696 519 945 or 897,058,453 bytes)
 echo PLEASE, do NOT open HoneCtrl until the driver installation is done.
 echo.
-echo Would you like to install?
-choice /c:YN /n /m "[Y] Yes  [N] No"
-if %errorlevel% equ 2 goto Tweaks
-
-title Downloading Nvidia driver...
-cls
 :start
 set /p choice=Do you need shadowplay and other components of the driver? Y or N?: 
 if /i "%choice%" == "y" (
