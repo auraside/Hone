@@ -1,18 +1,21 @@
 @echo off
-echo The drivers are 732Mb to 1Gb, so this will take a moment to download. (768,102,400 or 1,073,691,829 bytes)
+echo The drivers are 664Mb to 855Mb, so this will take a moment to download. (696 519 945 or 897,058,453 bytes)
+echo PLEASE, do NOT open HoneCtrl until the driver installation is done.
 echo.
 echo Would you like to install?
 choice /c:YN /n /m "[Y] Yes  [N] No"
 if %errorlevel% equ 2 goto Tweaks
 
-cls
 title Downloading Nvidia driver...
-echo Do you need shadowplay and other components of the driver? Y or N?
-choice /c:YN /n /m "[Y] Yes  [N] No"
-if %errorlevel% equ 1 (
-curl -g -L -# -o "C:\Hone\Drivers\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/2.52/Hone.512.95.Default.exe"
+cls
+:start
+set /p choice=Do you need shadowplay and other components of the driver? Y or N?: 
+if /i "%choice%" == "y" (
+  curl -g -L -# -o "C:\Hone\Drivers\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/2.58/HoneDefault.exe"
+) else if /i "%choice%" == "n" (
+  curl -g -L -# -o "C:\Hone\Drivers\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/2.58/HoneTweaked.exe"
 ) else (
-curl -g -L -# -o "C:\Hone\Drivers\NvidiaHone.exe" "https://github.com/auraside/HoneCtrl/releases/download/2.52/Hone.512.95.Tweaked.exe"
+  goto start
 )
 
 C:\Hone\Drivers\NvidiaHone.exe
