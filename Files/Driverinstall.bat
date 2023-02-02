@@ -1,6 +1,6 @@
 @echo off
 title Downloading Nvidia driver...
-echo The drivers are 664Mb to 855Mb, so this will take a moment to download. (696 519 945 or 897,058,453 bytes)
+echo The drivers are 664Mb to 855Mb, so this will take a moment to download. (696,519,945 or 897,058,453 bytes)
 echo PLEASE, do NOT open HoneCtrl until the driver installation is done.
 echo.
 :start
