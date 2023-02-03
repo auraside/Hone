@@ -75,7 +75,7 @@ if /i "!input!" neq "i agree" goto Disclaimer
 reg add "HKCU\Software\Hone" /v "Disclaimer" /f >nul 2>&1
 
 :CheckForUpdates
-set local=2.58
+set local=2.59
 set localtwo=%LOCAL%
 if exist "%TEMP%\Updater.bat" DEL /S /Q /F "%TEMP%\Updater.bat" >nul 2>&1
 curl -g -L -# -o "%TEMP%\Updater.bat" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/HoneCtrlVer" >nul 2>&1
@@ -111,6 +111,9 @@ REM Restart Checks
 if exist "%SYSTEMDRIVE%\Hone\Drivers\NvidiaHone.exe" "%SYSTEMDRIVE%\Desktop\Hone\Drivers\NvidiaHone.exe" >nul 2>&1
 if exist "%SYSTEMDRIVE%\Hone\Drivers\NvidiaHone.exe" del /Q "%SYSTEMDRIVE%\Desktop\Hone\Drivers\NvidiaHone.exe" >nul 2>&1
 if exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\Driverinstall.bat" del /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\Driverinstall.bat" >nul 2>&1
+
+REM Attempt to enable WMIC
+dism /online /enable-feature /featurename:MicrosoftWindowsWMICore /NoRestart >nul 2>&1
 
 REM Check If First Launch
 set firstlaunch=1
@@ -963,7 +966,7 @@ echo.
 echo.
 echo.
 echo %COL%[91m  WARNING:
-echo %COL%[91m  This tweak is for Wi-Fi users only, if you're on Ethernet, do not run this tweak.
+echo %COL%[91m  This tweak is for Ethernet users only, if you're on Wi-Fi, do not run this tweak.
 echo.
 echo   %COL%[37mFor any questions and/or concerns, please join our discord: discord.gg/hone
 echo.
@@ -1277,10 +1280,13 @@ for %%F in ("%file%") do reg query "HKCU\Software\Microsoft\Windows NT\CurrentVe
 	reg delete "HKCU\Software\Microsoft\DirectX\UserGpuPreferences" /v "%file%" /f
 	reg delete "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%file%" /f
 	reg delete "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\%%~nxF\PerfOptions" /v "CpuPriorityClass" /f
-) >nul 2>&1 || (
-	reg add "HKCU\Software\Microsoft\DirectX\UserGpuPreferences" /v "%file%" /t Reg_SZ /d "GpuPreference=2;" /f
-	reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%file%" /t Reg_SZ /d "~ DISABLEDXMAXIMIZEDWINDOWEDMODE" /f
-	reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\%%~nxF\PerfOptions" /v "CpuPriorityClass" /t Reg_DWORD /d "3" /f
+	cls
+	echo Game boost has been reverted!
+	Timeout 5
+) || (
+	reg add "HKCU\Software\Microsoft\DirectX\UserGpuPreferences" /v "%file%" /t Reg_SZ /d "GpuPreference=2;" /f >nul 2>&1
+	reg add "HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers" /v "%file%" /t Reg_SZ /d "~ DISABLEDXMAXIMIZEDWINDOWEDMODE" /f >nul 2>&1
+	reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\%%~nxF\PerfOptions" /v "CpuPriorityClass" /t Reg_DWORD /d "3" /f >nul 2>&1
 ) >nul 2>&1
 goto :eof
 
@@ -2412,7 +2418,9 @@ goto upscale
 
 :4k
 cls
-set /p "file= Drag the file you want upscaled into this window >> "
+echo The path needs to be in between " " and have a simple name.
+echo.
+set /p "file= Print the path of the file you want to upscale or drag it in >> "
 rem where /q ffmpeg.exe with the double ampersand/pipe is used to check if ffmpeg is already in the path, since it might be installed in a directory other than the default
 if %encoder% == NVENC (
 where /q ffmpeg.exe && (
@@ -2442,7 +2450,9 @@ goto upscale
 
 :8k
 cls
-set /p "file= Drag the file you want upscaled into this window >> "
+echo The path needs to be in between " " and have a simple name.
+echo.
+set /p "file= Print the path of the file you want to upscale or drag it in >> "
 rem where /q ffmpeg.exe with the double ampersand/pipe is used to check if ffmpeg is already in the path, since it might be installed in a directory other than the default
 if %encoder% == NVENC (
 where /q ffmpeg.exe && (
@@ -2513,7 +2523,9 @@ goto compress
 
 :heavy
 cls
-set /p "file= Drag the file you want compressed into this window >> "
+echo The path needs to be in between " " and have a simple name.
+echo.
+set /p "file= Print the path of the file you want to compress or drag it in >> "
 	where /q ffmpeg.exe && (
 		ffmpeg -i "%file%" -vf scale=-2:ih*0.75:flags=bicubic -c:v libx264 -preset slower -crf 23 -aq-mode 3 -c:a aac -b:a 128k "%PUBLIC%\Desktop\heavycompress.mp4" -y
 	) || (
@@ -2523,7 +2535,9 @@ goto compress
 
 :Light
 cls
-set /p "file= Drag the file you want compressed into this window >> "
+echo The path needs to be in between " " and have a simple name.
+echo.
+set /p "file= Print the path of the file you want to compress or drag it in >> "
 	where /q ffmpeg.exe && (
 		ffmpeg -i "%file%" -c:v libx264 -preset slow -crf 18 -aq-mode 3 -c:a aac -b:a 256k "%PUBLIC%\Desktop\lightcompress.mp4" -y
 	) || (
@@ -2534,7 +2548,9 @@ goto compress
 :PreviewLag
 if not exist %SYSTEMDRIVE%\ffmpeg ( call:ffmpeginstall )
 cls
-set /p "file= Drag the file you want to use in vegas (remember you need to replace it with the original file afterwards) >> "
+echo The path needs to be in between " " and have a simple name.
+echo.
+set /p "file= Print the path of the file you want use in vegas or drag it in (remember you need to replace it with the original file afterwards) >> "
 	where /q ffmpeg.exe && (
 		ffmpeg -i "%file%" -vf scale=-2:ih/2:flags=bicubic -c:v libx264 -preset superfast -crf 23 -tune fastdecode -c:a copy "%PUBLIC%\Desktop\previewlag.mp4" -y
 	) || (
@@ -3192,6 +3208,11 @@ if "%IDLOF%" == "%COL%[91mOFF" (
 goto Advanced
 
 :Driver
+reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\DevicePath" /v "NoAutoUpdate" /t REG_DWORD /d 1 /f >nul 2>&1
+reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\DriverSearching" /v "DriverUpdateWizardWuSearchEnabled" /t REG_DWORD /d 0 /f >nul 2>&1
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" /v "ExcludeWUDriversInQualityUpdate" /t REG_DWORD /d 1 /f >nul 2>&1
+reg add "HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate\AUCustom" /v "TurnOffWindowsUpdateDeviceDriverSearching" /t REG_DWORD /d 1 /f >nul 2>&1
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\DriverSearching" /v "SearchOrderConfig" /t REG_DWORD /d 0 /f >nul 2>&1
 cls
 echo This will uninstall your current graphics driver. The optimized driver will be installed after you reboot.
 echo Please be patient and wait until the script finishes.
@@ -3218,10 +3239,7 @@ echo.
 :restartchoice
 set /p choice=Would you like to continue and restart your PC? Y or N?: 
 if /i "%choice%" == "y" (
-	shutdown /s /t 60 /c "A restart is required, we'll do that now" /f /d p:0:0
-	timeout 5
-	shutdown -a
-	shutdown /r /t 7 /c "Restarting automatically..." /f /d p:0:0
+	shutdown /r /f /d p:0:0
 ) else if /i "%choice%" == "n" (
 	goto Advanced
 ) else (
@@ -3649,10 +3667,7 @@ echo      [N] No
 echo.
 %SYSTEMROOT%\System32\choice.exe /c:YNX /n /m "%DEL%                                >:"
 if !errorlevel! == 1 ( ^
-	shutdown /s /t 60 /c "A restart is required, we'll do that now" /f /d p:0:0
-	timeout 5
-	shutdown -a
-	shutdown /r /t 7 /c "Restarting automatically..." /f /d p:0:0
+	shutdown /r /f /d p:0:0
 )
 setlocal EnableDelayedExpansion
 exit /b
