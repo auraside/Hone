@@ -920,7 +920,7 @@ if "%MITOF%" == "%COL%[91mOFF" (
 	cd %TEMP%
 	if not exist "%TEMP%\NSudo.exe" curl -g -L -# -o "%TEMP%\NSudo.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/NSudo.exe"
 	NSudo -U:S -ShowWindowMode:Hide -wait cmd /c "reg add "HKLM\SYSTEM\CurrentControlSet\Services\TrustedInstaller" /v "Start" /t Reg_DWORD /d "3" /f"
-	NSudo -U:S -ShowWindowMode:Hide -wait cmd /c "sc start "TrustedInstaller"
+	NSudo -U:S -ShowWindowMode:Hide -wait cmd /c "sc start "TrustedInstaller""
 	NSudo -U:T -P:E -M:S -ShowWindowMode:Hide -wait cmd /c "ren %SYSTEMROOT%\System32\mcupdate_GenuineIntel.dll mcupdate_GenuineIntel.old"
 	NSudo -U:T -P:E -M:S -ShowWindowMode:Hide -wait cmd /c "ren %SYSTEMROOT%\System32\mcupdate_AuthenticAMD.dll mcupdate_AuthenticAMD.old"
 	REM Disable CFG Lock
@@ -940,7 +940,7 @@ if "%MITOF%" == "%COL%[91mOFF" (
 	cd %TEMP%
 	if not exist "%TEMP%\NSudo.exe" curl -g -L -# -o "%TEMP%\NSudo.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/NSudo.exe"
 	NSudo -U:S -ShowWindowMode:Hide -wait cmd /c "reg add "HKLM\SYSTEM\CurrentControlSet\Services\TrustedInstaller" /v "Start" /t Reg_DWORD /d "2" /f"
-	NSudo -U:S -ShowWindowMode:Hide -wait cmd /c "sc start "TrustedInstaller"
+	NSudo -U:S -ShowWindowMode:Hide -wait cmd /c "sc start "TrustedInstaller"" 
 	NSudo -U:T -P:E -M:S -ShowWindowMode:Hide -wait cmd /c "ren %SYSTEMROOT%\System32\mcupdate_GenuineIntel.old mcupdate_GenuineIntel.dll"
 	NSudo -U:T -P:E -M:S -ShowWindowMode:Hide -wait cmd /c "ren %SYSTEMROOT%\System32\mcupdate_AuthenticAMD.old mcupdate_AuthenticAMD.dll"
 	REM Enable CFG Lock
@@ -1289,7 +1289,7 @@ cls
 cd %TEMP%
 if not exist "%TEMP%\NSudo.exe" curl -g -L -# -o "%TEMP%\NSudo.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/NSudo.exe"
 NSudo.exe -U:S -ShowWindowMode:Hide cmd /c "reg add "HKLM\SYSTEM\CurrentControlSet\Services\TrustedInstaller" /v "Start" /t Reg_DWORD /d "3" /f" >nul 2>&1
-NSudo.exe -U:S -ShowWindowMode:Hide cmd /c "sc start "TrustedInstaller" >nul 2>&1
+NSudo.exe -U:S -ShowWindowMode:Hide cmd /c "sc start "TrustedInstaller"" >nul 2>&1
 if not exist "%TEMP%\restart64.exe" curl -g -L -# -o "%TEMP%\Restart64.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/restart64.exe"
 if not exist "%TEMP%\EmptyStandbyList.exe" curl -g -L -# -o "%TEMP%\EmptyStandbyList.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/EmptyStandbyList.exe"
 taskkill /f /im explorer.exe >nul 2>&1
@@ -2699,7 +2699,7 @@ goto skip
 if not exist "%SYSTEMDRIVE%\Program Files (x86)\blur" call:blurinstall
 if %encoder% == NVENC (
 if not exist "%SYSTEMDRIVE%\Hone\Renders\FPSSmoothNvidia.cfg" ( 
-curl -g -k -L -# -o "%SYSTEMDRIVE%\Hone\Renders\FPSSmoothNvidia.cfg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/FPS/Smooth/Nvidia/FPSSmoothNvidia.cfg
+curl -g -k -L -# -o "%SYSTEMDRIVE%\Hone\Renders\FPSSmoothNvidia.cfg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/FPS/Smooth/Nvidia/FPSSmoothNvidia.cfg"
 ) else (
 set config=FPSSmoothNvidia.cfg
 goto skip
@@ -2770,7 +2770,7 @@ goto MinecraftBlur
 if not exist "%SYSTEMDRIVE%\Program Files (x86)\blur" call:blurinstall
 if %encoder% == NVENC (
 if not exist "%SYSTEMDRIVE%\Hone\Renders\MinecraftAnyNvidia.cfg" ( 
-curl -g -k -L -# -o "%SYSTEMDRIVE%\Hone\Renders\MinecraftAnyNvidia.cfg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Minecraft/Any/Nvidia/MinecraftAnyNvidia.cfg
+curl -g -k -L -# -o "%SYSTEMDRIVE%\Hone\Renders\MinecraftAnyNvidia.cfg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Minecraft/Any/Nvidia/MinecraftAnyNvidia.cfg"
 ) else (
 set config=MinecraftAnyNvidia.cfg
 goto skip
@@ -2779,7 +2779,7 @@ goto skip
 
 if %encoder% == AMF (
 if not exist "%SYSTEMDRIVE%\Hone\Renders\MinecraftAnyAmd.cfg" ( 
-curl -g -k -L -# -o "%SYSTEMDRIVE%\Hone\Renders\MinecraftAnyAmd.cfg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Minecraft/Any/Amd/MinecraftAnyAmd.cfg
+curl -g -k -L -# -o "%SYSTEMDRIVE%\Hone\Renders\MinecraftAnyAmd.cfg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Minecraft/Any/Amd/MinecraftAnyAmd.cfg"
 ) else (
 set config=MinecraftAnyAmd.cfg
 goto skip
@@ -2788,7 +2788,7 @@ goto skip
 
 if %encoder% == CPU (
 if not exist "%SYSTEMDRIVE%\Hone\Renders\MinecraftAnyIntel.cfg" ( 
-curl -g -k -L -# -o "%SYSTEMDRIVE%\Hone\Renders\MinecraftAnyIntel.cfg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Minecraft/Any/Intel/MinecraftAnyIntel.cfg
+curl -g -k -L -# -o "%SYSTEMDRIVE%\Hone\Renders\MinecraftAnyIntel.cfg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Minecraft/Any/Intel/MinecraftAnyIntel.cfg"
 ) else (
 set config=MinecraftAnyIntel.cfg
 goto skip
@@ -2799,7 +2799,7 @@ goto skip
 if not exist "%SYSTEMDRIVE%\Program Files (x86)\blur" call:blurinstall
 if %encoder% == NVENC (
 if not exist "%SYSTEMDRIVE%\Hone\Renders\Minecraft240Nvidia.cfg" ( 
-curl -g -k -L -# -o "%SYSTEMDRIVE%\Hone\Renders\Minecraft240Nvidia.cfg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Minecraft/240-360/Nvidia/Minecraft240Nvidia.cfg
+curl -g -k -L -# -o "%SYSTEMDRIVE%\Hone\Renders\Minecraft240Nvidia.cfg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Minecraft/240-360/Nvidia/Minecraft240Nvidia.cfg"
 ) else (
 set config=Minecraft240Nvidia.cfg
 goto skip
@@ -2808,7 +2808,7 @@ goto skip
 
 if %encoder% == AMF (
 if not exist "%SYSTEMDRIVE%\Hone\Renders\Minecraft240Amd.cfg" ( 
-curl -g -k -L -# -o "%SYSTEMDRIVE%\Hone\Renders\Minecraft240Amd.cfg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Minecraft/240-360/Amd/Minecraft240Amd.cfg
+curl -g -k -L -# -o "%SYSTEMDRIVE%\Hone\Renders\Minecraft240Amd.cfg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Minecraft/240-360/Amd/Minecraft240Amd.cfg"
 ) else (
 set config=Minecraft240Amd.cfg
 goto skip
@@ -2817,7 +2817,7 @@ goto skip
 
 if %encoder% == CPU (
 if not exist "%SYSTEMDRIVE%\Hone\Renders\Minecraft240Intel.cfg" ( 
-curl -g -k -L -# -o "%SYSTEMDRIVE%\Hone\Renders\Minecraft240Intel.cfg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Minecraft/240-360/Intel/Minecraft240Intel.cfg
+curl -g -k -L -# -o "%SYSTEMDRIVE%\Hone\Renders\Minecraft240Intel.cfg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Minecraft/240-360/Intel/Minecraft240Intel.cfg"
 ) else (
 set config=Minecraft240Intel.cfg
 goto skip
@@ -2828,7 +2828,7 @@ goto skip
 if not exist "%SYSTEMDRIVE%\Program Files (x86)\blur" call:blurinstall
 if %encoder% == NVENC (
 if not exist "%SYSTEMDRIVE%\Hone\Renders\Minecraft480Nvidia.cfg" ( 
-curl -g -k -L -# -o "%SYSTEMDRIVE%\Hone\Renders\Minecraft480Nvidia.cfg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Minecraft/480+/Nvidia/Minecraft480Nvidia.cfg
+curl -g -k -L -# -o "%SYSTEMDRIVE%\Hone\Renders\Minecraft480Nvidia.cfg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Minecraft/480+/Nvidia/Minecraft480Nvidia.cfg"
 ) else (
 set config=Minecraft480Nvidia.cfg
 goto skip
@@ -2837,7 +2837,7 @@ goto skip
 
 if %encoder% == AMF (
 if not exist "%SYSTEMDRIVE%\Hone\Renders\Minecraft480Amd.cfg" ( 
-curl -g -k -L -# -o "%SYSTEMDRIVE%\Hone\Renders\Minecraft480Amd.cfg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Minecraft/480+/Amd/Minecraft480Amd.cfg
+curl -g -k -L -# -o "%SYSTEMDRIVE%\Hone\Renders\Minecraft480Amd.cfg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Minecraft/480+/Amd/Minecraft480Amd.cfg"
 ) else (
 set config=Minecraft480Amd.cfg
 goto skip
@@ -2846,7 +2846,7 @@ goto skip
 
 if %encoder% == CPU (
 if not exist "%SYSTEMDRIVE%\Hone\Renders\Minecraft480Intel.cfg" ( 
-curl -g -k -L -# -o "%SYSTEMDRIVE%\Hone\Renders\Minecraft480Intel.cfg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Minecraft/480+/Intel/Minecraft480Intel.cfg
+curl -g -k -L -# -o "%SYSTEMDRIVE%\Hone\Renders\Minecraft480Intel.cfg" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/Minecraft/480+/Intel/Minecraft480Intel.cfg"
 ) else (
 set config=Minecraft480Intel.cfg
 goto skip
@@ -2983,7 +2983,7 @@ for %%i in (DSCOF AUTOF DRIOF BCDOF NONOF CS0OF TOFOF PS0OF IDLOF CONG DPSOF) do
 	reg query "HKCU\Software\Hone" /v "DUSBPowerSavings" || set "DPSOF=%COL%[91mOFF"
 	rem Nvidia Drivers
 	cd "%SYSTEMDRIVE%\Program Files\NVIDIA Corporation\NVSMI"
-	for /f "tokens=1 skip=1" %%a in ('nvidia-smi --query-gpu^=driver_version --format^=csv') do if "%%a" neq "528.24" set "DRIOF=%COL%[91mOFF
+	for /f "tokens=1 skip=1" %%a in ('nvidia-smi --query-gpu^=driver_version --format^=csv') do if "%%a" neq "528.24" set "DRIOF=%COL%[91mOFF"
 	rem BCDEDIT
 	reg query "HKCU\Software\Hone" /v "BcdEditTweaks" || set "BCDOF=%COL%[91mOFF"
 	rem NonBestEffortLimit Tweak
@@ -3373,7 +3373,7 @@ echo.
 echo.
 echo                  		  X to close
 echo.
-%SYSTEMROOT%\System32\choice.exe /c:XD /n /m "%DEL%
+%SYSTEMROOT%\System32\choice.exe /c:XD /n /m "%DEL% ..."
 set choice=%errorlevel%
 if "%choice%"=="1" exit /b
 if "%choice%"=="2" goto Dog2
