@@ -2166,6 +2166,7 @@ powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescripti
 powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1 -Skip 1)" > "%TEMP%\height.txt"
 set /p width=<"%TEMP%\width.txt"
 set /p height=<"%TEMP%\height.txt"
+cls & set /p FPS="What FPS would you like to record in? >: "
 if %encoder% == NVENC (
 	(for %%i in (
 		"[AdvOut]"
@@ -2271,7 +2272,7 @@ powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescripti
 powershell -Command "((Get-CimInstance Win32_VideoController).VideoModeDescription.Split(' x ') | Where-Object {$_ -ne ''} | Select-Object -First 1 -Skip 1)" > "%TEMP%\height.txt"
 set /p width=<"%TEMP%\width.txt"
 set /p height=<"%TEMP%\height.txt"
-
+cls & set /p FPS="What FPS would you like to record in? >: "
 if %encoder% == NVENC (
 	(for %%i in (
 		"[AdvOut]"
