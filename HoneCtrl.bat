@@ -2856,7 +2856,9 @@ goto skip
 
 :skip
 cls
-set /p "file= Print the path of the file you want blurred into this window >> "
+echo The path needs to be in between " " and have a simple name.
+echo.
+set /p "file= Print the path of the file you want blurred into this window or drag it in >> "
 "%SYSTEMDRIVE%\program files (x86)\blur\blur.exe" -i %file% -c "%SYSTEMDRIVE%\Hone\Renders\%config%" -n -p -v
 goto HoneRenders
 
