@@ -2714,7 +2714,6 @@ set /p "file= Print the path of the file you want to compress or drag it in >> "
 	) || (
 		%SYSTEMDRIVE%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf "scale=-2:trunc(ih*0.75/2)*2" -c:v libx264 -preset slower -crf 23 -aq-mode 3 -c:a aac -b:a 128k "%PUBLIC%\Desktop\heavycompress.mp4" -y
 	)
-	pause
 goto compress
 
 :Light
