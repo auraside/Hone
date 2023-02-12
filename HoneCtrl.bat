@@ -75,7 +75,7 @@ if /i "!input!" neq "i agree" goto Disclaimer
 reg add "HKCU\Software\Hone" /v "Disclaimer" /f >nul 2>&1
 
 :CheckForUpdates
-set local=2.59
+set local=2.595
 set localtwo=%LOCAL%
 if exist "%TEMP%\Updater.bat" DEL /S /Q /F "%TEMP%\Updater.bat" >nul 2>&1
 curl -g -L -# -o "%TEMP%\Updater.bat" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/HoneCtrlVer" >nul 2>&1
@@ -498,7 +498,7 @@ if "%CRSOF%" == "%COL%[91mOFF" (
 	reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "NoLazyMode" /t REG_DWORD /d "1" /f
 	reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "AlwaysOn" /t REG_DWORD /d "1" /f
 	reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "NetworkThrottlingIndex" /t REG_DWORD /d "10" /f
-	reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "SystemResponsiveness" /t REG_DWORD /d "10" /f
+	reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "SystemResponsiveness" /t REG_DWORD /d "0" /f
 ) >nul 2>&1 else (
 	reg delete "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\csrss.exe\PerfOptions" /v CpuPriorityClass /f
 	reg delete "HKLM\Software\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\csrss.exe\PerfOptions" /v IoPriority /f
@@ -760,6 +760,7 @@ Mode 130,45
 goto Tweaks
 
 :Mouse
+cls
 if "%MOUOF%" neq "%COL%[91mOFF" (
 	reg add "HKEY_CURRENT_USER\Control Panel\Mouse" /v "SmoothMouseXCurve" /t REG_BINARY /d "0000000000000000156e000000000000004001000000000029dc0300000000000000280000000000" /f
 	reg add "HKEY_CURRENT_USER\Control Panel\Mouse" /v "SmoothMouseYCurve" /t REG_BINARY /d "0000000000000000fd11010000000000002404000000000000fc12000000000000c0bb0100000000" /f
@@ -1864,10 +1865,46 @@ if %encoder% == NVENC (
 )
 
 if %encoder% == AMF (
-	echo Sorry, AMD Encoder Settings are not done yet...
-	timeout 8 /nobreak
-	goto HoneRenders
-) 
+	(for %%i in (
+		"[AdvOut]"
+		"RecEncoder=h264_texture_amf"
+		"RecRB=true"
+		"TrackIndex=1"
+		"RecType=Standard"
+		"RecFormat=mp4"
+		"RecTracks=1"
+		"FLVTrack=1"
+		"FFOutputToFile=true"
+		"FFFormat="
+		"FFFormatMimeType="
+		"FFVEncoderId=0"
+		"FFVEncoder="
+		"FFAEncoderId=0"
+		"FFAEncoder="
+		"FFAudioMixes=1"
+		"VodTrackIndex=2"
+		.
+		"[General]"
+		"Name=Untitled"
+		.
+		"[Video]"
+		"BaseCX=!width!"
+		"BaseCY=!height!"
+		"OutputCX=!width!"
+		"OutputCY=!height!"
+		"FPSDen=1"
+		"FPSType=2"
+		"ScaleType=bilinear"
+		"FPSNum=!FPS!"
+		"ColorSpace=sRGB"
+		"ColorRange=Full"
+		.
+		"[Output]"
+		"RecType=Standard"
+		"Mode=Advanced"
+	) do echo.%%~i)>"%TEMP%\Basic.ini"
+	echo.{"cqp":18,"preset":"speed","profile":"baseline","rate_control":"CQP"} >"%TEMP%\RecordEncoder.json"
+)
 
 if %encoder% == CPU (
 	(for %%i in (
@@ -1968,10 +2005,46 @@ if %encoder% == NVENC (
 )
 
 if %encoder% == AMF (
-	echo Sorry, AMD Encoder Settings are not done yet...
-	timeout 8 /nobreak
-	goto HoneRenders
-) 
+	(for %%i in (
+		"[AdvOut]"
+		"RecEncoder=h264_texture_amf"
+		"RecRB=true"
+		"TrackIndex=1"
+		"RecType=Standard"
+		"RecFormat=mp4"
+		"RecTracks=1"
+		"FLVTrack=1"
+		"FFOutputToFile=true"
+		"FFFormat="
+		"FFFormatMimeType="
+		"FFVEncoderId=0"
+		"FFVEncoder="
+		"FFAEncoderId=0"
+		"FFAEncoder="
+		"FFAudioMixes=1"
+		"VodTrackIndex=2"
+		.
+		"[General]"
+		"Name=Untitled"
+		.
+		"[Video]"
+		"BaseCX=!width!"
+		"BaseCY=!height!"
+		"OutputCX=!width!"
+		"OutputCY=!height!"
+		"FPSDen=1"
+		"FPSType=2"
+		"ScaleType=bilinear"
+		"FPSNum=!FPS!"
+		"ColorSpace=sRGB"
+		"ColorRange=Partial"
+		.
+		"[Output]"
+		"RecType=Standard"
+		"Mode=Advanced"
+	) do echo.%%~i)>"%TEMP%\Basic.ini"
+	echo.{"cqp":18,"preset":"speed","profile":"baseline","rate_control":"CQP"} >"%TEMP%\RecordEncoder.json"
+)
 
 if %encoder% == CPU (
 	(for %%i in (
@@ -2072,10 +2145,46 @@ if %encoder% == NVENC (
 )
 
 if %encoder% == AMF (
-	echo Sorry, AMD Encoder Settings are not done yet...
-	timeout 8 /nobreak
-	goto HoneRenders
-) 
+	(for %%i in (
+		"[AdvOut]"
+		"RecEncoder=h264_texture_amf"
+		"RecRB=true"
+		"TrackIndex=1"
+		"RecType=Standard"
+		"RecFormat=mp4"
+		"RecTracks=1"
+		"FLVTrack=1"
+		"FFOutputToFile=true"
+		"FFFormat="
+		"FFFormatMimeType="
+		"FFVEncoderId=0"
+		"FFVEncoder="
+		"FFAEncoderId=0"
+		"FFAEncoder="
+		"FFAudioMixes=1"
+		"VodTrackIndex=2"
+		.
+		"[General]"
+		"Name=Untitled"
+		.
+		"[Video]"
+		"BaseCX=!width!"
+		"BaseCY=!height!"
+		"OutputCX=1280"
+		"OutputCY=720"
+		"FPSDen=1"
+		"FPSType=2"
+		"ScaleType=bicubic"
+		"FPSNum=!FPS!"
+		"ColorSpace=sRGB"
+		"ColorRange=Partial"
+		.
+		"[Output]"
+		"RecType=Standard"
+		"Mode=Advanced"
+	) do echo.%%~i)>"%TEMP%\Basic.ini"
+	echo.{"cqp":18,"preset":"speed","profile":"baseline","rate_control":"CQP"} >"%TEMP%\RecordEncoder.json"
+)
 
 if %encoder% == CPU (
 	(for %%i in (
@@ -2217,10 +2326,47 @@ if %encoder% == NVENC (
 )
 
 if %encoder% == AMF (
-	echo Sorry, AMD Encoder Settings are not done yet...
-	timeout 8 /nobreak
-	goto HoneRenders
-) 
+	(for %%i in (
+		"[AdvOut]"
+		"Encoder=h264_texture_amf"
+		"RecEncoder=h264_texture_amf"
+		"RecRB=true"
+		"TrackIndex=1"
+		"RecType=Standard"
+		"RecFormat=mp4"
+		"RecTracks=1"
+		"FLVTrack=1"
+		"FFOutputToFile=true"
+		"FFFormat="
+		"FFFormatMimeType="
+		"FFVEncoderId=0"
+		"FFVEncoder="
+		"FFAEncoderId=0"
+		"FFAEncoder="
+		"FFAudioMixes=1"
+		"VodTrackIndex=2"
+		.
+		"[General]"
+		"Name=Untitled"
+		.
+		"[Video]"
+		"BaseCX=!width!"
+		"BaseCY=!height!"
+		"OutputCX=!width!"
+		"OutputCY=!height!"
+		"FPSDen=1"
+		"FPSType=2"
+		"ScaleType=bilinear"
+		"FPSNum=!FPS!"
+		"ColorSpace=sRGB"
+		"ColorRange=Full"
+		.
+		"[Output]"
+		"RecType=Standard"
+		"Mode=Advanced"
+	) do echo.%%~i)>"%TEMP%\Basic.ini"
+	echo.{"cqp":18,"preset":"speed","profile":"baseline","rate_control":"CQP"} >"%TEMP%\RecordEncoder.json"
+)
 
 if %encoder% == CPU (
 	(for %%i in (
@@ -2323,10 +2469,47 @@ if %encoder% == NVENC (
 )
 
 if %encoder% == AMF (
-	echo Sorry, AMD Encoder Settings are not done yet...
-	timeout 8 /nobreak
-	goto HoneRenders
-) 
+	(for %%i in (
+		"[AdvOut]"
+		"Encoder=h264_texture_amf"
+		"RecEncoder=h264_texture_amf"
+		"RecRB=true"
+		"TrackIndex=1"
+		"RecType=Standard"
+		"RecFormat=mp4"
+		"RecTracks=1"
+		"FLVTrack=1"
+		"FFOutputToFile=true"
+		"FFFormat="
+		"FFFormatMimeType="
+		"FFVEncoderId=0"
+		"FFVEncoder="
+		"FFAEncoderId=0"
+		"FFAEncoder="
+		"FFAudioMixes=1"
+		"VodTrackIndex=2"
+		.
+		"[General]"
+		"Name=Untitled"
+		.
+		"[Video]"
+		"BaseCX=!width!"
+		"BaseCY=!height!"
+		"OutputCX=1280"
+		"OutputCY=720"
+		"FPSDen=1"
+		"FPSType=2"
+		"ScaleType=bicubic"
+		"FPSNum=!FPS!"
+		"ColorSpace=sRGB"
+		"ColorRange=Partial"
+		.
+		"[Output]"
+		"RecType=Standard"
+		"Mode=Advanced"
+	) do echo.%%~i)>"%TEMP%\Basic.ini"
+	echo.{"cqp":18,"preset":"speed","profile":"baseline","rate_control":"CQP"} >"%TEMP%\RecordEncoder.json"
+)
 
 if %encoder% == CPU (
 	(for %%i in (
@@ -2424,9 +2607,9 @@ set /p "file= Print the path of the file you want to upscale or drag it in >> "
 rem where /q ffmpeg.exe with the double ampersand/pipe is used to check if ffmpeg is already in the path, since it might be installed in a directory other than the default
 if %encoder% == NVENC (
 where /q ffmpeg.exe && (
-		ffmpeg -i "%file%" -vf scale=3840:2160 -c:v h264_nvenc -preset p5 -rc vbr -b:v 250M -cq 20 "%PUBLIC%\Desktop\4k.mp4" -y
+		ffmpeg -i "%file%" -vf scale=3840:2160 -c:v h264_nvenc -preset slow -rc vbr -b:v 250M -cq 20 "%PUBLIC%\Desktop\4k.mp4" -y
 	) || (
-		%SYSTEMDRIVE%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=3840:2160 -c:v h264_nvenc -preset p5 -rc vbr -b:v 250M -cq 20 "%PUBLIC%\Desktop\4k.mp4" -y
+		%SYSTEMDRIVE%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=3840:2160 -c:v h264_nvenc -preset slow -rc vbr -b:v 250M -cq 20 "%PUBLIC%\Desktop\4k.mp4" -y
 	)
 )
 
@@ -2456,9 +2639,9 @@ set /p "file= Print the path of the file you want to upscale or drag it in >> "
 rem where /q ffmpeg.exe with the double ampersand/pipe is used to check if ffmpeg is already in the path, since it might be installed in a directory other than the default
 if %encoder% == NVENC (
 where /q ffmpeg.exe && (
-		ffmpeg.exe -i "%file%" -vf scale=7680:4320 -c:v hevc_nvenc -preset p5 -rc vbr -b:v 250M -cq 20 "%PUBLIC%\Desktop\8k.mp4" -y
+		ffmpeg.exe -i "%file%" -vf scale=7680:4320 -c:v hevc_nvenc -preset slow -rc vbr -b:v 250M -cq 20 "%PUBLIC%\Desktop\8k.mp4" -y
 	) || (
-		%SYSTEMDRIVE%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=7680:4320 -c:v hevc_nvenc -preset p5 -rc vbr -b:v 250M -cq 20 "%PUBLIC%\Desktop\8k.mp4" -y
+		%SYSTEMDRIVE%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=7680:4320 -c:v hevc_nvenc -preset slow -rc vbr -b:v 250M -cq 20 "%PUBLIC%\Desktop\8k.mp4" -y
 	)
 )
 
@@ -2527,10 +2710,11 @@ echo The path needs to be in between " " and have a simple name.
 echo.
 set /p "file= Print the path of the file you want to compress or drag it in >> "
 	where /q ffmpeg.exe && (
-		ffmpeg -i "%file%" -vf scale=-2:ih*0.75:flags=bicubic -c:v libx264 -preset slower -crf 23 -aq-mode 3 -c:a aac -b:a 128k "%PUBLIC%\Desktop\heavycompress.mp4" -y
+		ffmpeg -i "%file%" -vf "scale=-2:trunc(ih*0.75/2)*2" -c:v libx264 -preset slower -crf 23 -aq-mode 3 -c:a aac -b:a 128k "%PUBLIC%\Desktop\heavycompress.mp4" -y
 	) || (
-		%SYSTEMDRIVE%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=-2:ih*0.75:flags=bicubic -c:v libx264 -preset slower -crf 23 -aq-mode 3 -c:a aac -b:a 128k "%PUBLIC%\Desktop\heavycompress.mp4" -y
+		%SYSTEMDRIVE%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf "scale=-2:trunc(ih*0.75/2)*2" -c:v libx264 -preset slower -crf 23 -aq-mode 3 -c:a aac -b:a 128k "%PUBLIC%\Desktop\heavycompress.mp4" -y
 	)
+	pause
 goto compress
 
 :Light
@@ -2552,9 +2736,9 @@ echo The path needs to be in between " " and have a simple name.
 echo.
 set /p "file= Print the path of the file you want use in vegas or drag it in (remember you need to replace it with the original file afterwards) >> "
 	where /q ffmpeg.exe && (
-		ffmpeg -i "%file%" -vf scale=-2:ih/2:flags=bicubic -c:v libx264 -preset superfast -crf 23 -tune fastdecode -c:a copy "%PUBLIC%\Desktop\previewlag.mp4" -y
+		ffmpeg -i "%file%" -c:v libx264 -preset superfast -crf 23 -tune fastdecode -c:a copy "%PUBLIC%\Desktop\previewlag.mp4" -y
 	) || (
-		%SYSTEMDRIVE%\ffmpeg\bin\ffmpeg.exe -i "%file%" -vf scale=-2:ih/2:flags=bicubic -c:v libx264 -preset superfast -crf 23 -tune fastdecode -c:a copy "%PUBLIC%\Desktop\previewlag.mp4" -y
+		%SYSTEMDRIVE%\ffmpeg\bin\ffmpeg.exe -i "%file%" -c:v libx264 -preset superfast -crf 23 -tune fastdecode -c:a copy "%PUBLIC%\Desktop\previewlag.mp4" -y
 	)
 goto HoneRenders
 
@@ -2987,11 +3171,13 @@ if /i "!input!" neq "i agree" goto Disclaimer2
 reg add "HKCU\Software\Hone" /v "Disclaimer2" /f >nul 2>&1
 
 :Advanced
+for /f "tokens=2 delims==" %%a in ('wmic path Win32_Battery Get BatteryStatus /value ^| findstr "BatteryStatus"') do set status=%%a
+if %status% == 1 ( set Battery=DC) else ( set Battery=AC)
 set "choice="
 for %%i in (DSCOF AUTOF DRIOF BCDOF NONOF CS0OF TOFOF PS0OF IDLOF CONG DPSOF) do (set "%%i=%COL%[92mON ") >nul 2>&1
 (
 	rem Disable Idle
-	powercfg /qh scheme_current sub_processor IDLEDISABLE | find "Current AC Power Setting Index: 0x00000000" && set "IDLOF=%COL%[91mOFF"
+	powercfg /qh scheme_current sub_processor IDLEDISABLE | find "Current %Battery% Power Setting Index: 0x00000000" && set "IDLOF=%COL%[91mOFF"
 	rem DSCP Tweaks
 	reg query "HKLM\Software\Policies\Microsoft\Windows\QoS\javaw" || set "DSCOF=%COL%[91mOFF"
 	rem AutoTuning Tweak
@@ -3201,10 +3387,18 @@ goto Advanced
 
 :DisableIdle
 if "%IDLOF%" == "%COL%[91mOFF" (
-	powercfg /setacvalueindex scheme_current sub_processor IDLEDISABLE 1
-) >nul 2>&1 else (
-	powercfg -setacvalueindex scheme_current sub_processor IDLEDISABLE 0
-) >nul 2>&1
+	if %battery% == AC (
+		powercfg /setacvalueindex scheme_current sub_processor IDLEDISABLE 1
+	) else (
+		powercfg /setdcvalueindex scheme_current sub_processor IDLEDISABLE 1
+	)
+) else (
+	if %battery% == AC (
+		powercfg -setacvalueindex scheme_current sub_processor IDLEDISABLE 0
+	) else (
+		powercfg -setdcvalueindex scheme_current sub_processor IDLEDISABLE 0
+	)
+)
 goto Advanced
 
 :Driver
@@ -3234,7 +3428,7 @@ echo Your PC NEEDS to restart before downloading and installing the driver!
 echo.
 echo Other Nvidia tweaks will not be available until you restart.
 echo.
-echo Drivers will be installed opon PC startup.
+echo Drivers will be installed upon PC startup.
 echo.
 :restartchoice
 set /p choice=Would you like to continue and restart your PC? Y or N?: 
@@ -3645,6 +3839,10 @@ echo.
 %SYSTEMROOT%\System32\choice.exe /c:X /n /m "%DEL%                                >:"
 goto :eof
 
+
+
+
+
 :HoneCtrlRestart
 setlocal DisableDelayedExpansion
 if "%~2" == "%COL%[91mOFF" (set "ed=enable") else (set "ed=disable")
@@ -3665,13 +3863,15 @@ echo.
 echo      [Y] Yes
 echo      [N] No
 echo.
-%SYSTEMROOT%\System32\choice.exe /c:YNX /n /m "%DEL%                                >:"
-if !errorlevel! == 1 ( ^
+:restartchoice
+set /p choice=Would you like to continue and restart your PC? Y or N?: 
+if /i "%choice%" == "y" (
 	shutdown /r /f /d p:0:0
+) else if /i "%choice%" == "n" (
+	exit /b
+) else (
+	goto restartchoice
 )
-setlocal EnableDelayedExpansion
-exit /b
-
 
 :Aesthetics
 cls
