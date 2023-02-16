@@ -75,7 +75,7 @@ if /i "!input!" neq "i agree" goto Disclaimer
 reg add "HKCU\Software\Hone" /v "Disclaimer" /f >nul 2>&1
 
 :CheckForUpdates
-set local=2.595
+set local=2.6
 set localtwo=%LOCAL%
 if exist "%TEMP%\Updater.bat" DEL /S /Q /F "%TEMP%\Updater.bat" >nul 2>&1
 curl -g -L -# -o "%TEMP%\Updater.bat" "https://raw.githubusercontent.com/auraside/HoneCtrl/main/Files/HoneCtrlVer" >nul 2>&1
@@ -225,7 +225,7 @@ TITLE Hone Control Panel %localtwo%
 set "choice="
 set "BLANK=   "
 REM Check Values
-for %%i in (PWROF MEMOF TMROF NETOF AFFOF MOUOF AFTOF NICOF DSSOF SERVOF DEBOF MITOF ME2OF NPIOF NVIOF NVTOF HDCOF CMAOF ALLOF MSIOF TCPOF DWCOF CRSOF) do (set "%%i=%COL%[92mON ") >nul 2>&1
+for %%i in (PWROF MEMOF AUDOF TMROF NETOF AFFOF MOUOF AFTOF NICOF DSSOF SERVOF DEBOF MITOF ME2OF NPIOF NVIOF NVTOF HDCOF CMAOF ALLOF MSIOF TCPOF DWCOF CRSOF) do (set "%%i=%COL%[92mON ") >nul 2>&1
 (
 	REM MSI Mode
 	for /f %%g in ('wmic path win32_VideoController get PNPDeviceID ^| findstr /L "VEN_"') do (
@@ -285,6 +285,8 @@ for %%i in (PWROF MEMOF TMROF NETOF AFFOF MOUOF AFTOF NICOF DSSOF SERVOF DEBOF M
 	reg query "HKLM\SOFTWARE\Intel\GMM" /v "DedicatedSegmentSize" | find "0x400" || set "DSSOF=%COL%[91mOFF"
 	REM Timer Res
 	sc query STR | find "RUNNING" || set "TMROF=%COL%[91mOFF"
+	REM Audio Service
+	sc query HoneAudio | find "RUNNING" || set "AUDOF=%COL%[91mOFF"
 	REM Check If Applicable For PC
 	REM Laptop
 	wmic path Win32_Battery Get BatteryStatus | find "1" && set "PWROF=%COL%[93mN/A"
@@ -360,25 +362,24 @@ cls
 echo.
 echo                                                                                                                        %COL%[36mPage 2/2
 call :HoneTitle
-echo                                                               %COL%[1;4;34mBloat%COL%[0m
-echo.
-echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m Disable Services %COL%[93mN/A           %COL%[33m[%COL%[37m 2 %COL%[33m]%COL%[37m Debloat %COL%[93mN/A                    %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m Disable Mitigations %MITOF%
-echo              %COL%[90mDisables services and lowers memory  %COL%[90mThis tweak will debloat your         %COL%[90mDisable protections against memory
-echo              %COL%[91mDon't use if you are using Wi-Fi     %COL%[90msystem and disable telemetry         %COL%[90mbased attacks that consume perf
-echo.
 echo                                                           %COL%[1;4;34mNetwork Tweaks%COL%[0m
 echo.
-echo              %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m Optimize TCP/IP %TCPOF%            %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Optimize NIC %NICOF%               %COL%[33m[%COL%[37m 6 %COL%[33m]%COL%[37m Optimize Netsh %NETOF%
+echo              %COL%[33m[%COL%[37m 1 %COL%[33m]%COL%[37m Optimize TCP/IP %TCPOF%            %COL%[33m[%COL%[37m 2 %COL%[33m]%COL%[37m Optimize NIC %NICOF%               %COL%[33m[%COL%[37m 3 %COL%[33m]%COL%[37m Optimize Netsh %NETOF%
 echo              %COL%[90mTweaks your Internet Protocol        %COL%[90mOptimize your Network Card settings  %COL%[90mThis tweak will optimize your
 echo              %COL%[91mDon't use if you are using Wi-Fi     %COL%[91mDon't use if you are using Wi-Fi     %COL%[90mcomputer network configuration
 echo.
 echo                                                             %COL%[1;4;34mGPU ^& CPU%COL%[0m
 echo.
-echo              %COL%[33m[%COL%[37m 7 %COL%[33m]%COL%[37m All GPU Tweaks %ALLOF%             %COL%[33m[%COL%[37m 8 %COL%[33m]%COL%[37m Optimize Intel iGPU %DSSOF%        %COL%[33m[%COL%[37m 9 %COL%[33m]%COL%[37m AMD GPU Tweaks %AMDOF%
+echo              %COL%[33m[%COL%[37m 4 %COL%[33m]%COL%[37m All GPU Tweaks %ALLOF%             %COL%[33m[%COL%[37m 5 %COL%[33m]%COL%[37m Optimize Intel iGPU %DSSOF%        %COL%[33m[%COL%[37m 6 %COL%[33m]%COL%[37m AMD GPU Tweaks %AMDOF%
 echo              %COL%[90mVarious essential tweaks for all     %COL%[90mIncrease dedicated video vram on     %COL%[90mConfigure AMD GPU to optimized
 echo              %COL%[90mGPU brands and manufacturers         %COL%[90ma intel iGPU                         %COL%[90msettings
+echo                                                               %COL%[1;4;34mBloat%COL%[0m
 echo.
 echo                                                        %COL%[1;4;34mMiscellaneous Tweaks%COL%[0m
+echo.
+echo              %COL%[33m[%COL%[37m 7 %COL%[33m]%COL%[37m Reduce Audio Latency %AUDOF%       %COL%[33m[%COL%[37m 8 %COL%[33m]%COL%[37m Debloat %COL%[93mN/A                    %COL%[33m[%COL%[37m 9 %COL%[33m]%COL%[37m Disable Mitigations %MITOF%
+echo              %COL%[90mReduces Audio Latency  		  %COL%[91mComing Soon			       %COL%[90mDisable protections against memory
+echo              %COL%[91mDon't use on slow or old CPU's	  %COL%[90m				       %COL%[90mbased attacks that consume perf
 echo.
 echo              %COL%[33m[%COL%[37m 10 %COL%[33m]%COL%[37m Cleaner %BLANK%                   %COL%[33m[%COL%[37m 11 %COL%[33m]%COL%[37m Game-Booster %BLANK%              %COL%[33m[%COL%[37m 12 %COL%[33m]%COL%[37m Soft Restart %BLANK%
 echo              %COL%[90mRemove adware, unused devices, and   %COL%[90mSets GPU ^& CPU to high performance   %COL%[90mIf your PC has been running a while
@@ -389,15 +390,15 @@ echo.
 echo                                     %COL%[90m[ B for back ]         %COL%[31m[ X to close ]         %COL%[36m[ N page one ]
 echo.
 set /p choice="%DEL%                                        %COL%[37mSelect a corresponding number to the options above > "
-if /i "%choice%"=="1" call:Comingsoon
-if /i "%choice%"=="2" call:Comingsoon
-if /i "%choice%"=="3" goto Mitigations
-if /i "%choice%"=="4" goto TCPIP
-if /i "%choice%"=="5" goto NIC
-if /i "%choice%"=="6" goto Netsh
-if /i "%choice%"=="7" goto AllGPUTweaks
-if /i "%choice%"=="8" goto Intel
-if /i "%choice%"=="9" goto AMD
+if /i "%choice%"=="1" goto TCPIP
+if /i "%choice%"=="2" goto NIC
+if /i "%choice%"=="3" goto Netsh
+if /i "%choice%"=="4" goto AllGPUTweaks
+if /i "%choice%"=="5" goto Intel
+if /i "%choice%"=="6" goto AMD
+if /i "%choice%"=="7" goto AudioLatency
+if /i "%choice%"=="8" call:Comingsoon
+if /i "%choice%"=="9" goto Mitigations
 if /i "%choice%"=="10" call:Cleaner
 if /i "%choice%"=="11" call:gameBooster
 if /i "%choice%"=="12" call:softRestart
@@ -1245,6 +1246,26 @@ reg add "%REGPATH_AMD%\UMD" /v "Tessellation" /t Reg_BINARY /d "3100" /f >nul 2>
 reg add "%REGPATH_AMD%\UMD" /v "VSyncControl" /t Reg_BINARY /d "3000" /f >nul 2>&1
 reg add "%REGPATH_AMD%\UMD" /v "TFQ" /t Reg_BINARY /d "3200" /f >nul 2>&1
 reg add "%REGPATH_AMD%\DAL2_DATA__2_0\DisplayPath_4\EDID_D109_78E9\Option" /v "ProtectionControl" /t Reg_BINARY /d "0100000001000000" /f >nul 2>&1
+goto Tweaks
+
+:AudioLatency
+cd %SYSTEMDRIVE%\Hone\Resources
+if "%AUDOF%" == "%COL%[91mOFF" (
+	if not exist nssm.exe (
+		curl -g -L -# -o "%SYSTEMDRIVE%\Hone\Resources\nssm.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/nssm.exe"
+		curl -g -L -# -o "%SYSTEMDRIVE%\Hone\Resources\REAL.exe" "https://github.com/auraside/HoneCtrl/raw/main/Files/REAL.exe"
+		nssm install HoneAudio "%SYSTEMDRIVE%\Hone\Resources\REAL.exe"
+		nssm set HoneAudio DisplayName Hone Audio Latency Reducer Service
+		nssm set HoneAudio Description Reduces Audio Latency
+		nssm set HoneAudio Start SERVICE_AUTO_START
+		nssm set HoneAudio AppAffinity 1
+	)
+nssm set HoneAudio start SERVICE_AUTO_START
+nssm start HoneAudio
+) >nul 2>&1 else (
+nssm set HoneAudio start SERVICE_DISABLED
+nssm stop HoneAudio
+) >nul 2>&1
 goto Tweaks
 
 :Cleaner
@@ -3170,13 +3191,14 @@ if /i "!input!" neq "i agree" goto Disclaimer2
 reg add "HKCU\Software\Hone" /v "Disclaimer2" /f >nul 2>&1
 
 :Advanced
-for /f "tokens=2 delims==" %%a in ('wmic path Win32_Battery Get BatteryStatus /value ^| findstr "BatteryStatus"') do set status=%%a
-if %status% == 1 ( set Battery=DC) else ( set Battery=AC)
+REM for /f "tokens=2 delims==" %%a in ('wmic path Win32_Battery Get BatteryStatus /value ^| findstr "BatteryStatus"') do set status=%%a
+REM if %status% == 1 ( set Battery=DC ) else ( set Battery=AC )
 set "choice="
 for %%i in (DSCOF AUTOF DRIOF BCDOF NONOF CS0OF TOFOF PS0OF IDLOF CONG DPSOF) do (set "%%i=%COL%[92mON ") >nul 2>&1
 (
 	rem Disable Idle
-	powercfg /qh scheme_current sub_processor IDLEDISABLE | find "Current %Battery% Power Setting Index: 0x00000000" && set "IDLOF=%COL%[91mOFF"
+	powercfg /qh scheme_current sub_processor IDLEDISABLE | find "AC Power Setting Index: 0x00000000" && set "IDLOF=%COL%[91mOFF"
+	rem powercfg /qh scheme_current sub_processor IDLEDISABLE | find "Current %Battery% Power Setting Index: 0x00000000" && set "IDLOF=%COL%[91mOFF"
 	rem DSCP Tweaks
 	reg query "HKLM\Software\Policies\Microsoft\Windows\QoS\javaw" || set "DSCOF=%COL%[91mOFF"
 	rem AutoTuning Tweak
@@ -3386,17 +3408,19 @@ goto Advanced
 
 :DisableIdle
 if "%IDLOF%" == "%COL%[91mOFF" (
-	if %battery% == AC (
-		powercfg /setacvalueindex scheme_current sub_processor IDLEDISABLE 1
-	) else (
-		powercfg /setdcvalueindex scheme_current sub_processor IDLEDISABLE 1
-	)
+powercfg /setacvalueindex scheme_current sub_processor IDLEDISABLE 1
+REM	if %battery% == AC (
+REM		powercfg /setacvalueindex scheme_current sub_processor IDLEDISABLE 1
+REM	) else (
+REM		powercfg /setdcvalueindex scheme_current sub_processor IDLEDISABLE 1
+REM	)
 ) else (
-	if %battery% == AC (
-		powercfg -setacvalueindex scheme_current sub_processor IDLEDISABLE 0
-	) else (
-		powercfg -setdcvalueindex scheme_current sub_processor IDLEDISABLE 0
-	)
+powercfg -setacvalueindex scheme_current sub_processor IDLEDISABLE 0
+REM	if %battery% == AC (
+REM		powercfg -setacvalueindex scheme_current sub_processor IDLEDISABLE 0
+REM	) else (
+REM		powercfg -setdcvalueindex scheme_current sub_processor IDLEDISABLE 0
+REM	)
 )
 goto Advanced
 
@@ -3729,7 +3753,7 @@ echo %COL%[90m                                                      Product Deve
 echo %COL%[97m                                                   Jonathan H. - Jonathan
 echo %COL%[97m                                                     Dexter K. - Drevoes
 echo %COL%[97m                                                     Arthur C. - Yaamruo
-echo %COL%[97m                                                     Valeria D. - Melody
+echo %COL%[97m                                                    Valeria D. - Melody
 echo.
 echo.
 echo.
@@ -3750,6 +3774,8 @@ echo %COL%[97m                                                       W1zzard - (
 echo %COL%[97m                                                       M2-Team - (Nsudo)
 echo %COL%[97m                                                       ToastyX - (Restart64)
 echo %COL%[97m                                                          wj32 - (Purgestandby)
+echo %COL%[97m                                                     mini)(ant - (REAL)
+echo %COL%[97m                                                          nssm - (Iain Patterson)
 echo.
 echo.
 echo.
