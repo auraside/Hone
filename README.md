@@ -179,7 +179,7 @@ Project Link: [https://github.com/auraside/HoneCtrl](https://github.com/auraside
 * [Empty Standby List](https://wj32.org/wp/software/empty-standby-list/)
 * [REAL](https://github.com/miniant-git/REAL)
 * [nssm](https://nssm.cc/)
-
+* [sed](https://gnuwin32.sourceforge.net/packages/sed.htm)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
