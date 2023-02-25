@@ -177,6 +177,9 @@ Project Link: [https://github.com/auraside/HoneCtrl](https://github.com/auraside
 * [NSudo](https://github.com/M2Team/NSudo)
 * [CRU](https://github.com/radamar/Custom-Resolution-Utility-ToastyX)
 * [Empty Standby List](https://wj32.org/wp/software/empty-standby-list/)
+* [REAL](https://github.com/miniant-git/REAL)
+* [nssm](https://nssm.cc/)
+
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
