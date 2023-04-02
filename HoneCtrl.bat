@@ -657,7 +657,7 @@ if "%ME2OF%" == "%COL%[91mOFF" (
 	REM Disallow drivers to get paged into virtual memory
 	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "DisablePagingExecutive" /t Reg_DWORD /d "1" /f
 	REM Disable Page Combining and Memory Compression
-	powershell -NoProfile -Command "Disable-MMAgent -PagingCombining -mc"
+	powershell -NoProfile -Command "Disable-MMAgent -PageCombining -mc"
 	reg add "HKLM\System\CurrentControlSet\Control\Session Manager\Memory Management" /v "DisablePageCombining" /t REG_DWORD /d "1" /f
 	REM Use Large System Cache to improve microstuttering
 	reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" /v "LargeSystemCache" /t Reg_DWORD /d "1" /f
