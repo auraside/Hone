@@ -682,6 +682,8 @@ if "%ME2OF%" == "%COL%[91mOFF" (
 	reg add "HKLM\System\CurrentControlSet\Control" /v "WaitToKillServiceTimeout" /t Reg_SZ /d "1000" /f
 	REM Wait to kill non-responding app
 	reg add "HKCU\Control Panel\Desktop" /v "HungAppTimeout" /t Reg_SZ /d "1000" /f
+	REM Increase icon cache size
+	reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "Max Cached Icons" /t REG_SZ /d "4096" /f
 	REM fsutil
 	if exist "%SYSTEMROOT%\System32\fsutil.exe" (
 		REM Raise the limit of paged pool memory
@@ -743,6 +745,8 @@ if "%ME2OF%" == "%COL%[91mOFF" (
 	reg add "HKLM\System\CurrentControlSet\Control" /v "WaitToKillServiceTimeout" /t Reg_SZ /d "20000" /f
 	REM Wait to kill non-responding app
 	reg add "HKCU\Control Panel\Desktop" /v "HungAppTimeout" /t Reg_SZ /d "5000" /f
+	REM Decrease icon cache size
+	reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "Max Cached Icons" /f
 	REM fsutil
 	if exist "%SYSTEMROOT%\System32\fsutil.exe" (
 		REM Set default limit of paged pool memory
