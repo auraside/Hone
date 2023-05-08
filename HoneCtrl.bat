@@ -763,9 +763,9 @@ if "%ME2OF%" == "%COL%[91mOFF" (
 		fsutil behavior set disablecompression 0
 		REM Enable Trim
 		fsutil behavior set disabledeletenotify 0
-		REM Disable ReFS v2 auto tiering logic for tiered volumes. https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-behavior https://forums.veeam.com/veeam-backup-replication-f2/refs-strange-performance-issues-t65280.html
+		REM Enable ReFS v2 auto tiering logic for tiered volumes. https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-behavior https://forums.veeam.com/veeam-backup-replication-f2/refs-strange-performance-issues-t65280.html
 		fsutil behavior set disablewriteautotiering 0
-		REM Set the NTFS quota report interval to 90 minutes.
+		REM Set the NTFS quota report interval to its default value.
 		fsutil behavior set quotanotify 3600
 	)
 ) >nul 2>&1
