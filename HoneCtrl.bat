@@ -123,7 +123,8 @@ if "%firstlaunch%" == "0" (goto MainMenu)
 REM Restore Point
 reg add "HKLM\Software\Microsoft\Windows NT\CurrentVersion\SystemRestore" /v "SystemRestorePointCreationFrequency" /t REG_DWORD /d 0 /f >nul 2>&1
 powershell -ExecutionPolicy Unrestricted -NoProfile Enable-ComputerRestore -Drive 'C:\', 'D:\', 'E:\', 'F:\', 'G:\' >nul 2>&1
-powershell -ExecutionPolicy Unrestricted -NoProfile Checkpoint-Computer -Description 'Hone Restore Point' >nul 2>&1
+REM powershell -ExecutionPolicy Unrestricted -NoProfile Checkpoint-Computer -Description 'Hone Restore Point' >nul 2>&1
+wmic.exe /namespace:\\root\default Path SystemRestore Call CreateRestorePoint "Hone Restore Point", 100, 7
 
 REM HKCU & HKLM backup
 
@@ -681,6 +682,8 @@ if "%ME2OF%" == "%COL%[91mOFF" (
 	reg add "HKLM\System\CurrentControlSet\Control" /v "WaitToKillServiceTimeout" /t Reg_SZ /d "1000" /f
 	REM Wait to kill non-responding app
 	reg add "HKCU\Control Panel\Desktop" /v "HungAppTimeout" /t Reg_SZ /d "1000" /f
+	REM Increase icon cache size
+	reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "Max Cached Icons" /t REG_SZ /d "4096" /f
 	REM fsutil
 	if exist "%SYSTEMROOT%\System32\fsutil.exe" (
 		REM Raise the limit of paged pool memory
@@ -697,6 +700,10 @@ if "%ME2OF%" == "%COL%[91mOFF" (
 		fsutil behavior set disablecompression 1
 		REM Enable Trim
 		fsutil behavior set disabledeletenotify 0
+		REM Disable ReFS v2 auto tiering logic for tiered volumes. https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-behavior https://forums.veeam.com/veeam-backup-replication-f2/refs-strange-performance-issues-t65280.html
+		fsutil behavior set disablewriteautotiering 1
+		REM Set the NTFS quota report interval to 90 minutes.
+		fsutil behavior set quotanotify 5400
 	)
 ) >nul 2>&1 else (
 	reg delete "HKCU\Software\Hone" /v MemoryTweaks /f
@@ -738,6 +745,8 @@ if "%ME2OF%" == "%COL%[91mOFF" (
 	reg add "HKLM\System\CurrentControlSet\Control" /v "WaitToKillServiceTimeout" /t Reg_SZ /d "20000" /f
 	REM Wait to kill non-responding app
 	reg add "HKCU\Control Panel\Desktop" /v "HungAppTimeout" /t Reg_SZ /d "5000" /f
+	REM Decrease icon cache size
+	reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer" /v "Max Cached Icons" /f
 	REM fsutil
 	if exist "%SYSTEMROOT%\System32\fsutil.exe" (
 		REM Set default limit of paged pool memory
@@ -754,6 +763,10 @@ if "%ME2OF%" == "%COL%[91mOFF" (
 		fsutil behavior set disablecompression 0
 		REM Enable Trim
 		fsutil behavior set disabledeletenotify 0
+		REM Enable ReFS v2 auto tiering logic for tiered volumes. https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-behavior https://forums.veeam.com/veeam-backup-replication-f2/refs-strange-performance-issues-t65280.html
+		fsutil behavior set disablewriteautotiering 0
+		REM Set the NTFS quota report interval to its default value.
+		fsutil behavior set quotanotify 3600
 	)
 ) >nul 2>&1
 call :HoneCtrlRestart "Memory Optimization" "%ME2OF%"
