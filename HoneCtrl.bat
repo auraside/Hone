@@ -3161,8 +3161,11 @@ goto HoneRenders
 :RenderSettings
 cls
 if not exist "%SYSTEMDRIVE%\Program Files\VEGAS\VEGAS Pro 17.0" goto NoVegas
+if not exist "%SYSTEMDRIVE%\Program Files\VEGAS\VEGAS Pro 17" goto NoVegas
 if not exist "%SYSTEMDRIVE%\Program Files\VEGAS\VEGAS Pro 18.0" goto NoVegas
+if not exist "%SYSTEMDRIVE%\Program Files\VEGAS\VEGAS Pro 18" goto NoVegas
 if not exist "%SYSTEMDRIVE%\Program Files\VEGAS\VEGAS Pro 19.0" goto NoVegas
+if not exist "%SYSTEMDRIVE%\Program Files\VEGAS\VEGAS Pro 19" goto NoVegas
 taskkill /f /im Vegas170.exe >nul 2>&1
 taskkill /f /im Vegas180.exe >nul 2>&1
 taskkill /f /im Vegas190.exe >nul 2>&1
