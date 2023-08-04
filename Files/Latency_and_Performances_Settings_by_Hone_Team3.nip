@@ -1,0 +1,3599 @@
+﻿<?xml version="1.0" encoding="utf-16"?>
+<ArrayOfProfile>
+  <Profile>
+    <ProfileName>3DMark</ProfileName>
+    <Executeables>
+      <string>3dmarkw8.exe</string>
+      <string>3dmarkpciexpress.exe</string>
+      <string>3dmark.exe</string>
+      <string>3dmarkcmd.exe</string>
+      <string>3dmarkw8workload1.exe</string>
+      <string>adapter_info.exe</string>
+      <string>3dmarkw8demo.exe</string>
+      <string>3dmarksffeaturetest.exe</string>
+      <string>3dmarkskydiver.exe</string>
+      <string>3dmarkw8cmd.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>3rdpersonshooter.unity3d</ProfileName>
+    <Executeables>
+      <string>3rdpersonshooter.unity3d.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Adobe Photoshop</ProfileName>
+    <Executeables>
+      <string>pixel_bender_toolkit.exe</string>
+      <string>photoshop.exe</string>
+      <string>sniffer_gpu.exe</string>
+      <string>sniffer.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Adobe Premiere</ProfileName>
+    <Executeables>
+      <string>adobe premiere pro.exe</string>
+      <string>gpusniffer.exe</string>
+      <string>application/photoshopserver.exe</string>
+      <string>application/pproheadless.exe</string>
+      <string>application/logtransport2.exe</string>
+      <string>application/mpeghdvexport.exe</string>
+      <string>adobe premiere pro (beta).exe</string>
+      <string>application/arh.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Aim Lab</ProfileName>
+    <Executeables>
+      <string>aimlab_tb.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Alien: Isolation</ProfileName>
+    <Executeables>
+      <string>ai.exe</string>
+      <string>alien isolation/ai.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Among Us</ProfileName>
+    <Executeables>
+      <string>among us.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Apex Legends</ProfileName>
+    <Executeables>
+      <string>r5apex.exe</string>
+      <string>r5apex_dx12.exe</string>
+      <string>easyanticheat_launcher.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>ARK: Survival Evolved</ProfileName>
+    <Executeables>
+      <string>studiowildcard.4558480580bb9_1w2mm55455e38</string>
+      <string>arkgame-win64-test.exe</string>
+      <string>shootergame_be.exe</string>
+      <string>shootergame_be.exe</string>
+      <string>shootergame.exe</string>
+      <string>shootergame.exe</string>
+      <string>shootergame.exe</string>
+      <string>shootergame.exe</string>
+      <string>shootergame.exe</string>
+      <string>shootergame.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>ARK: Survival of the Fittest</ProfileName>
+    <Executeables>
+      <string>shootergame_be.exe</string>
+      <string>shootergame.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Assassin's Creed Valhalla</ProfileName>
+    <Executeables>
+      <string>scimitar_engine_win64_vs2019_dx12_rx.exe</string>
+      <string>scimitar_engine_win64_vs2019_dx12_px.exe</string>
+      <string>discoverytourvikingage.exe</string>
+      <string>discoverytourvikingage_plus.exe</string>
+      <string>acvalhalla_plus.exe</string>
+      <string>acvalhalla.exe</string>
+      <string>scimitar_engine_win64_vs2019_dx12_qx.exe</string>
+      <string>scimitar_engine_win64_vs2019_dx12_fx.exe</string>
+      <string>scimitar_engine_win64_vs2019_dx12_mx.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Assassin's Creed: Odyssey</ProfileName>
+    <Executeables>
+      <string>discoverytourancientgreece.exe</string>
+      <string>acodyssey_plus.exe</string>
+      <string>acodyssey.exe</string>
+      <string>discoverytourancientgreece_plus.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Assetto Corsa</ProfileName>
+    <Executeables>
+      <string>assettocorsa/acs.exe</string>
+      <string>assettocorsa.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Atomic Heart</ProfileName>
+    <Executeables>
+      <string>focushomeinteractivesa.579645d26cfd_4hny5m903y3g0</string>
+      <string>atomicheart.exe</string>
+      <string>atomicheart-win64-shipping.exe</string>
+      <string>atomicheart-win64-test.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Batman: Arkham Knight</ProfileName>
+    <Executeables>
+      <string>batmanak.exe</string>
+      <string>bmgame-win64-profile.exe</string>
+      <string>bmgame-win64-test.exe</string>
+      <string>bmgame.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Battlefield 1</ProfileName>
+    <Executeables>
+      <string>bf1.exe</string>
+      <string>tunguska.main_win64_final.exe</string>
+      <string>bf1_cte.exe</string>
+      <string>bf1trial.exe</string>
+      <string>tunguska.main_win64_release.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Battlefield 1942</ProfileName>
+    <Executeables>
+      <string>bf1942_w32ded.exe</string>
+      <string>bf1942.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Battlefield 1943</ProfileName>
+    <Executeables>
+      <string>bf1943game.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Battlefield 2</ProfileName>
+    <Executeables>
+      <string>+menu.exe</string>
+      <string>+playnow.exe</string>
+      <string>bf2.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Battlefield 2042</ProfileName>
+    <Executeables>
+      <string>bf.exe</string>
+      <string>battlefieldgame.main_win64_final.exe</string>
+      <string>bf2042trial.exe</string>
+      <string>battlefieldgame.main_win64_retail.exe</string>
+      <string>bf2042.exe</string>
+      <string>battlefieldgame.main_win64_release.exe</string>
+      <string>battlefieldgame.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Battlefield 2142</ProfileName>
+    <Executeables>
+      <string>bf2142.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Battlefield 3</ProfileName>
+    <Executeables>
+      <string>bf3.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Battlefield 4</ProfileName>
+    <Executeables>
+      <string>bf4_x86.exe</string>
+      <string>bf4cte.exe</string>
+      <string>bf4.exe</string>
+      <string>bf4cte_x86.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Battlefield Online</ProfileName>
+    <Executeables>
+      <string>bfoclient.exe</string>
+      <string>battlefield online/bin/launch.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Battlefield V</ProfileName>
+    <Executeables>
+      <string>casablanca.main_win64_retail.exe</string>
+      <string>bf5.exe</string>
+      <string>bfvob.exe</string>
+      <string>bfv.exe</string>
+      <string>bfvtrial.exe</string>
+      <string>casablanca.exe</string>
+      <string>casablanca.main_win64_final.exe</string>
+      <string>casablanca.main_win64_performance.exe</string>
+      <string>casablanca.main_win64_release.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Battlefield Vietnam</ProfileName>
+    <Executeables>
+      <string>bfvietnam.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Battlefield: Bad Company 2</ProfileName>
+    <Executeables>
+      <string>bfbc2betagame.exe</string>
+      <string>frost.game.main_win32_retail.exe</string>
+      <string>bfbc2game.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Battlefield: Hardline</ProfileName>
+    <Executeables>
+      <string>bfh.exe</string>
+      <string>bfh beta 2/bfh.exe</string>
+      <string>bfh beta 2</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>BeamNG.drive</ProfileName>
+    <Executeables>
+      <string>beamng.exe</string>
+      <string>beamng.drive.x86.exe</string>
+      <string>beamng.drive.x64.exe</string>
+      <string>beamng.drive.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Beat Saber</ProfileName>
+    <Executeables>
+      <string>beat saber.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>BioHazard 3(Resident Evil 3)</ProfileName>
+    <Executeables>
+      <string>bio3_pc.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Biohazard 5</ProfileName>
+    <Executeables>
+      <string>bh5dx9.exe</string>
+      <string>launcher.exe</string>
+      <string>bh5dx10.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>BioShock</ProfileName>
+    <Executeables>
+      <string>bioshock.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>BioShock 2</ProfileName>
+    <Executeables>
+      <string>bioshock2launcher.exe</string>
+      <string>bioshock2.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Bioshock 2 Remastered</ProfileName>
+    <Executeables>
+      <string>bioshock2hd.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>BioShock Infinite</ProfileName>
+    <Executeables>
+      <string>bioshockinfinite.exe</string>
+      <string>bioshockinfinite-sdc.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>BioShock Remastered</ProfileName>
+    <Executeables>
+      <string>bioshockhd.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Bluestacks</ProfileName>
+    <Executeables>
+      <string>bluestacksgp.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>BlueStacks</ProfileName>
+    <Executeables>
+      <string>hd-multiinstancemanager.exe</string>
+      <string>hd-player.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>BlueStacks X</ProfileName>
+    <Executeables>
+      <string>bluestacks x.exe</string>
+      <string>hd-player.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Borderlands</ProfileName>
+    <Executeables>
+      <string>borderlands.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Borderlands 2</ProfileName>
+    <Executeables>
+      <string>launcher.exe</string>
+      <string>borderlands2.exe</string>
+      <string>shippingpc-willowgame-pcconsole-lowgore.exe</string>
+      <string>willowgame.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Borderlands 2 VR</ProfileName>
+    <Executeables>
+      <string>borderlands2vr.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Borderlands 3</ProfileName>
+    <Executeables>
+      <string>oakgame-win64-test.exe</string>
+      <string>borderlands3.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Borderlands The Pre-Sequel</ProfileName>
+    <Executeables>
+      <string>launcher.exe</string>
+      <string>borderlandspresequel.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty</ProfileName>
+    <Executeables>
+      <string>codmp.exe</string>
+      <string>codsp.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty 2</ProfileName>
+    <Executeables>
+      <string>cod2sp_s.exe</string>
+      <string>cod2mp_s.exe</string>
+      <string>cod2demo.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty 4: Modern Warfare</ProfileName>
+    <Executeables>
+      <string>iw3mp.exe</string>
+      <string>iw3sp.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty Online</ProfileName>
+    <Executeables>
+      <string>tcls/client.exe</string>
+      <string>codomp_client_shipretail.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty: Advanced Warfare</ProfileName>
+    <Executeables>
+      <string>s1_sp64_ship.exe</string>
+      <string>s1_mp64_ship.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty: Black Ops</ProfileName>
+    <Executeables>
+      <string>blackops.exe</string>
+      <string>blackopsmp.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty: Black Ops 3</ProfileName>
+    <Executeables>
+      <string>blackops3.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty: Black Ops 4</ProfileName>
+    <Executeables>
+      <string>blackops4.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty: Black Ops Cold War</ProfileName>
+    <Executeables>
+      <string>cod_*profile*.exe</string>
+      <string>cod2020*.exe</string>
+      <string>cod_*ship*.exe</string>
+      <string>cod_*release*.exe</string>
+      <string>cod_*debug*.exe</string>
+      <string>blackopscoldwaresports.exe</string>
+      <string>blackopscoldwar.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty: Black Ops II</ProfileName>
+    <Executeables>
+      <string>t6mp.exe</string>
+      <string>t6zm.exe</string>
+      <string>t6sp.exe</string>
+      <string>codsp_s.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty: Ghosts</ProfileName>
+    <Executeables>
+      <string>2-iw6sp64.exe</string>
+      <string>iw6sp64_ship.exe</string>
+      <string>iw6mp64_ship.exe</string>
+      <string>1-iw6sp64.exe</string>
+      <string>2-iw6mp64.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty: Infinite Warfare</ProfileName>
+    <Executeables>
+      <string>iw7uwp_ship.exe</string>
+      <string>38985ca0.pccallofdutyinfinitewarfare_5bkah9njm3e9g</string>
+      <string>iw7_ship.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty: Modern Warfare 2</ProfileName>
+    <Executeables>
+      <string>iw4sp.exe</string>
+      <string>iw4mp.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty: Modern Warfare 2 (2022)</ProfileName>
+    <Executeables>
+      <string>launcher.exe</string>
+      <string>sp22-cod.exe</string>
+      <string>sp22.exe</string>
+      <string>mp-cod.exe</string>
+      <string>cod.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty: Modern Warfare 2 Remastered</ProfileName>
+    <Executeables>
+      <string>h2_sp64_profile.exe</string>
+      <string>h2_sp64_bnet_ship.exe</string>
+      <string>h2_sp64_bnet_profile.exe</string>
+      <string>mw2cr.exe</string>
+      <string>h2_sp64_bnet_ship_unprotected.exe</string>
+      <string>h2_sp64_ship.exe</string>
+      <string>h2_sp64_ship_unprotected.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty: Modern Warfare 2019</ProfileName>
+    <Executeables>
+      <string>1-game_steam_dx12_test.exe</string>
+      <string>modern warfare launcher.exe</string>
+      <string>0-game_dx12_ship.exe</string>
+      <string>modernwarfare.exe</string>
+      <string>5-game_dx12_debug.exe</string>
+      <string>4-game_dx12_profile.exe</string>
+      <string>3-game_dx12_demo.exe</string>
+      <string>modernwarfare_cdl.exe</string>
+      <string>game_dx12_ship.exe</string>
+      <string>1-game_dx12_test.exe</string>
+      <string>2-game_dx12_fast_server.exe</string>
+      <string>4-game_steam_dx12_profile.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty: Modern Warfare 3</ProfileName>
+    <Executeables>
+      <string>iw5mp_server.exe</string>
+      <string>iw5mp.exe</string>
+      <string>iw5sp.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty: Modern Warfare Remastered</ProfileName>
+    <Executeables>
+      <string>38985ca0.pccallofdutymodernwarfareremastered_5bkah9njm3e9g</string>
+      <string>h1_mp64_ship.exe</string>
+      <string>h1_sp64_ship.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty: United Offensive</ProfileName>
+    <Executeables>
+      <string>coduomp.exe</string>
+      <string>coduosp.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty: Vanguard</ProfileName>
+    <Executeables>
+      <string>4-game_profile*.exe</string>
+      <string>3-game_demo*.exe</string>
+      <string>1-game_test*.exe</string>
+      <string>call of duty vanguard beta/vanguard.exe</string>
+      <string>vanguard.exe</string>
+      <string>vanguard/vanguard.exe</string>
+      <string>5-game_debug*.exe</string>
+      <string>cod2021.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty: World at War</ProfileName>
+    <Executeables>
+      <string>codwawmp.exe</string>
+      <string>codwawbeta.exe</string>
+      <string>codwaw.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Call of Duty: WWII</ProfileName>
+    <Executeables>
+      <string>s2_mp64_ship.exe</string>
+      <string>s2_sp64_ship.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Cinebench R20</ProfileName>
+    <Executeables>
+      <string>cinebench.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Counter-strike</ProfileName>
+    <Executeables>
+      <string>counter-strike/hl.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Counter-strike: Global Offensive</ProfileName>
+    <Executeables>
+      <string>csgo.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Cyberpunk 2077</ProfileName>
+    <Executeables>
+      <string>cyberpunk2077.exe</string>
+      <string>cplauncher.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Dark Souls</ProfileName>
+    <Executeables>
+      <string>data.exe</string>
+      <string>data.exe</string>
+      <string>darksouls.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Dark Souls II</ProfileName>
+    <Executeables>
+      <string>darksoulsii.exe</string>
+      <string>darksouls2.exe</string>
+      <string>frpg2.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Dark Souls III</ProfileName>
+    <Executeables>
+      <string>darksoulsiii.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Dark Souls Remastered</ProfileName>
+    <Executeables>
+      <string>darksoulsremastered.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Dead by Daylight</ProfileName>
+    <Executeables>
+      <string>deadbydaylight-egs-shipping.exe</string>
+      <string>deadbydaylight-win64-shipping.exe</string>
+      <string>deadbydaylight.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Desktop Windows Manager</ProfileName>
+    <Executeables>
+      <string>dwm.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Destiny 2</ProfileName>
+    <Executeables>
+      <string>destiny2.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Diablo 4</ProfileName>
+    <Executeables>
+      <string>fenris.exe</string>
+      <string>fenris.noaegis.exe</string>
+      <string>fenris_p.exe</string>
+      <string>diablo iv.exe</string>
+      <string>fenris_p.noaegis.exe</string>
+      <string>fenris_ra.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Doom 3</ProfileName>
+    <Executeables>
+      <string>doom3.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Doom Eternal</ProfileName>
+    <Executeables>
+      <string>ghostx64vk.exe</string>
+      <string>doometernalx64vk.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Dota 2</ProfileName>
+    <Executeables>
+      <string>dota.exe</string>
+      <string>dota2.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Dying Light</ProfileName>
+    <Executeables>
+      <string>dyinglightgame.exe</string>
+      <string>dyinglightgame_x64.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Dying Light 2 Stay Human</ProfileName>
+    <Executeables>
+      <string>dyinglightgame_x64_rwdi.exe</string>
+      <string>dyinglightgame_x64_rd.exe</string>
+      <string>dyinglightgame_x64_rwp.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Dying Light: Bad Blood</ProfileName>
+    <Executeables>
+      <string>badbloodgame.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Elden Ring</ProfileName>
+    <Executeables>
+      <string>eldenring.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Elder Scrolls V: Skyrim</ProfileName>
+    <Executeables>
+      <string>tesv.exe</string>
+      <string>skyrimlauncher.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>f.lux</ProfileName>
+    <Executeables>
+      <string>flux.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Fallout - New Vegas</ProfileName>
+    <Executeables>
+      <string>falloutnvbeta.exe</string>
+      <string>falloutnv.exe</string>
+      <string>falloutnvlauncher.exe</string>
+      <string>fallout3nv.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Fallout 3</ProfileName>
+    <Executeables>
+      <string>falloutlauncher.exe</string>
+      <string>fallout3ng.exe</string>
+      <string>fallout3.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Fallout 4</ProfileName>
+    <Executeables>
+      <string>fallout4launcher.exe</string>
+      <string>fallout4.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Far Cry 5</ProfileName>
+    <Executeables>
+      <string>farcry5.exe</string>
+      <string>fclaunch_p64.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Far Cry 6</ProfileName>
+    <Executeables>
+      <string>farcry6.exe</string>
+      <string>fclaunch_rt64d3d12.exe</string>
+      <string>fclaunch_p64d3d12.exe</string>
+      <string>fclaunch_r64d3d12.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Five Nights at Freddy's: Security Breach</ProfileName>
+    <Executeables>
+      <string>fnaf9/binaries/win64/fnaf9-win64-shipping.exe</string>
+      <string>fnaf9-win64-shipping.exe</string>
+      <string>fnaf9.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Fortnite</ProfileName>
+    <Executeables>
+      <string>fortniteclient.exe</string>
+      <string>fortniteclient-win64-test.exe</string>
+      <string>fortniteclient-win64-shipping.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Forza Horizon 5</ProfileName>
+    <Executeables>
+      <string>forza_gaming.desktop.x64_release.exe</string>
+      <string>microsoft.624f8b84b80_8wekyb3d8bbwe</string>
+      <string>forzahorizon5.exe</string>
+      <string>forza_gaming.desktop.x64_profile.exe</string>
+      <string>forza_gaming.desktop.x64_release_final.exe</string>
+      <string>forza_gaming.desktop.x64_release_noagility.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Fraps</ProfileName>
+    <Executeables>
+      <string>fraps.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Friday the 13th: The Game</ProfileName>
+    <Executeables>
+      <string>summercamp.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Game.exe</ProfileName>
+    <Executeables>
+      <string>game.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>GameClient.exe</ProfileName>
+    <Executeables>
+      <string>gameclient.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>GameDVR</ProfileName>
+    <Executeables>
+      <string>bcastdvr.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Garry's Mod</ProfileName>
+    <Executeables>
+      <string>garrysmod/hl2.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Genshin Impact</ProfileName>
+    <Executeables>
+      <string>genshinimpact.exe</string>
+      <string>launcher.exe</string>
+      <string>zfgamebrowser.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Geometry Dash</ProfileName>
+    <Executeables>
+      <string>geometrydash.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>God of War</ProfileName>
+    <Executeables>
+      <string>godofwar/gow.exe</string>
+      <string>gow.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Gotham Knights</ProfileName>
+    <Executeables>
+      <string>mercury-win64-test-predenuvo.exe</string>
+      <string>mercury-win64-shipping-predenuvo.exe</string>
+      <string>mercury.exe</string>
+      <string>gothamknights-win64-shipping.exe</string>
+      <string>mercurypredenuvo.exe</string>
+      <string>mercury-win64-test.exe</string>
+      <string>mercury-win64-shipping.exe</string>
+      <string>gothamknights.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Grand Theft Auto V</ProfileName>
+    <Executeables>
+      <string>gta5.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Half Life</ProfileName>
+    <Executeables>
+      <string>hl.exe</string>
+      <string>half-life/hl.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Half-Life 2</ProfileName>
+    <Executeables>
+      <string>half-life 2/hl2.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Half-Life: Alyx</ProfileName>
+    <Executeables>
+      <string>hlvr.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Halo</ProfileName>
+    <Executeables>
+      <string>halo.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Halo 2</ProfileName>
+    <Executeables>
+      <string>startup.exe</string>
+      <string>startup.exe</string>
+      <string>halo 2 launcher.exe</string>
+      <string>halo2.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Halo Infinite</ProfileName>
+    <Executeables>
+      <string>game_profile.exe</string>
+      <string>microsoft.254428597cfe2_8wekyb3d8bbwe</string>
+      <string>game_release.exe</string>
+      <string>haloinfinite.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Halo: The Master Chief Collection</ProfileName>
+    <Executeables>
+      <string>mcc-win64-shipping-winstore.exe</string>
+      <string>mcc-win64-shipping.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Hogwarts Legacy</ProfileName>
+    <Executeables>
+      <string>hogwarts legacy/phoenix/binaries/win64/phoenix-win64-test.exe</string>
+      <string>hogwartslegacy.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Hollow Knight</ProfileName>
+    <Executeables>
+      <string>teamcherry.hollowknightpc_y4jvztpgccj42</string>
+      <string>hollow_knight.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Honkai Impact</ProfileName>
+    <Executeables>
+      <string>bh3.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Honkai: Star Rail</ProfileName>
+    <Executeables>
+      <string>starrail.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Horizon Zero Dawn Complete Edition</ProfileName>
+    <Executeables>
+      <string>horizonzerodawn.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Knives Out / Huang Ye Xing Dong</ProfileName>
+    <Executeables>
+      <string>launcher.exe</string>
+      <string>hyxd.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>League of Legends</ProfileName>
+    <Executeables>
+      <string>cross/crossproxy.exe</string>
+      <string>league of legends.exe</string>
+      <string>lollauncher.exe</string>
+      <string>lol.launcher.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Left 4 Dead</ProfileName>
+    <Executeables>
+      <string>left4dead.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Left 4 Dead 2</ProfileName>
+    <Executeables>
+      <string>left4dead2.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Logitech G Hub</ProfileName>
+    <Executeables>
+      <string>lghub_agent.exe</string>
+      <string>lghub.exe</string>
+      <string>logioverlay.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Logitech Gaming Software</ProfileName>
+    <Executeables>
+      <string>lcore.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Metro: Exodus</ProfileName>
+    <Executeables>
+      <string>metroexodus.exe</string>
+      <string>deepsilver.projectwindfall_hmv7qcest37me</string>
+      <string>metro3.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Microsoft Cortana</ProfileName>
+    <Executeables>
+      <string>microsoft.windows.cortana_cw5n1h2txyewy</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Microsoft Gaming Overlay</ProfileName>
+    <Executeables>
+      <string>gamebar.exe</string>
+      <string>microsoft.xboxgamingoverlay_8wekyb3d8bbwe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Microsoft Paint</ProfileName>
+    <Executeables>
+      <string>mspaint.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Microsoft Shell Experience Host</ProfileName>
+    <Executeables>
+      <string>shellexperiencehost_cw5n1h2txyewy</string>
+      <string>shellexperiencehost.exe</string>
+      <string>microsoft.windows.shellexperiencehost_cw5n1h2txyewy</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Microsoft StartMenuExperienceHost</ProfileName>
+    <Executeables>
+      <string>startmenuexperiencehost.exe</string>
+      <string>microsoft.windows.startmenuexperiencehost_cw5n1h2txyewy</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Microsoft SystemSettings</ProfileName>
+    <Executeables>
+      <string>systemsettings.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Microsoft Visual Studio</ProfileName>
+    <Executeables>
+      <string>devenv.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Microsoft Win10 Store</ProfileName>
+    <Executeables>
+      <string>winstore.app.exe</string>
+      <string>microsoft.windowsstore_11708.1001.30.0_x64__8wekyb3d8bbwe</string>
+      <string>microsoft.windowsstore_8wekyb3d8bbwe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Microsoft Windows Cloud Experience Host</ProfileName>
+    <Executeables>
+      <string>microsoft.cloudexperiencehost_cw5n1h2txyewy</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Microsoft Windows Defender Security Center</ProfileName>
+    <Executeables>
+      <string>microsoft.windows.sechealthui_cw5n1h2txyewy</string>
+      <string>sechealthui.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Microsoft Windows Xbox</ProfileName>
+    <Executeables>
+      <string>microsoft.xboxapp_8wekyb3d8bbwe</string>
+      <string>xboxapp.exe</string>
+      <string>xboxpcapp.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Minecraft</ProfileName>
+    <Executeables>
+      <string>minecraft.win10.exe</string>
+      <string>wpflauncher.exe</string>
+      <string>net.minecraft.client.main.main</string>
+      <string>microsoft.minecraftuwp_8wekyb3d8bbwe</string>
+      <string>net.minecraft.launchwrapper.launch</string>
+      <string>minecraftstorymode.exe</string>
+      <string>minecraft.exe</string>
+      <string>minecraft.win10.dx11.exe</string>
+      <string>minecraft.windows.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Mumble</ProfileName>
+    <Executeables>
+      <string>mumble.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Nahimic Service</ProfileName>
+    <Executeables>
+      <string>nahimicsvc32.exe</string>
+      <string>nahimicservice.exe</string>
+      <string>nahimicnotifsys.exe</string>
+      <string>nahimicsvc64.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Need for Speed: Most Wanted</ProfileName>
+    <Executeables>
+      <string>nfs13.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Netflix</ProfileName>
+    <Executeables>
+      <string>4df9e0f8.netflix_6.2.25.0_x64__mcm4njqhnhss8</string>
+      <string>4df9e0f8.netflix_mcm4njqhnhss8</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Norton Internet Security</ProfileName>
+    <Executeables>
+      <string>ccsvchst.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Notepad</ProfileName>
+    <Executeables>
+      <string>microsoft.windowsnotepad_8wekyb3d8bbwe</string>
+      <string>notepad.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>NVIDIA Control Panel</ProfileName>
+    <Executeables>
+      <string>nvidiacorp.nvidiacontrolpanel_56jybvy8sckqj</string>
+      <string>nvcplui.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>NVIDIA NVFBC Applications</ProfileName>
+    <Executeables>
+      <string>nvdisplay.container.exe</string>
+      <string>shadowplay/nvspcaps.exe</string>
+      <string>nvtelemetrycontainer.exe</string>
+      <string>nvcontainer.exe</string>
+      <string>shadowplay/nvspcaps64.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Open Broadcaster Software</ProfileName>
+    <Executeables>
+      <string>obs.exe</string>
+      <string>obs64.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>osu!</ProfileName>
+    <Executeables>
+      <string>osu!.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Threaded optimization</SettingNameInfo>
+        <SettingID>549528094</SettingID>
+        <SettingValue>2</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Overwatch 2</ProfileName>
+    <Executeables>
+      <string>overwatch launcher.exe</string>
+      <string>overwatch.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Overwolf</ProfileName>
+    <Executeables>
+      <string>overwolfhelper64.exe</string>
+      <string>overwolflauncher.exe</string>
+      <string>overwolf.exe</string>
+      <string>overwolfstore.exe</string>
+      <string>overwolfbenchmarking.exe</string>
+      <string>purplizer.exe</string>
+      <string>overwolfbrowser.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Paladins</ProfileName>
+    <Executeables>
+      <string>paladins.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>PLAYERUNKNOWN'S BATTLEGROUNDS</ProfileName>
+    <Executeables>
+      <string>tslgame_be.exe</string>
+      <string>tslgame.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>PUBG LITE</ProfileName>
+    <Executeables>
+      <string>launcher.exe</string>
+      <string>pubglite-win64-shipping.exe</string>
+      <string>pubglite.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Quake</ProfileName>
+    <Executeables>
+      <string>glquake.exe</string>
+      <string>quake.exe</string>
+      <string>glqwcl.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Quake 2 RTX Remaster</ProfileName>
+    <Executeables>
+      <string>q2rtx.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Quake 4</ProfileName>
+    <Executeables>
+      <string>quake4.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Quake Champions</ProfileName>
+    <Executeables>
+      <string>quakechampionsrelease.exe</string>
+      <string>quakechampionsprofile.exe</string>
+      <string>quakechampions.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Quake2</ProfileName>
+    <Executeables>
+      <string>quake2.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Quake3</ProfileName>
+    <Executeables>
+      <string>quake3.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Red Dead Redemption 2</ProfileName>
+    <Executeables>
+      <string>red2.exe</string>
+      <string>rdr2.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Resident Evil: Village/Biohazard Village</ProfileName>
+    <Executeables>
+      <string>re8.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Roblox</ProfileName>
+    <Executeables>
+      <string>windows10universal.exe</string>
+      <string>robloxcorporation.roblox_55nm5eh3cm0pr</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Rocket League</ProfileName>
+    <Executeables>
+      <string>rocketleague.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>RUST</ProfileName>
+    <Executeables>
+      <string>rustclient.exe</string>
+      <string>rust.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Texture filtering - Anisotropic filter optimization</SettingNameInfo>
+        <SettingID>8703344</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Vertical Sync</SettingNameInfo>
+        <SettingID>11041231</SettingID>
+        <SettingValue>138504007</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Shader disk cache maximum size</SettingNameInfo>
+        <SettingID>11306135</SettingID>
+        <SettingValue>102400</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Texture filtering - Quality</SettingNameInfo>
+        <SettingID>13510289</SettingID>
+        <SettingValue>20</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Texture filtering - Anisotropic sample optimization</SettingNameInfo>
+        <SettingID>15151633</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>FRL Low Latency</SettingNameInfo>
+        <SettingID>277041152</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>SearchUI</ProfileName>
+    <Executeables>
+      <string>searchui.exe</string>
+      <string>searchhost.exe</string>
+      <string>searchapp.exe</string>
+      <string>microsoft.windows.search_cw5n1h2txyewy</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Smite</ProfileName>
+    <Executeables>
+      <string>smite.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Steam Web Helper Service</ProfileName>
+    <Executeables />
+    <Settings />
+  </Profile>
+  <Profile>
+    <ProfileName>StreamLabs OBS</ProfileName>
+    <Executeables>
+      <string>streamlabs obs.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Subnautica</ProfileName>
+    <Executeables>
+      <string>subnautica.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Subnautica: Below Zero</ProfileName>
+    <Executeables>
+      <string>subnauticazero.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Team Fortress 2</ProfileName>
+    <Executeables>
+      <string>team fortress 2/hl2.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Teamspeak</ProfileName>
+    <Executeables>
+      <string>ts3client_win64.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>TeamViewer</ProfileName>
+    <Executeables>
+      <string>teamviewer.exe</string>
+      <string>teamviewer_desktop.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Tom Clancy's Rainbow Six: Siege</ProfileName>
+    <Executeables>
+      <string>scimitar_engine_win64_2015_q_dx11.exe</string>
+      <string>scimitar_tool_win64_dll_2015_r_dx11.exe</string>
+      <string>scimitar_engine_win64_2015_r_dx11.exe</string>
+      <string>scimitar_engine_win64_2015_d_dx11.exe</string>
+      <string>rainbowsix.exe</string>
+      <string>rainbowsix_vulkan.exe</string>
+      <string>scimitar_engine_win64_2015_f_dx11.exe</string>
+      <string>scimitar_tool_win64_2015_r_dx11.exe</string>
+      <string>rainbowsixgame.exe</string>
+      <string>scimitar_engine_win64_2015_p_dx11.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Unreal Engine 3</ProfileName>
+    <Executeables>
+      <string>unreal.exe</string>
+      <string>demogame.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Unreal Engine 5</ProfileName>
+    <Executeables>
+      <string>unrealeditor.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Valorant</ProfileName>
+    <Executeables>
+      <string>valorant-win64-shipping.exe</string>
+      <string>valorant.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Valve Steam</ProfileName>
+    <Executeables>
+      <string>steamservice.exe</string>
+      <string>steam.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Valve Steam WebHelper</ProfileName>
+    <Executeables>
+      <string>steamwebhelper.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Enable FXAA</SettingNameInfo>
+        <SettingID>276089202</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Vulcan</ProfileName>
+    <Executeables>
+      <string>vulcan.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Warzone 2100 (Updated)</ProfileName>
+    <Executeables>
+      <string>warzone.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Watch Dogs</ProfileName>
+    <Executeables>
+      <string>watch_dogs.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Watch Dogs 2</ProfileName>
+    <Executeables>
+      <string>watchdogs2_rt64.exe</string>
+      <string>watchdogs_rt64_dx12.exe</string>
+      <string>watchdogs2.exe</string>
+      <string>watchdogs2_r64.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Watch Dogs: Legion</ProfileName>
+    <Executeables>
+      <string>watchdogslegion.exe</string>
+      <string>watchdogs_clang_rt64_dx12.exe</string>
+      <string>watchdogs_clang_rt64_dx11.exe</string>
+      <string>watchdogslegion_be.exe</string>
+      <string>watchdogs_clang_r64_dx11.exe</string>
+      <string>watchdogs_clang_r64_dx12.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>webplayer.unity3d</ProfileName>
+    <Executeables>
+      <string>webplayer.unity3d.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>webplayer_win</ProfileName>
+    <Executeables>
+      <string>webplayer_win.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Windows Explorer</ProfileName>
+    <Executeables>
+      <string>explorer.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Windows Logon User Interface</ProfileName>
+    <Executeables>
+      <string>logonui.exe</string>
+      <string>wininit.exe</string>
+      <string>winlogon.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>WinZip</ProfileName>
+    <Executeables>
+      <string>wzzip.exe</string>
+      <string>winzip/winzip64.exe</string>
+      <string>wzunzip.exe</string>
+      <string>winzip/winzip32.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Wondershare Filmora</ProfileName>
+    <Executeables>
+      <string>wondershare filmora*.exe</string>
+      <string>wondershare filmora9.exe</string>
+      <string>wondershare filmora 11.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>World of Tanks</ProfileName>
+    <Executeables>
+      <string>worldoftanks.exe</string>
+      <string>wotlauncher.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>World of Tanks Blitz</ProfileName>
+    <Executeables>
+      <string>wotblitz.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>World of Tanks Client</ProfileName>
+    <Executeables>
+      <string>wgc.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>World Of Warcraft</ProfileName>
+    <Executeables>
+      <string>_retail_/wow.exe</string>
+      <string>wow.exe</string>
+      <string>_ptr_/wowt.exe</string>
+      <string>_vendor_/wowt.exe</string>
+      <string>wowclassicb.exe</string>
+      <string>_vendor2_/wowgm.exe</string>
+      <string>_vendor_/wowgm.exe</string>
+      <string>_classic_ptr_/wowclassict.exe</string>
+      <string>_classic_/wowclassic.exe</string>
+      <string>wowb.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>World Of Warcraft - Classic Era</ProfileName>
+    <Executeables>
+      <string>_classic_era_/wowclassic.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>World Of Warplanes</ProfileName>
+    <Executeables>
+      <string>worldofwarplanes.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>World of Warships</ProfileName>
+    <Executeables>
+      <string>worldofwarships.exe</string>
+      <string>wowslauncher.exe</string>
+      <string>worldofwarships64.exe</string>
+      <string>worldofwarships32.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>XSplit</ProfileName>
+    <Executeables>
+      <string>xgs64.exe</string>
+      <string>xsplitbroadcastercpp_nsybxtx174ba6</string>
+      <string>xsplit.core.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>YAKUZA 0</ProfileName>
+    <Executeables>
+      <string>yakuza0.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Yakuza 3 Remastered</ProfileName>
+    <Executeables>
+      <string>yakuza3.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Yakuza 4</ProfileName>
+    <Executeables>
+      <string>yakuza4.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Yakuza 5</ProfileName>
+    <Executeables>
+      <string>yakuza5.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Yakuza 6: The Song of Life</ProfileName>
+    <Executeables>
+      <string>yakuza6.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Yu-Gi-Oh! Duel Links</ProfileName>
+    <Executeables>
+      <string>duellinkstakeover.exe</string>
+      <string>dlpc.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Yu-Gi-Oh! Master Duel</ProfileName>
+    <Executeables>
+      <string>masterduel.exe</string>
+    </Executeables>
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+  <Profile>
+    <ProfileName>Base Profile</ProfileName>
+    <Executeables />
+    <Settings>
+      <ProfileSetting>
+        <SettingNameInfo>Shader disk cache maximum size</SettingNameInfo>
+        <SettingID>11306135</SettingID>
+        <SettingValue>10240</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Texture filtering - Negative LOD bias</SettingNameInfo>
+        <SettingID>1686376</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Texture filtering - Trilinear optimization</SettingNameInfo>
+        <SettingID>3066610</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Vertical Sync Tear Control</SettingNameInfo>
+        <SettingID>5912412</SettingID>
+        <SettingValue>2525368439</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Preferred refresh rate</SettingNameInfo>
+        <SettingID>6600001</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Maximum pre-rendered frames</SettingNameInfo>
+        <SettingID>8102046</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Texture filtering - Anisotropic filter optimization</SettingNameInfo>
+        <SettingID>8703344</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Vertical Sync</SettingNameInfo>
+        <SettingID>11041231</SettingID>
+        <SettingValue>138504007</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Texture filtering - Quality</SettingNameInfo>
+        <SettingID>13510289</SettingID>
+        <SettingValue>20</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Texture filtering - Anisotropic sample optimization</SettingNameInfo>
+        <SettingID>15151633</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Flag to control smooth AFR behavior</SettingNameInfo>
+        <SettingID>270198627</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Anisotropic filtering setting</SettingNameInfo>
+        <SettingID>270426537</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>NVIDIA Predefined Ansel Usage</SettingNameInfo>
+        <SettingID>271965065</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Power management mode</SettingNameInfo>
+        <SettingID>274197361</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Antialiasing - Mode</SettingNameInfo>
+        <SettingID>276757595</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Anisotropic filtering mode</SettingNameInfo>
+        <SettingID>282245910</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Antialiasing - Setting</SettingNameInfo>
+        <SettingID>282555346</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Optimus flags for enabled applications</SettingNameInfo>
+        <SettingID>284810368</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Enable application for Optimus</SettingNameInfo>
+        <SettingID>284810369</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Preferred OpenGL GPU</SettingNameInfo>
+        <SettingID>550564838</SettingID>
+        <SettingValue>autoselect</SettingValue>
+        <ValueType>String</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Antialiasing - Gamma correction</SettingNameInfo>
+        <SettingID>276652957</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo />
+        <SettingID>1343646814</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+	  <ProfileSetting>
+        <SettingNameInfo>Triple buffering</SettingNameInfo>
+        <SettingID>553505273</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+	  <ProfileSetting>
+        <SettingNameInfo>Threaded optimization</SettingNameInfo>
+        <SettingID>549528094</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+	  <ProfileSetting>
+        <SettingNameInfo>Enable overlay</SettingNameInfo>
+        <SettingID>543959236</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+	 <ProfileSetting>
+        <SettingNameInfo>OpenGL default swap interval fraction</SettingNameInfo>
+        <SettingID>543966593</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting> 
+      <ProfileSetting>
+        <SettingNameInfo>Buffer-flipping mode</SettingNameInfo>
+        <SettingID>538927519</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+	  <ProfileSetting>
+        <SettingNameInfo>Enable G-SYNC globally</SettingNameInfo>
+        <SettingID>294973784</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Antialiasing - Transparency Multisampling</SettingNameInfo>
+        <SettingID>284962204</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Shim Rendering Mode Options per application for Optimus</SettingNameInfo>
+        <SettingID>284810372</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Antialiasing - Behavior Flags</SettingNameInfo>
+        <SettingID>283958146</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Antialiasing - Transparency Supersampling</SettingNameInfo>
+        <SettingID>282364549</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Frame Rate Limiter</SettingNameInfo>
+        <SettingID>277041154</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Do not display this profile in the Control Panel</SettingNameInfo>
+        <SettingID>275602687</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Application Profile Notification Popup Timeout</SettingNameInfo>
+        <SettingID>272979126</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>NVIDIA Quality upscaling</SettingNameInfo>
+        <SettingID>272909380</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Shader Cache</SettingNameInfo>
+        <SettingID>1675263</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Ambient Occlusion</SettingNameInfo>
+        <SettingID>6714153</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Enable sample interleaving (MFAA)</SettingNameInfo>
+        <SettingID>10011052</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Virtual Reality pre-rendered frames</SettingNameInfo>
+        <SettingID>269553971</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>NVIDIA predefined SLI mode</SettingNameInfo>
+        <SettingID>271830721</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+	  	  <ProfileSetting>
+        <SettingNameInfo>Battery Boost</SettingNameInfo>
+        <SettingID>269573257</SettingID>
+        <SettingValue>30</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+	  <ProfileSetting>
+        <SettingNameInfo>FRL Low Latency</SettingNameInfo>
+        <SettingID>277041152</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Toggle the VRR global feature</SettingNameInfo>
+        <SettingID>278196567</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>VRR requested state</SettingNameInfo>
+        <SettingID>278196727</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>G-SYNC</SettingNameInfo>
+        <SettingID>279476687</SettingID>
+        <SettingValue>4</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+	  <ProfileSetting>
+        <SettingNameInfo>G-SYNC</SettingNameInfo>
+        <SettingID>279476652</SettingID>
+        <SettingValue>4</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>OpenGL GDI compatibility</SettingNameInfo>
+        <SettingID>544392611</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>NVIDIA predefined SLI mode on DirectX 10</SettingNameInfo>
+        <SettingID>271830722</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>SLI rendering mode</SettingNameInfo>
+        <SettingID>271830737</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Number of GPUs to use on SLI rendering mode</SettingNameInfo>
+        <SettingID>271834321</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>NVIDIA predefined number of GPUs to use on SLI rendering mode</SettingNameInfo>
+        <SettingID>271834322</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>NVIDIA predefined number of GPUs to use on SLI rendering mode on DirectX 10</SettingNameInfo>
+        <SettingID>271834323</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>NVIDIA Predefined FXAA Usage</SettingNameInfo>
+        <SettingID>271895433</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Texture filtering - Driver Controlled LOD Bias</SettingNameInfo>
+        <SettingID>6524559</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Display the VRR Overlay Indicator</SettingNameInfo>
+        <SettingID>278262127</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Variable refresh Rate</SettingNameInfo>
+        <SettingID>279476686</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+	  <ProfileSetting>
+        <SettingNameInfo>Watermarking Indicator</SettingNameInfo>
+        <SettingID>3672192</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Watermarking Traceability</SettingNameInfo>
+        <SettingID>3737728</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Antialiasing - Line gamma</SettingNameInfo>
+        <SettingID>545898348</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo>Maximum frames allowed</SettingNameInfo>
+        <SettingID>546199011</SettingID>
+        <SettingValue>1</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+      <ProfileSetting>
+        <SettingNameInfo />
+        <SettingID>1343646814</SettingID>
+        <SettingValue>0</SettingValue>
+        <ValueType>Dword</ValueType>
+      </ProfileSetting>
+    </Settings>
+  </Profile>
+</ArrayOfProfile>
