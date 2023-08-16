@@ -26,6 +26,7 @@
 
 
 <!-- PROJECT LOGO -->
+<h1 align="center">HONECTRL IS DEPRICATED, DOWNLOAD THE HONE APP AT http://Hone.gg</h3>
 <br />
 <div align="center">
   <a href="https://github.com/auraside/HoneCtrl">
