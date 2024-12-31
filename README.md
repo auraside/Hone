@@ -121,7 +121,7 @@ The compilation of all this content is the exclusive property of Hone, with copy
 ## Contact
 
 Join the Discord!
-https://discord.gg/hone
+https://discord.com/invite/Hone
 
 Project Link: [https://github.com/auraside/Hone](https://github.com/auraside/Hone)
 
