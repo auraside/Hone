@@ -15,16 +15,16 @@
     If you would like to support the Hone project, please leave a review on our Trustpilot: https://www.trustpilot.com/review/hone.gg
     <br />
     <br />
-    <a href="https://discord.gg/Hone">Report Bug</a>
+    <a href="https://discord.com/invite/Hone">Report Bug</a>
     <br />
     <br />
-    <a href="https://discord.gg/Hone">Receive support</a>
+    <a href="https://discord.com/invite/Hone">Receive support</a>
     <br />
     <br />
-    <a href="https://discord.gg/Hone">Suggest features</a>
+    <a href="https://discord.com/invite/Hone">Suggest features</a>
     <br />
     <br />
-    <a href="https://discord.gg/Hone">Talk with the community!</a>
+    <a href="https://discord.com/invite/Hone">Talk with the community!</a>
     <br />
   </p>
 </div>
@@ -57,7 +57,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Hone App][product-screenshot]](https://Hone.gg)
+[Visit The Hone Website](https://hone.gg)
 
 
 ### Built With
@@ -104,7 +104,7 @@ We do NOT recommend running Hone on a Mac with Boot Camp or other Mac to Windows
 
 Any suggestions you make are **greatly appreciated**.
 
-If you have a suggestion that would make our app better, please head to our [Discord Server](https://discord.gg/Hone) and create a suggestion post.
+If you have a suggestion that would make our app better, please head to our [Discord Server](https://discord.com/invite/Hone) and create a suggestion post.
 Don't forget to give the project a star! Thanks again!
 
 
