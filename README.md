@@ -63,8 +63,8 @@
 ### Built With
 
 * [A Private Electron Fork]
-* [Powershell]
 * [CLI]
+* [C++]
 * [C#]
 
 
