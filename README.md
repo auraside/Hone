@@ -2,7 +2,7 @@
 
 [![Stargazers][stars-shield]][stars-url]
 
-<div align="center">
+<div align="center"> 
   <a href="https://github.com/auraside/Hone">
     <img src="https://user-images.githubusercontent.com/107450640/173981024-5ee33a72-9476-4c82-b78f-4acc4a09ae1a.png" alt="Logo" width="160" height="160">
   </a>
