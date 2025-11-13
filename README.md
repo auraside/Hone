@@ -10,7 +10,7 @@
 <h3 align="center">Hone</h3>
 
   <p align="center">
-    Hone is a free desktop utility that aims to improve FPS, reduce input lag, and optimize network performance for video game titles and day-to-day productivity.
+    Hone is a free desktop utility that aims to improve FPS, reduce input lag, and optimize network performance for video game titles and day-to-day productivity used by millions of users.
   <p align="center">
     If you would like to support the Hone project, please leave a review on our Trustpilot: https://www.trustpilot.com/review/hone.gg
     <br />
